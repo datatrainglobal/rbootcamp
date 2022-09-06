@@ -1,13 +1,13 @@
 --- 
-title: www.datascience.pizza
+title: www.datatrain.cc
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: databrew/intro-to-data-science
-description: "A resource & workbook for the Sewanee DataLab"
+github-repo: datatrainglobal/rbootcamp
+description: "A resource & workbook for the Datatrain R Bootcamp"
 favicon: img/favicon.ico
 always_allow_html: true
 params:
