@@ -1,0 +1,6 @@
+book_filename: "rbootcamp"
+language:
+  ui:
+    chapter_name: "Module "
+delete_merged_file: true
+output_dir: "docs"

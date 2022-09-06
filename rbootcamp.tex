@@ -1,0 +1,686 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={www.datascience.pizza},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{www.datascience.pizza}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{welcome}{%
+\chapter{Welcome!}\label{welcome}}
+
+\hypertarget{what-this-is-and-what-it-isnt}{%
+\section*{What this is, and what it isn't}\label{what-this-is-and-what-it-isnt}}
+\addcontentsline{toc}{section}{What this is, and what it isn't}
+
+This is not a textbook or an encyclopedia. This is not a reference manual. It is not exhaustive or comprehensive. We barely mention statistical tests at all. There is almost no theory. In fact, this curriculum is biased, non-representative, and incomplete -- \emph{by design.}
+
+\textbf{So what is this?} This guide is an \emph{accelerator,} an \emph{incubator} designed to guide you along the most direct path from your first line of code to becoming a capable data scientist. Our goal is to help you through the most dangerous period in your data science education: your very first steps. The first three weeks. That is when 99\% percent of people give up on learning to code.
+
+But it doesn't need to be this way. We made this book to reach more than just the 1\%.
+
+We have based our approach on three core premises:
+
+\textbf{Premise 1: We learn best by doing.} Our goal is to get you \emph{doing} data science. We will keep theory and detail to a minimum. We will give you the absolute basics, then offer you exercises and puzzles that motivate you to learn the rest. Then, once you've been \emph{doing} data science for a bit, you soon begin \emph{thinking} like a data scientist. By that, we mean tackling ambiguous problems with persistence, independence, and creative problem solving.
+
+\textbf{Premise 2: We learn best with purpose.} Once you gain comfort with the basic skills, you will be able to start working on real data, for real projects, with real impact. You will start to \emph{care about what you are coding}. And that is when the learning curve \emph{skyrockets} -- because you are motivated, and because you are learning \emph{reactively}, instead of preemptively. Our goal is to get you to the point of take-off as quickly as possible.
+
+\textbf{Premise 3: A simple toolbox is all you need to build a house.} Once you become comfortable with a few basic coding tools, you can build pretty much anything. The toolbox doesn't need to be that big; if you know how to use your tools well, and if you have enough building supplies (i.e., data), the possibilities are limitless.
+
+\textbf{One more thing that this is not:} This is not a fancy interactive tutorial with bells or whistles. We purposefully designed this to be simple and ``analog''. You will not be typing your code into this website and getting feedback from a robot, or setting up an account to track your progress, or getting pretty merit badges or points when you complete each module.
+
+Instead, you will be doing your work on your \emph{own machine}, working with \emph{real folders and files}, downloading data and moving it around, etc. -- all the things you will be doing as a real data scientist in the real world.
+
+\hypertarget{who-this-is-for}{%
+\section*{Who this is for}\label{who-this-is-for}}
+\addcontentsline{toc}{section}{Who this is for}
+
+This curriculum covers everything from the absolute basics of writing code in \texttt{R} to machine learning. As such, it is designed to be useful to everyone in some way. But the target audience for these tutorials is the \emph{rookie}: the student who \emph{wants} to work with data but has \emph{zero} formal training in programming, computer science, or statistics.
+
+This curriculum was originally developed for the \href{https://new.sewanee.edu/sewanee-datalab/}{\textbf{DataLab}} at Sewanee: The University of the South, TN, USA.
+
+\hypertarget{what-you-will-learn}{%
+\section*{What you will learn}\label{what-you-will-learn}}
+\addcontentsline{toc}{section}{What you will learn}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{Core theory} unit establishes the conceptual foundations and motivations for this work: what data science is, why it matters, and ethical issues surrounding it: the good, the bad, and the ugly. Don't slog through this all at once. Sprinkle it in here and there. The most important thing, at first, is to start writing code.
+\end{itemize}
+
+The next several units comprise a \emph{core} curriculum for tackling data science problems:
+
+\begin{itemize}
+\item
+  The \textbf{Getting started} unit teaches you how to use \texttt{R} (in \texttt{RStudio}). Here you will add the first and most important tools to your toolbox: working with variables, vectors, dataframes, scripts, and file directories.
+\item
+  The \textbf{Basic \texttt{R} workflow} unit teaches you how to bring in your own data and work with it in \texttt{R}. You will learn how to produce beautiful plots and how to reorganize, filter, and summarize your datasets. You will also learn how to conduct basic statistics, from exploratory data analyses (e.g., producing and comparing distributions) to significance testing.
+\end{itemize}
+
+For these first two units, we encourage you to take on these modules one at a time, in the exact order they are presented: we put a lot of thought into what we included in these modules (and what we did not).
+
+\begin{itemize}
+\item
+  The \textbf{Review exercises} unit provides various puzzles that allow you to apply the basic \texttt{R} skills from the previous unit to fun questions and scenarios. In each of these exercises, questions are arranged in increasing order of difficulty, so that beginners will not feel stuck right out of the gate, nor will experienced coders become bored. This is where you really begin to cut your teeth on real-world data puzzles: figuring out how to use the \texttt{R} tools in your toolbag to tackle an ambiguous problem and deliver an excellent data product.
+\item
+  The \textbf{Reproducible research} unit equips you with basic tools needed for truly reproducible data science: documenting your research and code with \texttt{Markdown}; weaving together your code and your reporting with \texttt{RMarkdown};
+  allowing users to explore the data themselves with an interactive \texttt{Shiny} dashboard or web app; and sharing your code and tracking versions of your code using \texttt{Git}.
+\item
+  The \textbf{Presenting research} unit teaches you how to produce well-organized and well-written research reports, and how to deliver compelling presentations about your work.
+\item
+  The final unit, \textbf{Deep \texttt{R}}, introduces you to a variety of more involved \texttt{R} tools and advanced data science techniques, from writing custom functions and \texttt{for} loops to producing interactive maps, iterative simulations, and machine learning algorithms. These modules are designed to be used \emph{as needed}, in whatever order is most helpful for you in your own work.
+\end{itemize}
+
+\hypertarget{contributors}{%
+\section*{Contributors}\label{contributors}}
+\addcontentsline{toc}{section}{Contributors}
+
+\textbf{Eric Keen} is a data scientist, marine ecologist, and educator. He is the Science Co-director at \href{www.bcwhales.org}{BCwhales}, a research biologist at \href{www.marecotel.org}{Marecotel}, a data scientist at \href{www.hyfe.ai}{Hyfe}, and a professor of Environmental Studies at Sewanee: the University of the South. He earned his BA at Sewanee (2008) and his PhD at Scripps Institution of Oceanography (2017). His \href{https://scholar.google.com/citations?hl=en\&user=SrLDYrEAAAAJ\&view_op=list_works\&sortby=pubdate}{research} focuses on the ecology and conservation of whales in developing coastal habitats. He is passionate about whales, conservation, teaching, small-scale farming, running, and bicycles. And pizza.
+
+\textbf{Joe Brew} is a data scientist, epidemiologist, and economist. He has worked with the Florida Department of Health (USA), the Chicago Department of Public Health (USA), the Barcelona Public Health Agency (Spain), the Tigray Regional Health Bureau (Ethiopia) and the Manhiça Health Research Center (Mozambique). He is a co-founder of \href{www.hyfe.ai}{Hyfe} and \href{www.databrew.cc}{DataBrew}. His research focuses on the economics of malaria and its elimination. He earned his BA at Sewanee: The University of the South (2008), an MA at the Institut Catholique de Paris (2009) and an MPH at the Kobenhavns Universitet (2013). He is passionate about international development, infectious disease surveillance, teaching, running, and pizza.
+
+\textbf{Ben Brew} is a data scientist, economist, and health sciences researcher. In addition to co-founding \href{www.databrew.cc}{DataBrew}, he has spent most of the last few years working with SickKids Hospital in Ontario on machine learning applications for cancer genomics. He earned his BA at Sewanee: The University of the South (2012), and a Master's in Mathetical Models for Economics from the Paris School of Economics (Paris I) (2015). He is passionate about econometrics, applied machine learning, and cycling.
+
+\textbf{Matthew Rudd} is a mathematician fascinated by statistical modeling, data analysis, and the tensions between theory, practice, and interpretability in data science. He has been using \texttt{R} and \texttt{RStudio} for years in his teaching and research as a professor at Sewanee, has experience with software development and web applications, and enjoys learning new tools and technologies. He welcomes opportunities to apply his skills and experience to practical problems.
+
+~
+
+\begin{verbatim}
+Error in file(filename, "r", encoding = encoding): cannot open the connection
+\end{verbatim}
+
+\begin{verbatim}
+Error in teacher_tip(tip): could not find function "teacher_tip"
+\end{verbatim}
+
+\hypertarget{part-core-theory}{%
+\part{Core theory}\label{part-core-theory}}
+
+\hypertarget{what-is-data-science}{%
+\chapter{What is data science?}\label{what-is-data-science}}
+
+The definition of data science is a moving target. Thirty years ago (1990), `data science' was an uncommon term that essentially just meant statistics. Twenty years ago (2000), the phrase mainly referred to querying SQL databases. Fifteen years ago (2005), it was ``dashboards'' and ``predictive analytics''. Ten years ago (2010), it was `big data' and `data mining'. Nowadays folks think of A.I. and machine learning.
+
+In 10 years? Who knows.
+
+\textbf{So what is it?} There are many definitions out there. Search the internet for the answer and you will find complex diagrams, such as this one, suggesting that a data scientist is someone who has the right blend of programming skills, statistical knowledge, communication ability, and business acumen:
+
+\includegraphics{img/venn1.png}
+
+~
+
+\ldots{} or here is a more popular, simpler version of the same diagram:
+
+~
+
+\includegraphics{img/venn5.jpg}
+
+Some argue that data science is simply \href{https://www.statisticsviews.com/article/nate-silver-what-i-need-from-statisticians/}{an extension of statistics}. You will also find attempts to distinguish between categories of data science, or to draw lines around what data science is and what it is not. A classic example is the bizarre delineation corporations draw between a data \emph{scientist} and a data \emph{analyst}:
+
+\includegraphics{img/venn2.png}
+
+~
+\ldots{} or \ldots{}
+~
+
+\includegraphics{img/venn3.jpg}
+
+~
+
+\textbf{Our take?} Those definitions are useful, interesting, and to some degree accurate. \emph{But} data science is too new, and too fluid, to be fixed into some static definition. So, to keep our definition accurate, we'll keep it broad:
+
+\textbf{Data science is simply ``doing science with data''.} And for our purposes, the only difference between our definition and the definition of science itself is not in the word ``data'' -- since nowadays all scientists are, to some degree, ``data scientists'' -- but rather in the word ``doing''. Data science is about \emph{doing} stuff with data -- about \emph{making a difference with data.} And that's what this course is going to be about. \emph{DOING}.
+
+But we'll go one step outward. Data science is not just the combination of academic disciplines like stats and business strategy. Good data science also needs to involve (1) \textbf{domain knowledge} (i.e., familiarity with the problem being solved), (2) \textbf{a bias to real-world effects} rather than theoretical frameworks, and (3) \textbf{a desire to work in the real world}. To do so, data scientists generally need to be effective communicators and have an iterative mentality: they try something, evaluate its effects, try something else, and repeat.
+
+Our definition is very broad, we know. We consider the ``analyst'' working in business intelligence to be a data scientist; and so too do we think that a data scientist could be an engineer who is processing large amounts of data to extract basic trends. Again, data scientists are those who \emph{do science with data}. That's a lot of people.
+
+In our experience, the best data scientists aren't simply the best programmers or best statisticians; the best ones are the people who consider themselves to be \emph{something else first.} They are the journalists, artists, epidemiologists, psychologists, historians, environmentalists, sports analysts, and political commentators who \emph{also} know how to work with data. In other words, the best data scientists are the ones already out there, on the ground, already embedded in the system they want to improve, positioned perfectly to get the right data, to ask the right questions, and to actually \emph{do} something with insights from the data. Again, data science is about \emph{DOING}.
+
+To summarize, data science is about applying data to problems. It is impact-driven, transdisciplinary, and suited to well-rounded, multi-dimensional professionals.
+
+\hypertarget{what-is-the-data-life-cycle}{%
+\section*{What is the data life cycle?}\label{what-is-the-data-life-cycle}}
+\addcontentsline{toc}{section}{What is the data life cycle?}
+
+There is a misperception about data science work that it is largely or even exclusively interpretative: that is, a data scientist looks at a big set of data and builds a fancy statistical model, then a light bulb goes off in her head, she has some insight, and then acts on that insight.
+
+The reality is data science is much more than that. And most of data science is a combination of \emph{(a)} getting data ready for analysis, \emph{(b)} hypothesis testing, and \emph{(c)} figuring out what to do with the results of \emph{a} and \emph{b}. That is, data science in practice is generally not some artesenal genius staring at a table of numbers until ``insight'' magically occurs. Rather, it is a lot of work, a lot of structured theories which can be confirmed or falsified, and a lot of \emph{imagination} applied to the task of implementation.
+
+In other words, data goes through a whole \emph{lifecycle} of which analysis is just a small part.
+
+What is the data lifecycle? Here's how we conceptualize it:
+
+\textbf{0. Observation}\\
+\textbf{1. Problem identification \& definition}\\
+\textbf{2. Question formation}\\
+\textbf{3. Hypothesis generation}\\
+\textbf{4. Data collection}\\
+\textbf{5. Data processing}
+
+This step is usually the most intensive. Half the battle is wrangling raw data and making it ready for a visualization or a hypothesis test. Note that this step has \emph{nothing to do with statistical tests} -- data science is not the same as statistics!
+
+\textbf{6. Model building / hypothesis testing}
+
+Note that this step is usually where the scientific method stops. In science, once you analyze your test, you interpret your results and loop back to the beginning of the data cycle. But in \emph{applied data science}, there are a few more steps:
+
+\textbf{7. Operationalization:} This means determining how best to incorporate the data insights into operations.
+
+\textbf{8. Communication / dissemination}
+
+\textbf{9. Action:} This means actually implementing the change.
+
+\textbf{10. Observation:} back to the beginning of the cycle.
+
+Again, the above should look a lot like the scientific method. The main differences are (a) ``data processing'', which in reality takes up most of any data scientist's time, (b) the bias towards action, and (c) the iterative / looped nature of the lifecycle.
+
+\hypertarget{data-science-in-the-wild}{%
+\section*{Data science `in the wild'}\label{data-science-in-the-wild}}
+\addcontentsline{toc}{section}{Data science `in the wild'}
+
+Enough theory. What do data scientists actually do? Again, you can search for an answer online and find complex diagrams like this one:
+
+~
+
+\includegraphics{img/venn4.png}
+
+~
+
+But to capture every problem that data scientists are working on, this diagram would have to be even more convoluted and complex.
+Data scientists are working on a \emph{ton} of problems.
+
+The most stereotypical data science problems tend to involve advertising, social media, and corporate profiteering:
+
+\begin{itemize}
+\tightlist
+\item
+  Targeted advertising\\
+\item
+  Social media feed optimization (getting you to scroll just a little further)
+\item
+  Facial recognition (automated tagging at Facebook)
+\item
+  Voice recognition (`Hey, Siri!', `Alexa!')
+\item
+  Making video games more fun / addictive\\
+\item
+  Dynamic airline pricing\\
+\item
+  Search autocomplete\\
+\item
+  Autocorrect\\
+\item
+  Virtual assistants
+\end{itemize}
+
+These are the kinds of problems that the best-paid data scientists in the world are working to solve. Right now there are thousands of programmers in Mountain View, Cupertino, and elsewhere in the Bay Area (and New York, and London, and Beijing) trying to solve the problem of you not spending enough time on social media.
+
+Maybe you care about these problems, maybe you don't. Maybe they make you indignant or angry. Maybe you find it \emph{problematic} that these things are even considered problems at all. As far as we're concerned, it is deeply unfortunate that our highest-paid data scientists are focusing on problems like these.
+
+But take heart -- there are plenty of other data scientists out there working on \emph{actual} problems that are actually \emph{important}:
+
+\begin{itemize}
+\tightlist
+\item
+  Identifying disease through imagery\\
+\item
+  Automating identification of credit card fraud\\
+\item
+  Filtering spam with malware or viruses.\\
+\item
+  Preventive maintenance at nuclear facilities\\
+\item
+  Improving chemotherapy dosage\\
+\item
+  Increasing voter turnout\\
+\item
+  Improve matchmaking systems (liver transplants, love, etc.)\\
+\item
+  Measuring deforestation with satellite imagery.\\
+\item
+  Efficient and equitable vaccine distribution\\
+\item
+  Identifying tax evaders\\
+\item
+  Predictive policing\\
+\item
+  Storm surge forecasting\\
+\item
+  Identifying and removing child pornography from the internet\\
+\item
+  Surveilling emergency rooms to predict disease outbreaks\\
+\item
+  Detecting fake news\\
+\item
+  Increasing accountability and legitimacy of carbon markets\\
+\item
+  Quantifying the likelihood of recidivism to prevent over-incarceration
+\end{itemize}
+
+The list goes on. The number of worthwhile problems waiting for data scientists is limitless, there are data scientists working on problems like these right now, and the demand for civic-minded data scientists is immense.
+
+All of this matters for a lot of reasons. The first is that data science is not always a good thing; it can be weaponized by corporations and governments in spite of the public interest, and for that we need to be very careful about how we use it and how we teach it.
+
+But the second reason this matters is that data science can be an \emph{equally powerful force for social good}. We can use data science to make progress on the most urgent and injurious social and environmental problems of our time.
+
+However -- and this is the third reason all this matters -- data science can only achieve social good \emph{if} we recruit students to its ranks who are values-driven, civic-minded, and committed to using data science for good.
+
+Fourth, and finally, this matters because the Facebook data scientists are using the exact same principles and basic tools as the non-profit data scientists. At their core, the foundational skillsets are the same.
+
+And that's what this book is all about.
+
+\hypertarget{the-reproducibility-crisis}{%
+\chapter{The reproducibility crisis}\label{the-reproducibility-crisis}}
+
+\hypertarget{the-crisis}{%
+\section*{The crisis}\label{the-crisis}}
+\addcontentsline{toc}{section}{The crisis}
+
+There is a crisis in the sciences: the reproducibility crisis. It is also known as the replication crisis. This refers to the fact that many scientific studies have been impossible to reproduce, calling into question the validity of those studies' findings.
+
+This crisis began in the mid-2000's, when psychologists realized they could not reproduce most of their colleagues' results. They tried to repeat the experiments, following the methods step-by-step, but failed to get the same results. This was enormously unsettling for psychologists, and it cast major doubts upon the validity of psychological theory.
+
+The realization that much of published research is not actually reproducible soon spread to medical research\ldots{}
+
+~
+
+\includegraphics{img/reproducibility-psych.png}
+
+~
+
+\ldots then it sprung up in marketing\ldots{}
+
+~
+
+\includegraphics{img/reproducibility-marketing.png}
+~
+
+\ldots and economics\ldots{}
+
+~
+
+\includegraphics{img/reproducibility-econ.png}
+~
+
+\ldots and the sports sciences\ldots{}
+
+~
+
+\includegraphics{img/reproducibility-sports.png}
+~
+
+\ldots and the life sciences too:
+
+~
+
+For a complete history of the crisis, check out this article from \href{https://en.wikipedia.org/wiki/Replication_crisis}{Wikipedia}.
+
+\textbf{Why is this happening?} There are many reasons. Many studies, particularly those in psychology and the social sciences, involve small cohorts of participants. When sample sizes are low, results may not be representative of underlying truths.
+
+On rare occasions it is intentional and fraudulent: scientists face pressure to publish interesting results, so much so that they might fabricate or filter their data to make their results significant.
+
+But the most common causes of reproducibility failure are, by far, (1) \textbf{poorly documented steps in data processing} -- if you don't know how exactly the authors of a paper formatted their raw data to prepare them for analysis, you simply can't reproduce the analysis -- and (2) simple, \textbf{honest mistakes}, such as typos in spreadsheets.
+
+Consider this summary of the reproducibility crisis from \emph{The Economist}. A scary percentage of genomics studies have simple spreadhseet errors:
+
+~
+
+\includegraphics{img/reproducibility-economist.png}
+~
+
+\textbf{This is a big deal:} if a significant part of science is \emph{wrong}, then what do we know? How can we be sure what we know is right? How can we build off of previous research? How can we distinguish valid science from the rest? If science can't be trusted, what value does it have for society? What kind of \emph{damage} is it doing to society?
+
+\textbf{This crisis is ongoing}, and it is impacting our handling of the COVID-19 pandemic. On October 5, 2020, the world learned that 16,000 COVID-19 cases disappeared from the UK's public health database due to a simple glitch in \emph{Microsoft Excel}.
+
+~
+
+\includegraphics{img/reproducibility-covid-1.png}
+
+\includegraphics{img/reproducibility-covid-2.png}
+~
+
+That event demonstrated that the reproducibility crisis is not just an academic concern. It can have serious and potentially deadly consequences for the public.
+
+But there are \textbf{silly examples} of the replication crisis, too. Perhaps our favorite is this: in August 2021, when we Google'd ``reproducibility crisis'', one of the top search results is this video from \emph{Science}, the world's most prestigious scientific journal:
+
+\includegraphics{img/reproducibility-1.png}
+
+~
+
+But when we click on this link, here's what we see:
+
+~
+
+\includegraphics{img/reproducibility-2.png}
+
+\hypertarget{the-reproducibility-movement}{%
+\section*{The `reproducibility' movement}\label{the-reproducibility-movement}}
+\addcontentsline{toc}{section}{The `reproducibility' movement}
+
+Because of this crisis, there has emerged a much needed move to make all science ``reproducible''. This means making sure that someone else can copy what you did, and get the same results. This is important for identifying scientific fraud, of course, but also for helping us to overcome human bias, mistakes, wishful thinking, etc. Reproducibility is not just a ``nice-to-have''; in modern science (and data science), it's a ``must''.
+
+\textbf{Good data science must be reproducible.} The idea is that work done by scientist A is ``reproducible'' by scientist B. In other words, if the findings of the research are of any generalizable value, then the results of two scientists working on the same problem should be identical (or very high in agreement). In practice, this means using data and code in a structured, well-documented, accessible, clear way, and ensuring that others can do the same.
+
+Reproducible research also means using tools that others can easily use, and methods that others can easily copy. Programming languages like \texttt{R} and \texttt{Python} are ideal for this.
+
+Reproducible research matters for lots of reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Because making your work reproducible means that \emph{you} will have less problems returning to that work at a later time.\\
+\item
+  Because making your work reproducible means that \emph{others} can collaborate with you, help you, error-check you, and build on your work.\\
+\item
+  Because making your work reproducible means you are fighting the plague of irreproducible results which have characterized the replication crisis.
+\end{enumerate}
+
+Making your work reproducible is going to be a bit more work, but it's not optional. And there are tools and best practices in place to make it as painless as possible. Basically, reproducible research involves the following:
+
+\begin{itemize}
+\item
+  Using code to format and manage your data instead of spreadsheet software such as \emph{Excel} or \emph{GoogleSheets}, since those products will not keep a step-by-step record of each thing that you do. When you code, each command line is both an action you take to process your data \emph{and} a record of what that action is.
+\item
+  Coding with free, open-source tools, such as \texttt{R}.
+\item
+  For any specific niche task in your analysis, such as processing a batch of images, using other open source tools (e.g., \texttt{ImageJ}) that can be used free-of-charge by anyone with an internet connection anywhere.
+\item
+  Documenting \emph{everything} you do with the data, by commenting your code thoroughly and by creating ``Wiki'' pages for your projects.
+\item
+  Making your code open source and freely available online.
+\item
+  Making your data open source (while protecting privacy and confidentiality of participants).
+\item
+  Providing tools, such as \texttt{Shiny} in \texttt{R}, that allow others to explore your data themselves, rather than trusting your own narratives about the data.
+\item
+  Using tools for generating reports, such as \texttt{Rmarkdown}, that remove the `middle-man' and avoid potential typo's and fabrications.
+\item
+  Collaborating openly with others.
+\end{itemize}
+
+You will be learning how to do all of these things in this course. We are going to focus on \emph{reproducible research}, \emph{literate programming}, \emph{documentation}, and other components of data science (and research in general) which ensure that (a) our methods and findings can be easily sanity-tested by others, and (b) we set ourselves and our projects' up for future collaborations, hand-offs, and expansion.
+
+\hypertarget{why-r}{%
+\section*{\texorpdfstring{Why \texttt{R}?}{Why R?}}\label{why-r}}
+\addcontentsline{toc}{section}{Why \texttt{R}?}
+
+This course is largely about learning to \emph{do}, and will largely use \texttt{R}. \texttt{R} is not the only tool in the data scientists' toolbox (there are many), but it's a good one, is extremely popular, there is almost nothing you cannot do with it, it can be applied to many fields, and -- most importantly -- it is a free, open-source tool with an active open-source coding community. The millions of \texttt{R} users worldwide emulate the spirit of reproducible research we are trying to advocate for here.
+
+\hypertarget{a-final-thought}{%
+\subsection*{A final thought}\label{a-final-thought}}
+\addcontentsline{toc}{subsection}{A final thought}
+
+A research article about \emph{results} is advertising, not scholarship.
+
+Scholarship is an article with transparent, reproducible methods.
+
+\hypertarget{data-ethics}{%
+\chapter{Data ethics}\label{data-ethics}}
+
+\hypertarget{a-few-principles}{%
+\section*{A few principles}\label{a-few-principles}}
+\addcontentsline{toc}{section}{A few principles}
+
+This orientation to the principles of data ethics is not going to be adequate or sufficient. We just need to provide enough context for you (1) to appreciate the limitless complexity and uncertainty of many ethical issues in data science, and (2) to start exploring the complex ethical scenarios below on your own or in dialogue with others.
+
+In most frameworks for data ethics, three foundational principles are used to help us think about whether certain research actions are ethical. Those three principles are:
+
+\textbf{1. Respect} for persons and their autonomy: participation must be based upon informed consent, and privacy must be honored at all times. Immature or incapacitated persons must be protected as they mature or heal.
+
+\textbf{2. Beneficence:} in our work with data, potential risks are minimized while potential benefits are maximized.
+
+\textbf{3. Justice:} Benefits and risks are distributed equally across groups of people. A classic way of asking whether something is `just' is asking using John Rawls' concept of the \textbf{`veil of ignorance'}: pretend you have no information at all about your circumstances or your place in the social order: You don't know your place of birth, year of birth, sex, skin color, language, religion, immigration status, health conditions, or anything else. In other words, you have no information whatsoever that might introduce bias into the way you think about the world. Free of circumstantial bias, what arrangements would you choose to put in place to maximize fairness and fortune for all, and to minimize the chances that you would get screwed by the system?
+
+These principles can guide us as we navigate ethically ambiguous scenarios. When we ask whether something is ethical, we are asking whether all of these principles are upheld. We could also be asking whether the violation of one of these principles might be justified by upholding another in an impactful way.
+
+The question, `Is something ethical?' is usually not easy to answer, particularly when it comes to the use of data in tackling social problems. It is important to note that reasonable people regularly disagree on these ideas; that is why we have committees and drawn-out processes for obtaining permission to use data in research and commerce.
+
+\textbf{So why do these principles matter?} Because without them, we would not be able to have conversations about the ethics of difficult situations. We need articulated principles that we can point to and debate together. Principles like these allow you to have an account for why you feel the way you do about a certain issue. Without that account, we can't learn from each other's perspectives.
+
+Note also that these principles were designed with \textbf{individual human subjects} in mind. It is an open question of active debate how exactly these principles can be applied to \textbf{communities of individuals} all at once -- what exactly does it mean for a group to consent to something? Does every single individual need to consent? The majority? -- or how they translate to our treatment of \textbf{non-human communities}: animals, plants, and places.
+
+Let's stop there and explore some concrete scenarios. For a better orientation to ethical precepts underlying issues of data ethics, \href{https://www.scu.edu/media/ethics-center/technology-ethics/IntroToDataEthics.pdf}{this chapter by Shannon Vallor} is the best open-source resource that we have been able to find. Many of the case studies and scenarios presented below are adapted from that chapter.
+
+\hypertarget{warm-up-scenarios}{%
+\section*{Warm up scenarios}\label{warm-up-scenarios}}
+\addcontentsline{toc}{section}{Warm up scenarios}
+
+Practice applying the above principles to these scenario questions. For each scenario, describe your \textbf{opinion vector} (the \emph{direction} of your opinion -- yes or no -- and the \emph{strength} of your opinion).
+
+\textbf{Location tracking}\\
+Is it ethical for Google to track and store your location information in order to monitor traffic and operating hours of local businesses? Such traffic information is known to help direct emergency service vehicles along the safest and fastest route.
+
+\textbf{Targeted advertising}\\
+Is it ethical for internet search engines to tailor advertisements according to your search history?
+
+\textbf{Dynamic pricing}\\
+Is it ethical for airfare search engines to adjust ticket prices according to your recent search history?
+
+\textbf{Social media scrolling}\\
+Is it ethical for Instagram to count how many milliseconds you spend on each post, then use that info to develop a strategy for getting you to spend more time on its app?
+
+\textbf{Controversial content}\\
+You are a data scientist at Facebook. Based on your analyses of user data, you have discovered that when you show readers sensational or hyperbolic content, such as someone ranting that a new vaccine is an attempt at government-subsidized mind control, the readers stay on Facebook longer and scroll through more contet. Since that translates to profits, is it OK for your team to increase the amount of sensational content in users' feeds?
+
+\hypertarget{case-studies}{%
+\section*{Case studies}\label{case-studies}}
+\addcontentsline{toc}{section}{Case studies}
+
+Use these case studies to reflect upon and discuss the ambiguity, complexity, and dangers of data ethics issues.
+
+\hypertarget{the-facebook-social-contagion-study}{%
+\subsection*{The Facebook `Social Contagion' Study}\label{the-facebook-social-contagion-study}}
+\addcontentsline{toc}{subsection}{The Facebook `Social Contagion' Study}
+
+In 2014, data scientists from Facebook published an \href{https://www.pnas.org/content/111/24/8788}{article} in a prestigious academic journal. In this article, they demonstrated that the emotions and moods of users could be manipulated by toggling the amount of positive or negative content in their feeds. They found that these emotional effects would then be passed to other users in the social network; in other words, emotions and moods could be seeded and were `contagious'. To carry out this research, they manipulated the Facebook feeds of 689,000 users.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-fb.png}
+
+~
+
+Facebook did not receive specific consent for this study from its users. Instead, the company argued that the purpose of the study was consistent with the user agreement already in place: to give Facebook knowledge it needs to provide users with a positive experience on the platform.
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In what ways, specifically, did Facebook violate basic principles of data ethics with this study? Enumerate each violation individually.
+\item
+  Can a convincing argument be made that justifies this study? What are the strongest arguments in its favor?
+\item
+  What are some things that Facebook could have done differently to handle this situation more ethically?
+\item
+  Who exactly should be held morally accountable for any harms caused by this study? The data scientists employed to analyze and publish the data? Mark Zuckerberg? All Facebook employees? Facebook stock holders? Are Facebook users accountable at all?
+\end{enumerate}
+
+\hypertarget{machine-bias-beauty-contests-recidivism}{%
+\subsection*{Machine bias: Beauty contests \& recidivism}\label{machine-bias-beauty-contests-recidivism}}
+\addcontentsline{toc}{subsection}{Machine bias: Beauty contests \& recidivism}
+
+Machine learning (ML) algorithms are developed by `training' models on known datasets. The models are then used to predict values in other datasets. For example, if you label cars in a batch of photos then use them to train a ML model on that labeled dataset, you can then use that model to identify cars in thousands of other photos.
+
+Sounds neat, but this means that ML models are only as good as the data they are trained upon, and often those training datasets are created by human labelers who carry unkown or unspoken biases. A classic example is the \href{https://www.theguardian.com/technology/2016/sep/08/artificial-intelligence-beauty-contest-doesnt-like-black-people}{Beauty.AI} beauty contest that occurred in 2016. A ML algorithm was trained on a large set of human-labeled photos of women, then women around the world were invited to submit selfies in a global beauty contest. A key advertising hook for the contest was that the `robot jury' -- the ML algorithm -- would be fully impartial and fair. But the results revealed that the ML model was racist: 75\% of the 6,000 contestants were white, but 98\% of the 44 winners were white. How did this happen? The people who labeled the training set of photos carried implicit bias.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-machine_bias.png}
+
+~
+
+Debacles like this can have much more serious consequences. \href{https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing}{Court systems use ML models} to estimate the risks that a convicted criminal will commit more crimes once they are released from prison. But retrospective studies have shown that these models consistently and incorrectly label black prisoners as more dangerous and more likely to return to prison at a later date. Most of the risk assessments being used today have not received adequate validation, even though they are spitting out predictions that can destroy lives, families, and communities.
+
+~\\
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{img/ethics-2.png}
+
+~
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  How might bias have entered the training datasets for these ML models, if the people labeling the data did not deliberately intend to exhibit prejudice against African Americans?
+\item
+  The ML models used to predict recidivism are imperfect and inherently prejudiced, but it is not clear whether it would be better to leave decisions of sentencing, bail amounts, and prisoner support services to individual humans in the court and penal systems. Would it be better to stop all use of ML evaluations, or should they be kept in place until better models are developed?
+\item
+  Returning to the beauty contest debacle. The attraction of a `robot jury' compelled people to seek out a single, simplistic definition of beauty, and to place all contestants on the same spectrum of beauty scores. Other than the racial bias baked into their model, what other problems is there with this endeavor? Articulate and enumerate as many as you can. What do those problems tell you about other ethical and humanistic dangers inherent to data science?
+\end{enumerate}
+
+\hypertarget{web-scraping-okcupid}{%
+\subsection*{Web-scraping OKCupid}\label{web-scraping-okcupid}}
+\addcontentsline{toc}{subsection}{Web-scraping OKCupid}
+
+In 2016, Danish researchers used new web scraping and text mining software to inventory the user profiles of 60,000 users on the online dating site \href{https://fortune.com/2016/05/18/okcupid-data-research/}{OkCupid}. Their goal was to use this dataset to test for correlations between `cognitive ability' and sexual orientation, religious affinity, and other personality traits. They chose these user profiles because they were publicly available online to anyone who wanted to sign up for a free account with OKCupid.
+
+When they published their paper, they included a spreadsheet of the 60,000 user profiles in the supplementary material for their article. They had removed the first and last names of the users, but kept everything else, including username, location, sexual orientation, religious orientation, sexual habits, relationship fidelity, drug use history, political views, and more.
+
+The backlash was immediate. When asked why they did not attempt to deidentify or anonymize the data any further, the researchers responded that the data were already public. In the paper itself, the authors wrote: ``Some may object to the ethics of gathering and releasing this data \ldots{} However, all the data found in the dataset are or were already publicly available, so releasing this dataset merely represents it in a more useful form.''
+
+~\\
+
+\includegraphics[width=0.8\textwidth,height=\textheight]{img/ethics-okcupid.png}
+
+~
+
+\textbf{Discuss:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What do you make of the authors' argument, that the data were already public, posted freely by the users themselves, so how can this be an issue of privacy or consent?
+\item
+  If you disagree with the authors' argument, explain how the users might reasonably object to the authors' actions.
+\item
+  What kind of risks did the authors impose upon the users of OKCupid? Are any of those risks new, or were they all present when the users decided to make a profile that could have been accessed by any other user?
+\item
+  Does it make an ethical difference that the authors accessed publicly available data in a novel way (web-scraping software) and to a much greater extent (harvesting 60,000 profiles at once) than individual users are typically able to do?
+\item
+  Does the software developer of the web-scraping tool bear any responsibility for this scandal? Does he have any ethical obligations regarding how his tool is used, and by whom?
+\end{enumerate}
+
+\hypertarget{more-scenarios}{%
+\section*{More scenarios}\label{more-scenarios}}
+\addcontentsline{toc}{section}{More scenarios}
+
+\textbf{Airport screening}\\
+A data scientist has come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using `place of origin' as a predictor in this model improves the model's predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?
+
+\textbf{Supporting struggling college students}\\
+Your college has developed a model that predicts dropouts. It identifies students at high-risk of dropping out and alerts offices that can direct additional support and resources to these students. Your college has found that this model performs better when it includes the student's place of origin, sex, and race as predictors. Is it ethical to implement this model and divert resources accordingly?
+
+\textbf{Robot cashiers}\\
+Self-checkout stations in grocery stores are convenient, but they take jobs away from workers who may not have many other employable skill-sets. When you are checking out, is it more ethical to use the checkout aisles with human cashiers, even if the line is longer and going more slowly?
+
+\textbf{Electric cars}\\
+Cars running on fossil fuels are bad for the environment, but at least they can be serviced by car mechanics who don't necessarily need a college degree.
+
+Electric cars reduce carbon emissions, but they are replacing car mechanics with computer scientists and softwar engineers, all of which require extensive undergradate and post-graduate education. Are electric cars a net social good?
+
+\textbf{Smartphone app for monitoring cough}\\
+A tech start-up has developed an app that can track the prevalence of cough in a network of smartphones. Cough is an important indicator of disease, and cough also helps to spread certain diseases more quickly, such as TB and COVID-19. This app has great potential to help public health officers in the fight against some of the deadliest respiratory diseases. The app works thanks to sophisticated machine learning algorithm for detecting coughs within continuous recordings. That algorithm is currently private and propriety. Do you agree that this cough monitoring app is a good idea, and that public health officials should promote its use?
+
+\textbf{Automated suicide prevention system}\\
+A large internet search engine has developed a model that can predict whether someone is likely to inflict self-harm or attempt suicide based upon their recent search history. This model is 75\% accurate. This company would like to set up an automatic emergency alert system, in which local social service providers are notified about at-risk users in their area. They want to automatically enroll users in this service. Is this an ethical feature to add to their product?
+
+\textbf{Malaria medicine distribution}\\
+Your company is trying to distribute a new malaria medicine in a remote region of Africa without primary care clinics, where tens of thousands people die from malaria each year. This medicine is highly effective, but it is also known to cause birth complications. You need to ensure that it is not administered to pregnant women. Your team's plan is to go door to door and distribute the medicine to women who say they aren't pregnant.
+
+But in this region, cultural attitudes to pregnancy, and the notion of sharing your pregnancy status with a stranger, are very sensitive. Daughters and wives may not feel safe to answer such questions truthfully.
+
+Your team has to choose between (1) taking women's responses at their word, (2) avoiding the pregnancy issue by only distributing it to men, (3) not distributing the medicine at all, (4) some as-yet-unknown solution. What do you do?
+
+\textbf{User accountability}\\
+Let's say that you have disagreed with one or more of the claims about social media in the `Warm-Up Scenarios' section above. Is it ethical for you to continue to use Google, Instagram, or Facebook?
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
