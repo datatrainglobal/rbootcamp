@@ -358,7 +358,7 @@ What do you think about the choice to use three different scales for the y axis?
 </center>
 &nbsp;  
 
-Now this is a [data visualization!](https://podio.com/site/creative-routines). It is a tad complicated, but it is elegant and fun to explore.  
+Now this is a [data visualization](https://podio.com/site/creative-routines)! It is a tad complicated, but it is elegant and fun to explore.  
 
 &nbsp;  
 <center>
