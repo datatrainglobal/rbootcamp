@@ -2582,6 +2582,718 @@ Another data type to be aware of is \textbf{factors}, but we will deal with them
 
 \textbf{15.} Now ensure that your entire script is properly commented, and make sure your script is saved in your \texttt{datalab} working directory before closing.
 
+\hypertarget{dataframes}{%
+\chapter{Dataframes}\label{dataframes}}
+
+\hypertarget{learning-goal}{%
+\subsubsection*{Learning goal}\label{learning-goal}}
+\addcontentsline{toc}{subsubsection}{Learning goal}
+
+\begin{itemize}
+\tightlist
+\item
+  Practice exploring, summarizing, and filtering dataframes
+\end{itemize}
+
+~
+
+A vector is the most basic data structure in \texttt{R}, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with -- by far -- is a \textbf{dataframe}.
+
+A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.
+
+Here is what a dataframe looks like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Using one of R\textquotesingle{}s built{-}in datasets}
+\FunctionTok{head}\NormalTok{(iris)}
+\NormalTok{  Sepal.Length Sepal.Width Petal.Length Petal.Width Species}
+\DecValTok{1}          \FloatTok{5.1}         \FloatTok{3.5}          \FloatTok{1.4}         \FloatTok{0.2}\NormalTok{  setosa}
+\DecValTok{2}          \FloatTok{4.9}         \FloatTok{3.0}          \FloatTok{1.4}         \FloatTok{0.2}\NormalTok{  setosa}
+\DecValTok{3}          \FloatTok{4.7}         \FloatTok{3.2}          \FloatTok{1.3}         \FloatTok{0.2}\NormalTok{  setosa}
+\DecValTok{4}          \FloatTok{4.6}         \FloatTok{3.1}          \FloatTok{1.5}         \FloatTok{0.2}\NormalTok{  setosa}
+\DecValTok{5}          \FloatTok{5.0}         \FloatTok{3.6}          \FloatTok{1.4}         \FloatTok{0.2}\NormalTok{  setosa}
+\DecValTok{6}          \FloatTok{5.4}         \FloatTok{3.9}          \FloatTok{1.7}         \FloatTok{0.4}\NormalTok{  setosa}
+\end{Highlighting}
+\end{Shaded}
+
+In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant.
+
+Here's another data.frame, built from scratch, which shows that dataframes are just a group of vectors:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{25}\SpecialCharTok{:}\DecValTok{29}
+\NormalTok{y }\OtherTok{\textless{}{-}} \DecValTok{55}\SpecialCharTok{:}\DecValTok{59}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x,y)}
+\NormalTok{df}
+\NormalTok{   x  y}
+\DecValTok{1} \DecValTok{25} \DecValTok{55}
+\DecValTok{2} \DecValTok{26} \DecValTok{56}
+\DecValTok{3} \DecValTok{27} \DecValTok{57}
+\DecValTok{4} \DecValTok{28} \DecValTok{58}
+\DecValTok{5} \DecValTok{29} \DecValTok{59}
+\end{Highlighting}
+\end{Shaded}
+
+In this command, we used the \texttt{data.frame()} function to combine two vectors into a dataframe with two columns named \texttt{x} and \texttt{y}. \texttt{R} then saved this result in a new variable named \texttt{df}. When we call \texttt{df}, \texttt{R} shows us the dataframe.
+
+The great thing about dataframes is that they allow you to relate different data types to each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=}\FunctionTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{),}
+                 \AttributeTok{height=}\FunctionTok{c}\NormalTok{(}\DecValTok{75}\NormalTok{,}\DecValTok{73}\NormalTok{,}\DecValTok{80}\NormalTok{))}
+\NormalTok{df}
+\NormalTok{  name height}
+\DecValTok{1}\NormalTok{  Ben     }\DecValTok{75}
+\DecValTok{2}\NormalTok{  Joe     }\DecValTok{73}
+\DecValTok{3}\NormalTok{ Eric     }\DecValTok{80}
+\end{Highlighting}
+\end{Shaded}
+
+This dataframe has one column of class \texttt{character} and another of class \texttt{numeric}.
+
+\hypertarget{subsetting-exploring-dataframes}{%
+\section*{Subsetting \& exploring dataframes}\label{subsetting-exploring-dataframes}}
+\addcontentsline{toc}{section}{Subsetting \& exploring dataframes}
+
+To explore dataframes, let's use a dataset on fuel mileage for all cars sold from 1985 to 2014.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# need to install first install.packages(\textquotesingle{}fueleconomy\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(fueleconomy)}
+\FunctionTok{data}\NormalTok{(vehicles)}
+\FunctionTok{head}\NormalTok{(vehicles)}
+\NormalTok{     id  make       model year           class           trans}
+\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\NormalTok{              drive cyl displ    fuel hwy cty}
+\DecValTok{1}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{20}
+\DecValTok{2}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{22}
+\DecValTok{3}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{18}
+\DecValTok{4}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{19}
+\DecValTok{5}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{21}
+\DecValTok{6}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{17}
+\end{Highlighting}
+\end{Shaded}
+
+To look at this dataframe in full, you call display it in a separate tab within \texttt{RStudio} using the \texttt{View()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{View}\NormalTok{(vehicles)}
+\end{Highlighting}
+\end{Shaded}
+
+A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model -- i.e., a single \emph{observation}. Each column pertains to a single \emph{type} of data. Columns are named in the \emph{header} of the dataframe.
+
+All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let's add some new functions to your inventory of useful functions.
+
+\hypertarget{exploration}{%
+\subsection*{Exploration}\label{exploration}}
+\addcontentsline{toc}{subsection}{Exploration}
+
+\textbf{\texttt{head()}} and \textbf{\texttt{tail()}} summarize the beginning and end of the object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(vehicles) }
+\NormalTok{     id  make       model year           class           trans}
+\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\NormalTok{              drive cyl displ    fuel hwy cty}
+\DecValTok{1}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{20}
+\DecValTok{2}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{22}
+\DecValTok{3}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{18}
+\DecValTok{4}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{19}
+\DecValTok{5}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{21}
+\DecValTok{6}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{17}
+
+\FunctionTok{tail}\NormalTok{(vehicles) }
+\NormalTok{         id make             model year            class        trans}
+\DecValTok{33437} \DecValTok{28868}\NormalTok{ Yugo GV Plus}\SpecialCharTok{/}\NormalTok{GV}\SpecialCharTok{/}\NormalTok{Cabrio }\DecValTok{1990}\NormalTok{ Minicompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{33438}  \DecValTok{6635}\NormalTok{ Yugo GV Plus}\SpecialCharTok{/}\NormalTok{GV}\SpecialCharTok{/}\NormalTok{Cabrio }\DecValTok{1990}\NormalTok{  Subcompact Cars Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{33439}  \DecValTok{3157}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1987}\NormalTok{  Subcompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{33440}  \DecValTok{5497}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1989}\NormalTok{  Subcompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{33441}  \DecValTok{5498}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1989}\NormalTok{  Subcompact Cars Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
+\DecValTok{33442}  \DecValTok{1745}\NormalTok{ Yugo       Gy}\SpecialCharTok{/}\NormalTok{yugo GVX }\DecValTok{1986}\NormalTok{ Minicompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
+\NormalTok{                  drive cyl displ    fuel hwy cty}
+\DecValTok{33437}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{21}
+\DecValTok{33438}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{23}
+\DecValTok{33439}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{24}
+\DecValTok{33440}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{24}
+\DecValTok{33441}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{23}
+\DecValTok{33442}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{22}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{names()}} tells you the column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(vehicles) }
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"id"}    \StringTok{"make"}  \StringTok{"model"} \StringTok{"year"}  \StringTok{"class"} \StringTok{"trans"} \StringTok{"drive"} \StringTok{"cyl"}   \StringTok{"displ"}
+\NormalTok{[}\DecValTok{10}\NormalTok{] }\StringTok{"fuel"}  \StringTok{"hwy"}   \StringTok{"cty"}  
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{nrow()}}, \textbf{\texttt{ncol()}}, and \textbf{\texttt{dim()}} tell you about the dimensions of your dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(vehicles) }
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{33442}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ncol}\NormalTok{(vehicles) }
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(vehicles) }
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{33442}    \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+Note that \textbf{\texttt{length()}} does not work the same on dataframes as it does with vectors. In dataframes, \texttt{length()} is the equivalent of \texttt{ncol()}; it will \emph{not} give you the number of rows in a dataset.
+
+Importantly, you can use \textbf{\texttt{is.na()}} to ask whether columns or rows contain \texttt{NA}s:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check for NAs}
+
+\CommentTok{\# Which rows in the \textasciigrave{}hwy\textasciigrave{} column have NA\textquotesingle{}s?}
+\FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy))}
+\FunctionTok{integer}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\# (No NAs in that column!)}
+
+\CommentTok{\# What about rows in the \textasciigrave{}cyl\textasciigrave{} column?}
+\FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cyl))}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1232}  \DecValTok{1233}  \DecValTok{2347}  \DecValTok{3246}  \DecValTok{3247}  \DecValTok{3248}  \DecValTok{6115}  \DecValTok{6116}  \DecValTok{6533}  \DecValTok{7783}  \DecValTok{7784}  \DecValTok{8472}
+\NormalTok{[}\DecValTok{13}\NormalTok{] }\DecValTok{10613} \DecValTok{10614} \DecValTok{11696} \DecValTok{11697} \DecValTok{12411} \DecValTok{12412} \DecValTok{12413} \DecValTok{12928} \DecValTok{12929} \DecValTok{12934} \DecValTok{12935} \DecValTok{12944}
+\NormalTok{[}\DecValTok{25}\NormalTok{] }\DecValTok{16429} \DecValTok{16430} \DecValTok{21070} \DecValTok{23472} \DecValTok{23473} \DecValTok{23474} \DecValTok{24485} \DecValTok{24486} \DecValTok{24487} \DecValTok{24488} \DecValTok{24489} \DecValTok{26150}
+\NormalTok{[}\DecValTok{37}\NormalTok{] }\DecValTok{28628} \DecValTok{28704} \DecValTok{28705} \DecValTok{28706} \DecValTok{28707} \DecValTok{28708} \DecValTok{28709} \DecValTok{29314} \DecValTok{29315} \DecValTok{30023} \DecValTok{30024} \DecValTok{30025}
+\NormalTok{[}\DecValTok{49}\NormalTok{] }\DecValTok{30026} \DecValTok{30027} \DecValTok{30028} \DecValTok{31063} \DecValTok{31064} \DecValTok{31065} \DecValTok{31066} \DecValTok{31067} \DecValTok{31068} \DecValTok{31069}
+
+\CommentTok{\# (lots of NAs in that column!)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{subsetting}{%
+\subsection*{Subsetting}\label{subsetting}}
+\addcontentsline{toc}{subsection}{Subsetting}
+
+Recall that dataframes are filtered by row and/or column using this format: \textbf{\texttt{dataframe{[}rows,columns{]}}}. To get the third element of the second column, for example, you type \texttt{dataframe{[}3,2{]}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Acura"}
+\end{Highlighting}
+\end{Shaded}
+
+Note that the comma is necessary even if you do not want to specify columns. If you try to type this \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}\texttt{R} will assume you are asking for the third column, not the third row.
+
+To filter a dataframe to multiple values, you can specify vectors for the \texttt{row} and \texttt{column}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{] }\CommentTok{\# can use colons}
+\NormalTok{  hwy cty}
+\DecValTok{1}  \DecValTok{26}  \DecValTok{20}
+\DecValTok{2}  \DecValTok{28}  \DecValTok{22}
+\DecValTok{3}  \DecValTok{26}  \DecValTok{18}
+\NormalTok{vehicles[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)]  }\CommentTok{\# can use c()}
+\NormalTok{     id hwy cty}
+\DecValTok{1} \DecValTok{13309}  \DecValTok{26}  \DecValTok{20}
+\DecValTok{2} \DecValTok{13310}  \DecValTok{28}  \DecValTok{22}
+\DecValTok{3} \DecValTok{13311}  \DecValTok{26}  \DecValTok{18}
+\end{Highlighting}
+\end{Shaded}
+
+Columns can also be called according to their names. Use the \textbf{\texttt{\$}} sign to specify a column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles}\SpecialCharTok{$}\NormalTok{hwy[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{26} \DecValTok{28} \DecValTok{26} \DecValTok{27} \DecValTok{29}
+\end{Highlighting}
+\end{Shaded}
+
+Note that when you use a \texttt{\$}, you will not need to use a comma within your brackets. If you try to run this \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles}\SpecialCharTok{$}\NormalTok{hwy[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}\texttt{R} will throw a fit.
+
+Also recall that you can use logical tests, which return boolean values \texttt{TRUE} or \texttt{FALSE}, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Build your logical test}
+\NormalTok{verdicts }\OtherTok{\textless{}{-}}\NormalTok{ vehicles}\SpecialCharTok{$}\NormalTok{hwy }\SpecialCharTok{\textgreater{}} \DecValTok{100}
+
+\CommentTok{\# Subset with booleans}
+\NormalTok{vehicles[verdicts,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{           make    model}
+\DecValTok{6533}\NormalTok{  Chevrolet Spark EV}
+\DecValTok{10613}\NormalTok{      Fiat     500e}
+\DecValTok{10614}\NormalTok{      Fiat     500e}
+\DecValTok{16429}\NormalTok{     Honda   Fit EV}
+\DecValTok{16430}\NormalTok{     Honda   Fit EV}
+\DecValTok{24487}\NormalTok{    Nissan     Leaf}
+\DecValTok{24488}\NormalTok{    Nissan     Leaf}
+\DecValTok{24489}\NormalTok{    Nissan     Leaf}
+\DecValTok{28628}\NormalTok{     Scion    iQ EV}
+\end{Highlighting}
+\end{Shaded}
+
+Or you can write all this in a single line, to be more efficient:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles[ vehicles}\SpecialCharTok{$}\NormalTok{hwy }\SpecialCharTok{\textgreater{}} \DecValTok{100}\NormalTok{  , }\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{           make    model}
+\DecValTok{6533}\NormalTok{  Chevrolet Spark EV}
+\DecValTok{10613}\NormalTok{      Fiat     500e}
+\DecValTok{10614}\NormalTok{      Fiat     500e}
+\DecValTok{16429}\NormalTok{     Honda   Fit EV}
+\DecValTok{16430}\NormalTok{     Honda   Fit EV}
+\DecValTok{24487}\NormalTok{    Nissan     Leaf}
+\DecValTok{24488}\NormalTok{    Nissan     Leaf}
+\DecValTok{24489}\NormalTok{    Nissan     Leaf}
+\DecValTok{28628}\NormalTok{     Scion    iQ EV}
+\end{Highlighting}
+\end{Shaded}
+
+Recall that the logical test is returning a bunch of \texttt{TRUE}'s and \texttt{FALSE}'s, one for each row of \texttt{vehicles}. Only the \texttt{TRUE} rows will be returned.
+
+\hypertarget{summarizing}{%
+\subsection*{Summarizing}\label{summarizing}}
+\addcontentsline{toc}{subsection}{Summarizing}
+
+The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{109}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cty)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{17.491}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cty)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.582174}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{make)}
+\NormalTok{ chr [}\DecValTok{1}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{] }\StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"numeric"}
+\end{Highlighting}
+\end{Shaded}
+
+You can also use the \textbf{\texttt{summary()}} function, which provides summary statistics for each column in your dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(vehicles)}
+\NormalTok{       id            make              model                year     }
+\NormalTok{ Min.   }\SpecialCharTok{:}    \DecValTok{1}\NormalTok{   Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Min.   }\SpecialCharTok{:}\DecValTok{1984}  
+\NormalTok{ 1st Qu.}\SpecialCharTok{:} \DecValTok{8361}\NormalTok{   Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   1st Qu.}\SpecialCharTok{:}\DecValTok{1991}  
+\NormalTok{ Median }\SpecialCharTok{:}\DecValTok{16724}\NormalTok{   Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Median }\SpecialCharTok{:}\DecValTok{1999}  
+\NormalTok{ Mean   }\SpecialCharTok{:}\DecValTok{17038}\NormalTok{                                         Mean   }\SpecialCharTok{:}\DecValTok{1999}  
+\NormalTok{ 3rd Qu.}\SpecialCharTok{:}\DecValTok{25265}\NormalTok{                                         3rd Qu.}\SpecialCharTok{:}\DecValTok{2008}  
+\NormalTok{ Max.   }\SpecialCharTok{:}\DecValTok{34932}\NormalTok{                                         Max.   }\SpecialCharTok{:}\DecValTok{2015}  
+                                                                     
+\NormalTok{    class              trans              drive                cyl        }
+\NormalTok{ Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Min.   }\SpecialCharTok{:} \FloatTok{2.000}  
+\NormalTok{ Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   1st Qu.}\SpecialCharTok{:} \FloatTok{4.000}  
+\NormalTok{ Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Median }\SpecialCharTok{:} \FloatTok{6.000}  
+\NormalTok{                                                          Mean   }\SpecialCharTok{:} \FloatTok{5.772}  
+\NormalTok{                                                          3rd Qu.}\SpecialCharTok{:} \FloatTok{6.000}  
+\NormalTok{                                                          Max.   }\SpecialCharTok{:}\FloatTok{16.000}  
+\NormalTok{                                                          NA}\StringTok{\textquotesingle{}s   :58      }
+\StringTok{     displ           fuel                hwy              cty        }
+\StringTok{ Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  }
+\StringTok{ 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  }
+\StringTok{ Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  }
+\StringTok{ Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  }
+\StringTok{ 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  }
+\StringTok{ Max.   :8.400                      Max.   :109.00   Max.   :138.00  }
+\StringTok{ NA\textquotesingle{}}\NormalTok{s   }\SpecialCharTok{:}\DecValTok{57}                                                          
+\end{Highlighting}
+\end{Shaded}
+
+The function \textbf{\texttt{unique()}} returns unique values within a column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{fuel)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"Regular"}                     \StringTok{"Premium"}                    
+\NormalTok{ [}\DecValTok{3}\NormalTok{] }\StringTok{"Diesel"}                      \StringTok{"Premium or E85"}             
+\NormalTok{ [}\DecValTok{5}\NormalTok{] }\StringTok{"Electricity"}                 \StringTok{"Gasoline or E85"}            
+\NormalTok{ [}\DecValTok{7}\NormalTok{] }\StringTok{"Premium Gas or Electricity"}  \StringTok{"Gasoline or natural gas"}    
+\NormalTok{ [}\DecValTok{9}\NormalTok{] }\StringTok{"CNG"}                         \StringTok{"Midgrade"}                   
+\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"Regular Gas and Electricity"} \StringTok{"Gasoline or propane"}        
+\NormalTok{[}\DecValTok{13}\NormalTok{] }\StringTok{"Premium and Electricity"}    
+\end{Highlighting}
+\end{Shaded}
+
+Finally, the \textbf{\texttt{order()}} function helps you sort a dataframe according to the values in one of its columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sort dataframe by highway mileage}
+\CommentTok{\# Only keep certain columns}
+\NormalTok{vehicles\_sorted }\OtherTok{\textless{}{-}}\NormalTok{ vehicles[}\FunctionTok{order}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy), }
+                            \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)] }
+\FunctionTok{head}\NormalTok{(vehicles\_sorted)}
+\NormalTok{              make                  model year    fuel hwy cty}
+\DecValTok{397}\NormalTok{   Aston Martin                Lagonda }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\DecValTok{398}\NormalTok{   Aston Martin                Lagonda }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\DecValTok{406}\NormalTok{   Aston Martin Saloon}\SpecialCharTok{/}\NormalTok{Vantage}\SpecialCharTok{/}\NormalTok{Volante }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\DecValTok{408}\NormalTok{   Aston Martin Saloon}\SpecialCharTok{/}\NormalTok{Vantage}\SpecialCharTok{/}\NormalTok{Volante }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\DecValTok{27725}\NormalTok{  Rolls}\SpecialCharTok{{-}}\NormalTok{Royce               Camargue }\DecValTok{1987}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\DecValTok{27726}\NormalTok{  Rolls}\SpecialCharTok{{-}}\NormalTok{Royce            Continental }\DecValTok{1987}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Reverse the order by wrapping \textbf{\texttt{rev()}} around the \texttt{order()} call:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vehicles\_sorted }\OtherTok{\textless{}{-}}\NormalTok{ vehicles[}\FunctionTok{rev}\NormalTok{(}\FunctionTok{order}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)),}
+                            \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)]}
+\FunctionTok{head}\NormalTok{(vehicles\_sorted)}
+\NormalTok{           make    model year        fuel hwy cty}
+\DecValTok{6533}\NormalTok{  Chevrolet Spark EV }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{109} \DecValTok{128}
+\DecValTok{10614}\NormalTok{      Fiat     500e }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{108} \DecValTok{122}
+\DecValTok{10613}\NormalTok{      Fiat     500e }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{108} \DecValTok{122}
+\DecValTok{28628}\NormalTok{     Scion    iQ EV }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{138}
+\DecValTok{16430}\NormalTok{     Honda   Fit EV }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{132}
+\DecValTok{16429}\NormalTok{     Honda   Fit EV }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{132}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{creating-dataframes}{%
+\section*{Creating dataframes}\label{creating-dataframes}}
+\addcontentsline{toc}{section}{Creating dataframes}
+
+As shown above, to create a new dataframe, use the \texttt{data.frame()} function.
+
+\begin{verbatim}
+             car mgp_hwy mpg_city
+100 Acura Legend      23       15
+101 Acura Legend      22       17
+102 Acura Legend      23       16
+103 Acura Legend      21       16
+104 Acura Legend      22       17
+105 Acura Legend      23       16
+106 Acura Legend      24       16
+\end{verbatim}
+
+Note how the columns were named in the \texttt{data.frame()} call, and that each column is separated by a comma.
+
+You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with \texttt{for} loops and other higher-order \texttt{R} tools.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{()}
+\NormalTok{df}
+\NormalTok{data frame with }\DecValTok{0}\NormalTok{ columns and }\DecValTok{0}\NormalTok{ rows}
+\end{Highlighting}
+\end{Shaded}
+
+To coerce an object into a format that \texttt{R} interprets as a dataframe, use \textbf{\texttt{as.dataframe()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(vehicles)}
+\NormalTok{df[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
+\NormalTok{     id  make       model year}
+\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
+\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
+\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
+\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{modifying-dataframes}{%
+\section*{Modifying dataframes}\label{modifying-dataframes}}
+\addcontentsline{toc}{section}{Modifying dataframes}
+
+\hypertarget{combining-dataframes}{%
+\subsection*{Combining dataframes}\label{combining-dataframes}}
+\addcontentsline{toc}{subsection}{Combining dataframes}
+
+To bind multiple dataframes together by row, use \textbf{\texttt{rbind()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Build up a dataframe}
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=}\FunctionTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{,}\StringTok{"Isabelle"}\NormalTok{),}
+                  \AttributeTok{instrument=}\FunctionTok{c}\NormalTok{(}\StringTok{"Nose harp"}\NormalTok{,}\StringTok{"Concertina"}\NormalTok{,}\StringTok{"Ukelele"}\NormalTok{,}\StringTok{"Drums"}\NormalTok{))}
+\NormalTok{df1}
+\NormalTok{      name instrument}
+\DecValTok{1}\NormalTok{      Ben  Nose harp}
+\DecValTok{2}\NormalTok{      Joe Concertina}
+\DecValTok{3}\NormalTok{     Eric    Ukelele}
+\DecValTok{4}\NormalTok{ Isabelle      Drums}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Build up a second dataframe}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=}\FunctionTok{c}\NormalTok{(}\StringTok{"Matthew"}\NormalTok{),}
+                  \AttributeTok{instrument=}\FunctionTok{c}\NormalTok{(}\StringTok{"Washboard"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Combine those dataframes together}
+\FunctionTok{rbind}\NormalTok{(df1,df2)}
+\NormalTok{      name instrument}
+\DecValTok{1}\NormalTok{      Ben  Nose harp}
+\DecValTok{2}\NormalTok{      Joe Concertina}
+\DecValTok{3}\NormalTok{     Eric    Ukelele}
+\DecValTok{4}\NormalTok{ Isabelle      Drums}
+\DecValTok{5}\NormalTok{  Matthew  Washboard}
+\end{Highlighting}
+\end{Shaded}
+
+Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.
+
+The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the \textbf{Deep \texttt{R}} modules ahead.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{() }\CommentTok{\# stage empty dataframe}
+
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=}\FunctionTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{,}\StringTok{"Isabelle"}\NormalTok{),}
+                  \AttributeTok{instrument=}\FunctionTok{c}\NormalTok{(}\StringTok{"Nose harp"}\NormalTok{,}\StringTok{"Concertina"}\NormalTok{,}\StringTok{"Ukelele"}\NormalTok{,}\StringTok{"Drums"}\NormalTok{))}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(df,df1)}
+
+\NormalTok{df}
+\NormalTok{      name instrument}
+\DecValTok{1}\NormalTok{      Ben  Nose harp}
+\DecValTok{2}\NormalTok{      Joe Concertina}
+\DecValTok{3}\NormalTok{     Eric    Ukelele}
+\DecValTok{4}\NormalTok{ Isabelle      Drums}
+\end{Highlighting}
+\end{Shaded}
+
+You can also bind multiple dataframes together by column, using \textbf{\texttt{cbind()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=}\FunctionTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{,}\StringTok{"Isabelle"}\NormalTok{),}
+                  \AttributeTok{instrument=}\FunctionTok{c}\NormalTok{(}\StringTok{"Nose harp"}\NormalTok{,}\StringTok{"Concertina"}\NormalTok{,}\StringTok{"Ukelele"}\NormalTok{,}\StringTok{"Drums"}\NormalTok{))}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{age=}\FunctionTok{c}\NormalTok{(}\DecValTok{33}\NormalTok{,}\DecValTok{35}\NormalTok{,}\DecValTok{35}\NormalTok{,}\DecValTok{20}\NormalTok{), }\AttributeTok{home=}\FunctionTok{c}\NormalTok{(}\StringTok{"Canada"}\NormalTok{,}\StringTok{"Spain"}\NormalTok{,}\StringTok{"USA"}\NormalTok{,}\StringTok{"USA"}\NormalTok{))}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(df,df1)}
+
+\NormalTok{df}
+\NormalTok{  age   home     name instrument}
+\DecValTok{1}  \DecValTok{33}\NormalTok{ Canada      Ben  Nose harp}
+\DecValTok{2}  \DecValTok{35}\NormalTok{  Spain      Joe Concertina}
+\DecValTok{3}  \DecValTok{35}\NormalTok{    USA     Eric    Ukelele}
+\DecValTok{4}  \DecValTok{20}\NormalTok{    USA Isabelle      Drums}
+\end{Highlighting}
+\end{Shaded}
+
+Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.
+
+\hypertarget{adding-columns}{%
+\subsection*{Adding columns}\label{adding-columns}}
+\addcontentsline{toc}{subsection}{Adding columns}
+
+To create a new column for a dataframe, use the \texttt{\$} symbol and provide the name of the new column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{x\_factor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{40}\NormalTok{)}
+
+\NormalTok{df}
+\NormalTok{  age   home     name instrument x\_factor}
+\DecValTok{1}  \DecValTok{33}\NormalTok{ Canada      Ben  Nose harp        }\DecValTok{3}
+\DecValTok{2}  \DecValTok{35}\NormalTok{  Spain      Joe Concertina       }\DecValTok{20}
+\DecValTok{3}  \DecValTok{35}\NormalTok{    USA     Eric    Ukelele       }\DecValTok{60}
+\DecValTok{4}  \DecValTok{20}\NormalTok{    USA Isabelle      Drums       }\DecValTok{40}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{altering-values}{%
+\subsection*{Altering values}\label{altering-values}}
+\addcontentsline{toc}{subsection}{Altering values}
+
+To alter certain values in the dataframe, you can assign new values to a subset of your dataframe.
+
+Here are four ways to do the same thing: upating Isabelle's X-factor:
+
+\textbf{Option 1: Subsetting a single column}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{x\_factor[}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{70}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Option 2: Subsetting both rows and columns}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{70}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Option 3: Subsetting a column based on a logical test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{x\_factor[df}\SpecialCharTok{$}\NormalTok{name }\SpecialCharTok{==} \StringTok{\textquotesingle{}Isabelle\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{70}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Option 3: Subsetting row and columns using logical tests}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[df}\SpecialCharTok{$}\NormalTok{name }\SpecialCharTok{==} \StringTok{\textquotesingle{}Isabelle\textquotesingle{}}\NormalTok{, }\FunctionTok{names}\NormalTok{(df) }\SpecialCharTok{==} \StringTok{\textquotesingle{}x\_factor\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{70}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\NormalTok{  age   home     name instrument x\_factor}
+\DecValTok{1}  \DecValTok{33}\NormalTok{ Canada      Ben  Nose harp        }\DecValTok{3}
+\DecValTok{2}  \DecValTok{35}\NormalTok{  Spain      Joe Concertina       }\DecValTok{20}
+\DecValTok{3}  \DecValTok{35}\NormalTok{    USA     Eric    Ukelele       }\DecValTok{60}
+\DecValTok{4}  \DecValTok{20}\NormalTok{    USA Isabelle      Drums       }\DecValTok{70}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercises-3}{%
+\subsubsection*{Exercises}\label{exercises-3}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+\textbf{Reading for errors}
+
+What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?
+
+\textbf{1.} \texttt{vehicles{[}1,15,{]}}
+
+\textbf{2.} \texttt{vecihles{[}1:5,{]}}
+
+\textbf{3.} \texttt{vehicles\$hwy{[}15,{]}}
+
+\textbf{4.} \texttt{vehicles{[}1:5,1:13{]}}
+
+~
+
+\textbf{Subsetting and filtering}
+
+\textbf{5. Subset one field according to a logical test:} With no more than two lines of code, get the number of Honda cars in the \texttt{vehicles} dataset.
+
+\textbf{6. Subset one field according to a logical test for a different field:} In a single line of code, show the mileages of all the Toyotas in the dataset.
+
+\textbf{7. Subset a dataframe to a single subgroup:} In a single line of code, determine how many differet car makes/models were produced in 1995.
+
+\textbf{8. Get the mean value for a subgroup of data:} What is the average city mileage for Subaru cars in the dataset?
+
+\textbf{9. Subset a dataframe to only data from between two values:} According to this dataset, how many different car makes/models have been produced with highway mileages between 30 and 40 mpg?
+
+\textbf{10. Subset by removing \texttt{NA}s:} Create a new version of the \texttt{vehicles} dataframe that does not have any \texttt{NA}s in the \texttt{trans} column.
+
+~
+
+\textbf{Creating dataframes}
+
+\textbf{11.} Create a vector called \texttt{people} of 5 peoples names from the class.
+
+\textbf{12.} Show with code how many people are in your vector
+
+\textbf{13.} Create another vector called \texttt{height} which is the number of centimeters tall each of those 5 people are.
+
+\textbf{14.} Combine these two vectors into a data frame.
+
+Now let's create a new object named \texttt{animals}. This is going to be a dataframe with 4 different columns: \texttt{species}, \texttt{weight} (in kg), \texttt{color}, \texttt{veg} (whether or not the animal is a vegetarian / herbivore).
+
+\textbf{15.} Come up with five species to add to your dataframe and list them in a vector named \texttt{species}.
+
+\textbf{16.} Make the other vectors with details about those species in the correct order.
+
+\textbf{17.} Combine these vectors into a dataframe named \texttt{animals}.
+
+~
+
+\textbf{Altering dataframes}
+
+\textbf{18.} Add a column to your \texttt{animals} dataframe named \texttt{rank}, which ranks each animal from your least favorite (0) to your most favorite (5).
+
+\textbf{19.} Now write code to manually switch the ranking for your top two favorite animals.
+
+\textbf{20.} What is the mean weight of the herbivorous animals that you listed, if any?
+
+\textbf{21.} What is the mean weight of the omnivorous/carnivorous animals that you listed?
+
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
 
@@ -2704,22 +3416,9 @@ To load a package, use the \texttt{library()} function.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(fun)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Error in library(fun): there is no package called 'fun'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(wesanderson)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Error in library(wesanderson): there is no package called 'wesanderson'
-\end{verbatim}
 
 Now that your new packages are loaded, you can actually use their functions.
 
@@ -2734,7 +3433,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length =} \DecValTok{24}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"random\_password"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Xi(toEG,{-}$y=\{8SjO}\SpecialCharTok{\textbackslash{}"}\StringTok{ w+u:5"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2743,7 +3442,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}fun\textquotesingle{}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"$b+9qViRM\textasciitilde{}C|XQpz3U\{6\textgreater{}f]K"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2814,11 +3513,18 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Royal1"}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Royal1"}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"wes\_palette"}
-\NormalTok{wesanderson}\SpecialCharTok{::}\FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Zissou1"}\NormalTok{)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}wesanderson\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-135-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wesanderson}\SpecialCharTok{::}\FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Zissou1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-135-2.pdf}
 
 \emph{(This function creates a plot displaying the different colors contained within the specified palette.)}
 
@@ -2833,13 +3539,11 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{?wes\_palette}
-\NormalTok{No documentation }\ControlFlowTok{for} \StringTok{\textquotesingle{}wes\_palette\textquotesingle{}} \ControlFlowTok{in}\NormalTok{ specified packages and libraries}\SpecialCharTok{:}
-\NormalTok{you could try }\StringTok{\textquotesingle{}??wes\_palette\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-3}{%
-\subsection*{Exercises}\label{exercises-3}}
+\hypertarget{exercises-4}{%
+\subsection*{Exercises}\label{exercises-4}}
 \addcontentsline{toc}{subsection}{Exercises}
 
 Let's install some packages:
@@ -2863,6 +3567,1702 @@ Let's install some packages:
 \textbf{9.} Install \texttt{readxl}.
 
 \textbf{10.} Write 7 lines of code which \emph{load} the above packages.
+
+\hypertarget{part-basic-r-workflow}{%
+\chapter*{\texorpdfstring{(PART) Basic \texttt{R} workflow}{(PART) Basic R workflow}}\label{part-basic-r-workflow}}
+
+\hypertarget{importing-data}{%
+\chapter{Importing data}\label{importing-data}}
+
+\hypertarget{learning-goals-4}{%
+\subsubsection*{Learning goals}\label{learning-goals-4}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to load, or ``read'', your data into \texttt{R}
+\item
+  How to format your data for easily importing data in \texttt{R}
+\item
+  Understand what a \texttt{.csv} file is, and why they are important in data science
+\item
+  How to set up your project directory and read data from other folders
+\end{itemize}
+
+~
+
+To work with your own data in \texttt{R}, you need to load your data in \texttt{R}'s memory. This is called \textbf{reading in} your data.
+
+\hypertarget{reading-in-data}{%
+\section*{Reading in data}\label{reading-in-data}}
+\addcontentsline{toc}{section}{Reading in data}
+
+The general workflow for reading in data is as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In \texttt{RStudio}, set your working directory.
+\item
+  Place your data file in your working directory. (See the section below if you want to keep your data somewhere else.)
+\item
+  In your \texttt{R} script, read in your data file with one of the core functions below.
+\end{enumerate}
+
+You can use this simple data file, , to practice.
+
+\hypertarget{core-functions-for-reading-data}{%
+\subsection*{Core functions for reading data}\label{core-functions-for-reading-data}}
+\addcontentsline{toc}{subsection}{Core functions for reading data}
+
+To become agile in reading various types of data into \texttt{R}, here are five key functions you should know:
+
+\hypertarget{readrread_csv}{%
+\subsubsection*{\texorpdfstring{\texttt{readr::read\_csv()}}{readr::read\_csv()}}\label{readrread_csv}}
+\addcontentsline{toc}{subsubsection}{\texttt{readr::read\_csv()}}
+
+Reading in data is simple and easy if your data are saved as a \textbf{\texttt{.csv}}, a comma-separated file. You can find functions for reading all sorts of file types into \texttt{R}, but the quickest way to begin working with your own data in \texttt{R} is to maintain that data in \texttt{.csv}'s.
+
+The function \texttt{read\_csv()}, from a package named \texttt{readr}, becomes useful when you begin working with (1) data from the internet, (2) data within the \texttt{tidyverse}, which you will be introduced to in the next module, and/or (2) very large dataset, since it reads data much more quickly and provides progress updates along the way.
+
+Here's an example of reading a file directly from the internet \ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/deaths.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{df}
+\CommentTok{\# A tibble: 891 x 12}
+\NormalTok{   PassengerId Survived Pclass Name   Sex     Age SibSp Parch Ticket  Fare Cabin}
+         \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}    \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}
+ \DecValTok{1}           \DecValTok{1}        \DecValTok{0}      \DecValTok{3}\NormalTok{ Braun}\SpecialCharTok{\textasciitilde{}}\NormalTok{ male     }\DecValTok{22}     \DecValTok{1}     \DecValTok{0}\NormalTok{ A}\SpecialCharTok{/}\DecValTok{5} \DecValTok{2}\SpecialCharTok{\textasciitilde{}}  \FloatTok{7.25} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+ \DecValTok{2}           \DecValTok{2}        \DecValTok{1}      \DecValTok{1}\NormalTok{ Cumin}\SpecialCharTok{\textasciitilde{}}\NormalTok{ fema}\SpecialCharTok{\textasciitilde{}}    \DecValTok{38}     \DecValTok{1}     \DecValTok{0}\NormalTok{ PC }\DecValTok{17}\SpecialCharTok{\textasciitilde{}} \FloatTok{71.3}\NormalTok{  C85  }
+ \DecValTok{3}           \DecValTok{3}        \DecValTok{1}      \DecValTok{3}\NormalTok{ Heikk}\SpecialCharTok{\textasciitilde{}}\NormalTok{ fema}\SpecialCharTok{\textasciitilde{}}    \DecValTok{26}     \DecValTok{0}     \DecValTok{0}\NormalTok{ STON}\SpecialCharTok{/}\ErrorTok{\textasciitilde{}}  \FloatTok{7.92} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+ \DecValTok{4}           \DecValTok{4}        \DecValTok{1}      \DecValTok{1}\NormalTok{ Futre}\SpecialCharTok{\textasciitilde{}}\NormalTok{ fema}\SpecialCharTok{\textasciitilde{}}    \DecValTok{35}     \DecValTok{1}     \DecValTok{0} \DecValTok{113803} \FloatTok{53.1}\NormalTok{  C123 }
+ \DecValTok{5}           \DecValTok{5}        \DecValTok{0}      \DecValTok{3}\NormalTok{ Allen}\SpecialCharTok{\textasciitilde{}}\NormalTok{ male     }\DecValTok{35}     \DecValTok{0}     \DecValTok{0} \DecValTok{373450}  \FloatTok{8.05} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+ \DecValTok{6}           \DecValTok{6}        \DecValTok{0}      \DecValTok{3}\NormalTok{ Moran}\SpecialCharTok{\textasciitilde{}}\NormalTok{ male     }\ConstantTok{NA}     \DecValTok{0}     \DecValTok{0} \DecValTok{330877}  \FloatTok{8.46} \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+ \DecValTok{7}           \DecValTok{7}        \DecValTok{0}      \DecValTok{1}\NormalTok{ McCar}\SpecialCharTok{\textasciitilde{}}\NormalTok{ male     }\DecValTok{54}     \DecValTok{0}     \DecValTok{0} \DecValTok{17463}  \FloatTok{51.9}\NormalTok{  E46  }
+ \DecValTok{8}           \DecValTok{8}        \DecValTok{0}      \DecValTok{3}\NormalTok{ Palss}\SpecialCharTok{\textasciitilde{}}\NormalTok{ male      }\DecValTok{2}     \DecValTok{3}     \DecValTok{1} \DecValTok{349909} \FloatTok{21.1}  \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+ \DecValTok{9}           \DecValTok{9}        \DecValTok{1}      \DecValTok{3}\NormalTok{ Johns}\SpecialCharTok{\textasciitilde{}}\NormalTok{ fema}\SpecialCharTok{\textasciitilde{}}    \DecValTok{27}     \DecValTok{0}     \DecValTok{2} \DecValTok{347742} \FloatTok{11.1}  \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+\DecValTok{10}          \DecValTok{10}        \DecValTok{1}      \DecValTok{2}\NormalTok{ Nasse}\SpecialCharTok{\textasciitilde{}}\NormalTok{ fema}\SpecialCharTok{\textasciitilde{}}    \DecValTok{14}     \DecValTok{1}     \DecValTok{0} \DecValTok{237736} \FloatTok{30.1}  \SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}} 
+\CommentTok{\# ... with 881 more rows, and 1 more variable: Embarked \textless{}chr\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Note that when you use \texttt{read\_csv()} instead of \texttt{read.csv()}, your data are read in as a \texttt{tibble} instead of a dataframe. You will be introduced to \texttt{tibbles} in the next modules on dataframes; for the time being, think of a \texttt{tibble} as a fancy version of a dataframe that can be treated exactly as a regular dataframe.
+
+\hypertarget{read.csv}{%
+\subsubsection*{\texorpdfstring{\texttt{read.csv()}}{read.csv()}}\label{read.csv}}
+\addcontentsline{toc}{subsubsection}{\texttt{read.csv()}}
+
+This function, \texttt{read.csv()}, is the base function for reading in a \texttt{.csv}. It is strictly used for reading in local files (not from the internet).
+
+This function reads in your data file as a dataframe. Save your dataset into \texttt{R}'s memory using a variable (in this case, \texttt{df}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"super\_data.csv"}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  patient_id height_in weight_lb                   comment
+1          1        74       135             not very nice
+2          2        56       112                kinda cute
+3          3        59       156 kinda cute but had a ring
+4          4        43       102                 so small!
+\end{verbatim}
+
+The \texttt{read.csv()} function has plenty of other inputs in the event that your data file is unable to follow the formatting rules outlined above (see \texttt{?read.csv()}). The three most common inputs you may want to use are \texttt{header}, \texttt{skip}, and \texttt{stringsAsFactors}.
+
+\begin{itemize}
+\item
+  Use the \textbf{\texttt{header}} input when your data does not contain column names. \emph{For example}, \texttt{header=FALSE} indicates that your datafile does not have any column names.
+\item
+  Use the \textbf{\texttt{skip}} input when you want to skip some lines of metadata at the top of your file. This is handy if you really don't want to get rid of your metadata in your header. \emph{For example,} \texttt{skip=2} skips the first two rows of the datafile before \texttt{R} begins reading data.
+\item
+  Use the \textbf{\texttt{stringsAsFactors}} input when you want to make absolutely sure that \texttt{R} interprets any non-numeric fields as characters rather than factors. We have not focused on factors yet, but it can be frustrating when \texttt{R} mistakes a column of character strings as a column factors. To avoid any possible confusion, use \texttt{stringsAsFactors=TRUE} as an input.
+\end{itemize}
+
+For example, here is how to read in this data without column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"super\_data.csv"}\NormalTok{,}\AttributeTok{skip=}\DecValTok{1}\NormalTok{,}\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{df}
+\NormalTok{  V1 V2  V3                        V4}
+\DecValTok{1}  \DecValTok{1} \DecValTok{74} \DecValTok{135}\NormalTok{             not very nice}
+\DecValTok{2}  \DecValTok{2} \DecValTok{56} \DecValTok{112}\NormalTok{                kinda cute}
+\DecValTok{3}  \DecValTok{3} \DecValTok{59} \DecValTok{156}\NormalTok{ kinda cute but had a ring}
+\DecValTok{4}  \DecValTok{4} \DecValTok{43} \DecValTok{102}\NormalTok{                 so small}\SpecialCharTok{!}
+\end{Highlighting}
+\end{Shaded}
+
+If you do this without setting header to FALSE, your first row of data gets used as column names and it becomes a big ole mess:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"super\_data.csv"}\NormalTok{,}\AttributeTok{skip=}\DecValTok{1}\NormalTok{)}
+\NormalTok{df}
+\NormalTok{  X1 X74 X135             not.very.nice}
+\DecValTok{1}  \DecValTok{2}  \DecValTok{56}  \DecValTok{112}\NormalTok{                kinda cute}
+\DecValTok{2}  \DecValTok{3}  \DecValTok{59}  \DecValTok{156}\NormalTok{ kinda cute but had a ring}
+\DecValTok{3}  \DecValTok{4}  \DecValTok{43}  \DecValTok{102}\NormalTok{                 so small}\SpecialCharTok{!}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{readxl}{%
+\subsubsection*{\texorpdfstring{\texttt{readxl()}}{readxl()}}\label{readxl}}
+\addcontentsline{toc}{subsubsection}{\texttt{readxl()}}
+
+To read in an \emph{Excel} spreadsheet, use the \texttt{read\_xlsx()} function from the package \texttt{readxl}.
+
+If \texttt{super\_data} were an \texttt{.xlsx} file, the command would look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read\_xlsx}\NormalTok{(}\StringTok{"super\_data.xlsx"}\NormalTok{,}\AttributeTok{sheet=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{gsheet}{%
+\subsubsection*{\texorpdfstring{\texttt{gsheet()}}{gsheet()}}\label{gsheet}}
+\addcontentsline{toc}{subsubsection}{\texttt{gsheet()}}
+
+To read in an \emph{GoogleSheets} spreadsheet, use the \texttt{gsheet2tbl()} function from the package \texttt{gsheet}.
+
+Make sure link sharing is turned on for the \emph{GoogleSheet} you are trying to access:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gsheet)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(gsheet)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gsheet\textquotesingle{}}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{gsheet2tbl}\NormalTok{(}\StringTok{"https://docs.google.com/spreadsheets/d/1uQ5PfGITnjHngK41FWHeedioca30wpyEsBOpC\_B6T3E/edit?usp=sharing"}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{gsheet2tbl}\NormalTok{(}\StringTok{"https://docs.google.com/spreadsheets/d/1uQ5PfGITnjHngK41FWHeedioca30wpyEsBOpC\_B6T3E/edit?usp=sharing"}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"gsheet2tbl"}
+\NormalTok{df}
+\NormalTok{  X1 X74 X135             not.very.nice}
+\DecValTok{1}  \DecValTok{2}  \DecValTok{56}  \DecValTok{112}\NormalTok{                kinda cute}
+\DecValTok{2}  \DecValTok{3}  \DecValTok{59}  \DecValTok{156}\NormalTok{ kinda cute but had a ring}
+\DecValTok{3}  \DecValTok{4}  \DecValTok{43}  \DecValTok{102}\NormalTok{                 so small}\SpecialCharTok{!}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{readrds}{%
+\subsubsection*{\texorpdfstring{\texttt{readRDS()}}{readRDS()}}\label{readrds}}
+\addcontentsline{toc}{subsubsection}{\texttt{readRDS()}}
+
+Another niche function for reading data is \texttt{readRDS()}. This function allows you to read in \emph{R data objects}, which have the file extension \emph{.rds}. These data objects need not be in the same format as a \texttt{.csv} or even a dataframe, and that is what makes them so handy. A colleague could send you an \texttt{.rds} object of a vector, a list, a plotting function, or any other kind of \texttt{R} object, and you can read it in with \texttt{readRDS()}.
+
+For example, contains a \texttt{tibble} version of the dataframe above. When you read in that \texttt{.rds} file, it is already formatted as a \texttt{tibble}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"super\_data.rds"}\NormalTok{)}
+\NormalTok{df}
+\CommentTok{\# A tibble: 4 x 4}
+\NormalTok{  patient\_id height\_in weight\_lb comment                  }
+       \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}                    
+\DecValTok{1}          \DecValTok{1}        \DecValTok{74}       \DecValTok{135}\NormalTok{ not very nice            }
+\DecValTok{2}          \DecValTok{2}        \DecValTok{56}       \DecValTok{112}\NormalTok{ kinda cute               }
+\DecValTok{3}          \DecValTok{3}        \DecValTok{59}       \DecValTok{156}\NormalTok{ kinda cute but had a ring}
+\DecValTok{4}          \DecValTok{4}        \DecValTok{43}       \DecValTok{102}\NormalTok{ so small}\SpecialCharTok{!}                
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{csv-files}{%
+\section*{\texorpdfstring{\texttt{.csv} files}{.csv files}}\label{csv-files}}
+\addcontentsline{toc}{section}{\texttt{.csv} files}
+
+The \texttt{.csv} is such an important file type when you work with data that it is worth introducing it with more detail.
+
+When you preview a \texttt{.csv}, it looks something like this:
+
+\includegraphics{img/csv.png}
+A neat spreadsheet of rows and columns.
+
+When you open up this same dataset in a simple text editor, it looks like this:
+
+\includegraphics{img/csv_text_editor.png}
+This looks scary, but it is actually really simple. A \texttt{.csv} is a simple text file in which each row is on a new line and columns of data are separated by commas. As a simple text file, there is no fancy formatting. There are no ``Sheets'' or ``Tabs'', as you would find in GoogleSheets or Excel; it is a simple `flat' file.
+
+One of the major advantages of working with \texttt{.csv}'s is that the format is cross-platform and non-proprietary. That is, they work on Windows, Mac, Linux, and any other common type of computer, and they do not require special software to open.
+
+\hypertarget{prepping-your-data-for-r}{%
+\section*{\texorpdfstring{Prepping your data for \texttt{R}}{Prepping your data for R}}\label{prepping-your-data-for-r}}
+\addcontentsline{toc}{section}{Prepping your data for \texttt{R}}
+
+For those of us used to working in \emph{Excel}, \emph{GoogleSheets}, or \emph{Numbers}, it will take some adjustment to get into the habit of formatting your data for \texttt{R}. We are used to seeing spreadsheets that look something like this:
+
+\includegraphics{img/csv_dont.png}
+
+To read a \texttt{.csv} into \texttt{R} without issues or fancy code, this spreadsheet will need to be simplified to look like this:
+
+\includegraphics{img/csv_do.png}
+
+\hypertarget{workflow-for-formatting-your-data}{%
+\subsection*{Workflow for formatting your data}\label{workflow-for-formatting-your-data}}
+\addcontentsline{toc}{subsection}{Workflow for formatting your data}
+
+Below is the general worfklow for preparing your data for \texttt{R} is the following:
+
+\textbf{1. Get your data into \texttt{.csv} format.} In \emph{Excel} and \emph{Numbers}, you can use `Save As' to change the file format. In \emph{GoogleSheets}, you can `Download As' a \texttt{.csv}. This will remove any colors, thick lines, special fonts, bold or italicized font styles, and any other special formatting. All that will be left is your data, and that's the way \texttt{R} likes it.
+
+\textbf{2. Remove blank columns} before and in the middle of your data.
+
+\textbf{3. Remove fancy elements such as graphs.}
+
+\textbf{4. Simplify your `header'.} The space above your data is your spreadsheet's header. It includes column names and metadata like title, author, measurement units, etc. It is possible to read data with complex headers into \texttt{R}, but again we are going for simplicity here, so we suggest (1) simplifying your header to contain column names only, and (2) moving metadata to a \texttt{README.txt} file that lives in the same folder as your data.
+
+\textbf{5. Simplify column names.} Remove spaces, or replace them with \texttt{.}, \texttt{-} or \texttt{\_}. Make your column names as simple and brief as possible while still being informative. Include units in the column names, as in the screenshot above. Be sure that each column has a name.
+
+\textbf{6. Remove all commas and hashtags from your dataset.} You can do this with the `Find \& Replace' feature built-into in most spreadsheet editors.
+
+\hypertarget{managing-files-folders}{%
+\section*{Managing files \& folders}\label{managing-files-folders}}
+\addcontentsline{toc}{section}{Managing files \& folders}
+
+\hypertarget{reading-data-from-other-folders}{%
+\subsection*{Reading data from other folders}\label{reading-data-from-other-folders}}
+\addcontentsline{toc}{subsection}{Reading data from other folders}
+
+The data-reading functions above require only a single input: the \emph{path} to your data file. This \emph{path} is relative to the location of your working directory. When your data file is \emph{inside} your working directory, the path simplifies to be the same as the filename of your data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"super\_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Sometimes, though, you will want to keep your data somewhere nearby but not necessarily \emph{within} your working directory. Consider the following scenario, in which three versions of the ``super\_data.csv'' dataset occur near a working directory being used for this module:
+
+\includegraphics{img/csv_wd.png}
+
+We have a version within the same directory as our \texttt{R} file (i.e., our working directory), another version within a \emph{child} folder within the directory (i.e., a subfolder), and another version in the \emph{parent} folder of the working directory.
+
+\textbf{To read a file from a \emph{child} folder,} add the prefix, \texttt{./\textless{}child\ name\textgreater{}/}, to your command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"./data/super\_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{To read a file from a \emph{parent} folder,} add the prefix, \texttt{../}, to your command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"./data/super\_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{managing-files}{%
+\subsection*{Managing files}\label{managing-files}}
+\addcontentsline{toc}{subsection}{Managing files}
+
+Now consider the following scenario, in which your project folder structure looks like this:
+
+\includegraphics{img/project_template.png}
+
+This structure can be a effective and simple way of organizing your files for a project, and we recommend using it.
+
+Here's what these child folders should contain.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{./data/} contains data, of course.
+\item
+  \texttt{./doc/} contains documents, such as manuscript drafts.
+\item
+  \texttt{./figures/} contains files for graphs and figures.
+\item
+  \texttt{./R/} contains \texttt{R} scripts, of course.
+\item
+  \texttt{./references/} contains journal articles and other resources you are using in your research.
+\end{itemize}
+
+Since your \texttt{R} code is going into the \texttt{R} child folder, that is what you should set your working directory for those \texttt{R} scripts to. In that case, \emph{how to read data from the \texttt{data} folder}, which is a separate child folder of your parent folder?
+
+Here's how:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"../data/super\_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ggplot}{%
+\chapter{\texorpdfstring{\texttt{ggplot}}{ggplot}}\label{ggplot}}
+
+\hypertarget{learning-goals-5}{%
+\subsubsection*{Learning goals}\label{learning-goals-5}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand what \texttt{ggplot2} is and why it's used
+\item
+  Be able to think conceptually in the framework of the ``grammar of graphics''
+\item
+  Learn the basic syntax for creating different plots using using \texttt{ggplot2}
+\end{itemize}
+
+\hypertarget{what-is-ggplot2}{%
+\section*{\texorpdfstring{What is \texttt{ggplot2}?}{What is ggplot2?}}\label{what-is-ggplot2}}
+\addcontentsline{toc}{section}{What is \texttt{ggplot2}?}
+
+\texttt{ggplot2} is an \texttt{R} package. It's one of the most downloaded packages in the \texttt{R} universe, and has become the gold standard for data visualization. It's extremely powerful and flexible, and allows for creating lots of visualizations of different types, ranging from maps to bare-bones academic publications, to complex, paneled charts with labeling, etc.
+
+Because the syntax is so different from ``base'' \texttt{R}, it can give the impression of having a somewhat steep learning curve. But in reality, because the principles are so conceptually simple, learning is fairly fast. Generally those who choose to learn it stick with it; that is, once you go \texttt{gg}, you don't go back.
+
+\textbf{Note:} we will refer heavily to this \href{https://ggplot2-book.org/introduction.html}{\textbf{online guide about \texttt{ggplot}}}
+
+\hypertarget{the-name-concept}{%
+\subsection*{The name \& concept}\label{the-name-concept}}
+\addcontentsline{toc}{subsection}{The name \& concept}
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+To demonstrate the ideas in this section, draw a rough plot on a whiteboard as you step through each layer.
+
+The ``\texttt{gg}'' in \texttt{ggplot} stands for ``grammar of graphics'', with ``grammar'' meaning ``the fundamental principles or rules of an art or science'' \citep{layered-grammar}. Just as all languages share common principles of grammar and syntax, so too do the many forms of data visualization. The basic idea is that all graphs can be described using a \emph{layered} grammar: all graphs represent a dataset using the same layers of visual order.
+
+\textbf{Plots are made of layers.} Think of how you draw a plot from scratch:
+
+First, you get a piece of paper -- a \textbf{canvas}.
+
+Second, you draw the x axis and y axis: each direction on your canvas represents the range of a set of data. This establishes a \textbf{landscape of coordinates}.
+
+Third, the data need to be placed somewhere in that landscape. You \textbf{map the data} to the coordinates.
+
+Fourth, when you actually draw the data at their prescribed locations on the plot, you have to decide how to do so. You use \textbf{geometric objects} -- like points, lines, and bars -- and other \textbf{aesthetic attributes} -- like colors, line thicknesses, and dot size.
+
+Fifth, you add \textbf{labels} -- such as axis titles, an overhead title, or a legend -- to help the viewer understand the plot.
+
+You now have a basic plot. But sometimes you will add additional layers:
+
+Sixth, you may add \textbf{statistical summaries} -- such as regression lines or standard error bars.
+
+Seventh, you may decide to do an overhaul and split your plot into several \textbf{facets}, in which subgroups of the data are plotted separately to produce a multi-panel plot.
+
+Finally, in the final layer, you may decide to stylize the entire plot to fit a \textbf{visual theme}, such as the trademark styles of vendors like the \emph{The Economist} or \emph{The New York Times}.
+
+When you produce a plot with \texttt{ggplot}, you will mirror this same process step-by-step. This is why you will often see the process underlying \texttt{ggplot} described using a graphic like this:
+
+\includegraphics{img/ggplot.png}
+
+~
+
+\emph{Note:} If you want to learn more about the theory, the most well-known ``grammar of graphics'' was written in 2005 and laid out some abstract principles for describing statistical graphics \citep{10.5555/1088896}.
+
+\hypertarget{setting-up-ggplot}{%
+\subsection*{\texorpdfstring{Setting up \texttt{ggplot}}{Setting up ggplot}}\label{setting-up-ggplot}}
+\addcontentsline{toc}{subsection}{Setting up \texttt{ggplot}}
+
+Let's learn by doing. First, install and load \texttt{ggplot2} and associated packages.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(ggthemes)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+Download the \texttt{titanic} dataset, the manifest of \emph{Titanic} passengers with details such as as age, passenger class, fare paid, and whether or not they survived.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{titanic}\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/deaths.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+At this point it may be useful to emphasize that the name of the package is \textbf{\texttt{ggplot2}}, but the name of the function is just \textbf{\texttt{ggplot()}}.
+
+\hypertarget{scatter-plot}{%
+\section*{Scatter plot}\label{scatter-plot}}
+\addcontentsline{toc}{section}{Scatter plot}
+
+Say you want to explore the relationship between passengers' age and the fare they paid to travel aboard the \emph{Titanic}.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  \textbf{Set up our canvas.} If we just type \texttt{ggplot()} without anything in the parentheses, the function will just return a blank piece of paper.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-153-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Draw the axes} and, 3., setup our \textbf{landscape of coordinates}. To do so, we need to feed \texttt{ggplot()} some data and tell it which columns should be mapped onto the axes.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Age, }\AttributeTok{y =}\NormalTok{ Fare))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-154-1.pdf}
+
+That code looks a bit clunky, we know. The \texttt{aes()} input, which is short for \texttt{aesthetics}, is actually a function. Everything included in its parentheses will be used to \emph{map your data to the plot's aesthetic attributes}. So far we have simply said that \texttt{Age} should be mapped to the \emph{x} axis and that \texttt{Fare} should be mapped to \emph{y}.
+
+But let's say we also want to color-code the points on our plot according to male/female. To do so, we will add specifications to this \texttt{aes()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Age, }\AttributeTok{y =}\NormalTok{ Fare, }\AttributeTok{color=}\NormalTok{Sex))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-155-1.pdf}
+
+Your plot is still blank, but in the background \texttt{ggplot()} is all setup to make your plot. Since this \texttt{ggplot()} call is the basis of everything that will happen next -- it contains the data and the way you want to map it to attributes of your plot -- let's save it to a variable for easy recall. We'll use \texttt{p} for ``plot''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Age, }\AttributeTok{y =}\NormalTok{ Fare, }\AttributeTok{color=}\NormalTok{Sex))}
+\end{Highlighting}
+\end{Shaded}
+
+Note that you don't need to write out \texttt{titanic\$Age} or \texttt{titanic\$Fare}. You've told \texttt{ggplot} that your \texttt{data} is \texttt{titanic}, so it knows to look inside that dataframe for those columns.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Map our data to geometric shapes}. In this case, a scatter plot of points:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-157-1.pdf}
+
+Note the use of a plus sign, \texttt{+}. You are \emph{adding} layers to your plot.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{Add some more labels}. You see that \texttt{ggplot()} has automatically added axis titles and a legend, but we can add some more using the \texttt{labs()} function. Let's add an overhead title, a sub-title, and a caption.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Relationship between Age, Fare, and Sex\textquotesingle{}}\NormalTok{,}
+              \AttributeTok{subtitle =} \StringTok{\textquotesingle{}Passengers on the RMS Titanic\textquotesingle{}}\NormalTok{,}
+              \AttributeTok{caption =} \StringTok{\textquotesingle{}Property of Eric Keen \& Hadley Whickham (2021)\textquotesingle{}}\NormalTok{)}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-158-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{Add a statistical summary}, like a smoothed regression line.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{)}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-159-1.pdf}
+
+Note that \texttt{ggplot()} automatically produced a different regression line for each sex. That's nice, but now our plot is getting pretty cluttered.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Clean up the look by using \textbf{facets}: a separate plot for each sex.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Sex)}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-160-1.pdf}
+
+Beautiful!
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Finally, let's \textbf{stylize} the entire plot with a different \textbf{theme}. You can find theme options in the `\texttt{ggthemes} package.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{theme\_economist\_white}\NormalTok{()}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-161-1.pdf}
+
+\hypertarget{bar-plot}{%
+\section*{Bar plot}\label{bar-plot}}
+\addcontentsline{toc}{section}{Bar plot}
+
+In a bar plot, your data are mapped to bars instead of points. And, instead of showing every data point, you are summarizing the data in some way -- i.e., displaying a \emph{statistic}. That statistic is usually just a count of the number of data points in each subgroup.
+
+Let's make a bar plot that compares the number of men and women on the \emph{Titanic}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sex)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-162-1.pdf}
+
+Note that, for the \texttt{aes()} call, we only provided the \emph{x} axis attribute: \texttt{Sex}.
+
+Then, in the \texttt{geom\_bar()} call, we told \texttt{R} what \texttt{stat}istic should be represented by that bars: \texttt{\textquotesingle{}count\textquotesingle{}}.
+
+But you are allowed to explicitly set the bars' heights (i.e., the \texttt{y} dimension) to represent a different statistic. Let's say we wanted each bar to represent the mean age of men and women:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First, determine the mean age of each sex}
+\NormalTok{mean\_age\_males }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(titanic}\SpecialCharTok{$}\NormalTok{Age[titanic}\SpecialCharTok{$}\NormalTok{Sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}male\textquotesingle{}}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{mean\_age\_females }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(titanic}\SpecialCharTok{$}\NormalTok{Age[titanic}\SpecialCharTok{$}\NormalTok{Sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}female\textquotesingle{}}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Make a new dataframe with this summary data}
+\NormalTok{titanic\_age }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Sex =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}male\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}female\textquotesingle{}}\NormalTok{),}
+                          \AttributeTok{mean\_age =} \FunctionTok{c}\NormalTok{(mean\_age\_males, mean\_age\_females))}
+\CommentTok{\# Plot it}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_age, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sex,}\AttributeTok{y=}\NormalTok{ mean\_age)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-163-1.pdf}
+
+In this case, we are explicitly defining the \texttt{y} axis in the \texttt{aes()} call, and telling \texttt{geom\_bar()} to just use the values we specified in \texttt{aes()} (that's what \texttt{\textquotesingle{}identity\textquotesingle{}} means; you are telling \texttt{ggplot()} to just use what you already gave it.)
+
+You can specify other aesthetic attributes, \emph{unrelated to the data}, within the \texttt{geom\_bar()} call:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_age, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sex,}\AttributeTok{y=}\NormalTok{ mean\_age)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{, }\AttributeTok{fill =} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-164-1.pdf}
+
+Now add better labels:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_age, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sex,}\AttributeTok{y=}\NormalTok{ mean\_age)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{, }\AttributeTok{fill =} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{\textquotesingle{}Mean age\textquotesingle{}}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{\textquotesingle{}Gender\textquotesingle{}}\NormalTok{,}
+       \AttributeTok{title =} \StringTok{\textquotesingle{}Titanic passengers: Average age by sex\textquotesingle{}}\NormalTok{,}
+       \AttributeTok{caption =} \StringTok{\textquotesingle{}Do not steal, please\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-165-1.pdf}
+
+You can add another variable to your bar plot as follows. Let's say you want to see the average age in each sex, grouped by who survived and who didn't:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First, produce your summary dataframe using some dplyr magic:}
+\NormalTok{titanic\_em }\OtherTok{\textless{}{-}}\NormalTok{ titanic }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Sex, Survived) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_age=} \FunctionTok{mean}\NormalTok{(Age, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+
+\NormalTok{titanic\_em }\OtherTok{\textless{}{-}}\NormalTok{ titanic\_em }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Survived =} \FunctionTok{ifelse}\NormalTok{(Survived }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}Survived\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Dead\textquotesingle{}}\NormalTok{ ))}
+
+\CommentTok{\# Check it out}
+\NormalTok{titanic\_em}
+\CommentTok{\# A tibble: 4 x 3}
+\CommentTok{\# Groups:   Sex [2]}
+\NormalTok{  Sex    Survived mean\_age}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ female Dead         }\FloatTok{25.0}
+\DecValTok{2}\NormalTok{ female Survived     }\FloatTok{28.8}
+\DecValTok{3}\NormalTok{ male   Dead         }\FloatTok{31.6}
+\DecValTok{4}\NormalTok{ male   Survived     }\FloatTok{27.3}
+
+\CommentTok{\# Now plot it}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_em, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Sex, }\AttributeTok{y=}\NormalTok{mean\_age, }\AttributeTok{fill =}\NormalTok{ Survived)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-166-1.pdf}
+
+Rather than stack the bars, you can place them side by side:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_em, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Sex, }\AttributeTok{y=}\NormalTok{mean\_age, }\AttributeTok{fill =}\NormalTok{ Survived)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{, }\AttributeTok{position =} \StringTok{\textquotesingle{}dodge\textquotesingle{}}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-167-1.pdf}
+
+If you don't love these default colors (even if they are colorblind-friendly), you can manually define the colors for each group of bars:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ titanic\_em, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Sex, }\AttributeTok{y=}\NormalTok{mean\_age, }\AttributeTok{fill =}\NormalTok{ Survived)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{, }
+           \AttributeTok{position =} \StringTok{\textquotesingle{}dodge\textquotesingle{}}\NormalTok{, }
+           \AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }
+           \AttributeTok{color=}\StringTok{\textquotesingle{}grey40\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# bar edge}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}grey\textquotesingle{}}\NormalTok{)) }\CommentTok{\# bar fill}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-168-1.pdf}
+
+\hypertarget{exercises-5}{%
+\subsubsection*{Exercises}\label{exercises-5}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+\textbf{More \emph{Titanic} plots}
+
+\textbf{1.} Make a scatterplot similar to what you did above, but this time color-code by class instead of sex.
+
+\textbf{2.} Notice that \texttt{ggplot()} automatically uses a continuous color scale for \texttt{Pclass}, since it has numeric values. To force \texttt{ggplot()} to consider \texttt{Pclass} as categories (1st class, 2nd class, 3rd class), replace \texttt{Pclass} with \texttt{factor(Pclass)}. Did the style of your color scale change?
+
+\textbf{3.} Modify the title, subtitle, and caption to be more descriptive.
+
+\textbf{4.} Produce a bar plot that compares the number of passengers in each class.
+
+\textbf{5.} Make your bar plot as \emph{ugly} as possible!
+
+\textbf{6.} Now make it as \emph{beautiful} as possible, including a concise but informative title, subtitle, and caption.
+
+~
+
+\textbf{Baby names}
+
+Download the dataset on baby names given to newborns in the USA:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(babynames)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(babynames)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}babynames\textquotesingle{}}
+\NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}babynames\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{7.} Create a line chart showing the number of girls named Mary over time.
+
+\textbf{8.} Change the color of the line to blue.
+
+\textbf{9.} Add a fitting title to the plot.
+
+\textbf{10.} Create a bar chart showing the number of girls named Emma, Olivia, Ava, Sophia, and Emily in 2010.
+
+\textbf{11.} Change the X label to ``Names'' and the y label to ``Total''. (\emph{Hint:} check out the \texttt{labs()} help page.)
+
+\textbf{12.} Change the color of the bar to grey and make it more transclucent.
+
+\textbf{13.} Create a bar chart showing the number of people named Emma, Olivia, Ava, Sophia, and Emily in 2010, colored by sex.
+
+\textbf{14.} Create a beautiful chart showing your name over time.
+
+\hypertarget{dplyr}{%
+\chapter{Dataframe wrangling}\label{dplyr}}
+
+\hypertarget{learning-goals-6}{%
+\subsubsection*{Learning goals}\label{learning-goals-6}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand the importance of \emph{tidy} dataframes
+\item
+  Understand what the \texttt{tidyverse} is and why it is awesome
+\item
+  Feel comfortable working with dataframes using \texttt{dplyr} functions.
+\end{itemize}
+
+\hypertarget{the-dplyr-package}{%
+\section*{\texorpdfstring{The \texttt{dplyr} package}{The dplyr package}}\label{the-dplyr-package}}
+\addcontentsline{toc}{section}{The \texttt{dplyr} package}
+
+Data scientists largely work in data frames and \emph{do things} to data. This is what the package \texttt{dplyr} is optimized for. It consists of a series of ``verbs'' which cover 95\% of what you need to do for most basic data processing tasks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}dplyr\textquotesingle{}}\NormalTok{) }\CommentTok{\# if you haven\textquotesingle{}t yet}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{dplyr} package contains a set of \texttt{verbs}: things you do to dataframes. Those verbs are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{filter()}}\strut \\
+\item
+  \textbf{\texttt{arrange()}}\strut \\
+\item
+  \textbf{\texttt{select()}}\strut \\
+\item
+  \textbf{\texttt{rename()}}\strut \\
+\item
+  \textbf{\texttt{distinct()}}\strut \\
+\item
+  \textbf{\texttt{mutate()}}\strut \\
+\item
+  \textbf{\texttt{summarise()}}
+\end{itemize}
+
+\hypertarget{the-pipe}{%
+\section*{\texorpdfstring{The \texttt{\%\textgreater{}\%} pipe}{The \%\textgreater\% pipe}}\label{the-pipe}}
+\addcontentsline{toc}{section}{The \texttt{\%\textgreater{}\%} pipe}
+
+\textbf{\texttt{\%\textgreater{}\%}} is a ``pipe''. It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the first six elements of a sequence of 10 to 20 by 2?
+
+Here's what that command would look like in base \texttt{R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{head}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{))))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{9.486833}
+\end{Highlighting}
+\end{Shaded}
+
+Pretty overwhelming, and pretty easy to make errors in writing it out.
+
+But the above could also be written a simpler way:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ head }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{9.486833}
+\end{Highlighting}
+\end{Shaded}
+
+When you see the \textbf{\texttt{\%\textgreater{}\%}} pipe symbol, think of the word \textbf{``then''}.
+
+The above code could be read aloud like so: ``First, get a sequence of every second number between 10 and 20. \textbf{Then}, take the first six values. \textbf{Then}, sum those samples together. \textbf{Then}, take the square root of that sum.''
+
+Using the \texttt{\%\textgreater{}\%} pipe framework, your code turns from a nonlinear series of parentheses and brackets to a linear progression of steps, which is a closer fit to how we tend to think about working with data. Instead of working from the inside of a command outward, we thinking linearly: take the data, \textbf{then} do things with it, \textbf{then} do more things with it, etc.
+
+Here's another example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{sd}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{29.01149}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{} could also be written as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sd }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ mean}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{29.01149}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{dplyr-verbs}{%
+\section*{\texorpdfstring{\texttt{dplyr} verbs}{dplyr verbs}}\label{dplyr-verbs}}
+\addcontentsline{toc}{section}{\texttt{dplyr} verbs}
+
+To practice the \texttt{dplyr} verbs, let's make a small dataframe named \texttt{people}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{who =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Joe\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ben\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Xing\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Coloma\textquotesingle{}}\NormalTok{),}
+                    \AttributeTok{sex =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{),}
+                    \AttributeTok{age =} \FunctionTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{34}\NormalTok{))}
+\NormalTok{people}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}
+\DecValTok{3}\NormalTok{   Xing Female  }\DecValTok{32}
+\DecValTok{4}\NormalTok{ Coloma Female  }\DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filter}{%
+\subsection*{\texorpdfstring{\texttt{filter()}}{filter()}}\label{filter}}
+\addcontentsline{toc}{subsection}{\texttt{filter()}}
+
+The \texttt{filter()} function is used to subset a dataframe, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of \texttt{TRUE} for all conditions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{)}
+\NormalTok{  who  sex age}
+\DecValTok{1}\NormalTok{ Joe Male  }\DecValTok{35}
+\DecValTok{2}\NormalTok{ Ben Male  }\DecValTok{33}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{)}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{   Xing Female  }\DecValTok{32}
+\DecValTok{2}\NormalTok{ Coloma Female  }\DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+You can also filter according to multiple conditions. Here are three ways to acheive the same thing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
+\NormalTok{   who    sex age}
+\DecValTok{1}\NormalTok{ Xing Female  }\DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{, age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
+\NormalTok{   who    sex age}
+\DecValTok{1}\NormalTok{ Xing Female  }\DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
+\NormalTok{   who    sex age}
+\DecValTok{1}\NormalTok{ Xing Female  }\DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+Note that when a condition evaluates to \texttt{NA}, its row will be dropped. This differ from the base subsetting works with \texttt{{[}\ ...\ {]}}.
+
+\hypertarget{arrange}{%
+\subsection*{\texorpdfstring{\texttt{arrange()}}{arrange()}}\label{arrange}}
+\addcontentsline{toc}{subsection}{\texttt{arrange()}}
+
+Arrange means putting things in order. That is, \texttt{arrange()} orders the rows of a data frame by the values of selected columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(age)}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{   Xing Female  }\DecValTok{32}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}
+\DecValTok{3}\NormalTok{ Coloma Female  }\DecValTok{34}
+\DecValTok{4}\NormalTok{    Joe   Male  }\DecValTok{35}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(sex)}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{   Xing Female  }\DecValTok{32}
+\DecValTok{2}\NormalTok{ Coloma Female  }\DecValTok{34}
+\DecValTok{3}\NormalTok{    Joe   Male  }\DecValTok{35}
+\DecValTok{4}\NormalTok{    Ben   Male  }\DecValTok{33}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(who)}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{    Ben   Male  }\DecValTok{33}
+\DecValTok{2}\NormalTok{ Coloma Female  }\DecValTok{34}
+\DecValTok{3}\NormalTok{    Joe   Male  }\DecValTok{35}
+\DecValTok{4}\NormalTok{   Xing Female  }\DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+To reverse the order, use \texttt{desc()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(age))}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}
+\DecValTok{2}\NormalTok{ Coloma Female  }\DecValTok{34}
+\DecValTok{3}\NormalTok{    Ben   Male  }\DecValTok{33}
+\DecValTok{4}\NormalTok{   Xing Female  }\DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+You can also arrange by multiple levels:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(sex, age)}
+\NormalTok{     who    sex age}
+\DecValTok{1}\NormalTok{   Xing Female  }\DecValTok{32}
+\DecValTok{2}\NormalTok{ Coloma Female  }\DecValTok{34}
+\DecValTok{3}\NormalTok{    Ben   Male  }\DecValTok{33}
+\DecValTok{4}\NormalTok{    Joe   Male  }\DecValTok{35}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{select}{%
+\subsection*{\texorpdfstring{\texttt{select()}}{select()}}\label{select}}
+\addcontentsline{toc}{subsection}{\texttt{select()}}
+
+Select only certain variables in a data frame, making the dataframe skinnier (fewer columns).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(age)}
+\NormalTok{  age}
+\DecValTok{1}  \DecValTok{35}
+\DecValTok{2}  \DecValTok{33}
+\DecValTok{3}  \DecValTok{32}
+\DecValTok{4}  \DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sex, age)}
+\NormalTok{     sex age}
+\DecValTok{1}\NormalTok{   Male  }\DecValTok{35}
+\DecValTok{2}\NormalTok{   Male  }\DecValTok{33}
+\DecValTok{3}\NormalTok{ Female  }\DecValTok{32}
+\DecValTok{4}\NormalTok{ Female  }\DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+As you select columns, you can rename them like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sex, }\AttributeTok{years =}\NormalTok{ age)}
+\NormalTok{     sex years}
+\DecValTok{1}\NormalTok{   Male    }\DecValTok{35}
+\DecValTok{2}\NormalTok{   Male    }\DecValTok{33}
+\DecValTok{3}\NormalTok{ Female    }\DecValTok{32}
+\DecValTok{4}\NormalTok{ Female    }\DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+You can also select a set of columns using the \texttt{:} notation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(who}\SpecialCharTok{:}\NormalTok{sex)}
+\NormalTok{     who    sex}
+\DecValTok{1}\NormalTok{    Joe   Male}
+\DecValTok{2}\NormalTok{    Ben   Male}
+\DecValTok{3}\NormalTok{   Xing Female}
+\DecValTok{4}\NormalTok{ Coloma Female}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rename}{%
+\subsection*{\texorpdfstring{\texttt{rename()}}{rename()}}\label{rename}}
+\addcontentsline{toc}{subsection}{\texttt{rename()}}
+
+The function \texttt{rename()} changes the names of individual variables.
+
+This verb takes the syntax \texttt{\textless{}new\_name\textgreater{}\ =\ \textless{}old\_name\textgreater{}} syntax.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{rename}\NormalTok{(}\AttributeTok{gender =}\NormalTok{ sex, }\AttributeTok{years =}\NormalTok{ age, }\AttributeTok{first\_name =}\NormalTok{ who)}
+\NormalTok{  first\_name gender years}
+\DecValTok{1}\NormalTok{        Joe   Male    }\DecValTok{35}
+\DecValTok{2}\NormalTok{        Ben   Male    }\DecValTok{33}
+\DecValTok{3}\NormalTok{       Xing Female    }\DecValTok{32}
+\DecValTok{4}\NormalTok{     Coloma Female    }\DecValTok{34}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mutate}{%
+\subsection*{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
+\addcontentsline{toc}{subsection}{\texttt{mutate()}}
+
+The function \texttt{mutate()} adds new variables and preserves existing ones.
+
+New variables overwrite existing variables of the same name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{agein2020 =}\NormalTok{ age }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\NormalTok{     who    sex age agein2020}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}        \DecValTok{34}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}        \DecValTok{32}
+\DecValTok{3}\NormalTok{   Xing Female  }\DecValTok{32}        \DecValTok{31}
+\DecValTok{4}\NormalTok{ Coloma Female  }\DecValTok{34}        \DecValTok{33}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{is\_male =}\NormalTok{ sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{)}
+\NormalTok{     who    sex age is\_male}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}    \ConstantTok{TRUE}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}    \ConstantTok{TRUE}
+\DecValTok{3}\NormalTok{   Xing Female  }\DecValTok{32}   \ConstantTok{FALSE}
+\DecValTok{4}\NormalTok{ Coloma Female  }\DecValTok{34}   \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
+\NormalTok{     who    sex age average\_age}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}        \FloatTok{33.5}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}        \FloatTok{33.5}
+\DecValTok{3}\NormalTok{   Xing Female  }\DecValTok{32}        \FloatTok{33.5}
+\DecValTok{4}\NormalTok{ Coloma Female  }\DecValTok{34}        \FloatTok{33.5}
+\end{Highlighting}
+\end{Shaded}
+
+You can call \texttt{mutate()} multiple times in the same pipe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{diff\_from\_avg =}\NormalTok{ age }\SpecialCharTok{{-}}\NormalTok{ average\_age)}
+\NormalTok{     who    sex age average\_age diff\_from\_avg}
+\DecValTok{1}\NormalTok{    Joe   Male  }\DecValTok{35}        \FloatTok{33.5}           \FloatTok{1.5}
+\DecValTok{2}\NormalTok{    Ben   Male  }\DecValTok{33}        \FloatTok{33.5}          \SpecialCharTok{{-}}\FloatTok{0.5}
+\DecValTok{3}\NormalTok{   Xing Female  }\DecValTok{32}        \FloatTok{33.5}          \SpecialCharTok{{-}}\FloatTok{1.5}
+\DecValTok{4}\NormalTok{ Coloma Female  }\DecValTok{34}        \FloatTok{33.5}           \FloatTok{0.5}
+\end{Highlighting}
+\end{Shaded}
+
+You can also remove variables can be removed by setting their value to NULL.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age =} \ConstantTok{NULL}\NormalTok{)}
+\NormalTok{     who    sex}
+\DecValTok{1}\NormalTok{    Joe   Male}
+\DecValTok{2}\NormalTok{    Ben   Male}
+\DecValTok{3}\NormalTok{   Xing Female}
+\DecValTok{4}\NormalTok{ Coloma Female}
+\end{Highlighting}
+\end{Shaded}
+
+A similar function, \texttt{transmute()}, adds new variables and drops existing ones, kind of like a combination of \texttt{select()} and \texttt{mutate()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{transmute}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
+\NormalTok{  average\_age}
+\DecValTok{1}        \FloatTok{33.5}
+\DecValTok{2}        \FloatTok{33.5}
+\DecValTok{3}        \FloatTok{33.5}
+\DecValTok{4}        \FloatTok{33.5}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{group_by}{%
+\subsection*{\texorpdfstring{\texttt{group\_by()}}{group\_by()}}\label{group_by}}
+\addcontentsline{toc}{subsection}{\texttt{group\_by()}}
+
+Most data operations are done on groups defined by variables. The function \texttt{group\_by()} takes an existing table and converts it into a grouped one where operations are performed ``by group''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age\_for\_sex =} \FunctionTok{mean}\NormalTok{(age)) }
+\CommentTok{\# A tibble: 4 x 4}
+\CommentTok{\# Groups:   sex [2]}
+\NormalTok{  who    sex      age average\_age\_for\_sex}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}               \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ Joe    Male      }\DecValTok{35}                  \DecValTok{34}
+\DecValTok{2}\NormalTok{ Ben    Male      }\DecValTok{33}                  \DecValTok{34}
+\DecValTok{3}\NormalTok{ Xing   Female    }\DecValTok{32}                  \DecValTok{33}
+\DecValTok{4}\NormalTok{ Coloma Female    }\DecValTok{34}                  \DecValTok{33}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age\_for\_sex =} \FunctionTok{mean}\NormalTok{(age)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{diff\_from\_avg\_for\_sex =}\NormalTok{ age }\SpecialCharTok{{-}}\NormalTok{ average\_age\_for\_sex)}
+\CommentTok{\# A tibble: 4 x 5}
+\CommentTok{\# Groups:   sex [2]}
+\NormalTok{  who    sex      age average\_age\_for\_sex diff\_from\_avg\_for\_sex}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}               \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}                 \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ Joe    Male      }\DecValTok{35}                  \DecValTok{34}                     \DecValTok{1}
+\DecValTok{2}\NormalTok{ Ben    Male      }\DecValTok{33}                  \DecValTok{34}                    \SpecialCharTok{{-}}\DecValTok{1}
+\DecValTok{3}\NormalTok{ Xing   Female    }\DecValTok{32}                  \DecValTok{33}                    \SpecialCharTok{{-}}\DecValTok{1}
+\DecValTok{4}\NormalTok{ Coloma Female    }\DecValTok{34}                  \DecValTok{33}                     \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Note that a similar verb, \texttt{ungroup()}, removes grouping.
+
+\hypertarget{summarize}{%
+\subsection*{\texorpdfstring{\texttt{summarize()}}{summarize()}}\label{summarize}}
+\addcontentsline{toc}{subsection}{\texttt{summarize()}}
+
+\texttt{summarize()} or \texttt{summarize()} creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
+\NormalTok{  average\_age}
+\DecValTok{1}        \FloatTok{33.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age),}
+            \AttributeTok{standard\_dev\_of\_age =} \FunctionTok{sd}\NormalTok{(age),}
+            \AttributeTok{oldest\_age =} \FunctionTok{max}\NormalTok{(age),}
+            \AttributeTok{youngest\_age =} \FunctionTok{min}\NormalTok{(age))}
+\NormalTok{  average\_age standard\_dev\_of\_age oldest\_age youngest\_age}
+\DecValTok{1}        \FloatTok{33.5}            \FloatTok{1.290994}         \DecValTok{35}           \DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{avg\_age =} \FunctionTok{mean}\NormalTok{(age),}
+            \AttributeTok{oldest\_age =} \FunctionTok{max}\NormalTok{(age),}
+            \AttributeTok{total\_years =} \FunctionTok{sum}\NormalTok{(age)) }
+\CommentTok{\# A tibble: 2 x 4}
+\NormalTok{  sex    avg\_age oldest\_age total\_years}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}    \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}      \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ Female      }\DecValTok{33}         \DecValTok{34}          \DecValTok{66}
+\DecValTok{2}\NormalTok{ Male        }\DecValTok{34}         \DecValTok{35}          \DecValTok{68}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sample\_size =} \FunctionTok{n}\NormalTok{())}
+\CommentTok{\# A tibble: 2 x 2}
+\NormalTok{  sex    sample\_size}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}        \ErrorTok{\textless{}}\NormalTok{int}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ Female           }\DecValTok{2}
+\DecValTok{2}\NormalTok{ Male             }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Note the use of the function, \textbf{\texttt{n()}}. This simple function counts up the number of records in each group.
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+To illustrate these \texttt{dplyr} verbs and re-energize the room, ask everyone to stand. Tell the students that they represent a dataframe called \texttt{people}. Now, write a \texttt{dplyr} command into your R Console and ask them to act out the command. After each command, give them time to move around to act it out. If they move around too slowly, egg them on: ``Come on, you all are like the slowest computer ever!'' \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)} \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)\ \%\textgreater{}\%\ filter(sex\ ==\ "female")} \texttt{people\ \%\textgreater{}\%\ arrange(hair\_length)} \texttt{people\ \%\textgreater{}\%\ arrange(desc(hair\_length))} \texttt{people\ \%\textgreater{}\%\ group\_by(sex)\ \%\textgreater{}\%\ arrange(hair\_length))} \texttt{people\ \%\textgreater{}\%\ arrange(country\_of\_birth,\ shirt\_color,\ desc(shoe\_size))} etc.
+
+\hypertarget{exercises-6}{%
+\subsubsection*{Exercises}\label{exercises-6}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+Answer these questions using the new \texttt{dplyr} verbs you just learned:
+
+\textbf{Baby names over time}
+
+\textbf{1.} Run the below code to load a dataset about baby names given in the USA since the 1800's.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(babynames)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(babynames)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}babynames\textquotesingle{}}
+\NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}babynames\textquotesingle{}}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2.} Check out the first and last six rows of \texttt{bn}.
+
+\textbf{3.} What are the names of the variables in this dataset?
+
+\textbf{4.} How many rows are in this dataset?
+
+\textbf{5.} What is the earliest year in this dataset?
+
+\textbf{6.} Create a dataframe named \texttt{turn\_of\_century}, which contain data only for the year 1900.
+
+\textbf{7.} Create a dataframe named \texttt{boys}, containing only boys.
+
+\textbf{8.} Create a dataframe named \texttt{moms\_gen}. This should be females born in the year of birth of your mom.
+
+\textbf{9.} Order \texttt{moms\_gen} by \texttt{n}, in ascending order (i.e., with the least popular name at top). Look at the result; what is the least popular name among women the year your mom was born?
+
+\textbf{10.} Reverse the order and save the result into an object named \texttt{moms\_gen\_ordered}.
+
+\textbf{11.} Create an object named \texttt{boys2k}. This should be all males born in the year 2000.
+
+\textbf{12.} Arrange \texttt{boys2k} from most to least popular. What was the most popular boys name in 2000?
+
+\textbf{13.} What percentage of boys were named \texttt{Joseph} in 2000?
+
+\textbf{14.} Were there more Jims or Matthews in 2020?
+
+\textbf{15.} Create an object named \texttt{tot\_names\_by\_year}, which contains the total counts for boy and girl names assigned in each year of the dataset. You should have four columns: \texttt{year}, \texttt{boys}, \texttt{girls}, and \texttt{tot}.
+
+\textbf{16.} How many people were born with \emph{your} name in 2020?
+
+\textbf{17.} Was your name more prevalent in 2020 than it was in the year you were born?
+
+\textbf{18.} What if you account for the changing overall population size? In other words, is the \emph{proportional prevalence} of your name greater in 2020 or your birth year?
+
+\textbf{19.} In which year was your name the most prevalent?
+
+\textbf{20.} Create a basic plot of the proportional prevalence of your name since the earliest year of this dataset.
+
+\textbf{21.} Update this plot with lines for your parent's names and your siblings names, if you have any.
+
+\textbf{22.} Format that plot so that it is gorgeous and well-labelled.
+
+\textbf{23.} Screenshot it and email it to your family.
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+After completing the exercises here, it is worthwhile devoting time to the Review modules entitled, \textbf{``A \texttt{dplyr} mystery''}, \textbf{``A \texttt{dplyr} survey''}, and \textbf{``Global health and \texttt{ggplot}''}. Once students become comfortable with working with \texttt{dplyr}, they will be ready to work independently on projects, using the modules in the \textbf{Deep \texttt{R}} section for references.
+
+\hypertarget{interactive-maps}{%
+\chapter{Interactive maps}\label{interactive-maps}}
+
+\hypertarget{learning-goals-7}{%
+\subsubsection*{Learning goals}\label{learning-goals-7}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\item
+  Learn how to create interactive, \emph{beautiful} maps with \texttt{leaflet}.
+\item
+  Understand why \texttt{leaflet} is so awesome and valuable in \emph{reproducible} data science.
+\end{itemize}
+
+\hypertarget{mapping-with-leaflet}{%
+\section*{\texorpdfstring{Mapping with \texttt{leaflet}}{Mapping with leaflet}}\label{mapping-with-leaflet}}
+\addcontentsline{toc}{section}{Mapping with \texttt{leaflet}}
+
+If you know about the right packages, making really nice maps in \texttt{R} is actually pretty easy. \texttt{R}'s spatial visualization tool set is one of the things that elevates it above the other open-source coding tools out there.
+
+Being able to make a map programmatically is a powerful skill. And we can do it quickly and easily in \texttt{R} thanks to the package \texttt{leaflet}.
+
+Let's load it up:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}leaflet\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(leaflet)}
+
+\CommentTok{\# Some other packages too:}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+To practice making a map, let's focus in on the location of Sewanee: The University of the South, in Tennessee, USA.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sewanee }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{longitude=}\SpecialCharTok{{-}}\FloatTok{85.9211}\NormalTok{, }
+                      \AttributeTok{latitude=}\FloatTok{35.2031}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+To begin a \texttt{leaflet} map, simply type \texttt{leaflet()}. This creates a blank canvas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-212-1.pdf}
+
+~
+
+Now, add the background map. To do so, \texttt{leaflet} uses ``tiles''. Tiles are basically images -- little pictures stitched together to give you a sense of a continuous map.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{addTiles}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-213-1.pdf}
+
+~
+
+Try zooming into this map to get a sense of how powerful these interactive \texttt{leaflet} maps can be.
+
+To get the map focused on a specific area of interest, bring in ``markers'' based on your data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addTiles}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-214-1.pdf}
+
+~
+
+Ta-dah! There's your map. Try zooming in \& out again.
+
+\hypertarget{stylizing-your-leaflet-map}{%
+\subsection*{\texorpdfstring{Stylizing your \texttt{leaflet} map}{Stylizing your leaflet map}}\label{stylizing-your-leaflet-map}}
+\addcontentsline{toc}{subsection}{Stylizing your \texttt{leaflet} map}
+
+How about satellite imagery instead?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.WorldImagery) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-215-1.pdf}
+
+~
+
+How about topography instead?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.WorldTopoMap) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-216-1.pdf}
+
+~
+
+The \texttt{leaflet} package has plenty of other tile styles available through the \texttt{addProviderTiles()} function. To preview all the options, check out \href{https://leaflet-extras.github.io/leaflet-providers/preview/}{this site.}
+
+\hypertarget{working-with-markers-in-leaflet}{%
+\subsection*{\texorpdfstring{Working with markers in \texttt{leaflet}}{Working with markers in leaflet}}\label{working-with-markers-in-leaflet}}
+\addcontentsline{toc}{subsection}{Working with markers in \texttt{leaflet}}
+
+To change the markers from a ``dart'' to a circle, use \texttt{addCircleMarkers()} instead:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.WorldTopoMap) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addCircleMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee, }
+                     \AttributeTok{color =} \StringTok{"firebrick"}\NormalTok{,}
+                     \AttributeTok{radius =} \DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-217-1.pdf}
+
+~
+
+To add `pop up' information when you click on your marker, use the \texttt{popup} input:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.WorldTopoMap) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addCircleMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee, }
+                     \AttributeTok{color =} \StringTok{"firebrick"}\NormalTok{,}
+                     \AttributeTok{radius =} \DecValTok{15}\NormalTok{,}
+                     \AttributeTok{popup =} \FunctionTok{paste0}\NormalTok{(}\StringTok{\textquotesingle{}\textless{}b\textgreater{}YSR, yall.\textless{}/b\textgreater{} \textless{}br\textgreater{}\textquotesingle{}}\NormalTok{, }
+                                    \StringTok{\textquotesingle{}Lat: \textquotesingle{}}\NormalTok{,sewanee}\SpecialCharTok{$}\NormalTok{longitude,}\StringTok{\textquotesingle{}\textless{}br\textgreater{}\textquotesingle{}}\NormalTok{,}
+                                    \StringTok{\textquotesingle{}Lon: \textquotesingle{}}\NormalTok{,sewanee}\SpecialCharTok{$}\NormalTok{latitude,}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-218-1.pdf}
+
+~
+
+Click on the marker and see how it looks! Note that we used a bit of \texttt{HTML} to make the text look prettier.
+
+\hypertarget{mapping-marine-areas}{%
+\subsection*{Mapping marine areas}\label{mapping-marine-areas}}
+\addcontentsline{toc}{subsection}{Mapping marine areas}
+
+Note that \texttt{leaflet} is also useful in mapping marine areas.
+
+For example, map the bathymetry of the northeast Pacific basin:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.OceanBasemap) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{fitBounds}\NormalTok{(}\AttributeTok{lng1 =} \SpecialCharTok{{-}}\DecValTok{165}\NormalTok{,}
+              \AttributeTok{lng2 =} \SpecialCharTok{{-}}\DecValTok{100}\NormalTok{,}
+              \AttributeTok{lat1 =} \DecValTok{10}\NormalTok{,}
+              \AttributeTok{lat2 =} \DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-219-1.pdf}
+
+~
+
+Or get satellite imagery for an island off the coast of Georgia, USA:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Esri.WorldImagery) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{fitBounds}\NormalTok{(}\AttributeTok{lng1 =} \SpecialCharTok{{-}}\FloatTok{81.2}\NormalTok{,}
+              \AttributeTok{lng2 =} \SpecialCharTok{{-}}\FloatTok{81.1}\NormalTok{,}
+              \AttributeTok{lat1 =} \FloatTok{31.54}\NormalTok{,}
+              \AttributeTok{lat2 =} \FloatTok{31.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-220-1.pdf}
+
+\hypertarget{geocoding}{%
+\section*{Geocoding}\label{geocoding}}
+\addcontentsline{toc}{section}{Geocoding}
+
+To jumpstart your mapping skills in \texttt{R}, the second package you need to know about is \texttt{tidygeocoder}. This package helps you \textbf{``geocode''} a mailing address. Geocoding means providing the latitude and longitude for an address, which allows you to find it on a map.
+
+First, install \& load the package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}tidygeocoder\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidygeocoder)}
+\end{Highlighting}
+\end{Shaded}
+
+Second, create a dataframe for the address(es) you wish to map:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{addresses }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{name=} \StringTok{\textquotesingle{}White House\textquotesingle{}}\NormalTok{, }
+                        \AttributeTok{addr =} \StringTok{"1600 Pennsylvania Ave NW, Washington, DC"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, geocode:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lat\_longs }\OtherTok{\textless{}{-}}\NormalTok{ addresses }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{geocode}\NormalTok{(addr, }\AttributeTok{method =} \StringTok{\textquotesingle{}osm\textquotesingle{}}\NormalTok{, }\AttributeTok{lat =}\NormalTok{ latitude , }\AttributeTok{long =}\NormalTok{ longitude)}
+\end{Highlighting}
+\end{Shaded}
+
+Check out the result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lat\_longs}
+\CommentTok{\# A tibble: 1 x 4}
+\NormalTok{  name        addr                                     latitude longitude}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}                                       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
+\DecValTok{1}\NormalTok{ White House }\DecValTok{1600}\NormalTok{ Pennsylvania Ave NW, Washington, DC     }\FloatTok{38.9}     \SpecialCharTok{{-}}\FloatTok{77.0}
+\end{Highlighting}
+\end{Shaded}
+
+And check out your map:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{(}\AttributeTok{data=}\NormalTok{lat\_longs) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Stamen.Watercolor) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addMarkers}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-226-1.pdf}
+
+~
+
+You can also \textbf{reverse geocode}, i.e., get the mailing address for a lat-long coordinate.
+
+Say these are your coordinates of interest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lat\_longs }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{latitude=}\FloatTok{48.8584}\NormalTok{, }
+                        \AttributeTok{longitude=}\FloatTok{2.2945}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, reverse-geocode:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reverse }\OtherTok{\textless{}{-}}\NormalTok{ lat\_longs }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{reverse\_geocode}\NormalTok{(}\AttributeTok{lat =}\NormalTok{ latitude, }
+                    \AttributeTok{long =}\NormalTok{ longitude)}
+\end{Highlighting}
+\end{Shaded}
+
+Check out the result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reverse}
+\CommentTok{\# A tibble: 1 x 3}
+\NormalTok{  latitude longitude address                                                    }
+     \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}                                                      
+\DecValTok{1}     \FloatTok{48.9}      \FloatTok{2.29}\NormalTok{ Tour Eiffel, }\DecValTok{5}\NormalTok{, Avenue Anatole France, Quartier du Gros}\SpecialCharTok{{-}}\NormalTok{Ca}\SpecialCharTok{\textasciitilde{}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, add the mailing address as a \texttt{popup} in your marker:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{HikeBike.HikeBike) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{addCircleMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{lat\_longs, }
+                     \AttributeTok{color =} \StringTok{"firebrick"}\NormalTok{,}
+                     \AttributeTok{radius =} \DecValTok{15}\NormalTok{,}
+                     \AttributeTok{popup =} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{",\textless{}br\textgreater{}"}\NormalTok{, reverse}\SpecialCharTok{$}\NormalTok{address))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-230-1.pdf}
+
+\hypertarget{final-thoughts-1}{%
+\section*{Final thoughts}\label{final-thoughts-1}}
+\addcontentsline{toc}{section}{Final thoughts}
+
+Maps, even simple ones, are amazingly effective data visualizations. The density and layers of information contained within a map are incredible!
+
+All of those virtues are compounded with an interactie map. At each zoom level, you gain a new perspective. Like \texttt{shiny} apps, \texttt{leaflet} maps put the viewer in control of how they explore and understand the data.
+
+\hypertarget{exercises-7}{%
+\subsection*{Exercises}\label{exercises-7}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\textbf{1.} Create a new \texttt{Rmarkdown} document.
+
+\textbf{2.} Create a code chunk. In this chunk, read in some data on ``conflicts''. To read in the data, run the below code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{download.file}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/conflicts.RData\textquotesingle{}}\NormalTok{,}
+              \AttributeTok{destfile =} \StringTok{\textquotesingle{}conflicts.RData\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{load}\NormalTok{(}\StringTok{\textquotesingle{}conflicts.RData\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This data comes from \url{https://ucdp.uu.se/encyclopedia}. Take a minute or two to look at the website.
+
+\textbf{3.} Have a look in the data. Which fields are likely to be geographic?
+
+\textbf{4.} Make a simple x-y plot using geographic fields.
+
+\textbf{5.} Create an object named \texttt{conflicts\_afg}. This should be a plot of conflicts in Afghanistan.
+
+\textbf{6.} Color the points by year.
+
+\textbf{7.} Instead of year, color the points by \texttt{deaths\_civilians}.
+
+\textbf{8.} Color the points by date, but make point size reflect \texttt{deaths\_civilians}.
+
+\textbf{9.} Create a leaflet map of conflicts in a country of your choice.
+
+\textbf{10.} Use \texttt{addTiles}.
+
+\textbf{11.} Use \texttt{addProviderTiles} to make your map a satellite map.
+
+\textbf{12.} Explore other tiles
+
+\textbf{13.} Add pop-ups to your maps by using the \texttt{popup} argument within \texttt{addMarkers}.
+
+\textbf{14.} Add \texttt{clusterOptions\ =\ markerClusterOptions()} to make your points clustered.
+
+\textbf{15.} Replace your markers with ``circle markers''.
+
+\textbf{16.} Create a shiny app wherein the user selects a country and time frame, and the app shows both (a) an interactive map and (b) a plot of the number of conflicts by year for that country.
 
   \bibliography{book.bib,packages.bib}
 

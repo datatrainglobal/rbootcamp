@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 10 Packages | www.datatrain.cc</title>
+  <title>Module 11 Packages | www.datatrain.cc</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 10 Packages | www.datatrain.cc" />
+  <meta property="og:title" content="Module 11 Packages | www.datatrain.cc" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 10 Packages | www.datatrain.cc" />
+  <meta name="twitter:title" content="Module 11 Packages | www.datatrain.cc" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="variables.html"/>
-
+<link rel="prev" href="dataframes.html"/>
+<link rel="next" href="importing-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -188,12 +220,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
 <li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>10</b> Packages</a>
+<li class="chapter" data-level="10" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>10</b> Dataframes</a>
+<ul>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>11</b> Packages</a>
 <ul>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
 <li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
+</ul></li>
+<li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
+<li class="chapter" data-level="12" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>12</b> Importing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>13</b> <code>ggplot</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>14</b> Dataframe wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>15</b> Interactive maps</a>
+<ul>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-1"><i class="fa fa-check"></i>Final thoughts</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
@@ -215,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="packages" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Module 10</span> Packages<a href="packages.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="packages" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Module 11</span> Packages<a href="packages.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="learning-goals-3" class="section level4 unnumbered hasAnchor">
 <h4>Learning goals<a href="packages.html#learning-goals-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
@@ -259,17 +323,17 @@ This is displaying all the packages already installed in your system.</p>
 <div id="through-code" class="section level4 unnumbered hasAnchor">
 <h4>Through code:<a href="packages.html#through-code" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>You can download packages from the <em>Console</em> using the <code>install.packages()</code> function.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="packages.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;fun&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="packages.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;fun&#39;</span>)</span></code></pre></div>
 <p>Note that the package name must be in quotation marks.</p>
 </div>
 </div>
 <div id="installing-from-github" class="section level3 unnumbered hasAnchor">
 <h3>Installing from <code>GitHub</code><a href="packages.html#installing-from-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To install packages from <code>GitHub</code>, you must first download a <code>CRAN</code> package that makes it easy to do so:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="packages.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="packages.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span></code></pre></div>
 <p>Most packages on <code>GitHub</code> include instructions for downloading it on its <code>GitHub</code> page.</p>
 <p>For example, visit <a href="https://github.com/karthik/wesanderson" target="blank">this <code>GitHub</code> page</a> to see the documentation for the package <strong>wesanderson</strong>, which provides color palette themes based upon Wes Anderson’s films. On this site, scroll down and you will find instructions for downloading the package. These instructions show you how to install this package from your <code>R</code> <em>Console</em>:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="packages.html#cb74-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="packages.html#cb116-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
 <p>Now go to your <em>Packages</em> tab in the bottom-right pane of <code>RStudio</code>, scroll down to find the <strong>wesanderson</strong> package, and click on it to check out its functions.</p>
 </div>
 </div>
@@ -278,21 +342,19 @@ This is displaying all the packages already installed in your system.</p>
 <p>There is a difference between <em>installed</em> and <em>loaded</em> packages. Go back to your <em>Packages</em> tab. Notice that some of the packages have a checked box next to their names, while others don’t.</p>
 <p>These checked boxes indicate which packages are currently <em>loaded</em>. All packages in the list are <em>installed</em> on your computer, but only the checked packages are <em>loaded</em>, i.e., ready for use.</p>
 <p>To load a package, use the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="packages.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fun)</span></code></pre></div>
-<pre><code>Error in library(fun): there is no package called &#39;fun&#39;</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="packages.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
-<pre><code>Error in library(wesanderson): there is no package called &#39;wesanderson&#39;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="packages.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fun)</span>
+<span id="cb117-2"><a href="packages.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
 <p>Now that your new packages are loaded, you can actually use their functions.</p>
 <p><strong>To emphasize:</strong> a package is installed <em>only once</em>, but you <code>library()</code> the package in <em>each and every</em> script that uses it. Think of a package as camping gear. Like an <code>R</code> package, camping gear helps you do cool things that you can’t really do with the regular stuff in your closet. And, like an <code>R</code> package, you only need to install (i.e., purchase) your gear once; but it is useless unless you pack it in your car (i.e., <code>library()</code> it) <em>every time</em> you go on a trip.</p>
 </div>
 <div id="calling-functions-from-a-package" class="section level2 unnumbered hasAnchor">
 <h2>Calling functions from a package<a href="packages.html#calling-functions-from-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most functions from external packages can be used by simply typing the name of the function. For example, the package <code>fun</code> contains a function for generating a random password:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="packages.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb79-2"><a href="packages.html#cb79-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">random_password</span>(<span class="at">length =</span> <span class="dv">24</span>)<span class="sc">:</span> could not find <span class="cf">function</span> <span class="st">&quot;random_password&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="packages.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
+<span id="cb118-2"><a href="packages.html#cb118-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;&amp;L%Dlo.W2uaQA+X@)T</span><span class="sc">\\</span><span class="st">`ZP4m&quot;</span></span></code></pre></div>
 <p>Sometimes, however, <code>R</code> can get confused if a new package contains a function that has the same name of some function from a different package. If <code>R</code> seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax <code>&lt;package_name&gt;::&lt;function_name&gt;</code>. For example, the following command is a fine alternative to the command above:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="packages.html#cb80-1" aria-hidden="true" tabindex="-1"></a>fun<span class="sc">::</span><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb80-2"><a href="packages.html#cb80-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">loadNamespace</span>(x)<span class="sc">:</span> there is no package called <span class="st">&#39;fun&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="packages.html#cb119-1" aria-hidden="true" tabindex="-1"></a>fun<span class="sc">::</span><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
+<span id="cb119-2"><a href="packages.html#cb119-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;H0KaR&gt;@48Ihor9x!]k&#39;gz=</span><span class="sc">\\</span><span class="st">u&quot;</span></span></code></pre></div>
 <p>Note that this was done in the example above using the <code>devtools</code> package.</p>
 <div id="side-notes" class="section level3 unnumbered hasAnchor">
 <h3>Side notes<a href="packages.html#side-notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -310,34 +372,32 @@ This is displaying all the packages already installed in your system.</p>
 <ol style="list-style-type: decimal">
 <li>Install the package <em>once.</em></li>
 </ol>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="packages.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from CRAN</span></span>
-<span id="cb81-2"><a href="packages.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;wesanderson&quot;</span>)</span>
-<span id="cb81-3"><a href="packages.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="packages.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from GitHub</span></span>
-<span id="cb81-5"><a href="packages.html#cb81-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="packages.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from CRAN</span></span>
+<span id="cb120-2"><a href="packages.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;wesanderson&quot;</span>)</span>
+<span id="cb120-3"><a href="packages.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="packages.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from GitHub</span></span>
+<span id="cb120-5"><a href="packages.html#cb120-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Load the package <em>in each script.</em></li>
 </ol>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="packages.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
-<span id="cb82-2"><a href="packages.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="packages.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb121-2"><a href="packages.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Call the function.</li>
 </ol>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="packages.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wes_palette</span>(<span class="st">&quot;Royal1&quot;</span>)</span>
-<span id="cb83-2"><a href="packages.html#cb83-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">wes_palette</span>(<span class="st">&quot;Royal1&quot;</span>)<span class="sc">:</span> could not find <span class="cf">function</span> <span class="st">&quot;wes_palette&quot;</span></span>
-<span id="cb83-3"><a href="packages.html#cb83-3" aria-hidden="true" tabindex="-1"></a>wesanderson<span class="sc">::</span><span class="fu">wes_palette</span>(<span class="st">&quot;Zissou1&quot;</span>)</span>
-<span id="cb83-4"><a href="packages.html#cb83-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">loadNamespace</span>(x)<span class="sc">:</span> there is no package called <span class="st">&#39;wesanderson&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="packages.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wes_palette</span>(<span class="st">&quot;Royal1&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-135-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="packages.html#cb123-1" aria-hidden="true" tabindex="-1"></a>wesanderson<span class="sc">::</span><span class="fu">wes_palette</span>(<span class="st">&quot;Zissou1&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-135-2.png" width="925.44" /></p>
 <p><em>(This function creates a plot displaying the different colors contained within the specified palette.)</em></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Get help with the question mark: <code>?</code></li>
 </ol>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="packages.html#cb84-1" aria-hidden="true" tabindex="-1"></a>?wes_palette</span>
-<span id="cb84-2"><a href="packages.html#cb84-2" aria-hidden="true" tabindex="-1"></a>No documentation <span class="cf">for</span> <span class="st">&#39;wes_palette&#39;</span> <span class="cf">in</span> specified packages and libraries<span class="sc">:</span></span>
-<span id="cb84-3"><a href="packages.html#cb84-3" aria-hidden="true" tabindex="-1"></a>you could try <span class="st">&#39;??wes_palette&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="packages.html#cb124-1" aria-hidden="true" tabindex="-1"></a>?wes_palette</span></code></pre></div>
 </div>
 </div>
-<div id="exercises-3" class="section level3 unnumbered hasAnchor">
-<h3>Exercises<a href="packages.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-4" class="section level3 unnumbered hasAnchor">
+<h3>Exercises<a href="packages.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s install some packages:</p>
 <p><strong>1.</strong> Install the <code>babynames</code> package.</p>
 <p><strong>2.</strong> Install <code>ggplot2</code>.</p>
@@ -353,13 +413,16 @@ This is displaying all the packages already installed in your system.</p>
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="dataframes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

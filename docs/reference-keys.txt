@@ -7,4 +7,9 @@ setting-up-rstudio
 running-r-code
 using-rstudio-r-scripts
 variables
+dataframes
 packages
+importing-data
+ggplot
+dplyr
+interactive-maps
