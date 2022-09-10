@@ -16,30 +16,25 @@ This screenshot, from David McCandless's [TED talk](https://www.youtube.com/watc
 
 **This plot's punchline:** When we process data with our eyes -- with *pictures* -- we can take in a lot of information all at once.  
 
-**Let's try this out with an example.** Below this paragraph is another paragraph describing a painting. Try this: scroll down quickly, look at this paragraph for just *one second*, then keep scrolling until it is out of view.  
+**Let's try this out with an example.** Below this paragraph is another paragraph describing a painting. Try this: when you get to the end of _this_ sentence, click as directed, look at the paragraph for just *one second*, then click on the link after the paragraph. <a href="#start_of_paragraph">Click here!</a>  
 
-Go!  
-
-**One-second paragraph:**  
+<a id="start_of_paragraph">**One-second paragraph:**</a>
 
 *Fog rises from the evergreen forest of a distance mountain range. A whitewater creek cascades down a streambed with large, rounded boulders, arriving at a broad flatwater pool where ducks are milling. There is one group of four and another group of two. On the shore near the ducks, a wooden dinghy is tied up to a small dock with eight pilings. The dock lead to a path through more round peddles and tall grass, past a chair and a fire ring, and continues uphill to a small cabin. The evening sun and sparse fairweather clouds are reflected in the cabin's large, multi-paned windows under the small front porch. A cobblestone chimney on the side of the cabin has a whisp of smoke rising from it. The steep roof implies that this cabin is designed to withstand heavy snow. Tall evergreens tower over the diminutive cabin; the cabin seems to be placed up against a forested hillside. There are only a few deciduous trees in view, and their leaf colors -- combined with the lack of snow in the distant mountains -- imply that the time of year is early fall.*  
 
-**End of paragraph**.  
+<a href="#end_of_paragraph">**Click here**</a>
 
-OK. Now try to answer these simple questions:   
+<a id="end_of_paragraph">&nbsp;</a> 
+
+Now try to answer these simple questions:   
 
 - What was this a painting of, in general? Can you describe the scene?     
 
 - What details do you recall?  
 
-OK. Try this next: the actual painting is at the very end of this chapter. Scroll down to it quickly, look at this painting for just *one second*, then scroll back up to this spot in the module.  
+OK. Try this next: the actual painting is at the very end of this chapter. At the end of this sentence, click as directoed to see it, look at the painting for just *one second*, then come back to this point in the module. <a href="#painting">Go to the painting!</a>  
 
-Ready? Go!  
-
-&nbsp;  
-
-*< Return to this line! >*  
-
+<a id="previous_point">&nbsp;</a>
 
 Now try to answer those same questions above. What was this a painting of? Did you catch any more details? Was there anything in the water? Was there smoke coming out of the chimney? What time of day was it?  
 
@@ -458,7 +453,11 @@ Finally, this video offers a nice and concise summary of Edward Tufte's principl
 &nbsp;   
 &nbsp;   
 
+<a id="painting">
 <center>
 ![](img/vis-painting.jpeg)
 </center>
+</a>
+
+<a href="#previous_point">Click here</a> to return to the previous point in the module.
 
