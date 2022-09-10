@@ -1,6 +1,6 @@
 # Visualizing data {#dataviz}
 
-This course will focus heavily upon visualizing data in plots, maps, and dashboards. If there is anything you take from this course, it will be this: you will be able to take data and make some pretty pictures. *And that's not trivial*.   
+This course will focus heavily on visualizing data in plots, maps, and dashboards. If there is anything you take from this course, it will be this: you will be able to take data and make some pretty pictures. *And that's not trivial!* 
 
 Why? Because **humans are wired to process information through *pictures*.** We can translate images into meaning with amazing speed.  
 
