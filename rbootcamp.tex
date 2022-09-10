@@ -140,7 +140,7 @@
 \section*{What this is, and what it isn't}\label{what-this-is-and-what-it-isnt}}
 \addcontentsline{toc}{section}{What this is, and what it isn't}
 
-This is not a textbook or an encyclopedia. This is not a reference manual. It is not exhaustive or comprehensive. We barely mention statistical tests at all. There is almost no theory. In fact, this curriculum is biased, non-representative, and incomplete -- \emph{by design.}
+This is not a textbook or an encyclopedia. This is not a reference manual. It is not exhaustive or comprehensive. We won't mention statistical tests at all. There is almost no theory. In fact, this curriculum is biased, non-representative, and incomplete -- \emph{by design.}
 
 \textbf{So what is this?} This guide is an \emph{accelerator,} an \emph{incubator} designed to guide you along the most direct path from your first line of code to becoming a capable data scientist. Our goal is to help you through the most dangerous period in your data science education: your very first steps. The first three weeks. That is when 99\% percent of people give up on learning to code.
 
@@ -150,7 +150,7 @@ We have based our approach on three core premises:
 
 \textbf{Premise 1: We learn best by doing.} Our goal is to get you \emph{doing} data science. We will keep theory and detail to a minimum. We will give you the absolute basics, then offer you exercises and puzzles that motivate you to learn the rest. Then, once you've been \emph{doing} data science for a bit, you soon begin \emph{thinking} like a data scientist. By that, we mean tackling ambiguous problems with persistence, independence, and creative problem solving.
 
-\textbf{Premise 2: We learn best with purpose.} Once you gain comfort with the basic skills, you will be able to start working on real data, for real projects, with real impact. You will start to \emph{care about what you are coding}. And that is when the learning curve \emph{skyrockets} -- because you are motivated, and because you are learning \emph{reactively}, instead of preemptively. Our goal is to get you to the point of take-off as quickly as possible.
+\textbf{Premise 2: We learn best with purpose.} Once you gain comfort with the basic skills, you will be able to start working on real data, for real projects, with real impact. You will start to \emph{care about what you are coding}. And that is when the learning curve \emph{skyrockets} -- because you are motivated, and because you are learning \emph{reactively}, instead of passively. Our goal is to get you to the point of take-off as quickly as possible.
 
 \textbf{Premise 3: A simple toolbox is all you need to build a house.} Once you become comfortable with a few basic coding tools, you can build pretty much anything. The toolbox doesn't need to be that big; if you know how to use your tools well, and if you have enough building supplies (i.e., data), the possibilities are limitless.
 
@@ -176,7 +176,7 @@ The next several units comprise a \emph{core} curriculum for tackling data scien
 \item
   The \textbf{Getting started} unit teaches you how to use \texttt{R} (in \texttt{RStudio}). Here you will add the first and most important tools to your toolbox: working with variables, vectors, dataframes, scripts, and file directories.
 \item
-  The \textbf{Basic \texttt{R} workflow} unit teaches you how to bring in your own data and work with it in \texttt{R}. You will learn how to produce beautiful plots and how to reorganize, filter, and summarize your datasets. You will also learn how to conduct basic statistics, from exploratory data analyses (e.g., producing and comparing distributions) to significance testing.
+  The \textbf{Basic \texttt{R} workflow} unit teaches you how to bring in your own data and work with it in \texttt{R}. You will learn how to produce beautiful plots and how to reorganize, filter, and summarize your datasets.
 \end{itemize}
 
 For these first two units, we encourage you to take on these modules one at a time, in the exact order they are presented: we put a lot of thought into what we included in these modules (and what we did not).
@@ -2582,6 +2582,587 @@ Another data type to be aware of is \textbf{factors}, but we will deal with them
 
 \textbf{15.} Now ensure that your entire script is properly commented, and make sure your script is saved in your \texttt{datalab} working directory before closing.
 
+\hypertarget{vectors}{%
+\chapter{Vectors}\label{vectors}}
+
+\hypertarget{learning-goals-3}{%
+\subsubsection*{Learning goals}\label{learning-goals-3}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  Learn the various structures of data in \texttt{R}\\
+\item
+  How to work with vectors in \texttt{R}
+\end{itemize}
+
+~
+
+Data belong to different \emph{classes}, as explained in the previous module, and they can be arranged into various \textbf{structures}.
+
+So far we have been dealing only with variables that contain a single value, but the real value of \texttt{R} comes from assigning \emph{entire sets} of data to a variable.
+
+The simplest data structure in \texttt{R} is a \textbf{vector}. A vector is simply a set of values. A vector can contain only a single value, as we have been working with thus far, or it can contain many millions of values.
+
+\hypertarget{declaring-and-using-vectors}{%
+\section*{Declaring and using vectors}\label{declaring-and-using-vectors}}
+\addcontentsline{toc}{section}{Declaring and using vectors}
+
+To build up a vector in \texttt{R}, use the function \texttt{c()}, which is short for ``concatenate''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{6} \DecValTok{7} \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Whenever you use the \texttt{c()} function, you are telling \texttt{R}: `Hey, get ready. I'm about to give you more than one value at once.'.
+
+You can use the \texttt{c()} function to concatenate two vectors together:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x,y)}
+\NormalTok{z}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10} \DecValTok{11} \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+You can also use \texttt{c()} to add values to a vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x,}\DecValTok{9}\NormalTok{)}
+\NormalTok{x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{6} \DecValTok{7} \DecValTok{8} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+You can also put vectors through logical tests:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\DecValTok{4} \SpecialCharTok{==}\NormalTok{ x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{FALSE} \ConstantTok{FALSE} \ConstantTok{FALSE}  \ConstantTok{TRUE} \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+This command is asking \texttt{R} to tell you whether each element in \texttt{x} is equal to \texttt{4}.
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+One way to demonstrate this concept: Ask a single student whether they are 22 years old (ask them to answer \texttt{TRUE} or \texttt{FALSE}). Then ask the room the same question. Each student will respond \texttt{TRUE} or \texttt{FALSE}. This is the same as comparing a single value to a long vector.
+
+You can create vectors of any data class (i.e., data type).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Ben"}\NormalTok{,}\StringTok{"Joe"}\NormalTok{,}\StringTok{"Eric"}\NormalTok{) }
+\NormalTok{x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Ben"}  \StringTok{"Joe"}  \StringTok{"Eric"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{y}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\ConstantTok{TRUE}  \ConstantTok{TRUE} \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+Note that all values within a vector \emph{must} be of the same class. You can't combine numerics and characters into the same vector. If you did, \texttt{R} would try to convert the numbers to characters. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{4}
+\NormalTok{y }\OtherTok{\textless{}{-}} \StringTok{"6"}
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x,y)}
+\NormalTok{z}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"4"} \StringTok{"6"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{math-with-two-vectors}{%
+\section*{Math with two vectors}\label{math-with-two-vectors}}
+\addcontentsline{toc}{section}{Math with two vectors}
+
+When two vectors are of the same length, you can do arithmetic with them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+\NormalTok{x }\SpecialCharTok{+}\NormalTok{ y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{14} \DecValTok{16} \DecValTok{18} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{{-}}\NormalTok{ y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{{-}}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{*}\NormalTok{ y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{45} \DecValTok{60} \DecValTok{77} \DecValTok{96}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{/}\NormalTok{ y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.5555556} \FloatTok{0.6000000} \FloatTok{0.6363636} \FloatTok{0.6666667}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{What happens when two vectors are \emph{not} the same length?}
+
+Well, it depends. If one vector is length 1 (i.e., a single number), then things usually work out well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{x }\SpecialCharTok{+}\NormalTok{ y}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10} \DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{15}
+\end{Highlighting}
+\end{Shaded}
+
+In this command, the single element of \texttt{x} gets added to each element of \texttt{y}.
+
+Another example, which you already saw above:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{4}
+\NormalTok{a }\SpecialCharTok{==}\NormalTok{ b}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{FALSE} \ConstantTok{FALSE} \ConstantTok{FALSE}  \ConstantTok{TRUE} \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+In this command, the single element of \texttt{b} gets compared to each element of \texttt{a}.
+
+However, when both vectors contain multiple values but are not the same length, \textbf{be warned}: wonky things can happen. This is because \texttt{R} will start recycling the shorter vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{6} \DecValTok{6} \DecValTok{8} \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+As this warning implies, this doesn't make much sense. The command will still run, but do not trust the result.
+
+\hypertarget{functions-for-handling-vectors}{%
+\section*{Functions for handling vectors}\label{functions-for-handling-vectors}}
+\addcontentsline{toc}{section}{Functions for handling vectors}
+
+We are about to list a bunch of core functions for working with vectors. Think of this like a toolbag. Each tool has a specific purpose and limited value: you can't quite build a house with just a hammer. But when you learn how to use all of the tools in your tool bag \emph{together}, you can build almost anything. But you have to know how to use each tool individually first.
+
+\textbf{\texttt{length()}} tells you the number of elements in a vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\FunctionTok{length}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+\FunctionTok{length}\NormalTok{(y)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{colon symbol \texttt{:}} creates a vector with every integer occurring between a min and max:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+\NormalTok{x}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{seq()}} allows you to build a vector using evenly spaced \emph{sequence} of values between a min and max:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{length=}\DecValTok{11}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]   }\DecValTok{0}  \DecValTok{10}  \DecValTok{20}  \DecValTok{30}  \DecValTok{40}  \DecValTok{50}  \DecValTok{60}  \DecValTok{70}  \DecValTok{80}  \DecValTok{90} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+In this command, you are telling \texttt{R} to give you a sequence of values from \texttt{0} to \texttt{100}, and you want the length of that vector to be \texttt{11}. \texttt{R} then figures out the spacing required between each value in order to make that happen.
+
+Alternatively, you can prescribe the interval between values instead of the length:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{by=}\DecValTok{7}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{0}  \DecValTok{7} \DecValTok{14} \DecValTok{21} \DecValTok{28} \DecValTok{35} \DecValTok{42} \DecValTok{49} \DecValTok{56} \DecValTok{63} \DecValTok{70} \DecValTok{77} \DecValTok{84} \DecValTok{91} \DecValTok{98}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{rep()}} allows you to repeat a single value a specified number of times:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rep}\NormalTok{(}\StringTok{"Hey!"}\NormalTok{,}\AttributeTok{times=}\DecValTok{5}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Hey!"} \StringTok{"Hey!"} \StringTok{"Hey!"} \StringTok{"Hey!"} \StringTok{"Hey!"}
+\end{Highlighting}
+\end{Shaded}
+
+You can also use \texttt{rep()} to repeat each element of a vector a set number of times:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Hey!"}\NormalTok{,}\StringTok{"Wohoo!"}\NormalTok{),}\AttributeTok{each=}\DecValTok{3}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Hey!"}   \StringTok{"Hey!"}   \StringTok{"Hey!"}   \StringTok{"Wohoo!"} \StringTok{"Wohoo!"} \StringTok{"Wohoo!"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{head()}} and \textbf{\texttt{tail()}} can be used to retrieve the first 6 or last 6 elements in a vector, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}
+\FunctionTok{head}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{5} \DecValTok{6}
+\FunctionTok{tail}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{995}  \DecValTok{996}  \DecValTok{997}  \DecValTok{998}  \DecValTok{999} \DecValTok{1000}
+\end{Highlighting}
+\end{Shaded}
+
+You can also adjust how many elements to return:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(x,}\DecValTok{2}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{2}
+\FunctionTok{tail}\NormalTok{(x,}\DecValTok{10}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{991}  \DecValTok{992}  \DecValTok{993}  \DecValTok{994}  \DecValTok{995}  \DecValTok{996}  \DecValTok{997}  \DecValTok{998}  \DecValTok{999} \DecValTok{1000}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{sort()}} allows you to order a vector from its smallest value to its largest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\FunctionTok{sort}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{5} \DecValTok{6} \DecValTok{7} \DecValTok{8} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{rev()}} lets you reverse the order of elements within a vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\FunctionTok{rev}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{5} \DecValTok{7} \DecValTok{2} \DecValTok{9} \DecValTok{6} \DecValTok{1} \DecValTok{8} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rev}\NormalTok{(}\FunctionTok{sort}\NormalTok{(x))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9} \DecValTok{8} \DecValTok{7} \DecValTok{6} \DecValTok{5} \DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{min()}} and \textbf{\texttt{max()}} lets you find the smallest and largest value in a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{which()}} allows you to ask, ``For which elements of a vector is the following statement true?''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+\FunctionTok{which}\NormalTok{(x}\SpecialCharTok{==}\DecValTok{4}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+If no values within the vector meet the condition, a vector of length zero will be returned:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+\FunctionTok{which}\NormalTok{(x }\SpecialCharTok{==} \DecValTok{11}\NormalTok{)}
+\FunctionTok{integer}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{which.min()}} and \textbf{\texttt{which.max()}} tells you which element is the smallest and largest in the vector, respectively:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which.min}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which.max}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{\%in\%}} is a handy operator that allows you to ask whether a value occurs \emph{within} a vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+\DecValTok{4} \SpecialCharTok{\%in\%}\NormalTok{ x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{11} \SpecialCharTok{\%in\%}\NormalTok{ x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\texttt{is.na()}} is a way of asking whether a vector contains missing, broken, or erroneous values. In \texttt{R}, such values are referred to using the phrase \texttt{NA}. When you see \texttt{NA}, think of \texttt{R} telling you, \emph{`Nah ah! Nope! Not Available!'}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\ConstantTok{NA}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{is.na}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{FALSE} \ConstantTok{FALSE} \ConstantTok{FALSE}  \ConstantTok{TRUE} \ConstantTok{FALSE} \ConstantTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+This function is stepping through each element in the vector \texttt{x} and telling you whether that element is \texttt{NA}.
+
+\hypertarget{subsetting-vectors}{%
+\section*{Subsetting vectors}\label{subsetting-vectors}}
+\addcontentsline{toc}{section}{Subsetting vectors}
+
+Since you will eventually be working with vectors that contain thousands of data points, it will be useful to have some tools for \emph{subsetting} them -- that is, looking at only a few select elements at a time.
+
+You can subset a vector using square brackets \texttt{{[}\ {]}}. Whenever you use you use brackets, you are telling \texttt{R}: `Hey, I want some numbers, but \emph{not everything}: just certain ones.'
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{50}\SpecialCharTok{:}\DecValTok{100}
+\NormalTok{x[}\DecValTok{10}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{59}
+\end{Highlighting}
+\end{Shaded}
+
+This command is asking \texttt{R} to return the 10th element in the vector \texttt{x}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{10}\SpecialCharTok{:}\DecValTok{20}\NormalTok{]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{59} \DecValTok{60} \DecValTok{61} \DecValTok{62} \DecValTok{63} \DecValTok{64} \DecValTok{65} \DecValTok{66} \DecValTok{67} \DecValTok{68} \DecValTok{69}
+\end{Highlighting}
+\end{Shaded}
+
+This command is asking \texttt{R} to return elements \texttt{10:20} in the vector \texttt{x}.
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+For a change of pace, call out complicated subsetting calculations and ask students to race to call out the correct result first. For example: Make a vector of all integers, 51 to 151. What is the 10th element divided by the 3rd element? What is the seventieth element plus the thirty-first element? What is the average of the fortieth through sixtieth elements? Etc.
+
+\hypertarget{exercises-3}{%
+\subsubsection*{Exercises}\label{exercises-3}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+\textbf{Creating sequences of numbers}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Use the colon symbol to create a vector of length 5 between a minimum and a maximum value of your choosing.
+\item
+  Create a second vector of length 5 using the \texttt{seq()} function. Use code to confirm that the length of this vector is 5.
+\item
+  Create a third vector of length 5 using the \texttt{rep()} function. Use code to confirm that the length of this vector is 5.
+\item
+  Finally, concatenate the three vectors and check that the length equals 15.
+\end{enumerate}
+
+~
+
+\textbf{Basic vector math}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Create a variable \texttt{x} that is a list of numbers of any size. Create a variable \texttt{y} of the same length.
+\item
+  Check to see if each values of \texttt{x} is greater than each value of y.
+\item
+  Check to see if the smallest value of \texttt{x} is greater than or equal to the average value of \texttt{y}.
+\end{enumerate}
+
+~
+
+\textbf{Vectors and object classes}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Create a vector with at least one number, then a second vector with at least one character string, then a third vector with at least one logical value. Identify the class of all three vectors.
+\item
+  Now concatenate these three vectors into a fourth vector. Identify the class of this fourth vector.
+\end{enumerate}
+
+~
+
+\textbf{Heads \& tails}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  Create a vector with at least 15 values.
+\item
+  Show the first six values of that vector using the \texttt{head()} function.
+\item
+  Figure out how to show the same result without a function, but instead with your new vector subsetting skills.
+  Now replicate the \texttt{tail()} function, using those same skills. You may need to call the \texttt{length()} function as well.
+\end{enumerate}
+
+~
+
+\textbf{Shoe sizes}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{12}
+\item
+  Create a vector called \texttt{shoes}, which contains the shoe sizes of five people sitting near you. Use comments to keep track of which size is whose.
+\item
+  Arrange this set of shoe sizes in ascending order.
+\item
+  Arrange this set of shoe sizes in descending order.
+\item
+  Use code to find the the two largest shoe sizes in your vector. Don't use subsetting; instead, write a line of code that would work even if more shoes were added to your vector.
+\item
+  What is the shoe size is closest to the mean of these shoe sizes?
+\item
+  Use the \texttt{which()} function to figure out which of your five neighbors this shoe size belongs to.
+\end{enumerate}
+
+~
+
+\textbf{Swimming timelines}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{18}
+\item
+  Now create a new vector called \texttt{swim\_days}, which contains the number of days since those same five people last went swimming (in any body of water; estimating the days since is fine).
+\item
+  Use code to ask whether anyone went swimming less than five days ago.
+\item
+  Which of your neighbors, if any, went swimming in the last month?
+\item
+  Which of your neighbors, if any, have not been swimming the last month?
+\item
+  On average, how long has it been since these people have gone swimming?
+\end{enumerate}
+
+~
+
+\textbf{Dealing with \texttt{NA}s}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{23}
+\item
+  Create a vector named \texttt{x} with these values: \texttt{c(4,7,1,NA,9,2,8)}.
+\item
+  Use a function to decide whether or not each element of \texttt{x} is \texttt{NA}.
+\item
+  Use another function to find out which element in \texttt{x} is \texttt{NA}.
+\item
+  Write code that will subset \texttt{x} only to those values that are \texttt{NA}.
+\item
+  Write code that will subset \texttt{x} only to those values that are \emph{not} \texttt{NA}.
+\end{enumerate}
+
+~
+
+\textbf{Sleep deficits}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{28}
+\item
+  Now create a vector called \texttt{sleep\_time} with the number of hours you slept for each day in the last week.
+\item
+  Check if you slept more on day 3 than day 7.
+\item
+  Get the total number of hours slept in the last week.
+\item
+  Get the average number of hours slept in the last week.
+\item
+  Check if the total number of hours in the first 3 days is less than the total number of hours in the last 4 days.
+\item
+  Now create an object named \texttt{over\_under}. This should be the difference between how much you slept each night and 8 hours (ie, 1.5 means you slept 9.5 hours and -2 means you slept 8 hours).
+\item
+  Write code to use \texttt{over\_under} to calculate your sleep deficit / surplus this week (ie, the total hours over/under the amount of sleep you would have gotten had you slept 8 hours every night).
+\item
+  Write code to get the minimum number of hours you slept this week.
+\item
+  Write code to calculate how many hours of sleep you would have gotten had you sleep the minimum number of hours every night.
+\item
+  Write code to calculate the average of the hours of sleep you got on the 3rd through 6th days of the week.
+\item
+  Write code to calculate how many hours of sleep you would get in a year if you were to sleep the same amount every night as the average amount you slept from the 3rd to 6th days of the week.
+\item
+  Write code to calculate how many hours of sleep per year someone who sleeps 8 hours a night gets.
+\item
+  How many hours more/less than the 8 hours per night sleeper do you get in a year, assuming you sleep every night the average of the amount you slept on the first and last day of this week?
+\item
+  What is your total sleep deficit for the last week?
+\item
+  How many more hours per night, on average, do you need to sleep for the rest of the month so that, by the end of the month, you have a sleep deficit of zero?
+\end{enumerate}
+
 \hypertarget{dataframes}{%
 \chapter{Dataframes}\label{dataframes}}
 
@@ -3230,8 +3811,8 @@ Here are four ways to do the same thing: upating Isabelle's X-factor:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-3}{%
-\subsubsection*{Exercises}\label{exercises-3}}
+\hypertarget{exercises-4}{%
+\subsubsection*{Exercises}\label{exercises-4}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \textbf{Reading for errors}
@@ -3297,8 +3878,8 @@ Now let's create a new object named \texttt{animals}. This is going to be a data
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
 
-\hypertarget{learning-goals-3}{%
-\subsubsection*{Learning goals}\label{learning-goals-3}}
+\hypertarget{learning-goals-4}{%
+\subsubsection*{Learning goals}\label{learning-goals-4}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -3433,7 +4014,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Xi(toEG,{-}$y=\{8SjO}\SpecialCharTok{\textbackslash{}"}\StringTok{ w+u:5"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"kF40/Dq\^{}t+LN[MSg\textasciigrave{}R@E\textquotesingle{}u*U"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3442,7 +4023,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"$b+9qViRM\textasciitilde{}C|XQpz3U\{6\textgreater{}f]K"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\#e5CT\textquotesingle{}8PUb7u}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{{-}3W)\textasciitilde{}\textgreater{}r\^{}t1J"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3516,7 +4097,7 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-135-1.pdf}
+\includegraphics{figures/unnamed-chunk-174-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3524,7 +4105,7 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-135-2.pdf}
+\includegraphics{figures/unnamed-chunk-174-2.pdf}
 
 \emph{(This function creates a plot displaying the different colors contained within the specified palette.)}
 
@@ -3542,8 +4123,8 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-4}{%
-\subsection*{Exercises}\label{exercises-4}}
+\hypertarget{exercises-5}{%
+\subsection*{Exercises}\label{exercises-5}}
 \addcontentsline{toc}{subsection}{Exercises}
 
 Let's install some packages:
@@ -3574,8 +4155,8 @@ Let's install some packages:
 \hypertarget{importing-data}{%
 \chapter{Importing data}\label{importing-data}}
 
-\hypertarget{learning-goals-4}{%
-\subsubsection*{Learning goals}\label{learning-goals-4}}
+\hypertarget{learning-goals-5}{%
+\subsubsection*{Learning goals}\label{learning-goals-5}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -3898,8 +4479,8 @@ Here's how:
 \hypertarget{ggplot}{%
 \chapter{\texorpdfstring{\texttt{ggplot}}{ggplot}}\label{ggplot}}
 
-\hypertarget{learning-goals-5}{%
-\subsubsection*{Learning goals}\label{learning-goals-5}}
+\hypertarget{learning-goals-6}{%
+\subsubsection*{Learning goals}\label{learning-goals-6}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -4008,7 +4589,7 @@ Say you want to explore the relationship between passengers' age and the fare th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-153-1.pdf}
+\includegraphics{figures/unnamed-chunk-192-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -4025,7 +4606,7 @@ Say you want to explore the relationship between passengers' age and the fare th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-154-1.pdf}
+\includegraphics{figures/unnamed-chunk-193-1.pdf}
 
 That code looks a bit clunky, we know. The \texttt{aes()} input, which is short for \texttt{aesthetics}, is actually a function. Everything included in its parentheses will be used to \emph{map your data to the plot's aesthetic attributes}. So far we have simply said that \texttt{Age} should be mapped to the \emph{x} axis and that \texttt{Fare} should be mapped to \emph{y}.
 
@@ -4038,7 +4619,7 @@ But let's say we also want to color-code the points on our plot according to mal
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-155-1.pdf}
+\includegraphics{figures/unnamed-chunk-194-1.pdf}
 
 Your plot is still blank, but in the background \texttt{ggplot()} is all setup to make your plot. Since this \texttt{ggplot()} call is the basis of everything that will happen next -- it contains the data and the way you want to map it to attributes of your plot -- let's save it to a variable for easy recall. We'll use \texttt{p} for ``plot''.
 
@@ -4066,7 +4647,7 @@ Note that you don't need to write out \texttt{titanic\$Age} or \texttt{titanic\$
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-157-1.pdf}
+\includegraphics{figures/unnamed-chunk-196-1.pdf}
 
 Note the use of a plus sign, \texttt{+}. You are \emph{adding} layers to your plot.
 
@@ -4087,7 +4668,7 @@ Note the use of a plus sign, \texttt{+}. You are \emph{adding} layers to your pl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-158-1.pdf}
+\includegraphics{figures/unnamed-chunk-197-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -4104,7 +4685,7 @@ Note the use of a plus sign, \texttt{+}. You are \emph{adding} layers to your pl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-159-1.pdf}
+\includegraphics{figures/unnamed-chunk-198-1.pdf}
 
 Note that \texttt{ggplot()} automatically produced a different regression line for each sex. That's nice, but now our plot is getting pretty cluttered.
 
@@ -4123,7 +4704,7 @@ Note that \texttt{ggplot()} automatically produced a different regression line f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-160-1.pdf}
+\includegraphics{figures/unnamed-chunk-199-1.pdf}
 
 Beautiful!
 
@@ -4142,7 +4723,7 @@ Beautiful!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-161-1.pdf}
+\includegraphics{figures/unnamed-chunk-200-1.pdf}
 
 \hypertarget{bar-plot}{%
 \section*{Bar plot}\label{bar-plot}}
@@ -4160,7 +4741,7 @@ Let's make a bar plot that compares the number of men and women on the \emph{Tit
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-162-1.pdf}
+\includegraphics{figures/unnamed-chunk-201-1.pdf}
 
 Note that, for the \texttt{aes()} call, we only provided the \emph{x} axis attribute: \texttt{Sex}.
 
@@ -4184,7 +4765,7 @@ But you are allowed to explicitly set the bars' heights (i.e., the \texttt{y} di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-163-1.pdf}
+\includegraphics{figures/unnamed-chunk-202-1.pdf}
 
 In this case, we are explicitly defining the \texttt{y} axis in the \texttt{aes()} call, and telling \texttt{geom\_bar()} to just use the values we specified in \texttt{aes()} (that's what \texttt{\textquotesingle{}identity\textquotesingle{}} means; you are telling \texttt{ggplot()} to just use what you already gave it.)
 
@@ -4198,7 +4779,7 @@ You can specify other aesthetic attributes, \emph{unrelated to the data}, within
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-164-1.pdf}
+\includegraphics{figures/unnamed-chunk-203-1.pdf}
 
 Now add better labels:
 
@@ -4214,7 +4795,7 @@ Now add better labels:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-165-1.pdf}
+\includegraphics{figures/unnamed-chunk-204-1.pdf}
 
 You can add another variable to your bar plot as follows. Let's say you want to see the average age in each sex, grouped by who survived and who didn't:
 
@@ -4246,7 +4827,7 @@ You can add another variable to your bar plot as follows. Let's say you want to 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-166-1.pdf}
+\includegraphics{figures/unnamed-chunk-205-1.pdf}
 
 Rather than stack the bars, you can place them side by side:
 
@@ -4258,7 +4839,7 @@ Rather than stack the bars, you can place them side by side:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-167-1.pdf}
+\includegraphics{figures/unnamed-chunk-206-1.pdf}
 
 If you don't love these default colors (even if they are colorblind-friendly), you can manually define the colors for each group of bars:
 
@@ -4274,10 +4855,10 @@ If you don't love these default colors (even if they are colorblind-friendly), y
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-168-1.pdf}
+\includegraphics{figures/unnamed-chunk-207-1.pdf}
 
-\hypertarget{exercises-5}{%
-\subsubsection*{Exercises}\label{exercises-5}}
+\hypertarget{exercises-6}{%
+\subsubsection*{Exercises}\label{exercises-6}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 \textbf{More \emph{Titanic} plots}
@@ -4328,8 +4909,8 @@ Download the dataset on baby names given to newborns in the USA:
 \hypertarget{dplyr}{%
 \chapter{Dataframe wrangling}\label{dplyr}}
 
-\hypertarget{learning-goals-6}{%
-\subsubsection*{Learning goals}\label{learning-goals-6}}
+\hypertarget{learning-goals-7}{%
+\subsubsection*{Learning goals}\label{learning-goals-7}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -4824,8 +5405,8 @@ Note the use of the function, \textbf{\texttt{n()}}. This simple function counts
 
 To illustrate these \texttt{dplyr} verbs and re-energize the room, ask everyone to stand. Tell the students that they represent a dataframe called \texttt{people}. Now, write a \texttt{dplyr} command into your R Console and ask them to act out the command. After each command, give them time to move around to act it out. If they move around too slowly, egg them on: ``Come on, you all are like the slowest computer ever!'' \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)} \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)\ \%\textgreater{}\%\ filter(sex\ ==\ "female")} \texttt{people\ \%\textgreater{}\%\ arrange(hair\_length)} \texttt{people\ \%\textgreater{}\%\ arrange(desc(hair\_length))} \texttt{people\ \%\textgreater{}\%\ group\_by(sex)\ \%\textgreater{}\%\ arrange(hair\_length))} \texttt{people\ \%\textgreater{}\%\ arrange(country\_of\_birth,\ shirt\_color,\ desc(shoe\_size))} etc.
 
-\hypertarget{exercises-6}{%
-\subsubsection*{Exercises}\label{exercises-6}}
+\hypertarget{exercises-7}{%
+\subsubsection*{Exercises}\label{exercises-7}}
 \addcontentsline{toc}{subsubsection}{Exercises}
 
 Answer these questions using the new \texttt{dplyr} verbs you just learned:
@@ -4893,11 +5474,643 @@ Answer these questions using the new \texttt{dplyr} verbs you just learned:
 
 After completing the exercises here, it is worthwhile devoting time to the Review modules entitled, \textbf{``A \texttt{dplyr} mystery''}, \textbf{``A \texttt{dplyr} survey''}, and \textbf{``Global health and \texttt{ggplot}''}. Once students become comfortable with working with \texttt{dplyr}, they will be ready to work independently on projects, using the modules in the \textbf{Deep \texttt{R}} section for references.
 
+\hypertarget{part-reproducible-research}{%
+\part{Reproducible research}\label{part-reproducible-research}}
+
+\hypertarget{markdown-documentation}{%
+\chapter{\texorpdfstring{\texttt{Markdown} documentation}{Markdown documentation}}\label{markdown-documentation}}
+
+\hypertarget{learning-goals-8}{%
+\subsubsection*{Learning goals}\label{learning-goals-8}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to document your projects with \texttt{Markdown}, and why doing so is so important.
+\end{itemize}
+
+~
+
+This is a \textbf{meta-tutorial} for using \texttt{Markdown}, a ``syntax'' for writing
+\emph{beautiful} reports with simple text files. This tutorial, which was written
+in \texttt{Markdown}, has been provided twice: first, as its formatted `book-ready'
+form, and second as the raw text file used to write it.
+
+\hypertarget{what-is-markdown}{%
+\section*{\texorpdfstring{What is \texttt{Markdown}?}{What is Markdown?}}\label{what-is-markdown}}
+\addcontentsline{toc}{section}{What is \texttt{Markdown}?}
+
+\texttt{Markdown} lets you write documents formatted with fancy \texttt{HTML} (the main
+language used to create websites) without having to know how to write \texttt{HTML}
+code. Instead, you just need to know how to use a few common symbols.
+
+\hypertarget{why}{%
+\subsection*{Why?}\label{why}}
+\addcontentsline{toc}{subsection}{Why?}
+
+\texttt{Markdown} was created because most data scientists used to document their
+code and data projects with simple text files (\texttt{.txt}). Text files are designed
+to be simple, so they have no special formatting: no nice fonts, no headings,
+no bold, no italics, no bullet lists. And, as a result of their simplicity,
+text files are (1) \emph{boring} and (2) \emph{difficult to organize}.
+
+\texttt{Markdown} is the perfect solution: it translates a simple text file into a
+beautifully formatted report.
+
+Recall that, in order for your research to be truly reproducible, you have to
+\textbf{document your work thoroughly}. Doing so requires two things: First, that
+you provide a detailed description of your work in a simple text file, and
+second, that your documentation be \emph{well-organized} and \emph{enjoyably legible}.
+Think about it: if your documentation is incomplete, impossible to navigate,
+and difficult to read, can you really say that your project is reproducible?
+
+\hypertarget{what-can-you-do-with-markdown}{%
+\subsection*{\texorpdfstring{What can you do with \texttt{Markdown}?}{What can you do with Markdown?}}\label{what-can-you-do-with-markdown}}
+\addcontentsline{toc}{subsection}{What can you do with \texttt{Markdown}?}
+
+First of all, \texttt{Markdown} \ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lets you organize your report into sections and subsections.\\
+\item
+  Lets you \emph{italicize} and \textbf{emphasize} certain sections of your work.
+\item
+  Lets you distinguish between normal text and \texttt{code} or \texttt{filenames}.
+\item
+  Lets you write large chunks of code, like the one below.
+\end{enumerate}
+
+\begin{verbatim}
+# This is a large chunk of code. 
+x <- 1:10
+y <- 15:20
+z <- x + y
+\end{verbatim}
+
+Also, \texttt{Markdown} \ldots{}
+
+\begin{itemize}
+\item
+  Lets you weave together your documentation with \texttt{R} code that
+  \emph{actually runs} (this is called \texttt{RMarkdown}, which is covered
+  in the next module), opening up possibilities for automatic reporting
+  and truly reproducible research publications.
+\item
+  Lets you produce publication-ready articles and books, since there is a
+  world of open-source formatting templates available to you.
+\item
+  Lets you add \href{https://www.markdownguide.org/getting-started/}{hyperlinks}.
+\item
+  Lets you type \texttt{HTML} code directly into the same document,
+  if you want to.
+\item
+  Lets you include images, like the one below.
+\end{itemize}
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/markdown-dogs.jpeg}
+
+~
+
+\hypertarget{common-markdown-mistakes}{%
+\subsubsection*{\texorpdfstring{Common \texttt{Markdown} mistakes}{Common Markdown mistakes}}\label{common-markdown-mistakes}}
+\addcontentsline{toc}{subsubsection}{Common \texttt{Markdown} mistakes}
+
+\begin{itemize}
+\item
+  When you try to make a section heading (e.g., \texttt{\#\#\ New\ section}),
+  you forget to put a space between the hashtags and the name of the section.
+\item
+  When you try to begin a new paragraph, you don't add \emph{two spaces}
+  at the end of your sentence. (Without those two spaces, \texttt{Markdown}
+  will assume you are still working in the same paragraph.)
+\item
+  The same thing happens often when making a list. Without \emph{two spaces}
+  at the end of each item, the items might not get placed on new lines.
+\item
+  When you try to begin a new paragraph, you don't add an empty line
+  between your paragraphs.
+\end{itemize}
+
+\hypertarget{raw-markdown-example}{%
+\section*{\texorpdfstring{Raw \texttt{Markdown} example}{Raw Markdown example}}\label{raw-markdown-example}}
+\addcontentsline{toc}{section}{Raw \texttt{Markdown} example}
+
+Below we provide the raw textfile we used to write the section above.
+
+\begin{verbatim}
+# `Markdown` documentation 
+
+#### Learning goals {-}
+
+- How to document your projects with `Markdown`, and why doing so is so important.
+
+&nbsp;  
+
+This is a **meta-tutorial** for using `Markdown`, a "syntax" for writing
+*beautiful* reports with simple text files. This tutorial, which was written
+in `Markdown`, has been provided twice: first, as its formatted 'book-ready' 
+form, and second as the raw text file used to write it.  
+
+## What is `Markdown`?  {-}  
+
+`Markdown` lets you write documents formatted with fancy `HTML` (the main
+language used to create websites) without having to know how to write `HTML`
+code. Instead, you just need to know how to use a few common symbols. 
+
+### Why? {-} 
+
+`Markdown` was created because most data scientists used to document their
+code and data projects with simple text files (`.txt`). Text files are designed
+to be simple, so they have no special formatting: no nice fonts, no headings,
+no bold, no italics, no bullet lists. And, as a result of their simplicity,
+text files are (1) *boring* and (2) *difficult to organize*.  
+
+`Markdown` is the perfect solution: it translates a simple text file into a
+beautifully formatted report.  
+
+Recall that, in order for your research to be truly reproducible, you have to
+**document your work thoroughly**. Doing so requires two things: First, that
+you provide a detailed description of your work in a simple text file, and
+second, that your documentation be *well-organized* and *enjoyably legible*.
+Think about it: if your documentation is incomplete, impossible to navigate,
+and difficult to read, can you really say that your project is reproducible?
+
+### What can you do with `Markdown`? {-}  
+
+First of all, `Markdown` ...  
+
+1. Lets you organize your report into sections and subsections.  
+2. Lets you *italicize* and **emphasize** certain sections of your work. 
+3. Lets you distinguish between normal text and `code` or `filenames`. 
+4. Lets you write large chunks of code, like the one below. 
+
+```
+# This is a large chunk of code. 
+x <- 1:10
+y <- 15:20
+z <- x + y
+```
+
+Also, `Markdown` ...  
+
+- Lets you weave together your documentation with `R` code that
+*actually runs* (this is called `RMarkdown`, which is covered
+in the next module), opening up possibilities for automatic reporting
+and truly reproducible research publications.  
+
+- Lets you produce publication-ready articles and books, since there is a
+world of open-source formatting templates available to you.  
+
+- Lets you add [hyperlinks](https://www.markdownguide.org/getting-started/).  
+
+- Lets you type `HTML` code directly into the same document, 
+<font color='red'><b>if you want to</b></font>. 
+
+- Lets you include images, like the one below.  
+
+<center>
+![](img/markdown-dogs.jpeg){width=50%}
+</center>
+
+&nbsp;  
+
+#### Common `Markdown` mistakes {-}
+
+- When you try to make a section heading (e.g., `## New section`),
+you forget to put a space between the hashtags and the name of the section.  
+
+- When you try to begin a new paragraph, you don't add *two spaces*
+at the end of your sentence. (Without those two spaces, `Markdown`
+will assume you are still working in the same paragraph.) 
+
+- The same thing happens often when making a list. Without *two spaces*
+at the end of each item, the items might not get placed on new lines.  
+
+- When you try to begin a new paragraph, you don't add an empty line
+between your paragraphs.  
+\end{verbatim}
+
+\hypertarget{exercises-8}{%
+\section*{Exercises}\label{exercises-8}}
+\addcontentsline{toc}{section}{Exercises}
+
+\textbf{Open a new, blank \texttt{Markdown} document:}
+
+\textbf{1.} In \texttt{RStudio}, go to the top left dropbown menu for making a new file (look for the green plus sign.)
+
+\textbf{2.} Select ``Text File''
+
+\textbf{3.} Save this text file as \texttt{test.md}.
+
+The prefix, \texttt{.md}, specifies that this text file should be interpreted as a \texttt{Markdown} file. Once you save the file, you should see some new options appear, one of which is preview.
+
+\textbf{4.} At the top of your \texttt{test.md} file, write: \texttt{\#\ Title}
+
+\textbf{5.} Click the Preview button and see if a \texttt{Markdown} file is produced.
+
+~
+
+\textbf{Make your own \texttt{Markdown}:}\\
+Use the \texttt{Markdown} example above, which you can compare to the formatted version at the top of this module, to figure out how to add the following elements to your document.
+
+Use the \emph{Preview} button to test if your entries are doing what you want them to.
+
+\textbf{6.} Write a silly sentence.
+
+\textbf{7.} Make a word in that sentence \emph{italicized}.
+
+\textbf{8.} Make a word in that sentence \textbf{boldface.}
+
+\textbf{9.} Add the first section to your document. Name it whatever you want.
+
+\textbf{10.} Add a sentence in this new section, formatting one of its words as a piece of \texttt{code}.
+
+\textbf{11.} Start a new paragraph and add another sentence.
+
+\textbf{12.} Start a third paragraph and add vertical space between it and the previous paragraph.
+
+\textbf{13.} Add a multi-line chunk of code.
+
+\textbf{14.} Download a silly meme from the internet and add it to your document. (\emph{Hint:} you will have to place that image file in the same folder as your \texttt{Markdown} file.)
+
+\textbf{15.} Add another subsection to the subsection you are working in. Name it ``Grocery List''.
+
+\textbf{16.} Type out an enumerated grocery list.
+
+\textbf{17.} Add another subsection, this time at the same hierarchichal level as the one you created in step 9. Name it ``Bucket List''.
+
+\textbf{18.} Create a bullet list of things you want to accomplish before you die.
+
+\textbf{19.} Make one of your list items act as a link to another website.
+
+~
+
+\textbf{Update your \texttt{Git} repo \texttt{README} with \texttt{Markdown}}
+
+This will be a review of both \texttt{Markdown} and \texttt{Git}!
+
+\textbf{20.} Navigate to your \texttt{GitHub} repo online.
+
+\textbf{21.} If you have not yet added a \texttt{README} file to your repo, click on the button that generates one for you.
+
+\textbf{22.} Click on the file to edit it.
+
+\textbf{23.} Add \texttt{Markdown} to your \texttt{README}, showcasing the tricks you haved learned in this exercise thus far. \emph{Preview} your changes as you go and make sure everything looks how you intended.
+
+\textbf{24.} Commit your changes and check out your \texttt{README} on the homepage of your repo.
+
+~
+
+\textbf{Make a \texttt{Markdown} CV}
+
+It is increasingly common for data scientists to have a Markdown version of their \emph{CV} posted as its own page connected to their \texttt{GitHub} profile. Check out these examples:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://carolstran.github.io/cv/}{Here}\\
+\item
+  \href{https://github.com/ViliamV/easy-markdown-cv}{Also here}\\
+\item
+  \href{http://wodenimoni.com/nimo-markdown-cv/}{And here!}
+\end{itemize}
+
+Maintaining your \emph{CV} this way can be very efficient. It is easy to format and easy to update. And, most importantly, rather than have various versions of your \emph{CV} on your computer or in GoogleDrive, you can just share a \emph{link} to your live, published \emph{CV}. What better way to demonstrate your skillset in reproducible, professional-quality research?
+
+\textbf{25.} Use the instructions provided \href{https://workwithcarolyn.com/blog/digital-cv-guide}{here} to create a new repo for your \emph{CV}, type up your \emph{CV} in \texttt{Markdown}, and publish it for free on \texttt{GitHub\ Pages}.
+
+This will also be a review of both \texttt{Markdown} and \texttt{Git}!
+
+\hypertarget{resources}{%
+\subsubsection*{Resources}\label{resources}}
+\addcontentsline{toc}{subsubsection}{Resources}
+
+\url{https://www.markdownguide.org/basic-syntax/}
+
+\hypertarget{r-markdown}{%
+\chapter{\texorpdfstring{\texttt{R\ Markdown}}{R Markdown}}\label{r-markdown}}
+
+\hypertarget{learning-goals-9}{%
+\subsubsection*{Learning goals}\label{learning-goals-9}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  How to create \texttt{RMarkdown} documents\\
+\item
+  Why they are awesome\\
+\item
+  Why they are essential to truly \emph{reproducible} reporting.
+\end{itemize}
+
+~
+
+\texttt{R\ Markdown} is the combination of \texttt{R} and \texttt{Markdown}: you create a \texttt{Markdown} document that has \texttt{R} built-in to it: the two languages are woven, or ``knitted'', together.
+
+\hypertarget{do-first-explain-later}{%
+\section*{Do first, explain later}\label{do-first-explain-later}}
+\addcontentsline{toc}{section}{Do first, explain later}
+
+Let's not talk about it. Let's just do it.
+
+\hypertarget{start-an-rmarkdown-report}{%
+\subsubsection*{\texorpdfstring{Start an \texttt{RMarkdown} report}{Start an RMarkdown report}}\label{start-an-rmarkdown-report}}
+\addcontentsline{toc}{subsubsection}{Start an \texttt{RMarkdown} report}
+
+\textbf{1.} Open Rstudio.\\
+\textbf{2.} Click \texttt{File} -\textgreater{} \texttt{New\ File} -\textgreater{} \texttt{R\ Markdown}\\
+\textbf{3.} Fill out ``Title'', ``Author'', and click ``Set to HTML''\\
+\textbf{4.} Type \texttt{Ctrl\ +\ S} to save your file in your working directory.
+
+\hypertarget{compile-your-report}{%
+\subsubsection*{Compile your report}\label{compile-your-report}}
+\addcontentsline{toc}{subsubsection}{Compile your report}
+
+\textbf{5.} Have a look at the document. What does each section mean?\\
+\textbf{6.} Click the \emph{``Knit''} button at the top.\\
+\textbf{7.} Cool, right?
+
+But also kind of boring. Let's make some changes to this report.
+
+\hypertarget{modify-the-template}{%
+\subsubsection*{Modify the template}\label{modify-the-template}}
+\addcontentsline{toc}{subsubsection}{Modify the template}
+
+\textbf{8.} Let's replace the ``setup chunk'' with the below.
+
+\textbf{9.} Then, let's change the title to some interesting question.
+
+\textbf{10.} Now, let's delete all of the other stuff in the template so far (beginning at ``R Markdown'').
+
+\textbf{11.} Put in some section headers using \texttt{Markdown}. Make the following sections:
+
+\begin{verbatim}
+# Introduction
+
+# Methods
+
+# Results
+
+# Discussion
+
+# Bibliography
+\end{verbatim}
+
+\textbf{12.} Write a two-sentence introduction to your made-up research topic.
+
+\textbf{13.} \texttt{Knit} again, to make sure that we did not break anything. (You should \texttt{knit} often!)
+
+Good? Great.
+
+\hypertarget{add-an-r-chunk}{%
+\section*{\texorpdfstring{Add an \texttt{R} chunk}{Add an R chunk}}\label{add-an-r-chunk}}
+\addcontentsline{toc}{section}{Add an \texttt{R} chunk}
+
+In your \emph{Methods} section, let's create an \texttt{R} chunk in which we can generate some fake data.
+
+To make an \texttt{R} chunk, type this:
+
+\begin{verbatim}
+
+```r
+# code goes here
+```
+\end{verbatim}
+
+Those three marks represent the start and end of a chunk of code.
+
+Now add this code into your chunk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(x) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\AttributeTok{sd=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{cex=}\NormalTok{.}\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figures/unnamed-chunk-249-1.pdf}
+
+Know, re-\texttt{knit} your doc. Everything work?
+
+\hypertarget{chunk-options}{%
+\subsection*{Chunk options}\label{chunk-options}}
+\addcontentsline{toc}{subsection}{Chunk options}
+
+\hypertarget{hide-a-chunk}{%
+\subsubsection*{Hide a chunk}\label{hide-a-chunk}}
+\addcontentsline{toc}{subsubsection}{Hide a chunk}
+
+To run the code within an \texttt{R} chunk but hide the code in your final output, change the bracketed code at the top of your chunk to read \texttt{\{r,\ echo\ =\ FALSE\}}.
+
+\hypertarget{dont-evaluate-a-chunk}{%
+\subsubsection*{Don't evaluate a chunk}\label{dont-evaluate-a-chunk}}
+\addcontentsline{toc}{subsubsection}{Don't evaluate a chunk}
+
+To skip over a chunk without evaluating it, change your brackets to look like this: \texttt{\{r,\ eval\ =\ FALSE\}}.
+
+What if you want to hide a chunk \emph{and} skip over it? \texttt{\{r,\ echo\ =\ FALSE,\ eval\ =\ FALSE\}}. This is a nice way to store code scraps that you don't want to run but aren't ready to get rid of.
+
+\hypertarget{change-figure-size}{%
+\subsubsection*{Change figure size}\label{change-figure-size}}
+\addcontentsline{toc}{subsubsection}{Change figure size}
+
+To change the dimensions of a plot output, change your brackets to look like this:
+\texttt{\{r,\ fig.height\ =\ 3,\ fig.width\ =\ 7\}}
+
+Doing so produces a plot like this:
+
+\includegraphics{figures/unnamed-chunk-250-1.pdf}
+
+\hypertarget{add-figure-caption}{%
+\subsubsection*{Add figure caption}\label{add-figure-caption}}
+\addcontentsline{toc}{subsubsection}{Add figure caption}
+
+To add a figure caption, change your brackets like so: \texttt{\{r,\ fig.cap\ =\ "A\ squished\ plot."\}}
+
+\begin{figure}
+\centering
+\includegraphics{figures/unnamed-chunk-251-1.pdf}
+\caption{\label{fig:unnamed-chunk-251}A squished plot.}
+\end{figure}
+
+\hypertarget{in-line-r-code}{%
+\section*{\texorpdfstring{In-line \texttt{R} code}{In-line R code}}\label{in-line-r-code}}
+\addcontentsline{toc}{section}{In-line \texttt{R} code}
+
+In your \emph{Results} section, add this line:
+
+\begin{quote}
+Our analysis was based on \texttt{\textasciigrave{}r\ length(x)\textasciigrave{}} observations.
+\end{quote}
+
+Know, re-\texttt{knit} your doc. What was printed before the word ``observations''?
+
+~
+
+\textbf{This is why \texttt{RMarkdown} is reproducible.} Think of how a typical research report works: you get your results from
+\texttt{R} or whatever program you are using, then you manually write those results numbers into a \emph{Word} document. What is reproducible about that?
+
+With \texttt{RMarkdown}, you can let the data underlying your analysis \emph{literally speak for themselves}.
+
+\hypertarget{tables}{%
+\section*{Tables}\label{tables}}
+\addcontentsline{toc}{section}{Tables}
+
+To make a pretty table out of a dataframe, create a chunk that looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x,y)}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(df), }\AttributeTok{caption =} \StringTok{"A pretty sweet table."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-252}A pretty sweet table.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+x & y\\
+\hline
+1 & 2.704173\\
+\hline
+2 & 3.249625\\
+\hline
+3 & 2.357793\\
+\hline
+4 & -4.881374\\
+\hline
+5 & 4.048902\\
+\hline
+6 & -1.742783\\
+\hline
+\end{tabular}
+\end{table}
+
+\hypertarget{bibliographies}{%
+\section*{Bibliographies}\label{bibliographies}}
+\addcontentsline{toc}{section}{Bibliographies}
+
+\begin{itemize}
+\item
+  In \texttt{RStudio}, create a new Text File and save it as \texttt{bibliography.bib} in the same location as your \texttt{RMarkdown} file.
+\item
+  Look up \href{https://www.researchgate.net/publication/260642613_Statistical_exponential_formulas_for_homogeneous_diffusion}{this paper}
+\item
+  Copy the \texttt{DOI}.
+\item
+  Go to \url{https://doi2bib.org/}
+\item
+  Copy the \texttt{bibtex} format
+\item
+  Paste into your \texttt{.bib} file.
+\end{itemize}
+
+Note that the top line of this \texttt{bib} entry has the phrase \texttt{Rudd2014}. This is known as the citation's ``key'' -- you can use this phrase to reference this source within your \texttt{Markdown} doc.
+
+\begin{itemize}
+\item
+  Back in your \texttt{RMarkdown} doc, in your \emph{Discussion} section, write some line about a paper.
+\item
+  At the end of that sentence, add this text: \texttt{({[}@Rudd2014{]})}.
+\item
+  Add \texttt{bibliography:\ bibliography.bib} to your ``\texttt{yaml}'', the header information at the very top of your \texttt{RMarkdown} file. Change the \texttt{yaml} so that it looks like this:
+\end{itemize}
+
+\begin{verbatim}
+---
+output: html_document
+bibliography: bibliography.bib
+---
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Re-\texttt{knit} your doc to see what happens. Was the citation automatically generated?
+\end{itemize}
+
+\hypertarget{exercises-9}{%
+\subsubsection*{Exercises}\label{exercises-9}}
+\addcontentsline{toc}{subsubsection}{Exercises}
+
+Before getting started, think of a testable hypothesis which can be answered via a survey of your friends and classmates. For example: ``woman have more dreams than men'', or ``people born abroad have shorter last names than people born in the USA'', or ``shoe size is associated with GPA''.
+
+\textbf{1.} Create a repository on github called \texttt{report}.
+
+\textbf{2.} Clone that repository to your local machine.
+
+\textbf{3.} \texttt{cd} into that repository.
+
+\textbf{4.} In that repo, create a new \texttt{Rmarkdown} document. Name it \texttt{paper.Rmd}.
+
+\textbf{5.} Replace the setup chunk with the one used in the in-class exercise (above).
+
+\textbf{6.} Create a \emph{GoogleForms} survey with at least 5 interesting questions on a topic which interests you (one topic, five questions).
+
+\textbf{7.} Get at least 5 people to fill out your survey.
+
+~
+
+\textbf{8.} In your \emph{GoogleForms} settings, create a \emph{GoogleSheet} of your results.
+
+\textbf{9.} In the sharing settings of your \emph{GoogleSheet}, set to ``public''.
+
+\textbf{10.} Copy the URL of your \emph{GoogleSheet}.
+
+\textbf{11.} Create an R chunk in your \texttt{paper.Rmd}.
+
+\textbf{12.} Use the \texttt{gsheet} package to read your survey results as a dataframe.
+
+~
+
+\textbf{13.} After reading in the data, create the following sections in your report: \texttt{Introduction}, \texttt{Methods}, \texttt{Results}, \texttt{Conclusion}.
+
+\textbf{14.} Spend 5-15 minutes on the internet reading about your topic / hypotheses.
+
+\textbf{15.} Find 2-5 authors/articles of interest related to your topic. Cite them in the \emph{Introduction}.
+
+\textbf{16.} Describe in plain English your approach to testing your hypothesis in the \emph{Methods} section.
+
+\textbf{17.} In your \emph{Methods} section, provide a URL link to your survey.
+
+~
+
+\textbf{18.} After the \emph{Methods} section, write the \texttt{R} code (in an \texttt{echo}ed chunk) which tests your hypothesis.
+
+\textbf{19.} In the \emph{Results} section, write a description of both (a) your sample and (b) your results. Include at least two charts. Include at least one table.
+
+\textbf{20.} In the \emph{Conclusion} section, write interesting reflection on your data.
+
+~
+
+\textbf{21.} Got here? Cool, you're fast. Now configure your computer to generate pdfs via Rmarkdown: \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd}{mac} / \href{https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9}{windows}
+
+\textbf{22.} Make your paper in pdf.
+
+\textbf{23.} Check out these \href{https://www.datadreaming.org/post/r-markdown-theme-gallery/}{theme options for \texttt{Rmarkdown} docs.}
+
+\textbf{24.} Push your code to git
+
+\textbf{25.} Check out how to \href{https://rmarkdown.rstudio.com/lesson-11.html}{make presentations in \texttt{Rmarkdown}.} Make one.
+
+\textbf{26.} Check out how to \href{https://rmarkdown.rstudio.com/lesson-12.html}{make dashboards in \texttt{Rmarkdown}.} Make one.
+
+\textbf{27.} Change your citation style. To do so, \href{https://github.com/citation-style-language/styles}{use a new csl from this site.}
+
 \hypertarget{interactive-maps}{%
 \chapter{Interactive maps}\label{interactive-maps}}
 
-\hypertarget{learning-goals-7}{%
-\subsubsection*{Learning goals}\label{learning-goals-7}}
+\hypertarget{learning-goals-10}{%
+\subsubsection*{Learning goals}\label{learning-goals-10}}
 \addcontentsline{toc}{subsubsection}{Learning goals}
 
 \begin{itemize}
@@ -4950,7 +6163,7 @@ To begin a \texttt{leaflet} map, simply type \texttt{leaflet()}. This creates a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-212-1.pdf}
+\includegraphics{figures/unnamed-chunk-257-1.pdf}
 
 ~
 
@@ -4962,7 +6175,7 @@ Now, add the background map. To do so, \texttt{leaflet} uses ``tiles''. Tiles ar
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-213-1.pdf}
+\includegraphics{figures/unnamed-chunk-258-1.pdf}
 
 ~
 
@@ -4978,7 +6191,7 @@ To get the map focused on a specific area of interest, bring in ``markers'' base
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-214-1.pdf}
+\includegraphics{figures/unnamed-chunk-259-1.pdf}
 
 ~
 
@@ -4998,7 +6211,7 @@ How about satellite imagery instead?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-215-1.pdf}
+\includegraphics{figures/unnamed-chunk-260-1.pdf}
 
 ~
 
@@ -5012,7 +6225,7 @@ How about topography instead?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-216-1.pdf}
+\includegraphics{figures/unnamed-chunk-261-1.pdf}
 
 ~
 
@@ -5034,7 +6247,7 @@ To change the markers from a ``dart'' to a circle, use \texttt{addCircleMarkers(
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-217-1.pdf}
+\includegraphics{figures/unnamed-chunk-262-1.pdf}
 
 ~
 
@@ -5053,7 +6266,7 @@ To add `pop up' information when you click on your marker, use the \texttt{popup
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-218-1.pdf}
+\includegraphics{figures/unnamed-chunk-263-1.pdf}
 
 ~
 
@@ -5078,7 +6291,7 @@ For example, map the bathymetry of the northeast Pacific basin:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-219-1.pdf}
+\includegraphics{figures/unnamed-chunk-264-1.pdf}
 
 ~
 
@@ -5095,7 +6308,7 @@ Or get satellite imagery for an island off the coast of Georgia, USA:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-220-1.pdf}
+\includegraphics{figures/unnamed-chunk-265-1.pdf}
 
 \hypertarget{geocoding}{%
 \section*{Geocoding}\label{geocoding}}
@@ -5157,7 +6370,7 @@ And check out your map:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-226-1.pdf}
+\includegraphics{figures/unnamed-chunk-271-1.pdf}
 
 ~
 
@@ -5207,7 +6420,7 @@ Now, add the mailing address as a \texttt{popup} in your marker:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-230-1.pdf}
+\includegraphics{figures/unnamed-chunk-275-1.pdf}
 
 \hypertarget{final-thoughts-1}{%
 \section*{Final thoughts}\label{final-thoughts-1}}
@@ -5217,8 +6430,8 @@ Maps, even simple ones, are amazingly effective data visualizations. The density
 
 All of those virtues are compounded with an interactie map. At each zoom level, you gain a new perspective. Like \texttt{shiny} apps, \texttt{leaflet} maps put the viewer in control of how they explore and understand the data.
 
-\hypertarget{exercises-7}{%
-\subsection*{Exercises}\label{exercises-7}}
+\hypertarget{exercises-10}{%
+\subsection*{Exercises}\label{exercises-10}}
 \addcontentsline{toc}{subsection}{Exercises}
 
 \textbf{1.} Create a new \texttt{Rmarkdown} document.
@@ -5263,6 +6476,260 @@ This data comes from \url{https://ucdp.uu.se/encyclopedia}. Take a minute or two
 \textbf{15.} Replace your markers with ``circle markers''.
 
 \textbf{16.} Create a shiny app wherein the user selects a country and time frame, and the app shows both (a) an interactive map and (b) a plot of the number of conflicts by year for that country.
+
+\hypertarget{part-review-exercises}{%
+\part{Review exercises}\label{part-review-exercises}}
+
+\hypertarget{learning-goals-11}{%
+\subsubsection*{Learning goals}\label{learning-goals-11}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  This is a review exercise: apply the \texttt{dplyr} and \texttt{ggplot} skills introduced in the previous modules to explore a mystery dataset.
+\end{itemize}
+
+~
+
+\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
+\textbf{Instructor tip:}
+
+This review exercise is best done immediately after the module on \textbf{Dataframe wrangling}.
+
+\hypertarget{a-mystery-dataset}{%
+\chapter{A mystery dataset}\label{a-mystery-dataset}}
+
+Use the \texttt{dplyr} verbs to answer these questions.
+
+First, download the following dataset by running this code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/deaths.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{1.} Review the dataset and try to figure out which each row represents. ``Each row is a \_\_\_\_.''
+
+\textbf{2.} How many people are in the dataset?
+
+\textbf{3.} Use \texttt{summarize()} to count the number of men and women.
+
+\textbf{4.} Use \texttt{summarize()} to count the number of people in each class.
+
+\textbf{5.} Use \texttt{summarize()} to count the number of men and women in each class.
+
+\textbf{6.} What is the average age of men in the dataset?
+
+\textbf{7.} What is the average age of women in the dataset?
+
+\textbf{8.} Use \texttt{mutate} to create a variable called \texttt{died}. This should be a boolean based on the \texttt{Survived} column (in which 1 means the person survived, and 0 means the person died).
+
+\textbf{9.} Use \texttt{mutate} to create a variable called \texttt{child}. This should be a boolean based on the \texttt{Age} column, indicating if someone was less than 18 years old.
+
+\textbf{10.} Create a different dataframe for men vs.~women. Name them accordingly.
+
+\textbf{11.} Create a different dataframe for class 1, class 2, and class 3. Name them accordingly.
+
+\textbf{12.} For each of the 5 datasets you've just created, what is the death rate?
+
+\textbf{13.} For each of the 5 datasets, how many children died?
+
+\textbf{14.} Now, using the \emph{full} original dataset, calculate the child-specific death rate for each combination of class and sex (ie, ``first class females'', ``third class males'', etc.).
+
+\textbf{15.} What did you find? What might explain that?
+
+\textbf{16.} What is the average age of men and women, separately, in each class?
+
+\hypertarget{a-dplyr-survey}{%
+\chapter{\texorpdfstring{A \texttt{dplyr} survey}{A dplyr survey}}\label{a-dplyr-survey}}
+
+\hypertarget{learning-goals-12}{%
+\subsubsection*{Learning goals}\label{learning-goals-12}}
+\addcontentsline{toc}{subsubsection}{Learning goals}
+
+\begin{itemize}
+\tightlist
+\item
+  This is a review exercise: apply the \texttt{dplyr} and \texttt{ggplot} skills introduced in the previous modules to analyze the results of a recent survey.
+\end{itemize}
+
+~
+
+Use the \texttt{dplyr} verbs to answer these questions.
+
+First, download the results of a recent survey by running this code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load library}
+\FunctionTok{library}\NormalTok{(gsheet)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# Read in data}
+\NormalTok{survey  }\OtherTok{\textless{}{-}}\NormalTok{ gsheet}\SpecialCharTok{::}\FunctionTok{gsheet2tbl}\NormalTok{(}\StringTok{\textquotesingle{}https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey\#gid=204634767\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# remake the names}
+\FunctionTok{names}\NormalTok{(survey) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}time\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sex\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}sib\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}dad\_mus\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}person\_mus\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}joe\_mus\_is\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}eyesight\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}height\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}shoe\_size\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}bday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}money\_or\_love\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}rps\_skill\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}num\_pan\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cats\_dogs\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{1.} Review the \texttt{survey} dataset and try to figure out which each row represents. ``Each row is a \_\_\_\_.''
+
+\textbf{2.} How many respondents are in the dataset?
+
+\textbf{3.} Create a dataframe called \texttt{old\_people}. This should include only people older than 20. Write code to calculate the number rows in your new dataframe.
+
+\textbf{4.} Create a dataframe called \texttt{captivated}. This should include all those people who find Joe's moustache to be ``deeply captivating''. Write code to calculate the number rows in your new dataframe.
+
+\textbf{5.} Create a dataframe called \texttt{special\_people}. This should be people who are taller than 175cm, prefer cats over dogs, and consider themselves to be average at rock, paper, scissors.
+
+\textbf{6.} In the full dataset (survey), do more people like cats or dogs? What about among ``special'' people?
+
+\textbf{7.} Create a new variable in \texttt{survey} called ``std\_shoes'' that standardizes shoe sizes by converting men's shoe size to women's (There is an approximate 1.5 size difference between Men's and Women's sizing (e.g., a men's size 7 is roughly equivalent to a women's size 8.5)
+
+\textbf{8.} Get the avg shoe size by sex (Male, Female, Prefer not to say)
+
+\textbf{9.} Get Average age, height, \& number of siblings, by the sex
+
+\textbf{10.} Do people that have ever had a mustache think there will be more pandemics on average than those who have never had a mustache?
+
+\textbf{11.} Do people that prefer cats have smaller feet on average than those who prefer dogs?
+
+\textbf{12.} Is eyesight associated with moustache perception?
+
+\textbf{13.} What percentage of people think they are better than average at rock scissors paper?
+
+\textbf{14.} What percentage of men and women think they are better than average at rock scissors paper?
+
+\textbf{15.} How many people think money matters more than love?
+
+\textbf{16.} Create a dataframe, grouped by whether or not people's dads had moustaches, with variables showing each of the following: the maximum age, maximum height,minimum number of pandemics, and average number of siblings
+
+\textbf{17.} What percentage of men have terrible eyesight?
+
+\textbf{18.} How many women have a shoe size of 9 or more?
+
+\textbf{19.} Create a variable in the \texttt{survey} dataset named \texttt{days\_old}. Use the \texttt{bday} variable and subtract it from \texttt{Sys.Date()}.
+
+\textbf{20.} What is the standard deviation of age?
+
+\textbf{21.} Create a one-column dataset which contains the name(s) of the person(s) with the most number of siblings (hint: use the following dplyr verbs in this order: \texttt{filter}, \texttt{select}).
+
+\textbf{22.} Create a bar chart that compares the average age of those who prefer cats vs dogs
+
+\textbf{23.} Create a scatter plot that shows the relationship between age and height (make it look nice!)
+
+\textbf{24.} Create a scatter plot that shows the relationship between height and shoe size
+
+\textbf{25.} Create a bar chart that shows the average number of siblings for dad's mustache status.
+
+\textbf{26.} Color the barchart above and add some degree of transparency in the color. Add a title.
+
+\textbf{27.} Create a bar chart that shows the average shoe size by sex and cat/dog preference.
+
+\hypertarget{global-health-ggplot}{%
+\chapter{\texorpdfstring{Global health \& \texttt{ggplot}}{Global health \& ggplot}}\label{global-health-ggplot}}
+
+This review exercise is useful immediately after you learn \texttt{ggplot2} and \texttt{dplyr}.
+
+~
+
+First, let's read in some data on health from the World Bank:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gapminder)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(gapminder)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
+\NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}\SpecialCharTok{::}\NormalTok{gapminder}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{1.} How many rows are in the dataset?
+
+\textbf{2.} How many columns are in the dataset?
+
+\textbf{3.} What are the names of the columns?
+
+\textbf{4.} What is the oldest year in the dataset?
+
+\textbf{5.} What is the country/year with the greatest population in the dataset?
+
+\textbf{6.} Get the average GDP per capita for each continent in 1952.
+
+\textbf{7.} Get the average GDP per capita for each continent for the most recent year in the dataset.
+
+\textbf{8.} Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function \texttt{weighted.mean}. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.
+
+~
+
+\textbf{9.} Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).
+
+\textbf{10.} Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line \texttt{theme(axis.text.x\ =\ element\_text(angle\ =\ 90))} in order to make the x-axis text vertically aligned. What's the problem with this plot? How many points are there per country?
+
+\textbf{11.} Make a new version of the above, but filter down to just the earliest year in the dataset.
+
+\textbf{12.} Make a scatterplot of life expectancy and GDP per capita, just for 1972.
+
+\textbf{13.} Make the same plot as above, but for the most recent year in the data.
+
+\textbf{14.} Make the same plot as the above, but have the size of the points reflect the population.
+
+\textbf{15.} Make the same plot as the above, but have the color of the points reflect the continent.
+
+~
+
+\textbf{16.} Filter the data down to just the most recent year in the data, and make a histogram (\texttt{geom\_histogram}) showing the distribution of GDP per capita.
+
+\textbf{17.} Get the average GDP per capita for each continent/year, weighted by the population of each country.
+
+\textbf{18.} Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.
+
+\textbf{19.} Make the same plot as the above, but facet the plot by continent.
+
+\textbf{20.} Make the same plot as the above, but remove the coloring by continent.
+
+~
+
+\textbf{21.} Make a plot showing France's population over time.
+
+\textbf{22.} Make a plot showing all European countries' population over time, with color reflecting the name of the country.
+
+\textbf{23.} Create a variable called \texttt{status}. If GDP per capita is over 20,000, this should be ``rich''; if between 5,000 and 20,000, this should be ``middle''; if this is less than 5,000, this should be ``poor''.
+
+\textbf{24.} Create an object with the number of rich countries per year.
+
+\textbf{25.} Create an object with the percentage of countries that were rich each year.
+
+~
+
+\textbf{26.} Create a plot showing the percentage of countries which were rich each year.
+
+\textbf{27.} Create an object with the number of people living in poor countries each year.
+
+\textbf{28.} Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by \texttt{status}).
+
+\textbf{29.} Create a chart showing the life expectancy in Somalia over time.
+
+\textbf{30.} Create a chart showing GDP per capita in Somalia over time.
+
+~
+
+\textbf{31.} Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.
+
+\textbf{32.} Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (\texttt{geom\_bar(position\ =\ \textquotesingle{}stack\textquotesingle{})}).
+
+\textbf{33.} Create the same chart as above, but with bars side-by-side (\texttt{geom\_bar(position\ =\ \textquotesingle{}dodge\textquotesingle{})})
+
+\textbf{34.} Generate 3-5 more charts / tables that show interesting things about the data.
+
+\textbf{35.} Make the above charts as aesthetically pleasing as possible.
 
   \bibliography{book.bib,packages.bib}
 

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 17 R Markdown | www.datatrain.cc</title>
+  <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 17 R Markdown | www.datatrain.cc" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
+  <meta name="github-repo" content="datatrainglobal/rbootcamp" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 17 R Markdown | www.datatrain.cc" />
+  
+  <meta name="twitter:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="markdown-documentation.html"/>
+<link rel="next" href="interactive-maps.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">www.datatrain.cc</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-this-is-and-what-it-isnt"><i class="fa fa-check"></i>What this is, and what it isn’t</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-this-is-for"><i class="fa fa-check"></i>Who this is for</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-you-will-learn"><i class="fa fa-check"></i>What you will learn</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who are we?</a></li>
+</ul></li>
+<li class="part"><span><b>I Core theory</b></span></li>
+<li class="chapter" data-level="2" data-path="what-is-data-science.html"><a href="what-is-data-science.html"><i class="fa fa-check"></i><b>2</b> What is data science?</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#what-is-the-data-life-cycle"><i class="fa fa-check"></i>What is the data life cycle?</a></li>
+<li class="chapter" data-level="" data-path="what-is-data-science.html"><a href="what-is-data-science.html#data-science-in-the-wild"><i class="fa fa-check"></i>Data science ‘in the wild’</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html"><i class="fa fa-check"></i><b>3</b> The reproducibility crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-crisis"><i class="fa fa-check"></i>The crisis</a></li>
+<li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#the-reproducibility-movement"><i class="fa fa-check"></i>The ‘reproducibility’ movement</a></li>
+<li class="chapter" data-level="" data-path="the-reproducibility-crisis.html"><a href="the-reproducibility-crisis.html#why-r"><i class="fa fa-check"></i>Why <code>R</code>?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-ethics.html"><a href="data-ethics.html"><i class="fa fa-check"></i><b>4</b> Data ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#a-few-principles"><i class="fa fa-check"></i>A few principles</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#warm-up-scenarios"><i class="fa fa-check"></i>Warm up scenarios</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#case-studies"><i class="fa fa-check"></i>Case studies</a></li>
+<li class="chapter" data-level="" data-path="data-ethics.html"><a href="data-ethics.html#more-scenarios"><i class="fa fa-check"></i>More scenarios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>5</b> Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#the-value-of-data-viz"><i class="fa fa-check"></i>The value of <em>data viz</em></a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#plot-gallery"><i class="fa fa-check"></i>Plot gallery</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#chart-junk"><i class="fa fa-check"></i>Chart junk</a></li>
+<li class="chapter" data-level="" data-path="dataviz.html"><a href="dataviz.html#final-thoughts"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>II Getting sta<code>r</code>ted</b></span></li>
+<li class="chapter" data-level="6" data-path="setting-up-rstudio.html"><a href="setting-up-rstudio.html"><i class="fa fa-check"></i><b>6</b> Setting up <code>RStudio</code></a></li>
+<li class="chapter" data-level="7" data-path="running-r-code.html"><a href="running-r-code.html"><i class="fa fa-check"></i><b>7</b> Running R code</a>
+<ul>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#running-code-in-the-console"><i class="fa fa-check"></i>Running code in the <em>Console</em></a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#use-r-like-a-calculator"><i class="fa fa-check"></i>Use R like a calculator</a></li>
+<li class="chapter" data-level="" data-path="running-r-code.html"><a href="running-r-code.html#getting-along-with-r"><i class="fa fa-check"></i>Getting along with <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html"><i class="fa fa-check"></i><b>8</b> Using <code>RStudio</code> &amp; <code>R</code> scripts</a>
+<ul>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#scripts"><i class="fa fa-check"></i>Scripts</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#wd"><i class="fa fa-check"></i>Your working directory</a></li>
+<li class="chapter" data-level="" data-path="using-rstudio-r-scripts.html"><a href="using-rstudio-r-scripts.html#typical-workflows"><i class="fa fa-check"></i>Typical workflows</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="variables.html"><a href="variables.html"><i class="fa fa-check"></i><b>9</b> Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#introducing-variables"><i class="fa fa-check"></i>Introducing variables</a></li>
+<li class="chapter" data-level="" data-path="variables.html"><a href="variables.html#types-of-data-in-r"><i class="fa fa-check"></i>Types of data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>10</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#declaring-and-using-vectors"><i class="fa fa-check"></i>Declaring and using vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#math-with-two-vectors"><i class="fa fa-check"></i>Math with two vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#functions-for-handling-vectors"><i class="fa fa-check"></i>Functions for handling vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#subsetting-vectors"><i class="fa fa-check"></i>Subsetting vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>11</b> Dataframes</a>
+<ul>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#subsetting-exploring-dataframes"><i class="fa fa-check"></i>Subsetting &amp; exploring dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#creating-dataframes"><i class="fa fa-check"></i>Creating dataframes</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#modifying-dataframes"><i class="fa fa-check"></i>Modifying dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> Packages</a>
+<ul>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#packages-you-already-have"><i class="fa fa-check"></i>Packages you already have</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#installing-a-new-package"><i class="fa fa-check"></i>Installing a new package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#loading-an-installed-package"><i class="fa fa-check"></i>Loading an installed package</a></li>
+<li class="chapter" data-level="" data-path="packages.html"><a href="packages.html#calling-functions-from-a-package"><i class="fa fa-check"></i>Calling functions from a package</a></li>
+</ul></li>
+<li class="part"><span><b>III Basic <code>R</code> workflow</b></span></li>
+<li class="chapter" data-level="13" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>13</b> Importing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#reading-in-data"><i class="fa fa-check"></i>Reading in data</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#csv-files"><i class="fa fa-check"></i><code>.csv</code> files</a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#prepping-your-data-for-r"><i class="fa fa-check"></i>Prepping your data for <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="importing-data.html"><a href="importing-data.html#managing-files-folders"><i class="fa fa-check"></i>Managing files &amp; folders</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>14</b> <code>ggplot</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#what-is-ggplot2"><i class="fa fa-check"></i>What is <code>ggplot2</code>?</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#scatter-plot"><i class="fa fa-check"></i>Scatter plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html#bar-plot"><i class="fa fa-check"></i>Bar plot</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>15</b> Dataframe wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-dplyr-package"><i class="fa fa-check"></i>The <code>dplyr</code> package</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-pipe"><i class="fa fa-check"></i>The <code>%&gt;%</code> pipe</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#dplyr-verbs"><i class="fa fa-check"></i><code>dplyr</code> verbs</a></li>
+</ul></li>
+<li class="part"><span><b>IV Reproducible research</b></span></li>
+<li class="chapter" data-level="16" data-path="markdown-documentation.html"><a href="markdown-documentation.html"><i class="fa fa-check"></i><b>16</b> <code>Markdown</code> documentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#what-is-markdown"><i class="fa fa-check"></i>What is <code>Markdown</code>?</a></li>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#raw-markdown-example"><i class="fa fa-check"></i>Raw <code>Markdown</code> example</a></li>
+<li class="chapter" data-level="" data-path="markdown-documentation.html"><a href="markdown-documentation.html#exercises-8"><i class="fa fa-check"></i>Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>17</b> <code>R Markdown</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#do-first-explain-later"><i class="fa fa-check"></i>Do first, explain later</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#add-an-r-chunk"><i class="fa fa-check"></i>Add an <code>R</code> chunk</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#in-line-r-code"><i class="fa fa-check"></i>In-line <code>R</code> code</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i>Tables</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bibliographies"><i class="fa fa-check"></i>Bibliographies</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="interactive-maps.html"><a href="interactive-maps.html"><i class="fa fa-check"></i><b>18</b> Interactive maps</a>
+<ul>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#mapping-with-leaflet"><i class="fa fa-check"></i>Mapping with <code>leaflet</code></a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#geocoding"><i class="fa fa-check"></i>Geocoding</a></li>
+<li class="chapter" data-level="" data-path="interactive-maps.html"><a href="interactive-maps.html#final-thoughts-1"><i class="fa fa-check"></i>Final thoughts</a></li>
+</ul></li>
+<li class="part"><span><b>V Review exercises</b></span></li>
+<li class="chapter" data-level="19" data-path="a-mystery-dataset.html"><a href="a-mystery-dataset.html"><i class="fa fa-check"></i><b>19</b> A mystery dataset</a></li>
+<li class="chapter" data-level="20" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>20</b> A <code>dplyr</code> survey</a></li>
+<li class="chapter" data-level="21" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>21</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">www.datatrain.cc</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-markdown" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Module 17</span> <code>R Markdown</code><a href="r-markdown.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-goals-9" class="section level4 unnumbered hasAnchor">
+<h4>Learning goals<a href="r-markdown.html#learning-goals-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>How to create <code>RMarkdown</code> documents<br />
+</li>
+<li>Why they are awesome<br />
+</li>
+<li>Why they are essential to truly <em>reproducible</em> reporting.</li>
+</ul>
+<p> </p>
+<p><code>R Markdown</code> is the combination of <code>R</code> and <code>Markdown</code>: you create a <code>Markdown</code> document that has <code>R</code> built-in to it: the two languages are woven, or “knitted”, together.</p>
+</div>
+<div id="do-first-explain-later" class="section level2 unnumbered hasAnchor">
+<h2>Do first, explain later<a href="r-markdown.html#do-first-explain-later" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s not talk about it. Let’s just do it.</p>
+<div id="start-an-rmarkdown-report" class="section level4 unnumbered hasAnchor">
+<h4>Start an <code>RMarkdown</code> report<a href="r-markdown.html#start-an-rmarkdown-report" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>1.</strong> Open Rstudio.<br />
+<strong>2.</strong> Click <code>File</code> -&gt; <code>New File</code> -&gt; <code>R Markdown</code><br />
+<strong>3.</strong> Fill out “Title”, “Author”, and click “Set to HTML”<br />
+<strong>4.</strong> Type <code>Ctrl + S</code> to save your file in your working directory.</p>
+</div>
+<div id="compile-your-report" class="section level4 unnumbered hasAnchor">
+<h4>Compile your report<a href="r-markdown.html#compile-your-report" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>5.</strong> Have a look at the document. What does each section mean?<br />
+<strong>6.</strong> Click the <em>“Knit”</em> button at the top.<br />
+<strong>7.</strong> Cool, right?</p>
+<p>But also kind of boring. Let’s make some changes to this report.</p>
+</div>
+<div id="modify-the-template" class="section level4 unnumbered hasAnchor">
+<h4>Modify the template<a href="r-markdown.html#modify-the-template" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>8.</strong> Let’s replace the “setup chunk” with the below.</p>
+<p><strong>9.</strong> Then, let’s change the title to some interesting question.</p>
+<p><strong>10.</strong> Now, let’s delete all of the other stuff in the template so far (beginning at “R Markdown”).</p>
+<p><strong>11.</strong> Put in some section headers using <code>Markdown</code>. Make the following sections:</p>
+<pre><code># Introduction
+
+# Methods
+
+# Results
+
+# Discussion
+
+# Bibliography</code></pre>
+<p><strong>12.</strong> Write a two-sentence introduction to your made-up research topic.</p>
+<p><strong>13.</strong> <code>Knit</code> again, to make sure that we did not break anything. (You should <code>knit</code> often!)</p>
+<p>Good? Great.</p>
+</div>
+</div>
+<div id="add-an-r-chunk" class="section level2 unnumbered hasAnchor">
+<h2>Add an <code>R</code> chunk<a href="r-markdown.html#add-an-r-chunk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In your <em>Methods</em> section, let’s create an <code>R</code> chunk in which we can generate some fake data.</p>
+<p>To make an <code>R</code> chunk, type this:</p>
+<pre><code>
+```r
+# code goes here
+```</code></pre>
+<p>Those three marks represent the start and end of a chunk of code.</p>
+<p>Now add this code into your chunk:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="r-markdown.html#cb232-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb232-2"><a href="r-markdown.html#cb232-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="at">sd=</span><span class="dv">3</span>)</span>
+<span id="cb232-3"><a href="r-markdown.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">cex=</span>.<span class="dv">7</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-249-1.png" width="925.44" /></p>
+<p>Know, re-<code>knit</code> your doc. Everything work?</p>
+<div id="chunk-options" class="section level3 unnumbered hasAnchor">
+<h3>Chunk options<a href="r-markdown.html#chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="hide-a-chunk" class="section level4 unnumbered hasAnchor">
+<h4>Hide a chunk<a href="r-markdown.html#hide-a-chunk" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To run the code within an <code>R</code> chunk but hide the code in your final output, change the bracketed code at the top of your chunk to read <code>{r, echo = FALSE}</code>.</p>
+</div>
+<div id="dont-evaluate-a-chunk" class="section level4 unnumbered hasAnchor">
+<h4>Don’t evaluate a chunk<a href="r-markdown.html#dont-evaluate-a-chunk" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To skip over a chunk without evaluating it, change your brackets to look like this: <code>{r, eval = FALSE}</code>.</p>
+<p>What if you want to hide a chunk <em>and</em> skip over it? <code>{r, echo = FALSE, eval = FALSE}</code>. This is a nice way to store code scraps that you don’t want to run but aren’t ready to get rid of.</p>
+</div>
+<div id="change-figure-size" class="section level4 unnumbered hasAnchor">
+<h4>Change figure size<a href="r-markdown.html#change-figure-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To change the dimensions of a plot output, change your brackets to look like this:
+<code>{r, fig.height = 3, fig.width = 7}</code></p>
+<p>Doing so produces a plot like this:</p>
+<p><img src="figures/unnamed-chunk-250-1.png" width="672" /></p>
+</div>
+<div id="add-figure-caption" class="section level4 unnumbered hasAnchor">
+<h4>Add figure caption<a href="r-markdown.html#add-figure-caption" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To add a figure caption, change your brackets like so: <code>{r, fig.cap = "A squished plot."}</code></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-251"></span>
+<img src="figures/unnamed-chunk-251-1.png" alt="A squished plot." width="672" />
+<p class="caption">
+Figure 17.1: A squished plot.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="in-line-r-code" class="section level2 unnumbered hasAnchor">
+<h2>In-line <code>R</code> code<a href="r-markdown.html#in-line-r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In your <em>Results</em> section, add this line:</p>
+<blockquote>
+<p>Our analysis was based on <code>`r length(x)`</code> observations.</p>
+</blockquote>
+<p>Know, re-<code>knit</code> your doc. What was printed before the word “observations”?</p>
+<p> </p>
+<p><strong>This is why <code>RMarkdown</code> is reproducible.</strong> Think of how a typical research report works: you get your results from
+<code>R</code> or whatever program you are using, then you manually write those results numbers into a <em>Word</em> document. What is reproducible about that?</p>
+<p>With <code>RMarkdown</code>, you can let the data underlying your analysis <em>literally speak for themselves</em>.</p>
+</div>
+<div id="tables" class="section level2 unnumbered hasAnchor">
+<h2>Tables<a href="r-markdown.html#tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To make a pretty table out of a dataframe, create a chunk that looks like this:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="r-markdown.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb233-2"><a href="r-markdown.html#cb233-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
+<span id="cb233-3"><a href="r-markdown.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df), <span class="at">caption =</span> <span class="st">&quot;A pretty sweet table.&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-252">Table 17.1: </span>A pretty sweet table.</caption>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">-1.4635215</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">0.0361164</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-3.4808415</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2.2164963</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2.5217605</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1.0158795</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bibliographies" class="section level2 unnumbered hasAnchor">
+<h2>Bibliographies<a href="r-markdown.html#bibliographies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>In <code>RStudio</code>, create a new Text File and save it as <code>bibliography.bib</code> in the same location as your <code>RMarkdown</code> file.</p></li>
+<li><p>Look up <a href="https://www.researchgate.net/publication/260642613_Statistical_exponential_formulas_for_homogeneous_diffusion">this paper</a></p></li>
+<li><p>Copy the <code>DOI</code>.</p></li>
+<li><p>Go to <a href="https://doi2bib.org/">https://doi2bib.org/</a></p></li>
+<li><p>Copy the <code>bibtex</code> format</p></li>
+<li><p>Paste into your <code>.bib</code> file.</p></li>
+</ul>
+<p>Note that the top line of this <code>bib</code> entry has the phrase <code>Rudd2014</code>. This is known as the citation’s “key” – you can use this phrase to reference this source within your <code>Markdown</code> doc.</p>
+<ul>
+<li><p>Back in your <code>RMarkdown</code> doc, in your <em>Discussion</em> section, write some line about a paper.</p></li>
+<li><p>At the end of that sentence, add this text: <code>([@Rudd2014])</code>.</p></li>
+<li><p>Add <code>bibliography: bibliography.bib</code> to your “<code>yaml</code>”, the header information at the very top of your <code>RMarkdown</code> file. Change the <code>yaml</code> so that it looks like this:</p></li>
+</ul>
+<pre><code>---
+output: html_document
+bibliography: bibliography.bib
+---</code></pre>
+<ul>
+<li>Re-<code>knit</code> your doc to see what happens. Was the citation automatically generated?</li>
+</ul>
+<div id="exercises-9" class="section level4 unnumbered hasAnchor">
+<h4>Exercises<a href="r-markdown.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Before getting started, think of a testable hypothesis which can be answered via a survey of your friends and classmates. For example: “woman have more dreams than men”, or “people born abroad have shorter last names than people born in the USA”, or “shoe size is associated with GPA”.</p>
+<p><strong>1.</strong> Create a repository on github called <code>report</code>.</p>
+<p><strong>2.</strong> Clone that repository to your local machine.</p>
+<p><strong>3.</strong> <code>cd</code> into that repository.</p>
+<p><strong>4.</strong> In that repo, create a new <code>Rmarkdown</code> document. Name it <code>paper.Rmd</code>.</p>
+<p><strong>5.</strong> Replace the setup chunk with the one used in the in-class exercise (above).</p>
+<p><strong>6.</strong> Create a <em>GoogleForms</em> survey with at least 5 interesting questions on a topic which interests you (one topic, five questions).</p>
+<p><strong>7.</strong> Get at least 5 people to fill out your survey.</p>
+<p> </p>
+<p><strong>8.</strong> In your <em>GoogleForms</em> settings, create a <em>GoogleSheet</em> of your results.</p>
+<p><strong>9.</strong> In the sharing settings of your <em>GoogleSheet</em>, set to “public”.</p>
+<p><strong>10.</strong> Copy the URL of your <em>GoogleSheet</em>.</p>
+<p><strong>11.</strong> Create an R chunk in your <code>paper.Rmd</code>.</p>
+<p><strong>12.</strong> Use the <code>gsheet</code> package to read your survey results as a dataframe.</p>
+<p> </p>
+<p><strong>13.</strong> After reading in the data, create the following sections in your report: <code>Introduction</code>, <code>Methods</code>, <code>Results</code>, <code>Conclusion</code>.</p>
+<p><strong>14.</strong> Spend 5-15 minutes on the internet reading about your topic / hypotheses.</p>
+<p><strong>15.</strong> Find 2-5 authors/articles of interest related to your topic. Cite them in the <em>Introduction</em>.</p>
+<p><strong>16.</strong> Describe in plain English your approach to testing your hypothesis in the <em>Methods</em> section.</p>
+<p><strong>17.</strong> In your <em>Methods</em> section, provide a URL link to your survey.</p>
+<p> </p>
+<p><strong>18.</strong> After the <em>Methods</em> section, write the <code>R</code> code (in an <code>echo</code>ed chunk) which tests your hypothesis.</p>
+<p><strong>19.</strong> In the <em>Results</em> section, write a description of both (a) your sample and (b) your results. Include at least two charts. Include at least one table.</p>
+<p><strong>20.</strong> In the <em>Conclusion</em> section, write interesting reflection on your data.</p>
+<p> </p>
+<p><strong>21.</strong> Got here? Cool, you’re fast. Now configure your computer to generate pdfs via Rmarkdown: <a href="https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd">mac</a> / <a href="https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">windows</a></p>
+<p><strong>22.</strong> Make your paper in pdf.</p>
+<p><strong>23.</strong> Check out these <a href="https://www.datadreaming.org/post/r-markdown-theme-gallery/">theme options for <code>Rmarkdown</code> docs.</a></p>
+<p><strong>24.</strong> Push your code to git</p>
+<p><strong>25.</strong> Check out how to <a href="https://rmarkdown.rstudio.com/lesson-11.html">make presentations in <code>Rmarkdown</code>.</a> Make one.</p>
+<p><strong>26.</strong> Check out how to <a href="https://rmarkdown.rstudio.com/lesson-12.html">make dashboards in <code>Rmarkdown</code>.</a> Make one.</p>
+<p><strong>27.</strong> Change your citation style. To do so, <a href="https://github.com/citation-style-language/styles">use a new csl from this site.</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="markdown-documentation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactive-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/10c-R_Markdown.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rbootcamp.pdf", "rbootcamp.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  9 SEP 2022 22:45
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  10 SEP 2022 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1502,21 +1502,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 2314--2316
 
 [83] [84] [85] [86]
 Chapter 10.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2595--2597
+
+ []
+
 [87
 
-] [88] [89] [90] [91] [92] [93] [94] [95] [96]
+] [88] [89] [90] [91] [92] [93] [94
+
+]
 Chapter 11.
+[95] [96] [97] [98] [99] [100] [101] [102] [103] [104]
+Chapter 12.
 File: img/rstudio_packages.png Graphic file (type bmp)
 <img/rstudio_packages.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 3337--3339
+Underfull \hbox (badness 10000) in paragraph at lines 3918--3920
 [][]
  []
 
 
 Underfull \vbox (badness 7273) has occurred while \output is active []
 
-[97
+[105
 
 ]
 File: img/rstudio_base-package.png Graphic file (type bmp)
@@ -1524,35 +1533,35 @@ File: img/rstudio_base-package.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[98]
+[106]
 File: img/rstudio_install-package.png Graphic file (type bmp)
 <img/rstudio_install-package.png>
 
 Underfull \vbox (badness 4479) has occurred while \output is active []
 
-[99] [100]
-File: figures/unnamed-chunk-135-1.pdf Graphic file (type pdf)
-<use figures/unnamed-chunk-135-1.pdf>
+[107] [108]
+File: figures/unnamed-chunk-174-1.pdf Graphic file (type pdf)
+<use figures/unnamed-chunk-174-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[101]
-File: figures/unnamed-chunk-135-2.pdf Graphic file (type pdf)
-<use figures/unnamed-chunk-135-2.pdf>
-[102] [103] [104
+[109]
+File: figures/unnamed-chunk-174-2.pdf Graphic file (type pdf)
+<use figures/unnamed-chunk-174-2.pdf>
+[110] [111] [112
 
-] [105] [106
+] [113] [114
 
 ]
-Chapter 12.
-[107] [108]
+Chapter 13.
+[115] [116]
 
-LaTeX Warning: File `img/csv.png' not found on input line 3784.
+LaTeX Warning: File `img/csv.png' not found on input line 4365.
 
 ! Unable to load picture or PDF file 'img/csv.png'.
 <to be read again> 
                    }
-l.3784 \includegraphics{img/csv.png}
+l.4365 \includegraphics{img/csv.png}
                                      
 Here is how much of TeX's memory you used:
  18553 strings out of 477747
@@ -1563,4 +1572,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  86i,6n,121p,1097b,415s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rbootcamp.pdf (108 pages).
+Output written on rbootcamp.pdf (116 pages).

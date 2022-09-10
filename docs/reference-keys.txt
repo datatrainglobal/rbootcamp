@@ -1,3 +1,5 @@
+fig:unnamed-chunk-251
+tab:unnamed-chunk-252
 welcome
 what-is-data-science
 the-reproducibility-crisis
@@ -7,9 +9,15 @@ setting-up-rstudio
 running-r-code
 using-rstudio-r-scripts
 variables
+vectors
 dataframes
 packages
 importing-data
 ggplot
 dplyr
+markdown-documentation
+r-markdown
 interactive-maps
+a-mystery-dataset
+a-dplyr-survey
+global-health-ggplot
