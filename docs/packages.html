@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 12 Packages | www.datatrain.cc</title>
+  <title>Module 12 Packages | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 12 Packages | www.datatrain.cc" />
+  <meta property="og:title" content="Module 12 Packages | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 12 Packages | www.datatrain.cc" />
+  <meta name="twitter:title" content="Module 12 Packages | The Datatrain R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   
@@ -297,7 +297,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">www.datatrain.cc</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Datatrain R Bootcamp</a>
           </h1>
         </div>
 
@@ -320,10 +320,6 @@ div.csl-indent {
 <p>You can also access thousands of other functions and datasets through bundles of external code known as <strong>packages</strong>. Packages are developed and shared by <code>R</code> users around the world – a global community working together to increase <code>R</code>’s versatility and impact.</p>
 <p>Some packages are designed to be broadly useful for almost any application, such as the packages you will be learning in this course (<code>ggplot</code>, <code>dplyr</code>, <code>stringr</code>, etc.). Such packages make it easier and more efficient to do your work with <code>R</code>.</p>
 <p>Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package <code>PBSmapping</code> contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work.</p>
-<div id="tip-text" class="tip">
-<p><strong>Instructor tip:</strong></p>
-<p>Here it may be worth discussing what it means for <code>R</code> to be an open-source project, where millions of users all over the world are developing packages for it at once, and how that gives <code>R</code> an edge over more rigid programming languages such as <code>MATLAB</code> and <code>SASS</code>.</p>
-</div>
 </div>
 <div id="packages-you-already-have" class="section level2 unnumbered hasAnchor">
 <h2>Packages you already have<a href="packages.html#packages-you-already-have" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -377,10 +373,10 @@ This is displaying all the packages already installed in your system.</p>
 <h2>Calling functions from a package<a href="packages.html#calling-functions-from-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most functions from external packages can be used by simply typing the name of the function. For example, the package <code>fun</code> contains a function for generating a random password:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="packages.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb155-2"><a href="packages.html#cb155-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;ozpWGjSBw;]</span><span class="sc">\\</span><span class="st">f&gt;er!bh@x0KF&quot;</span></span></code></pre></div>
+<span id="cb155-2"><a href="packages.html#cb155-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;t*d`%AvUOxP&amp;er Y;V</span><span class="sc">\&quot;</span><span class="st">XI</span><span class="sc">\\</span><span class="st">,|&quot;</span></span></code></pre></div>
 <p>Sometimes, however, <code>R</code> can get confused if a new package contains a function that has the same name of some function from a different package. If <code>R</code> seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax <code>&lt;package_name&gt;::&lt;function_name&gt;</code>. For example, the following command is a fine alternative to the command above:</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="packages.html#cb156-1" aria-hidden="true" tabindex="-1"></a>fun<span class="sc">::</span><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
-<span id="cb156-2"><a href="packages.html#cb156-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;&lt;</span><span class="sc">\\\&quot;</span><span class="st">R7qMr~HTkCe4#U)df$D|{&quot;</span></span></code></pre></div>
+<span id="cb156-2"><a href="packages.html#cb156-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Z~2Els,40QGyx1TA^{ B!kt#&quot;</span></span></code></pre></div>
 <p>Note that this was done in the example above using the <code>devtools</code> package.</p>
 <div id="side-notes" class="section level3 unnumbered hasAnchor">
 <h3>Side notes<a href="packages.html#side-notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>

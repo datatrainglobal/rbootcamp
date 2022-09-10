@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  10 SEP 2022 13:53
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  10 SEP 2022 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1045,17 +1045,17 @@ File: img/vis1.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 823--825
+Underfull \hbox (badness 10000) in paragraph at lines 818--820
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 825--827
+Underfull \hbox (badness 10000) in paragraph at lines 820--822
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 829--831
+Underfull \hbox (badness 10000) in paragraph at lines 824--826
 
  []
 
@@ -1063,55 +1063,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 829--831
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 834--835
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
 
  []
 
 File: img/vis2.jpeg Graphic file (type bmp)
 <img/vis2.jpeg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 856--857
+Underfull \hbox (badness 10000) in paragraph at lines 851--852
 
  []
 
 File: img/vis3.jpg Graphic file (type bmp)
 <img/vis3.jpg>
 [35]
-Underfull \hbox (badness 10000) in paragraph at lines 867--869
+Underfull \hbox (badness 10000) in paragraph at lines 862--864
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 875--877
+Underfull \hbox (badness 10000) in paragraph at lines 870--872
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 882--883
+Underfull \hbox (badness 10000) in paragraph at lines 877--878
 
  []
 
 File: img/vis6.jpg Graphic file (type bmp)
 <img/vis6.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 899--901
+Underfull \hbox (badness 10000) in paragraph at lines 894--896
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--905
+Underfull \hbox (badness 10000) in paragraph at lines 899--900
 
  []
 
 File: img/vis7.jpeg Graphic file (type bmp)
 <img/vis7.jpeg>
 [36]
-Underfull \hbox (badness 10000) in paragraph at lines 917--919
+Underfull \hbox (badness 10000) in paragraph at lines 912--914
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 922--923
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
 
  []
 
@@ -1121,12 +1121,12 @@ File: img/vis8.jpeg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [37]
-Underfull \hbox (badness 10000) in paragraph at lines 933--935
+Underfull \hbox (badness 10000) in paragraph at lines 928--930
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 940--941
+Underfull \hbox (badness 10000) in paragraph at lines 935--936
 
  []
 
@@ -1136,19 +1136,19 @@ File: img/vis9.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 949--951
+Underfull \hbox (badness 10000) in paragraph at lines 944--946
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 956--957
+Underfull \hbox (badness 10000) in paragraph at lines 951--952
 
  []
 
 File: img/vis10.png Graphic file (type bmp)
 <img/vis10.png>
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 964--965
+Underfull \hbox (badness 10000) in paragraph at lines 959--960
 
  []
 
@@ -1158,7 +1158,7 @@ File: img/vis11.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 979--980
+Underfull \hbox (badness 10000) in paragraph at lines 974--975
 
  []
 
@@ -1168,26 +1168,26 @@ File: img/vis12.jpg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [41]
-Underfull \hbox (badness 10000) in paragraph at lines 989--990
+Underfull \hbox (badness 10000) in paragraph at lines 984--985
 
  []
 
 File: img/vis12.png Graphic file (type bmp)
 <img/vis12.png>
 [42]
-Underfull \hbox (badness 10000) in paragraph at lines 1004--1005
+Underfull \hbox (badness 10000) in paragraph at lines 999--1000
 
  []
 
 File: img/vis13.png Graphic file (type bmp)
 <img/vis13.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1013--1015
+Underfull \hbox (badness 10000) in paragraph at lines 1008--1010
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1018--1019
+Underfull \hbox (badness 10000) in paragraph at lines 1013--1014
 
  []
 
@@ -1197,12 +1197,12 @@ File: img/vis15.jpg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [43]
-Underfull \hbox (badness 10000) in paragraph at lines 1029--1031
+Underfull \hbox (badness 10000) in paragraph at lines 1024--1026
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1034--1035
+Underfull \hbox (badness 10000) in paragraph at lines 1029--1030
 
  []
 
@@ -1212,50 +1212,50 @@ File: img/vis16.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [44]
-Underfull \hbox (badness 10000) in paragraph at lines 1050--1051
+Underfull \hbox (badness 10000) in paragraph at lines 1045--1046
 
  []
 
 File: img/vis18.png Graphic file (type bmp)
 <img/vis18.png>
 [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1065--1066
+Underfull \hbox (badness 10000) in paragraph at lines 1060--1061
 
  []
 
 File: img/vis20.png Graphic file (type bmp)
 <img/vis20.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1073--1074
+Underfull \hbox (badness 10000) in paragraph at lines 1068--1069
 
  []
 
 File: img/vis21.png Graphic file (type bmp)
 <img/vis21.png>
 [46]
-Underfull \hbox (badness 10000) in paragraph at lines 1081--1082
+Underfull \hbox (badness 10000) in paragraph at lines 1076--1077
 
  []
 
 File: img/visb.png Graphic file (type bmp)
 <img/visb.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1092--1094
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1089
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1096--1098
+Underfull \hbox (badness 10000) in paragraph at lines 1091--1093
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1098--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1093--1095
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1103--1104
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1099
 
  []
 
@@ -1265,12 +1265,12 @@ File: img/visc.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [47]
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1116
+Underfull \hbox (badness 10000) in paragraph at lines 1109--1111
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1116--1118
+Underfull \hbox (badness 10000) in paragraph at lines 1111--1113
 
  []
 
@@ -1280,7 +1280,7 @@ File: img/visd.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [48]
-Underfull \hbox (badness 10000) in paragraph at lines 1139--1140
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1135
 
  []
 
@@ -1290,7 +1290,7 @@ File: img/vise.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1154--1155
+Underfull \hbox (badness 10000) in paragraph at lines 1149--1150
 
  []
 
@@ -1300,7 +1300,7 @@ File: img/vis-routines.jpeg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [50]
-Underfull \hbox (badness 10000) in paragraph at lines 1162--1163
+Underfull \hbox (badness 10000) in paragraph at lines 1157--1158
 
  []
 
@@ -1310,48 +1310,48 @@ File: img/visi.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [51]
-Underfull \hbox (badness 10000) in paragraph at lines 1175--1177
+Underfull \hbox (badness 10000) in paragraph at lines 1170--1172
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1180--1181
+Underfull \hbox (badness 10000) in paragraph at lines 1175--1176
 
  []
 
 File: img/visf.png Graphic file (type bmp)
 <img/visf.png>
 [52]
-Underfull \hbox (badness 10000) in paragraph at lines 1193--1195
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1197--1199
+Underfull \hbox (badness 10000) in paragraph at lines 1192--1194
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1202--1203
+Underfull \hbox (badness 10000) in paragraph at lines 1197--1198
 
  []
 
 File: img/visg.png Graphic file (type bmp)
 <img/visg.png>
 
-Overfull \hbox (85.9831pt too wide) in paragraph at lines 1204--1206
+Overfull \hbox (85.9831pt too wide) in paragraph at lines 1199--1201
 []\TU/lmr/bx/n/10 Some baby names throughout the last 140 years [] 
  []
 
 [53]
-Underfull \hbox (badness 10000) in paragraph at lines 1228--1229
+Underfull \hbox (badness 10000) in paragraph at lines 1223--1224
 
  []
 
 File: img/vis17.png Graphic file (type bmp)
 <img/vis17.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1236--1237
+Underfull \hbox (badness 10000) in paragraph at lines 1231--1232
 
  []
 
@@ -1361,7 +1361,7 @@ File: img/vis19.png Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [54]
-Underfull \hbox (badness 10000) in paragraph at lines 1244--1245
+Underfull \hbox (badness 10000) in paragraph at lines 1239--1240
 
  []
 
@@ -1372,7 +1372,7 @@ File: img/vis-painting.jpeg Graphic file (type bmp)
 <img/vis-painting.jpeg>
 [56]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1274.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1269.
 [57
 
 ] [58
@@ -1380,30 +1380,30 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
 ]
 Chapter 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1284.
+(Font)              scaled to size 7.0pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1284.
+(Font)              scaled to size 5.0pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 1284.
+(Font)              scaled to size 10.00092pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 1284.
+(Font)              scaled to size 7.00064pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 1284.
+(Font)              scaled to size 5.00046pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 1284.
+(Font)              scaled to size 9.99893pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 1284.
+(Font)              scaled to size 6.99925pt on input line 1279.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 1284.
+(Font)              scaled to size 4.99947pt on input line 1279.
 File: img/rstudio_firstopen.png Graphic file (type bmp)
 <img/rstudio_firstopen.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1299--1301
+Underfull \hbox (badness 10000) in paragraph at lines 1294--1296
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1299--1301
+Underfull \hbox (badness 10000) in paragraph at lines 1294--1296
 
  []
 
@@ -1414,7 +1414,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: img/rstudio_settings.png Graphic file (type bmp)
 <img/rstudio_settings.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1313--1315
+Underfull \hbox (badness 10000) in paragraph at lines 1308--1310
 [][]
  []
 
@@ -1435,97 +1435,94 @@ File: img/rstudio_firstopen.png Graphic file (type bmp)
 <img/rstudio_firstopen.png>
 [65] [66] [67] [68]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1702.
-[69] [70] [71] [72
-
-]
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1687.
+[69] [70]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1893--1895
+Underfull \hbox (badness 10000) in paragraph at lines 1878--1880
 
  []
 
 File: img/rstudio_windows.png Graphic file (type bmp)
 <img/rstudio_windows.png>
-[73]
-Underfull \hbox (badness 10000) in paragraph at lines 1954--1956
+
+Underfull \vbox (badness 2326) has occurred while \output is active []
+
+[71
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1934--1936
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1956--1958
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1938
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1958--1960
+Underfull \hbox (badness 10000) in paragraph at lines 1938--1940
 
  []
 
-[74]
+[72]
 File: img/rstudio_newscript.png Graphic file (type bmp)
 <img/rstudio_newscript.png>
 File: img/rstudio_scripts.png Graphic file (type bmp)
 <img/rstudio_scripts.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1984--1986
+Underfull \hbox (badness 10000) in paragraph at lines 1959--1961
 [][]
  []
 
-[75] [76]
+[73] [74]
 
 LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 2095.
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 2060.
 
-[77]
+[75]
 File: img/rstudio_setwd.png Graphic file (type bmp)
 <img/rstudio_setwd.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2170--2172
+Underfull \hbox (badness 10000) in paragraph at lines 2130--2132
 [][]
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[78]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[79] [80] [81] [82
-
-]
+[76] [77] [78]
 Chapter 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2314--2316
+Underfull \hbox (badness 10000) in paragraph at lines 2274--2276
 
  []
 
-[83] [84] [85] [86]
+[79
+
+] [80] [81] [82]
 Chapter 10.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2595--2597
+Underfull \hbox (badness 10000) in paragraph at lines 2555--2557
 
  []
 
-[87
+[83
 
-] [88] [89] [90] [91] [92] [93] [94
+] [84] [85] [86] [87] [88] [89] [90
 
 ]
 Chapter 11.
-[95] [96] [97] [98] [99] [100] [101] [102] [103] [104]
+[91] [92] [93] [94] [95] [96] [97] [98] [99] [100]
 Chapter 12.
 File: img/rstudio_packages.png Graphic file (type bmp)
 <img/rstudio_packages.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 3918--3920
+Underfull \hbox (badness 10000) in paragraph at lines 3863--3865
 [][]
  []
 
 
-Underfull \vbox (badness 7273) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[105
+[101
 
 ]
 File: img/rstudio_base-package.png Graphic file (type bmp)
@@ -1533,43 +1530,43 @@ File: img/rstudio_base-package.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[106]
+[102]
 File: img/rstudio_install-package.png Graphic file (type bmp)
 <img/rstudio_install-package.png>
 
 Underfull \vbox (badness 4479) has occurred while \output is active []
 
-[107] [108]
+[103] [104]
 File: figures/unnamed-chunk-174-1.pdf Graphic file (type pdf)
 <use figures/unnamed-chunk-174-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[109]
+[105]
 File: figures/unnamed-chunk-174-2.pdf Graphic file (type pdf)
 <use figures/unnamed-chunk-174-2.pdf>
-[110] [111] [112
+[106] [107] [108
 
-] [113] [114
+] [109] [110
 
 ]
 Chapter 13.
-[115] [116]
+[111] [112]
 
-LaTeX Warning: File `img/csv.png' not found on input line 4365.
+LaTeX Warning: File `img/csv.png' not found on input line 4310.
 
 ! Unable to load picture or PDF file 'img/csv.png'.
 <to be read again> 
                    }
-l.4365 \includegraphics{img/csv.png}
+l.4310 \includegraphics{img/csv.png}
                                      
 Here is how much of TeX's memory you used:
  18553 strings out of 477747
  341028 string characters out of 5843091
- 830577 words of memory out of 5000000
+ 830650 words of memory out of 5000000
  39269 multiletter control sequences out of 15000+600000
  475798 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,6n,121p,1097b,415s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rbootcamp.pdf (116 pages).
+Output written on rbootcamp.pdf (112 pages).

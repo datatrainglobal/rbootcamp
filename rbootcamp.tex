@@ -118,11 +118,11 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={www.datatrain.cc},
+  pdftitle={The Datatrain R Bootcamp},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{www.datatrain.cc}
+\title{The Datatrain R Bootcamp}
 \author{}
 \date{\vspace{-2.5em}}
 
@@ -806,11 +806,6 @@ The point of this is not to make fun of others for their plots. The point is to 
 
 ~
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-Let the students offer feedback on each plot before you fill in the gaps with your own opinions and the ideas offered below each plot.
-
 ~
 
 \includegraphics{img/vis1.png}
@@ -1321,11 +1316,6 @@ Now go to the \texttt{Appearance} settings and choose a cool theme!
 
 ~
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-These installations can be clunky with a large class, and it is never fun to start out with a bunch of technical hang-ups. We recommend assigning this work \textbf{prior} to the start of the first class. Hold office hours the hour before class in order to troubleshoot one-on-one with students if they need help.
-
 ~
 
 \textbf{Appendix, install supplementary software:}
@@ -1488,11 +1478,6 @@ Finally, note that \texttt{R} is fine with negative numbers:
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\DecValTok{91}
 \end{Highlighting}
 \end{Shaded}
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-For a change of pace, call out complicated calculations and ask students to race to call out the correct result first.
 
 \hypertarget{getting-along-with-r}{%
 \section*{\texorpdfstring{Getting along with \texttt{R}}{Getting along with R}}\label{getting-along-with-r}}
@@ -1913,11 +1898,6 @@ In short, \texttt{R} is a open-source (i.e., free) coding language: a powerful p
 
 \texttt{R\ Studio} needs \texttt{R} in order to function, but \texttt{R} can technically be used on its own outside of \texttt{RStudio} if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using \texttt{R} on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), \texttt{R} is just so much more pleasant to use when you are operating it from within \texttt{RStudio}.
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-At this point it may be useful to show the students what opening \texttt{R} looks like on its own (not through \texttt{RStudio}). This helps them see why \texttt{RStudio} is valuable, and it will also help them understand what they did wrong when they accidentally open an \texttt{.R} file in \texttt{R} instead of \texttt{RStudio} -- which will happen a lot at first.
-
 \texttt{RStudio} also has increasingly powerful \emph{extensions} that make \texttt{R} even more useful and versatile in data science. These extensions allow you to use \texttt{R} to make interactive data dashboards, beautiful and reproducible data reports, presentations, websites, and even books. And new features like these are regularly being added to \texttt{RStudio} by its all-star team of data scientists.
 
 That is why this book \emph{always} uses \texttt{RStudio} when working with \texttt{R}.
@@ -1962,11 +1942,6 @@ You will use the bottom right pane very often.
 
 These three panes are useful, but the most useful window pane of all is actually \emph{missing} when you first open \texttt{RStudio}. This important pane is where you work with \textbf{scripts}.
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-We recommend speeding through this section; students will get to know these features as they become necessary. For now, you should move along to creating scripts as soon as you can.
-
 \hypertarget{scripts}{%
 \section*{Scripts}\label{scripts}}
 \addcontentsline{toc}{section}{Scripts}
@@ -1998,11 +1973,6 @@ Notice that when you press \texttt{Enter} after each line of code, nothing happe
 To send both lines of code to the \emph{Console} at once, select both lines of code and hit \texttt{Enter\ +\ Command}.
 
 (To select multiple lines of code, you can (1) click and drag with your mouse or (2) hold down your \texttt{Shift} key while clicking your down arrow key. To select \emph{all} lines of code, press \texttt{Command\ +\ A}.)
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-Get all students to practice running code at this point. The act of typing the commands themselves helps them learn and overcome their hesitation about messing up.
 
 So let's build up this script. Add a few more lines to your script, such that your script now looks like this.
 
@@ -2042,11 +2012,6 @@ The main disadvantages of this workflow are that:
 \item
   Unless you are an advanced \emph{Excel} programmer, you are probably modifying your original dataset, which is always dangerous and a big No-No in data science. Each time you save your work in \emph{Excel} or \emph{GoogleSheets} (which automatically saves each change you make), the original spreadsheet file gets replaced by the updated version. But if you brought your dataset into \texttt{R} instead, and modified it using an \texttt{R} script, then you leave the raw data alone and keep it safe. (Sure, you can always save different versions of your Excel file, but then you run the risk of mixing up versions and getting confused.)
 \end{enumerate}
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-Consider telling a story from your own work life before you discovered R scripts. For example: receiving versions of Excel files named DATA-final-final-final.xlsx, because tiny changes are inevitably discovered after you try to finalize a data file. Then you work all weekend on an analysis using that data, only to discover you were using the WRONG version of the data!
 
 Working with \texttt{R} scripts allows you to avoid all of these pitfalls. When you write an \texttt{R} script, you are making your work \ldots.
 
@@ -2121,11 +2086,6 @@ This might not seem necessary with a 5-line script, but adding visual breaks to 
 \addcontentsline{toc}{subsection}{Saving your work}
 
 \textbf{\texttt{R} scripts are only useful if you save them!} Unlike working with \emph{GoogleDocs} or \emph{GoogleSheets}, \texttt{R} will not automatically save your changes; you have to do that yourself. (This is inconvenient, but it is also safer; most of coding is trial and error, and sometimes you want to be careful about what is saved.)
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-Having grown up in the age of GoogleDocs, many students may not be familiar with what computer files are, and may not even know that their computer operates using directories of folders. It would be useful to open up File Explorer on your demo screen and show them how these directories work.
 
 \textbf{Step 1: Decide where to save your work.} The folder in which you save your \texttt{R} script will be referred to as your \emph{working directory} (see the next section). For the sake of these tutorials, it will be most convenient to save all of your scripts in a single folder that is in an easily accessed location.
 
@@ -2656,11 +2616,6 @@ You can also put vectors through logical tests:
 
 This command is asking \texttt{R} to tell you whether each element in \texttt{x} is equal to \texttt{4}.
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-One way to demonstrate this concept: Ask a single student whether they are 22 years old (ask them to answer \texttt{TRUE} or \texttt{FALSE}). Then ask the room the same question. Each student will respond \texttt{TRUE} or \texttt{FALSE}. This is the same as comparing a single value to a long vector.
-
 You can create vectors of any data class (i.e., data type).
 
 \begin{Shaded}
@@ -2997,11 +2952,6 @@ This command is asking \texttt{R} to return the 10th element in the vector \text
 \end{Shaded}
 
 This command is asking \texttt{R} to return elements \texttt{10:20} in the vector \texttt{x}.
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-For a change of pace, call out complicated subsetting calculations and ask students to race to call out the correct result first. For example: Make a vector of all integers, 51 to 151. What is the 10th element divided by the 3rd element? What is the seventieth element plus the thirty-first element? What is the average of the fortieth through sixtieth elements? Etc.
 
 \hypertarget{exercises-3}{%
 \subsubsection*{Exercises}\label{exercises-3}}
@@ -3904,11 +3854,6 @@ Some packages are designed to be broadly useful for almost any application, such
 
 Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package \texttt{PBSmapping} contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work.
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-Here it may be worth discussing what it means for \texttt{R} to be an open-source project, where millions of users all over the world are developing packages for it at once, and how that gives \texttt{R} an edge over more rigid programming languages such as \texttt{MATLAB} and \texttt{SASS}.
-
 \hypertarget{packages-you-already-have}{%
 \section*{Packages you already have}\label{packages-you-already-have}}
 \addcontentsline{toc}{section}{Packages you already have}
@@ -4014,7 +3959,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"kF40/Dq\^{}t+LN[MSg\textasciigrave{}R@E\textquotesingle{}u*U"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\%6;dlAbgDot:1zHqhu\textgreater{}f\^{}icj"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4023,7 +3968,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\#e5CT\textquotesingle{}8PUb7u}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{{-}3W)\textasciitilde{}\textgreater{}r\^{}t1J"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"P,:\^{}SlK u6/dk4\%}\SpecialCharTok{\textbackslash{}"}\StringTok{E{-}F}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{fg\textquotesingle{}*"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4507,11 +4452,6 @@ Because the syntax is so different from ``base'' \texttt{R}, it can give the imp
 \subsection*{The name \& concept}\label{the-name-concept}}
 \addcontentsline{toc}{subsection}{The name \& concept}
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-To demonstrate the ideas in this section, draw a rough plot on a whiteboard as you step through each layer.
-
 The ``\texttt{gg}'' in \texttt{ggplot} stands for ``grammar of graphics'', with ``grammar'' meaning ``the fundamental principles or rules of an art or science'' \citep{layered-grammar}. Just as all languages share common principles of grammar and syntax, so too do the many forms of data visualization. The basic idea is that all graphs can be described using a \emph{layered} grammar: all graphs represent a dataset using the same layers of visual order.
 
 \textbf{Plots are made of layers.} Think of how you draw a plot from scratch:
@@ -4564,11 +4504,6 @@ Download the \texttt{titanic} dataset, the manifest of \emph{Titanic} passengers
 \NormalTok{titanic}\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/databrew/intro{-}to{-}data{-}science/main/data/deaths.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-At this point it may be useful to emphasize that the name of the package is \textbf{\texttt{ggplot2}}, but the name of the function is just \textbf{\texttt{ggplot()}}.
 
 \hypertarget{scatter-plot}{%
 \section*{Scatter plot}\label{scatter-plot}}
@@ -5400,11 +5335,6 @@ Note that a similar verb, \texttt{ungroup()}, removes grouping.
 
 Note the use of the function, \textbf{\texttt{n()}}. This simple function counts up the number of records in each group.
 
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-To illustrate these \texttt{dplyr} verbs and re-energize the room, ask everyone to stand. Tell the students that they represent a dataframe called \texttt{people}. Now, write a \texttt{dplyr} command into your R Console and ask them to act out the command. After each command, give them time to move around to act it out. If they move around too slowly, egg them on: ``Come on, you all are like the slowest computer ever!'' \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)} \texttt{people\ \%\textgreater{}\%\ arrange(shoe\_size)\ \%\textgreater{}\%\ filter(sex\ ==\ "female")} \texttt{people\ \%\textgreater{}\%\ arrange(hair\_length)} \texttt{people\ \%\textgreater{}\%\ arrange(desc(hair\_length))} \texttt{people\ \%\textgreater{}\%\ group\_by(sex)\ \%\textgreater{}\%\ arrange(hair\_length))} \texttt{people\ \%\textgreater{}\%\ arrange(country\_of\_birth,\ shirt\_color,\ desc(shoe\_size))} etc.
-
 \hypertarget{exercises-7}{%
 \subsubsection*{Exercises}\label{exercises-7}}
 \addcontentsline{toc}{subsubsection}{Exercises}
@@ -5468,11 +5398,6 @@ Answer these questions using the new \texttt{dplyr} verbs you just learned:
 \textbf{22.} Format that plot so that it is gorgeous and well-labelled.
 
 \textbf{23.} Screenshot it and email it to your family.
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-After completing the exercises here, it is worthwhile devoting time to the Review modules entitled, \textbf{``A \texttt{dplyr} mystery''}, \textbf{``A \texttt{dplyr} survey''}, and \textbf{``Global health and \texttt{ggplot}''}. Once students become comfortable with working with \texttt{dplyr}, they will be ready to work independently on projects, using the modules in the \textbf{Deep \texttt{R}} section for references.
 
 \hypertarget{part-reproducible-research}{%
 \part{Reproducible research}\label{part-reproducible-research}}
@@ -5980,17 +5905,17 @@ To make a pretty table out of a dataframe, create a chunk that looks like this:
 \hline
 x & y\\
 \hline
-1 & 2.704173\\
+1 & -2.576988\\
 \hline
-2 & 3.249625\\
+2 & -1.540770\\
 \hline
-3 & 2.357793\\
+3 & 7.877975\\
 \hline
-4 & -4.881374\\
+4 & 4.383043\\
 \hline
-5 & 4.048902\\
+5 & -1.582775\\
 \hline
-6 & -1.742783\\
+6 & 3.595610\\
 \hline
 \end{tabular}
 \end{table}
@@ -6491,11 +6416,6 @@ This data comes from \url{https://ucdp.uu.se/encyclopedia}. Take a minute or two
 \end{itemize}
 
 ~
-
-\leavevmode\vadjust pre{\hypertarget{tip-text}{}}%
-\textbf{Instructor tip:}
-
-This review exercise is best done immediately after the module on \textbf{Dataframe wrangling}.
 
 \hypertarget{a-mystery-dataset}{%
 \chapter{A mystery dataset}\label{a-mystery-dataset}}

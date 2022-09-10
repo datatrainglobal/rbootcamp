@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 14 ggplot | www.datatrain.cc</title>
+  <title>Module 14 ggplot | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 14 ggplot | www.datatrain.cc" />
+  <meta property="og:title" content="Module 14 ggplot | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 14 ggplot | www.datatrain.cc" />
+  <meta name="twitter:title" content="Module 14 ggplot | The Datatrain R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   
@@ -297,7 +297,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">www.datatrain.cc</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Datatrain R Bootcamp</a>
           </h1>
         </div>
 
@@ -322,10 +322,6 @@ div.csl-indent {
 <p><strong>Note:</strong> we will refer heavily to this <a href="https://ggplot2-book.org/introduction.html"><strong>online guide about <code>ggplot</code></strong></a></p>
 <div id="the-name-concept" class="section level3 unnumbered hasAnchor">
 <h3>The name &amp; concept<a href="ggplot.html#the-name-concept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="tip-text" class="tip">
-<p><strong>Instructor tip:</strong></p>
-<p>To demonstrate the ideas in this section, draw a rough plot on a whiteboard as you step through each layer.</p>
-</div>
 <p>The “<code>gg</code>” in <code>ggplot</code> stands for “grammar of graphics”, with “grammar” meaning “the fundamental principles or rules of an art or science” <span class="citation">(<a href="#ref-layered-grammar" role="doc-biblioref">Wickham 2010</a>)</span>. Just as all languages share common principles of grammar and syntax, so too do the many forms of data visualization. The basic idea is that all graphs can be described using a <em>layered</em> grammar: all graphs represent a dataset using the same layers of visual order.</p>
 <p><strong>Plots are made of layers.</strong> Think of how you draw a plot from scratch:</p>
 <p>First, you get a piece of paper – a <strong>canvas</strong>.</p>
@@ -353,10 +349,6 @@ div.csl-indent {
 <span id="cb174-4"><a href="ggplot.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <p>Download the <code>titanic</code> dataset, the manifest of <em>Titanic</em> passengers with details such as as age, passenger class, fare paid, and whether or not they survived.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="ggplot.html#cb175-1" aria-hidden="true" tabindex="-1"></a>titanic<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/deaths.csv&quot;</span>)</span></code></pre></div>
-<div id="tip-text" class="tip">
-<p><strong>Instructor tip:</strong></p>
-<p>At this point it may be useful to emphasize that the name of the package is <strong><code>ggplot2</code></strong>, but the name of the function is just <strong><code>ggplot()</code></strong>.</p>
-</div>
 </div>
 </div>
 <div id="scatter-plot" class="section level2 unnumbered hasAnchor">

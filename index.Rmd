@@ -11,7 +11,7 @@ description: "A resource & workbook for the Datatrain R Bootcamp"
 favicon: img/favicon.ico
 always_allow_html: true
 params:
-  is_teacher: TRUE
+  is_teacher: FALSE
 ---
 
 
