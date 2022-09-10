@@ -1,5 +1,5 @@
 --- 
-title: www.datatrain.cc
+title: The Datatrain R Bootcamp
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
