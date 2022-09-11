@@ -53,11 +53,17 @@ teacher_tip(tip)
 ```
 
 
-**Appendix, install supplementary software:**    
+<u>**Appendix: Supplementary software**</u>
 
-In order to install certain packages, you'll need to take one more step:
+In order to install certain packages, you might need to take some more steps.
 
-- On Windows, download http://cran.r-project.org/bin/windows/Rtools/ and run the installer
+**Install Git Bash on Windows**
+
+- Visit https://gitforwindows.org/ and follow the instructions for downloading and installation.
+
+**Install developer tools**
+
+- On Windows, download http://cran.r-project.org/bin/windows/Rtools/ and run the installer.
 - On Mac, you need Xcode Command Line Tools. You might already have this. Check by running `devtools::has_devel()`. If you don't have it, open shell/terminal and run
 
 ```
