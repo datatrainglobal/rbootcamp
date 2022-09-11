@@ -169,7 +169,7 @@ wesanderson::wes_palette("Zissou1")
 
 4. Get help with the question mark: `?`
 
-```{r,echo=TRUE,eval=TRUE,collapse=TRUE}
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
 ?wes_palette
 ```
 
