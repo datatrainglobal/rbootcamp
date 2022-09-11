@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  11 SEP 2022 16:56
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.6)  11 SEP 2022 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1514,7 +1514,7 @@ Chapter 13.
 File: img/rstudio_packages.png Graphic file (type bmp)
 <img/rstudio_packages.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 3371--3373
+Underfull \hbox (badness 10000) in paragraph at lines 3369--3371
 [][]
  []
 
@@ -1537,7 +1537,7 @@ Underfull \vbox (badness 4479) has occurred while \output is active []
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    p
-l.3554 ...h=694.08px]{figures/unnamed-chunk-138-1}
+l.3552 ...h=694.08px]{figures/unnamed-chunk-138-1}
                                                    \includegraphics[width=69... 
 Here is how much of TeX's memory you used:
  18505 strings out of 477747

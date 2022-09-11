@@ -3354,11 +3354,9 @@ There are three interrelated rules that make a dataset tidy:
 
 ~
 
-As established in the \protect\hyperlink{calling_functions}{\textbf{Calling functions}} module, \texttt{R} comes with hundreds of built-in base functions and datasets ready for use. You can also write your \emph{own} functions, which we will cover in an upcoming module.
+You can access thousands of functions and datasets through bundles of external code known as \textbf{packages}. Packages are developed and shared by \texttt{R} users around the world --- a global community working together to increase \texttt{R}'s versatility and impact.
 
-You can also access thousands of other functions and datasets through bundles of external code known as \textbf{packages}. Packages are developed and shared by \texttt{R} users around the world -- a global community working together to increase \texttt{R}'s versatility and impact.
-
-Some packages are designed to be broadly useful for almost any application, such as the packages you will be learning in this course (\texttt{ggplot}, \texttt{dplyr}, \texttt{stringr}, etc.). Such packages make it easier and more efficient to do your work with \texttt{R}.
+Some packages are designed to be broadly useful for almost any application, such as the packages you will be learning in this course (\texttt{ggplot2}, \texttt{dplyr}, etc.). Such packages make it easier and more efficient to do your work with \texttt{R}.
 
 Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package \texttt{PBSmapping} contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work.
 
@@ -3502,7 +3500,7 @@ Packages are updated regularly, and sometimes new versions can break the functio
 \subsubsection*{Review: the workflow for using a package}\label{review-the-workflow-for-using-a-package}}
 \addcontentsline{toc}{subsubsection}{Review: the workflow for using a package}
 
-To review how to use functions from a non-base package in \texttt{R}, follow these steps (examples provided:)
+To review how to use functions from a non-base package in \texttt{R}, follow these steps:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4314,9 +4312,7 @@ Download the dataset on baby names given to newborns in the USA:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(babynames)}
-\CommentTok{\#\textgreater{} Error in library(babynames): there is no package called \textquotesingle{}babynames\textquotesingle{}}
 \NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
-\CommentTok{\#\textgreater{} Error in eval(expr, envir, enclos): object \textquotesingle{}babynames\textquotesingle{} not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4844,9 +4840,7 @@ Answer these questions using the new \texttt{dplyr} verbs you just learned:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(babynames)}
-\CommentTok{\#\textgreater{} Error in library(babynames): there is no package called \textquotesingle{}babynames\textquotesingle{}}
 \NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
-\CommentTok{\#\textgreater{} Error in eval(expr, envir, enclos): object \textquotesingle{}babynames\textquotesingle{} not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5971,9 +5965,7 @@ First, let's read in some data on health from the World Bank:
 \FunctionTok{library}\NormalTok{(readr)}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(gapminder)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(gapminder)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
 \NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}\SpecialCharTok{::}\NormalTok{gapminder}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
