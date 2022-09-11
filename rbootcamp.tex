@@ -4353,7 +4353,7 @@ Download the dataset on baby names given to newborns in the USA:
 \section*{\texorpdfstring{The \texttt{dplyr} package}{The dplyr package}}\label{the-dplyr-package}}
 \addcontentsline{toc}{section}{The \texttt{dplyr} package}
 
-Data scientists largely work in data frames and \emph{do things} to data. This is what the package \texttt{dplyr} is optimized for. It consists of a series of ``verbs'' which cover 95\% of what you need to do for most basic data processing tasks.
+Data scientists largely work with data frames and \emph{do things} to data. This is what the package \texttt{dplyr} is optimized for. It consists of a series of ``verbs'' which cover 95\% of what you need to do for most basic data processing tasks.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4367,7 +4367,7 @@ Data scientists largely work in data frames and \emph{do things} to data. This i
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{dplyr} package contains a set of \texttt{verbs}: things you do to dataframes. Those verbs are:
+The \texttt{dplyr} package contains a set of \texttt{verbs}: things you do to dataframes. Those verbs include:
 
 \begin{itemize}
 \tightlist
@@ -4391,69 +4391,57 @@ The \texttt{dplyr} package contains a set of \texttt{verbs}: things you do to da
 \section*{\texorpdfstring{The \texttt{\%\textgreater{}\%} pipe}{The \%\textgreater\% pipe}}\label{the-pipe}}
 \addcontentsline{toc}{section}{The \texttt{\%\textgreater{}\%} pipe}
 
-\textbf{\texttt{\%\textgreater{}\%}} is a ``pipe''. It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the first six elements of a sequence of 10 to 20 by 2?
+\textbf{\texttt{\%\textgreater{}\%}} is a ``pipe''. It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the even numbers from 10 to 20? (Don't judge me --- I like to do nerdy stuff.)
 
 Here's what that command would look like in base \texttt{R}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{head}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{))))}
+\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by=}\DecValTok{2}\NormalTok{)))}
 \CommentTok{\#\textgreater{} [1] 9.486833}
 \end{Highlighting}
 \end{Shaded}
 
-Pretty overwhelming, and pretty easy to make errors in writing it out.
-
-But the above could also be written a simpler way:
+Pretty overwhelming, and pretty easy to make errors in writing it out! But this can be written in a simpler way:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ head }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
+\FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by=}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sqrt}
 \CommentTok{\#\textgreater{} [1] 9.486833}
 \end{Highlighting}
 \end{Shaded}
 
 When you see the \textbf{\texttt{\%\textgreater{}\%}} pipe symbol, think of the word \textbf{``then''}.
 
-The above code could be read aloud like so: ``First, get a sequence of every second number between 10 and 20. \textbf{Then}, take the first six values. \textbf{Then}, sum those samples together. \textbf{Then}, take the square root of that sum.''
+The above code could be read aloud like so: ``First, get a sequence of every even number from 10 to 20. \textbf{Then}, take the first six values. \textbf{Then}, sum those samples together. \textbf{Then}, take the square root of that sum.''
 
 Using the \texttt{\%\textgreater{}\%} pipe framework, your code turns from a nonlinear series of parentheses and brackets to a linear progression of steps, which is a closer fit to how we tend to think about working with data. Instead of working from the inside of a command outward, we thinking linearly: take the data, \textbf{then} do things with it, \textbf{then} do more things with it, etc.
-
-Here's another example:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{mean}\NormalTok{(}\FunctionTok{sd}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{))}
-\CommentTok{\#\textgreater{} [1] 29.01149}
-\end{Highlighting}
-\end{Shaded}
-
-\ldots{} could also be written as:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sd }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ mean}
-\CommentTok{\#\textgreater{} [1] 29.01149}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{dplyr-verbs}{%
 \section*{\texorpdfstring{\texttt{dplyr} verbs}{dplyr verbs}}\label{dplyr-verbs}}
 \addcontentsline{toc}{section}{\texttt{dplyr} verbs}
 
-To practice the \texttt{dplyr} verbs, let's make a small dataframe named \texttt{people}:
+To practice the \texttt{dplyr} verbs, let's investigate some data from the \texttt{gapminder} package. Install it if you need to, then load it:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{who =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Joe\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Ben\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Xing\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Coloma\textquotesingle{}}\NormalTok{),}
-                    \AttributeTok{sex =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{),}
-                    \AttributeTok{age =} \FunctionTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{34}\NormalTok{))}
-\NormalTok{people}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33}
-\CommentTok{\#\textgreater{} 3   Xing Female  32}
-\CommentTok{\#\textgreater{} 4 Coloma Female  34}
+\CommentTok{\# if needed, install the package:}
+\CommentTok{\# install.packages("gapminder")}
+
+\CommentTok{\# load it:}
+\FunctionTok{library}\NormalTok{(gapminder)}
+
+\CommentTok{\# look at the first few rows:}
+\FunctionTok{head}\NormalTok{( gapminder )}
+\CommentTok{\#\textgreater{} \# A tibble: 6 x 6}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333      779.}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934      821.}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083      853.}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966      836.}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460      740.}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372      786.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4465,19 +4453,33 @@ The \texttt{filter()} function is used to subset a dataframe, retaining all rows
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{)}
-\CommentTok{\#\textgreater{}   who  sex age}
-\CommentTok{\#\textgreater{} 1 Joe Male  35}
-\CommentTok{\#\textgreater{} 2 Ben Male  33}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{\textquotesingle{}Europe\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 360 x 6}
+\CommentTok{\#\textgreater{}   country continent  year lifeExp     pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}   \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}   \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Albania Europe     1952    55.2 1282697     1601.}
+\CommentTok{\#\textgreater{} 2 Albania Europe     1957    59.3 1476505     1942.}
+\CommentTok{\#\textgreater{} 3 Albania Europe     1962    64.8 1728137     2313.}
+\CommentTok{\#\textgreater{} 4 Albania Europe     1967    66.2 1984060     2760.}
+\CommentTok{\#\textgreater{} 5 Albania Europe     1972    67.7 2263554     3313.}
+\CommentTok{\#\textgreater{} 6 Albania Europe     1977    68.9 2509048     3533.}
+\CommentTok{\#\textgreater{} \# ... with 354 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{)}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1   Xing Female  32}
-\CommentTok{\#\textgreater{} 2 Coloma Female  34}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lifeExp }\SpecialCharTok{\textgreater{}=} \DecValTok{70}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 494 x 6}
+\CommentTok{\#\textgreater{}   country continent  year lifeExp     pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}   \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}   \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Albania Europe     1982    70.4 2780097     3631.}
+\CommentTok{\#\textgreater{} 2 Albania Europe     1987    72   3075321     3739.}
+\CommentTok{\#\textgreater{} 3 Albania Europe     1992    71.6 3326498     2497.}
+\CommentTok{\#\textgreater{} 4 Albania Europe     1997    73.0 3428038     3193.}
+\CommentTok{\#\textgreater{} 5 Albania Europe     2002    75.7 3508512     4604.}
+\CommentTok{\#\textgreater{} 6 Albania Europe     2007    76.4 3600523     5937.}
+\CommentTok{\#\textgreater{} \# ... with 488 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4485,66 +4487,105 @@ You can also filter according to multiple conditions. Here are three ways to ach
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
-\CommentTok{\#\textgreater{}    who    sex age}
-\CommentTok{\#\textgreater{} 1 Xing Female  32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lifeExp }\SpecialCharTok{\textgreater{}=} \DecValTok{70} \SpecialCharTok{\&}\NormalTok{ year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 83 x 6}
+\CommentTok{\#\textgreater{}   country   continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}     \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Albania   Europe     2007    76.4  3600523     5937.}
+\CommentTok{\#\textgreater{} 2 Algeria   Africa     2007    72.3 33333216     6223.}
+\CommentTok{\#\textgreater{} 3 Argentina Americas   2007    75.3 40301927    12779.}
+\CommentTok{\#\textgreater{} 4 Australia Oceania    2007    81.2 20434176    34435.}
+\CommentTok{\#\textgreater{} 5 Austria   Europe     2007    79.8  8199783    36126.}
+\CommentTok{\#\textgreater{} 6 Bahrain   Asia       2007    75.6   708573    29796.}
+\CommentTok{\#\textgreater{} \# ... with 77 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{, age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
-\CommentTok{\#\textgreater{}    who    sex age}
-\CommentTok{\#\textgreater{} 1 Xing Female  32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lifeExp }\SpecialCharTok{\textgreater{}=} \DecValTok{70}\NormalTok{, year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 83 x 6}
+\CommentTok{\#\textgreater{}   country   continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}     \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Albania   Europe     2007    76.4  3600523     5937.}
+\CommentTok{\#\textgreater{} 2 Algeria   Africa     2007    72.3 33333216     6223.}
+\CommentTok{\#\textgreater{} 3 Argentina Americas   2007    75.3 40301927    12779.}
+\CommentTok{\#\textgreater{} 4 Australia Oceania    2007    81.2 20434176    34435.}
+\CommentTok{\#\textgreater{} 5 Austria   Europe     2007    79.8  8199783    36126.}
+\CommentTok{\#\textgreater{} 6 Bahrain   Asia       2007    75.6   708573    29796.}
+\CommentTok{\#\textgreater{} \# ... with 77 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(age }\SpecialCharTok{\textless{}} \DecValTok{33}\NormalTok{)}
-\CommentTok{\#\textgreater{}    who    sex age}
-\CommentTok{\#\textgreater{} 1 Xing Female  32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lifeExp }\SpecialCharTok{\textgreater{}=} \DecValTok{70}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 83 x 6}
+\CommentTok{\#\textgreater{}   country   continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}     \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Albania   Europe     2007    76.4  3600523     5937.}
+\CommentTok{\#\textgreater{} 2 Algeria   Africa     2007    72.3 33333216     6223.}
+\CommentTok{\#\textgreater{} 3 Argentina Americas   2007    75.3 40301927    12779.}
+\CommentTok{\#\textgreater{} 4 Australia Oceania    2007    81.2 20434176    34435.}
+\CommentTok{\#\textgreater{} 5 Austria   Europe     2007    79.8  8199783    36126.}
+\CommentTok{\#\textgreater{} 6 Bahrain   Asia       2007    75.6   708573    29796.}
+\CommentTok{\#\textgreater{} \# ... with 77 more rows}
 \end{Highlighting}
 \end{Shaded}
 
-Note that when a condition evaluates to \texttt{NA}, its row will be dropped. This differ from the base subsetting works with \texttt{{[}\ ...\ {]}}.
+Note that when a condition evaluates to \texttt{NA}, its row will be dropped.
 
 \hypertarget{arrange}{%
 \subsection*{\texorpdfstring{\texttt{arrange()}}{arrange()}}\label{arrange}}
 \addcontentsline{toc}{subsection}{\texttt{arrange()}}
 
-Arrange means putting things in order. That is, \texttt{arrange()} orders the rows of a data frame by the values of selected columns.
+To arrange means to put things in order --- \texttt{arrange()} orders the rows of a data frame by the values of selected columns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(age)}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1   Xing Female  32}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33}
-\CommentTok{\#\textgreater{} 3 Coloma Female  34}
-\CommentTok{\#\textgreater{} 4    Joe   Male  35}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(lifeExp)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country      continent  year lifeExp     pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}        \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}   \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Rwanda       Africa     1992    23.6 7290203      737.}
+\CommentTok{\#\textgreater{} 2 Afghanistan  Asia       1952    28.8 8425333      779.}
+\CommentTok{\#\textgreater{} 3 Gambia       Africa     1952    30    284320      485.}
+\CommentTok{\#\textgreater{} 4 Angola       Africa     1952    30.0 4232095     3521.}
+\CommentTok{\#\textgreater{} 5 Sierra Leone Africa     1952    30.3 2143249      880.}
+\CommentTok{\#\textgreater{} 6 Afghanistan  Asia       1957    30.3 9240934      821.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(sex)}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1   Xing Female  32}
-\CommentTok{\#\textgreater{} 2 Coloma Female  34}
-\CommentTok{\#\textgreater{} 3    Joe   Male  35}
-\CommentTok{\#\textgreater{} 4    Ben   Male  33}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(gdpPercap)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country          continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}            \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Congo, Dem. Rep. Africa     2002    45.0 55379852      241.}
+\CommentTok{\#\textgreater{} 2 Congo, Dem. Rep. Africa     2007    46.5 64606759      278.}
+\CommentTok{\#\textgreater{} 3 Lesotho          Africa     1952    42.1   748747      299.}
+\CommentTok{\#\textgreater{} 4 Guinea{-}Bissau    Africa     1952    32.5   580653      300.}
+\CommentTok{\#\textgreater{} 5 Congo, Dem. Rep. Africa     1997    42.6 47798986      312.}
+\CommentTok{\#\textgreater{} 6 Eritrea          Africa     1952    35.9  1438760      329.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(who)}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1    Ben   Male  33}
-\CommentTok{\#\textgreater{} 2 Coloma Female  34}
-\CommentTok{\#\textgreater{} 3    Joe   Male  35}
-\CommentTok{\#\textgreater{} 4   Xing Female  32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(continent)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}   \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Algeria Africa     1952    43.1  9279525     2449.}
+\CommentTok{\#\textgreater{} 2 Algeria Africa     1957    45.7 10270856     3014.}
+\CommentTok{\#\textgreater{} 3 Algeria Africa     1962    48.3 11000948     2551.}
+\CommentTok{\#\textgreater{} 4 Algeria Africa     1967    51.4 12760499     3247.}
+\CommentTok{\#\textgreater{} 5 Algeria Africa     1972    54.5 14760787     4183.}
+\CommentTok{\#\textgreater{} 6 Algeria Africa     1977    58.0 17152804     4910.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4552,12 +4593,17 @@ To reverse the order, use \texttt{desc()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(age))}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35}
-\CommentTok{\#\textgreater{} 2 Coloma Female  34}
-\CommentTok{\#\textgreater{} 3    Ben   Male  33}
-\CommentTok{\#\textgreater{} 4   Xing Female  32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(pop))}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country continent  year lifeExp        pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}   \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}      \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 China   Asia       2007    73.0 1318683096     4959.}
+\CommentTok{\#\textgreater{} 2 China   Asia       2002    72.0 1280400000     3119.}
+\CommentTok{\#\textgreater{} 3 China   Asia       1997    70.4 1230075000     2289.}
+\CommentTok{\#\textgreater{} 4 China   Asia       1992    68.7 1164970000     1656.}
+\CommentTok{\#\textgreater{} 5 India   Asia       2007    64.7 1110396331     2452.}
+\CommentTok{\#\textgreater{} 6 China   Asia       1987    67.3 1084035000     1379.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4565,12 +4611,35 @@ You can also arrange by multiple levels:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(sex, age)}
-\CommentTok{\#\textgreater{}      who    sex age}
-\CommentTok{\#\textgreater{} 1   Xing Female  32}
-\CommentTok{\#\textgreater{} 2 Coloma Female  34}
-\CommentTok{\#\textgreater{} 3    Ben   Male  33}
-\CommentTok{\#\textgreater{} 4    Joe   Male  35}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(continent, gdpPercap)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country          continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}            \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Congo, Dem. Rep. Africa     2002    45.0 55379852      241.}
+\CommentTok{\#\textgreater{} 2 Congo, Dem. Rep. Africa     2007    46.5 64606759      278.}
+\CommentTok{\#\textgreater{} 3 Lesotho          Africa     1952    42.1   748747      299.}
+\CommentTok{\#\textgreater{} 4 Guinea{-}Bissau    Africa     1952    32.5   580653      300.}
+\CommentTok{\#\textgreater{} 5 Congo, Dem. Rep. Africa     1997    42.6 47798986      312.}
+\CommentTok{\#\textgreater{} 6 Eritrea          Africa     1952    35.9  1438760      329.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+You can even use \texttt{arrange()} and \texttt{filter()} together:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(continent, gdpPercap)}
+\CommentTok{\#\textgreater{} \# A tibble: 142 x 6}
+\CommentTok{\#\textgreater{}   country          continent  year lifeExp      pop gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}            \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Congo, Dem. Rep. Africa     2007    46.5 64606759      278.}
+\CommentTok{\#\textgreater{} 2 Liberia          Africa     2007    45.7  3193942      415.}
+\CommentTok{\#\textgreater{} 3 Burundi          Africa     2007    49.6  8390505      430.}
+\CommentTok{\#\textgreater{} 4 Zimbabwe         Africa     2007    43.5 12311143      470.}
+\CommentTok{\#\textgreater{} 5 Guinea{-}Bissau    Africa     2007    46.4  1472041      579.}
+\CommentTok{\#\textgreater{} 6 Niger            Africa     2007    56.9 12894865      620.}
+\CommentTok{\#\textgreater{} \# ... with 136 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4578,27 +4647,21 @@ You can also arrange by multiple levels:
 \subsection*{\texorpdfstring{\texttt{select()}}{select()}}\label{select}}
 \addcontentsline{toc}{subsection}{\texttt{select()}}
 
-Select only certain variables in a data frame, making the dataframe skinnier (fewer columns).
+Use \texttt{select()} to extract only certain variables (i.e., columns) from a data frame, making the dataframe skinnier (fewer columns).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(age)}
-\CommentTok{\#\textgreater{}   age}
-\CommentTok{\#\textgreater{} 1  35}
-\CommentTok{\#\textgreater{} 2  33}
-\CommentTok{\#\textgreater{} 3  32}
-\CommentTok{\#\textgreater{} 4  34}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sex, age)}
-\CommentTok{\#\textgreater{}      sex age}
-\CommentTok{\#\textgreater{} 1   Male  35}
-\CommentTok{\#\textgreater{} 2   Male  33}
-\CommentTok{\#\textgreater{} 3 Female  32}
-\CommentTok{\#\textgreater{} 4 Female  34}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(country, year, pop)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 3}
+\CommentTok{\#\textgreater{}   country      year      pop}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}int\textgreater{}    \textless{}int\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan  1952  8425333}
+\CommentTok{\#\textgreater{} 2 Afghanistan  1957  9240934}
+\CommentTok{\#\textgreater{} 3 Afghanistan  1962 10267083}
+\CommentTok{\#\textgreater{} 4 Afghanistan  1967 11537966}
+\CommentTok{\#\textgreater{} 5 Afghanistan  1972 13079460}
+\CommentTok{\#\textgreater{} 6 Afghanistan  1977 14880372}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4606,12 +4669,17 @@ As you select columns, you can rename them like so:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sex, }\AttributeTok{years =}\NormalTok{ age)}
-\CommentTok{\#\textgreater{}      sex years}
-\CommentTok{\#\textgreater{} 1   Male    35}
-\CommentTok{\#\textgreater{} 2   Male    33}
-\CommentTok{\#\textgreater{} 3 Female    32}
-\CommentTok{\#\textgreater{} 4 Female    34}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(country, year, }\AttributeTok{population =}\NormalTok{ pop)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 3}
+\CommentTok{\#\textgreater{}   country      year population}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}int\textgreater{}      \textless{}int\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan  1952    8425333}
+\CommentTok{\#\textgreater{} 2 Afghanistan  1957    9240934}
+\CommentTok{\#\textgreater{} 3 Afghanistan  1962   10267083}
+\CommentTok{\#\textgreater{} 4 Afghanistan  1967   11537966}
+\CommentTok{\#\textgreater{} 5 Afghanistan  1972   13079460}
+\CommentTok{\#\textgreater{} 6 Afghanistan  1977   14880372}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4619,12 +4687,17 @@ You can also select a set of columns using the \texttt{:} notation:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(who}\SpecialCharTok{:}\NormalTok{sex)}
-\CommentTok{\#\textgreater{}      who    sex}
-\CommentTok{\#\textgreater{} 1    Joe   Male}
-\CommentTok{\#\textgreater{} 2    Ben   Male}
-\CommentTok{\#\textgreater{} 3   Xing Female}
-\CommentTok{\#\textgreater{} 4 Coloma Female}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(country}\SpecialCharTok{:}\NormalTok{lifeExp)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 4}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4632,18 +4705,21 @@ You can also select a set of columns using the \texttt{:} notation:
 \subsection*{\texorpdfstring{\texttt{rename()}}{rename()}}\label{rename}}
 \addcontentsline{toc}{subsection}{\texttt{rename()}}
 
-The function \texttt{rename()} changes the names of individual variables.
-
-This verb takes the syntax \texttt{\textless{}new\_name\textgreater{}\ =\ \textless{}old\_name\textgreater{}} syntax.
+The function \texttt{rename()} changes the names of individual variables --- just remember that this verb uses the syntax \texttt{\textless{}new\_name\textgreater{}\ =\ \textless{}old\_name\textgreater{}}!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{rename}\NormalTok{(}\AttributeTok{gender =}\NormalTok{ sex, }\AttributeTok{years =}\NormalTok{ age, }\AttributeTok{first\_name =}\NormalTok{ who)}
-\CommentTok{\#\textgreater{}   first\_name gender years}
-\CommentTok{\#\textgreater{} 1        Joe   Male    35}
-\CommentTok{\#\textgreater{} 2        Ben   Male    33}
-\CommentTok{\#\textgreater{} 3       Xing Female    32}
-\CommentTok{\#\textgreater{} 4     Coloma Female    34}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{rename}\NormalTok{(}\AttributeTok{population =}\NormalTok{ pop)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 6}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp population gdpPercap}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}      \textless{}int\textgreater{}     \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8    8425333      779.}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3    9240934      821.}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0   10267083      853.}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0   11537966      836.}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1   13079460      740.}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4   14880372      786.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4651,40 +4727,54 @@ This verb takes the syntax \texttt{\textless{}new\_name\textgreater{}\ =\ \textl
 \subsection*{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
 \addcontentsline{toc}{subsection}{\texttt{mutate()}}
 
-The function \texttt{mutate()} adds new variables and preserves existing ones.
-
+The function \texttt{mutate()} adds new variables (i.e., columns) and preserves existing ones.
 New variables overwrite existing variables of the same name.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{agein2020 =}\NormalTok{ age }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
-\CommentTok{\#\textgreater{}      who    sex age agein2020}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35        34}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33        32}
-\CommentTok{\#\textgreater{} 3   Xing Female  32        31}
-\CommentTok{\#\textgreater{} 4 Coloma Female  34        33}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{( }\AttributeTok{GDP =}\NormalTok{ pop}\SpecialCharTok{*}\NormalTok{gdpPercap)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 7}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap          GDP}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}        \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333      779.  6567086330.}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934      821.  7585448670.}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083      853.  8758855797.}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966      836.  9648014150.}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460      740.  9678553274.}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372      786. 11697659231.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{is\_male =}\NormalTok{ sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}Male\textquotesingle{}}\NormalTok{)}
-\CommentTok{\#\textgreater{}      who    sex age is\_male}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35    TRUE}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33    TRUE}
-\CommentTok{\#\textgreater{} 3   Xing Female  32   FALSE}
-\CommentTok{\#\textgreater{} 4 Coloma Female  34   FALSE}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{( lifeExp ) ) }
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 7}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap average\_lifeExp}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}           \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333      779.            59.5}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934      821.            59.5}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083      853.            59.5}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966      836.            59.5}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460      740.            59.5}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372      786.            59.5}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
-\CommentTok{\#\textgreater{}      who    sex age average\_age}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35        33.5}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33        33.5}
-\CommentTok{\#\textgreater{} 3   Xing Female  32        33.5}
-\CommentTok{\#\textgreater{} 4 Coloma Female  34        33.5}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{low\_lifeExp =}\NormalTok{ lifeExp }\SpecialCharTok{\textless{}} \FunctionTok{mean}\NormalTok{( lifeExp ) )}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 7}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap low\_lifeExp}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{} \textless{}lgl\textgreater{}      }
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333      779. TRUE       }
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934      821. TRUE       }
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083      853. TRUE       }
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966      836. TRUE       }
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460      740. TRUE       }
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372      786. TRUE       }
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4692,26 +4782,37 @@ You can call \texttt{mutate()} multiple times in the same pipe:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{diff\_from\_avg =}\NormalTok{ age }\SpecialCharTok{{-}}\NormalTok{ average\_age)}
-\CommentTok{\#\textgreater{}      who    sex age average\_age diff\_from\_avg}
-\CommentTok{\#\textgreater{} 1    Joe   Male  35        33.5           1.5}
-\CommentTok{\#\textgreater{} 2    Ben   Male  33        33.5          {-}0.5}
-\CommentTok{\#\textgreater{} 3   Xing Female  32        33.5          {-}1.5}
-\CommentTok{\#\textgreater{} 4 Coloma Female  34        33.5           0.5}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{( lifeExp ) ) }\SpecialCharTok{\%\textgreater{}\%}
+   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{low\_lifeExp =}\NormalTok{ lifeExp }\SpecialCharTok{\textless{}}\NormalTok{ average\_lifeExp )}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 8}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap average\_lifeExp low\_l\textasciitilde{}1}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}           \textless{}dbl\textgreater{} \textless{}lgl\textgreater{}  }
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333      779.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934      821.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083      853.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966      836.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460      740.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372      786.            59.5 TRUE   }
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows, and abbreviated variable name 1: low\_lifeExp}
 \end{Highlighting}
 \end{Shaded}
 
-You can also remove variables can be removed by setting their value to NULL.
+You can also remove variables by setting their value to NULL.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age =} \ConstantTok{NULL}\NormalTok{)}
-\CommentTok{\#\textgreater{}      who    sex}
-\CommentTok{\#\textgreater{} 1    Joe   Male}
-\CommentTok{\#\textgreater{} 2    Ben   Male}
-\CommentTok{\#\textgreater{} 3   Xing Female}
-\CommentTok{\#\textgreater{} 4 Coloma Female}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{gdpPercap =} \ConstantTok{NULL}\NormalTok{)}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 5}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       1952    28.8  8425333}
+\CommentTok{\#\textgreater{} 2 Afghanistan Asia       1957    30.3  9240934}
+\CommentTok{\#\textgreater{} 3 Afghanistan Asia       1962    32.0 10267083}
+\CommentTok{\#\textgreater{} 4 Afghanistan Asia       1967    34.0 11537966}
+\CommentTok{\#\textgreater{} 5 Afghanistan Asia       1972    36.1 13079460}
+\CommentTok{\#\textgreater{} 6 Afghanistan Asia       1977    38.4 14880372}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4719,12 +4820,17 @@ A similar function, \texttt{transmute()}, adds new variables and drops existing 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{transmute}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
-\CommentTok{\#\textgreater{}   average\_age}
-\CommentTok{\#\textgreater{} 1        33.5}
-\CommentTok{\#\textgreater{} 2        33.5}
-\CommentTok{\#\textgreater{} 3        33.5}
-\CommentTok{\#\textgreater{} 4        33.5}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{transmute}\NormalTok{(}\AttributeTok{GDP =}\NormalTok{ pop}\SpecialCharTok{*}\NormalTok{gdpPercap )}
+\CommentTok{\#\textgreater{} \# A tibble: 1,704 x 1}
+\CommentTok{\#\textgreater{}            GDP}
+\CommentTok{\#\textgreater{}          \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1  6567086330.}
+\CommentTok{\#\textgreater{} 2  7585448670.}
+\CommentTok{\#\textgreater{} 3  8758855797.}
+\CommentTok{\#\textgreater{} 4  9648014150.}
+\CommentTok{\#\textgreater{} 5  9678553274.}
+\CommentTok{\#\textgreater{} 6 11697659231.}
+\CommentTok{\#\textgreater{} \# ... with 1,698 more rows}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4736,34 +4842,42 @@ Most data operations are done on groups defined by variables. The function \text
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age\_for\_sex =} \FunctionTok{mean}\NormalTok{(age)) }
-\CommentTok{\#\textgreater{} \# A tibble: 4 x 4}
-\CommentTok{\#\textgreater{} \# Groups:   sex [2]}
-\CommentTok{\#\textgreater{}   who    sex      age average\_age\_for\_sex}
-\CommentTok{\#\textgreater{}   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}  \textless{}dbl\textgreater{}               \textless{}dbl\textgreater{}}
-\CommentTok{\#\textgreater{} 1 Joe    Male      35                  34}
-\CommentTok{\#\textgreater{} 2 Ben    Male      33                  34}
-\CommentTok{\#\textgreater{} 3 Xing   Female    32                  33}
-\CommentTok{\#\textgreater{} 4 Coloma Female    34                  33}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{( continent ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{( lifeExp ))}
+\CommentTok{\#\textgreater{} \# A tibble: 142 x 7}
+\CommentTok{\#\textgreater{} \# Groups:   continent [5]}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap average\_lifeExp}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}           \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       2007    43.8 31889923      975.            70.7}
+\CommentTok{\#\textgreater{} 2 Albania     Europe     2007    76.4  3600523     5937.            77.6}
+\CommentTok{\#\textgreater{} 3 Algeria     Africa     2007    72.3 33333216     6223.            54.8}
+\CommentTok{\#\textgreater{} 4 Angola      Africa     2007    42.7 12420476     4797.            54.8}
+\CommentTok{\#\textgreater{} 5 Argentina   Americas   2007    75.3 40301927    12779.            73.6}
+\CommentTok{\#\textgreater{} 6 Australia   Oceania    2007    81.2 20434176    34435.            80.7}
+\CommentTok{\#\textgreater{} \# ... with 136 more rows}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{average\_age\_for\_sex =} \FunctionTok{mean}\NormalTok{(age)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{diff\_from\_avg\_for\_sex =}\NormalTok{ age }\SpecialCharTok{{-}}\NormalTok{ average\_age\_for\_sex)}
-\CommentTok{\#\textgreater{} \# A tibble: 4 x 5}
-\CommentTok{\#\textgreater{} \# Groups:   sex [2]}
-\CommentTok{\#\textgreater{}   who    sex      age average\_age\_for\_sex diff\_from\_avg\_for\_sex}
-\CommentTok{\#\textgreater{}   \textless{}chr\textgreater{}  \textless{}chr\textgreater{}  \textless{}dbl\textgreater{}               \textless{}dbl\textgreater{}                 \textless{}dbl\textgreater{}}
-\CommentTok{\#\textgreater{} 1 Joe    Male      35                  34                     1}
-\CommentTok{\#\textgreater{} 2 Ben    Male      33                  34                    {-}1}
-\CommentTok{\#\textgreater{} 3 Xing   Female    32                  33                    {-}1}
-\CommentTok{\#\textgreater{} 4 Coloma Female    34                  33                     1}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{( continent ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{( lifeExp )) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{low\_lifeExp =}\NormalTok{ lifeExp }\SpecialCharTok{\textless{}}\NormalTok{ average\_lifeExp )}
+\CommentTok{\#\textgreater{} \# A tibble: 142 x 8}
+\CommentTok{\#\textgreater{} \# Groups:   continent [5]}
+\CommentTok{\#\textgreater{}   country     continent  year lifeExp      pop gdpPercap average\_lifeExp low\_l\textasciitilde{}1}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}       \textless{}fct\textgreater{}     \textless{}int\textgreater{}   \textless{}dbl\textgreater{}    \textless{}int\textgreater{}     \textless{}dbl\textgreater{}           \textless{}dbl\textgreater{} \textless{}lgl\textgreater{}  }
+\CommentTok{\#\textgreater{} 1 Afghanistan Asia       2007    43.8 31889923      975.            70.7 TRUE   }
+\CommentTok{\#\textgreater{} 2 Albania     Europe     2007    76.4  3600523     5937.            77.6 TRUE   }
+\CommentTok{\#\textgreater{} 3 Algeria     Africa     2007    72.3 33333216     6223.            54.8 FALSE  }
+\CommentTok{\#\textgreater{} 4 Angola      Africa     2007    42.7 12420476     4797.            54.8 TRUE   }
+\CommentTok{\#\textgreater{} 5 Argentina   Americas   2007    75.3 40301927    12779.            73.6 FALSE  }
+\CommentTok{\#\textgreater{} 6 Australia   Oceania    2007    81.2 20434176    34435.            80.7 FALSE  }
+\CommentTok{\#\textgreater{} \# ... with 136 more rows, and abbreviated variable name 1: low\_lifeExp}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4773,58 +4887,88 @@ Note that a similar verb, \texttt{ungroup()}, removes grouping.
 \subsection*{\texorpdfstring{\texttt{summarize()}}{summarize()}}\label{summarize}}
 \addcontentsline{toc}{subsection}{\texttt{summarize()}}
 
-\texttt{summarize()} or \texttt{summarize()} creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
+\texttt{summarise()} (a.k.a. \texttt{summarize()}) creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age))}
-\CommentTok{\#\textgreater{}   average\_age}
-\CommentTok{\#\textgreater{} 1        33.5}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{(lifeExp))}
+\CommentTok{\#\textgreater{} \# A tibble: 1 x 1}
+\CommentTok{\#\textgreater{}   average\_lifeExp}
+\CommentTok{\#\textgreater{}             \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1            67.0}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_age =} \FunctionTok{mean}\NormalTok{(age),}
-            \AttributeTok{standard\_dev\_of\_age =} \FunctionTok{sd}\NormalTok{(age),}
-            \AttributeTok{oldest\_age =} \FunctionTok{max}\NormalTok{(age),}
-            \AttributeTok{youngest\_age =} \FunctionTok{min}\NormalTok{(age))}
-\CommentTok{\#\textgreater{}   average\_age standard\_dev\_of\_age oldest\_age youngest\_age}
-\CommentTok{\#\textgreater{} 1        33.5            1.290994         35           32}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{(lifeExp),}
+            \AttributeTok{min\_lifeExp =} \FunctionTok{min}\NormalTok{(lifeExp),}
+            \AttributeTok{max\_lifeExp =} \FunctionTok{max}\NormalTok{(lifeExp))}
+\CommentTok{\#\textgreater{} \# A tibble: 1 x 3}
+\CommentTok{\#\textgreater{}   average\_lifeExp min\_lifeExp max\_lifeExp}
+\CommentTok{\#\textgreater{}             \textless{}dbl\textgreater{}       \textless{}dbl\textgreater{}       \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1            67.0        39.6        82.6}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{avg\_age =} \FunctionTok{mean}\NormalTok{(age),}
-            \AttributeTok{oldest\_age =} \FunctionTok{max}\NormalTok{(age),}
-            \AttributeTok{total\_years =} \FunctionTok{sum}\NormalTok{(age)) }
-\CommentTok{\#\textgreater{} \# A tibble: 2 x 4}
-\CommentTok{\#\textgreater{}   sex    avg\_age oldest\_age total\_years}
-\CommentTok{\#\textgreater{}   \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}      \textless{}dbl\textgreater{}       \textless{}dbl\textgreater{}}
-\CommentTok{\#\textgreater{} 1 Female      33         34          66}
-\CommentTok{\#\textgreater{} 2 Male        34         35          68}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(continent) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average\_lifeExp =} \FunctionTok{mean}\NormalTok{(lifeExp),}
+            \AttributeTok{min\_lifeExp =} \FunctionTok{min}\NormalTok{(lifeExp),}
+            \AttributeTok{max\_lifeExp =} \FunctionTok{max}\NormalTok{(lifeExp))}
+\CommentTok{\#\textgreater{} \# A tibble: 5 x 4}
+\CommentTok{\#\textgreater{}   continent average\_lifeExp min\_lifeExp max\_lifeExp}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}               \textless{}dbl\textgreater{}       \textless{}dbl\textgreater{}       \textless{}dbl\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Africa               54.8        39.6        76.4}
+\CommentTok{\#\textgreater{} 2 Americas             73.6        60.9        80.7}
+\CommentTok{\#\textgreater{} 3 Asia                 70.7        43.8        82.6}
+\CommentTok{\#\textgreater{} 4 Europe               77.6        71.8        81.8}
+\CommentTok{\#\textgreater{} 5 Oceania              80.7        80.2        81.2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{people }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(sex) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sample\_size =} \FunctionTok{n}\NormalTok{())}
-\CommentTok{\#\textgreater{} \# A tibble: 2 x 2}
-\CommentTok{\#\textgreater{}   sex    sample\_size}
-\CommentTok{\#\textgreater{}   \textless{}chr\textgreater{}        \textless{}int\textgreater{}}
-\CommentTok{\#\textgreater{} 1 Female           2}
-\CommentTok{\#\textgreater{} 2 Male             2}
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(continent) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{n\_countries =} \FunctionTok{n}\NormalTok{()) }
+\CommentTok{\#\textgreater{} \# A tibble: 5 x 2}
+\CommentTok{\#\textgreater{}   continent n\_countries}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}           \textless{}int\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Africa             52}
+\CommentTok{\#\textgreater{} 2 Americas           25}
+\CommentTok{\#\textgreater{} 3 Asia               33}
+\CommentTok{\#\textgreater{} 4 Europe             30}
+\CommentTok{\#\textgreater{} 5 Oceania             2}
 \end{Highlighting}
 \end{Shaded}
 
-Note the use of the function, \textbf{\texttt{n()}}. This simple function counts up the number of records in each group.
+Note the use of the function \textbf{\texttt{n()}} --- this simple function counts up the number of records in each group. This is such a common task that there's another verb, \texttt{tally()} that does the same thing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{( year }\SpecialCharTok{==} \DecValTok{2007}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(continent) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{tally}\NormalTok{()}
+\CommentTok{\#\textgreater{} \# A tibble: 5 x 2}
+\CommentTok{\#\textgreater{}   continent     n}
+\CommentTok{\#\textgreater{}   \textless{}fct\textgreater{}     \textless{}int\textgreater{}}
+\CommentTok{\#\textgreater{} 1 Africa       52}
+\CommentTok{\#\textgreater{} 2 Americas     25}
+\CommentTok{\#\textgreater{} 3 Asia         33}
+\CommentTok{\#\textgreater{} 4 Europe       30}
+\CommentTok{\#\textgreater{} 5 Oceania       2}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{exercises-6}{%
 \subsubsection*{Exercises}\label{exercises-6}}
@@ -5308,7 +5452,7 @@ Now add this code into your chunk:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-213-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-212-1}
 
 Know, re-\texttt{knit} your doc. Everything work?
 
@@ -5339,7 +5483,7 @@ To change the dimensions of a plot output, change your brackets to look like thi
 
 Doing so produces a plot like this:
 
-\includegraphics[width=504px]{figures/unnamed-chunk-214-1}
+\includegraphics[width=504px]{figures/unnamed-chunk-213-1}
 
 \hypertarget{add-figure-caption}{%
 \subsubsection*{Add figure caption}\label{add-figure-caption}}
@@ -5348,7 +5492,7 @@ Doing so produces a plot like this:
 To add a figure caption, change your brackets like so: \texttt{\{r,\ fig.cap\ =\ "A\ squished\ plot."\}}
 
 \begin{figure}
-\includegraphics[width=504px]{figures/unnamed-chunk-215-1} \caption{A squished plot.}\label{fig:unnamed-chunk-215}
+\includegraphics[width=504px]{figures/unnamed-chunk-214-1} \caption{A squished plot.}\label{fig:unnamed-chunk-214}
 \end{figure}
 
 \hypertarget{in-line-r-code}{%
@@ -5386,7 +5530,7 @@ To make a pretty table out of a dataframe, create a chunk that looks like this:
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-216}A pretty sweet table.}
+\caption{\label{tab:unnamed-chunk-215}A pretty sweet table.}
 \centering
 \begin{tabular}[t]{r|r}
 \hline
@@ -5575,7 +5719,7 @@ To begin a \texttt{leaflet} map, simply type \texttt{leaflet()}. This creates a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-221-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-220-1}
 
 ~
 
@@ -5587,7 +5731,7 @@ Now, add the background map. To do so, \texttt{leaflet} uses ``tiles''. Tiles ar
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-222-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-221-1}
 
 ~
 
@@ -5603,7 +5747,7 @@ To get the map focused on a specific area of interest, bring in ``markers'' base
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-223-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-222-1}
 
 ~
 
@@ -5623,7 +5767,7 @@ How about satellite imagery instead?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-224-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-223-1}
 
 ~
 
@@ -5637,7 +5781,7 @@ How about topography instead?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-225-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-224-1}
 
 ~
 
@@ -5659,7 +5803,7 @@ To change the markers from a ``dart'' to a circle, use \texttt{addCircleMarkers(
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-226-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-225-1}
 
 ~
 
@@ -5678,7 +5822,7 @@ To add `pop up' information when you click on your marker, use the \texttt{popup
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-227-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-226-1}
 
 ~
 
@@ -5703,7 +5847,7 @@ For example, map the bathymetry of the northeast Pacific basin:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-228-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-227-1}
 
 ~
 
@@ -5720,7 +5864,7 @@ Or get satellite imagery for an island off the coast of Georgia, USA:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-229-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-228-1}
 
 \hypertarget{geocoding}{%
 \section*{Geocoding}\label{geocoding}}
@@ -5782,7 +5926,7 @@ And check out your map:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-235-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-234-1}
 
 ~
 
@@ -5832,7 +5976,7 @@ Now, add the mailing address as a \texttt{popup} in your marker:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=694.08px]{figures/unnamed-chunk-239-1}
+\includegraphics[width=694.08px]{figures/unnamed-chunk-238-1}
 
 \hypertarget{final-thoughts-1}{%
 \section*{Final thoughts}\label{final-thoughts-1}}

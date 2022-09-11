@@ -9,7 +9,7 @@
 
 ## The `dplyr` package {-}
 
-Data scientists largely work in data frames and _do things_ to data. This is what the package `dplyr` is optimized for. It consists of a series of "verbs" which cover 95% of what you need to do for most basic data processing tasks. 
+Data scientists largely work with data frames and _do things_ to data. This is what the package `dplyr` is optimized for. It consists of a series of "verbs" which cover 95% of what you need to do for most basic data processing tasks. 
 
 ```{r,echo=TRUE,collapse=TRUE,eval=FALSE}
 install.packages('dplyr') # if you haven't yet
@@ -19,7 +19,7 @@ install.packages('dplyr') # if you haven't yet
 library(dplyr)
 ```
 
-The `dplyr` package contains a set of `verbs`: things you do to dataframes. Those verbs are:
+The `dplyr` package contains a set of `verbs`: things you do to dataframes. Those verbs include:
 
 - **`filter()`**  
 - **`arrange()`**  
@@ -31,49 +31,40 @@ The `dplyr` package contains a set of `verbs`: things you do to dataframes. Thos
 
 ## The `%>%` pipe {-}
 
-**`%>%`** is a "pipe". It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the first six elements of a sequence of 10 to 20 by 2?
+**`%>%`** is a "pipe". It is a way to write code without so many parentheses. For example, what if I want to find the square root of the sum of the even numbers from 10 to 20? (Don't judge me &mdash; I like to do nerdy stuff.)
 
 Here's what that command would look like in base `R`:  
 
 ```{r,echo=TRUE,collapse=TRUE}
-sqrt(sum(head(seq(10, 20, 2))))
+sqrt(sum(seq(10, 20, by=2)))
 ```
 
-Pretty overwhelming, and pretty easy to make errors in writing it out. 
-
-But the above could also be written a simpler way:
+Pretty overwhelming, and pretty easy to make errors in writing it out! But this can be written in a simpler way:
 
 ```{r,echo=TRUE,collapse=TRUE}
-seq(10, 20, 2) %>% head %>% sum %>% sqrt
+seq(10, 20, by=2) %>% sum %>% sqrt
 ```
 
 When you see the **`%>%`** pipe symbol, think of the word **"then"**. 
 
-The above code could be read aloud like so: "First, get a sequence of every second number between 10 and 20. **Then**, take the first six values. **Then**, sum those samples together. **Then**, take the square root of that sum." 
+The above code could be read aloud like so: "First, get a sequence of every even number from 10 to 20. **Then**, take the first six values. **Then**, sum those samples together. **Then**, take the square root of that sum." 
 
 Using the `%>%` pipe framework, your code turns from a nonlinear series of parentheses and brackets to a linear progression of steps, which is a closer fit to how we tend to think about working with data. Instead of working from the inside of a command outward, we thinking linearly: take the data, **then** do things with it, **then** do more things with it, etc.
 
-Here's another example:
-
-```{r,echo=TRUE,collapse=TRUE}
-mean(sd(1:100))
-```
-
-... could also be written as:
-
-```{r,echo=TRUE,collapse=TRUE}
-1:100 %>% sd %>% mean
-```
 
 ## `dplyr` verbs {-}
 
-To practice the `dplyr` verbs, let's make a small dataframe named `people`:
+To practice the `dplyr` verbs, let's investigate some data from the `gapminder` package. Install it if you need to, then load it:
 
 ```{r,echo=TRUE,collapse=TRUE}
-people <- data.frame(who = c('Joe', 'Ben', 'Xing', 'Coloma'),
-                    sex = c('Male', 'Male', 'Female', 'Female'),
-                    age = c(35, 33, 32, 34))
-people
+# if needed, install the package:
+# install.packages("gapminder")
+
+# load it:
+library(gapminder)
+
+# look at the first few rows:
+head( gapminder )
 ```
 
 ### `filter()` {-}
@@ -81,129 +72,127 @@ people
 The `filter()` function is used to subset a dataframe, retaining all rows that satisfy your conditions. To be retained, the row must produce a value of `TRUE` for all conditions. 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% filter(sex == 'Male')
+gapminder %>% filter(continent == 'Europe')
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% filter(sex == 'Female')
+gapminder %>% filter(lifeExp >= 70)
 ```
 
 You can also filter according to multiple conditions. Here are three ways to acheive the same thing:  
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% filter(sex == 'Female' & age < 33)
+gapminder %>% filter(lifeExp >= 70 & year == 2007)
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% filter(sex == 'Female', age < 33)
+gapminder %>% filter(lifeExp >= 70, year == 2007)
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% filter(sex == 'Female') %>% filter(age < 33)
+gapminder %>% filter(lifeExp >= 70) %>% filter(year == 2007)
 ```
 
-Note that when a condition evaluates to `NA`, its row will be dropped. This differ from the base subsetting works with `[ ... ]`.
+Note that when a condition evaluates to `NA`, its row will be dropped. 
 
 ### `arrange()` {-}
 
-Arrange means putting things in order. That is, `arrange()` orders the rows of a data frame by the values of selected columns.
+To arrange means to put things in order &mdash; `arrange()` orders the rows of a data frame by the values of selected columns.
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(age)
+gapminder %>% arrange(lifeExp)
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(sex)
+gapminder %>% arrange(gdpPercap)
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(who)
+gapminder %>% arrange(continent)
 ```
 
 To reverse the order, use `desc()`: 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(desc(age))
+gapminder %>% arrange(desc(pop))
 ```
 
 You can also arrange by multiple levels: 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% arrange(sex, age)
+gapminder %>% arrange(continent, gdpPercap)
 ```
 
+You can even use `arrange()` and `filter()` together:
+
+```{r,echo=TRUE,collapse=TRUE}
+gapminder %>% filter( year == 2007) %>% arrange(continent, gdpPercap)
+```
 
 ### `select()` {-}
 
-Select only certain variables in a data frame, making the dataframe skinnier (fewer columns). 
+Use `select()` to extract only certain variables (i.e., columns) from a data frame, making the dataframe skinnier (fewer columns). 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% select(age)
-```
-
-```{r,echo=TRUE,collapse=TRUE}
-people %>% select(sex, age)
+gapminder %>% select(country, year, pop)
 ```
 
 As you select columns, you can rename them like so:  
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% select(sex, years = age)
+gapminder %>% select(country, year, population = pop)
 ```
 
 You can also select a set of columns using the `:` notation:
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% select(who:sex)
+gapminder %>% select(country:lifeExp)
 ```
-
 
 ### `rename()` {-}
 
-The function `rename()` changes the names of individual variables.  
-
-This verb takes the syntax `<new_name> = <old_name>` syntax.
+The function `rename()` changes the names of individual variables &mdash; just remember that this verb uses the syntax `<new_name> = <old_name>`!
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% rename(gender = sex, years = age, first_name = who)
+gapminder %>% rename(population = pop)
 ```
 
 
 ### `mutate()` {-}
 
-The function `mutate()` adds new variables and preserves existing ones. 
-
+The function `mutate()` adds new variables (i.e., columns) and preserves existing ones. 
 New variables overwrite existing variables of the same name. 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(agein2020 = age - 1)
+gapminder %>% mutate( GDP = pop*gdpPercap)
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(is_male = sex == 'Male')
+gapminder %>% mutate(average_lifeExp = mean( lifeExp ) ) 
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(average_age = mean(age))
+gapminder %>% mutate(low_lifeExp = lifeExp < mean( lifeExp ) )
 ```
 
 You can call `mutate()` multiple times in the same pipe:  
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(average_age = mean(age)) %>%
-  mutate(diff_from_avg = age - average_age)
+gapminder %>% 
+  mutate(average_lifeExp = mean( lifeExp ) ) %>%
+   mutate(low_lifeExp = lifeExp < average_lifeExp )
 ```
 
-You can also remove variables can be removed by setting their value to NULL.
+You can also remove variables by setting their value to NULL.
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% mutate(age = NULL)
+gapminder %>% mutate(gdpPercap = NULL)
 ```
 
 A similar function, `transmute()`, adds new variables and drops existing ones, kind of like a combination of `select()` and `mutate()`.
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% transmute(average_age = mean(age))
+gapminder %>% transmute(GDP = pop*gdpPercap )
 ```
 
 
@@ -212,52 +201,65 @@ people %>% transmute(average_age = mean(age))
 Most data operations are done on groups defined by variables. The function `group_by()` takes an existing table and converts it into a grouped one where operations are performed "by group". 
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  group_by(sex) %>%
-  mutate(average_age_for_sex = mean(age)) 
+gapminder %>%
+  filter( year == 2007 ) %>%
+  group_by( continent ) %>%
+  mutate( average_lifeExp = mean( lifeExp ))
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  group_by(sex) %>%
-  mutate(average_age_for_sex = mean(age)) %>%
-  mutate(diff_from_avg_for_sex = age - average_age_for_sex)
+gapminder %>%
+  filter( year == 2007 ) %>%
+  group_by( continent ) %>%
+  mutate( average_lifeExp = mean( lifeExp )) %>%
+  mutate( low_lifeExp = lifeExp < average_lifeExp )
 ```
 
 Note that a similar verb, `ungroup()`, removes grouping.
 
 ### `summarize()` {-} 
 
-`summarize()` or `summarize()` creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
+`summarise()` (a.k.a. `summarize()`) creates an entirely new data frame. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  summarize(average_age = mean(age))
+gapminder %>% 
+  filter( year == 2007 ) %>%
+  summarize(average_lifeExp = mean(lifeExp))
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  summarize(average_age = mean(age),
-            standard_dev_of_age = sd(age),
-            oldest_age = max(age),
-            youngest_age = min(age))
+gapminder %>% 
+  filter( year == 2007 ) %>%
+  summarize(average_lifeExp = mean(lifeExp),
+            min_lifeExp = min(lifeExp),
+            max_lifeExp = max(lifeExp))
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>% 
-  group_by(sex) %>%
-  summarise(avg_age = mean(age),
-            oldest_age = max(age),
-            total_years = sum(age)) 
+gapminder %>% 
+  filter( year == 2007 ) %>%
+  group_by(continent) %>% 
+  summarize(average_lifeExp = mean(lifeExp),
+            min_lifeExp = min(lifeExp),
+            max_lifeExp = max(lifeExp))
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-people %>%
-  group_by(sex) %>%
-  summarise(sample_size = n())
+gapminder %>% 
+  filter( year == 2007 ) %>%
+  group_by(continent) %>% 
+  summarize(n_countries = n()) 
 ```
 
-Note the use of the function, **`n()`**. This simple function counts up the number of records in each group.  
+Note the use of the function **`n()`** &mdash; this simple function counts up the number of records in each group. This is such a common task that there's another verb, `tally()` that does the same thing:
+
+```{r,echo=TRUE,collapse=TRUE}
+gapminder %>% 
+  filter( year == 2007 ) %>%
+  group_by(continent) %>% 
+  tally()
+```
+
 
 ```{r, results = 'asis', eval = ifelse(exists('is_teacher'),is_teacher,TRUE),echo=FALSE}
 source('teacher_tip.R')

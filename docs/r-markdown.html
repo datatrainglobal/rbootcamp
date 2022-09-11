@@ -368,10 +368,10 @@ div.csl-indent {
 ```</code></pre>
 <p>Those three marks represent the start and end of a chunk of code.</p>
 <p>Now add this code into your chunk:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="r-markdown.html#cb193-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
-<span id="cb193-2"><a href="r-markdown.html#cb193-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="at">sd=</span><span class="dv">3</span>)</span>
-<span id="cb193-3"><a href="r-markdown.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">cex=</span>.<span class="dv">7</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-213-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="r-markdown.html#cb192-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb192-2"><a href="r-markdown.html#cb192-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="at">sd=</span><span class="dv">3</span>)</span>
+<span id="cb192-3"><a href="r-markdown.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">cex=</span>.<span class="dv">7</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-212-1.png" width="925.44" /></p>
 <p>Know, re-<code>knit</code> your doc. Everything work?</p>
 <div id="chunk-options" class="section level3 unnumbered hasAnchor">
 <h3>Chunk options<a href="r-markdown.html#chunk-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -389,13 +389,13 @@ div.csl-indent {
 <p>To change the dimensions of a plot output, change your brackets to look like this:
 <code>{r, fig.height = 3, fig.width = 7}</code></p>
 <p>Doing so produces a plot like this:</p>
-<p><img src="figures/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="figures/unnamed-chunk-213-1.png" width="672" /></p>
 </div>
 <div id="add-figure-caption" class="section level4 unnumbered hasAnchor">
 <h4>Add figure caption<a href="r-markdown.html#add-figure-caption" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To add a figure caption, change your brackets like so: <code>{r, fig.cap = "A squished plot."}</code></p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-215"></span>
-<img src="figures/unnamed-chunk-215-1.png" alt="A squished plot." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-214"></span>
+<img src="figures/unnamed-chunk-214-1.png" alt="A squished plot." width="672" />
 <p class="caption">
 Figure 18.1: A squished plot.
 </p>
@@ -418,11 +418,11 @@ Figure 18.1: A squished plot.
 <div id="tables" class="section level2 unnumbered hasAnchor">
 <h2>Tables<a href="r-markdown.html#tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To make a pretty table out of a dataframe, create a chunk that looks like this:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="r-markdown.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb194-2"><a href="r-markdown.html#cb194-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
-<span id="cb194-3"><a href="r-markdown.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df), <span class="at">caption =</span> <span class="st">&quot;A pretty sweet table.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="r-markdown.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb193-2"><a href="r-markdown.html#cb193-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
+<span id="cb193-3"><a href="r-markdown.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df), <span class="at">caption =</span> <span class="st">&quot;A pretty sweet table.&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-216">Table 18.1: </span>A pretty sweet table.</caption>
+<caption><span id="tab:unnamed-chunk-215">Table 18.1: </span>A pretty sweet table.</caption>
 <thead>
 <tr class="header">
 <th align="right">x</th>
