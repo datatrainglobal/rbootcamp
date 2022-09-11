@@ -17,19 +17,9 @@ params:
 
 ```{r setup, include=FALSE, echo = FALSE}
 # Basic knitr options
-library(knitr)
-opts_chunk$set(comment = NA, 
-               echo=FALSE,
-               warning = FALSE, 
-               message = FALSE, 
-               error = TRUE, 
-               cache = FALSE,
-               fig.width = 9.64,
-               fig.height = 5.9,
-               fig.path = 'figures/')
+source('_common.R')
 options(scipen=999)
 is_teacher <- params$is_teacher
-
 ```
 
 ```{r,echo=FALSE,eval=FALSE}
