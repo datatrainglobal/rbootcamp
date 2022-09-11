@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 11 Dataframes | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 11 Dataframes | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -66,7 +67,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,28 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -283,8 +261,7 @@ div.csl-indent {
 </ul></li>
 <li class="part"><span><b>V Review exercises</b></span></li>
 <li class="chapter" data-level="19" data-path="a-mystery-dataset.html"><a href="a-mystery-dataset.html"><i class="fa fa-check"></i><b>19</b> A mystery dataset</a></li>
-<li class="chapter" data-level="20" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>20</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="21" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>21</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="20" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>20</b> Global health &amp; <code>ggplot</code></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
 
@@ -307,7 +284,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dataframes" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Module 11</span> Dataframes<a href="dataframes.html#dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-goal" class="section level4 unnumbered hasAnchor">
+<div id="learning-goal" class="section level4 unnumbered hasAnchor" number="">
 <h4>Learning goal<a href="dataframes.html#learning-goal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Practice exploring, summarizing, and filtering dataframes</li>
@@ -316,371 +293,257 @@ div.csl-indent {
 <p>A vector is the most basic data structure in <code>R</code>, and the other structures are built out of vectors. But, as a data scientist, the most common data structure you will be working with – by far – is a <strong>dataframe</strong>.</p>
 <p>A dataframe, essentially, is a spreadsheet: a dataset with rows and columns, in which each column represents is a vector of the same class of data.</p>
 <p>Here is what a dataframe looks like:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dataframes.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using one of R&#39;s built-in datasets</span></span>
-<span id="cb109-2"><a href="dataframes.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span>
-<span id="cb109-3"><a href="dataframes.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
-<span id="cb109-4"><a href="dataframes.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb109-5"><a href="dataframes.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb109-6"><a href="dataframes.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb109-7"><a href="dataframes.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb109-8"><a href="dataframes.html#cb109-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
-<span id="cb109-9"><a href="dataframes.html#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dataframes.html#cb109-1" aria-hidden="true"></a><span class="co"># Using one of R&#39;s built-in datasets</span></span>
+<span id="cb109-2"><a href="dataframes.html#cb109-2" aria-hidden="true"></a><span class="kw">head</span>(iris)</span>
+<span id="cb109-3"><a href="dataframes.html#cb109-3" aria-hidden="true"></a>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
+<span id="cb109-4"><a href="dataframes.html#cb109-4" aria-hidden="true"></a><span class="dv">1</span>          <span class="fl">5.1</span>         <span class="fl">3.5</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
+<span id="cb109-5"><a href="dataframes.html#cb109-5" aria-hidden="true"></a><span class="dv">2</span>          <span class="fl">4.9</span>         <span class="fl">3.0</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
+<span id="cb109-6"><a href="dataframes.html#cb109-6" aria-hidden="true"></a><span class="dv">3</span>          <span class="fl">4.7</span>         <span class="fl">3.2</span>          <span class="fl">1.3</span>         <span class="fl">0.2</span>  setosa</span>
+<span id="cb109-7"><a href="dataframes.html#cb109-7" aria-hidden="true"></a><span class="dv">4</span>          <span class="fl">4.6</span>         <span class="fl">3.1</span>          <span class="fl">1.5</span>         <span class="fl">0.2</span>  setosa</span>
+<span id="cb109-8"><a href="dataframes.html#cb109-8" aria-hidden="true"></a><span class="dv">5</span>          <span class="fl">5.0</span>         <span class="fl">3.6</span>          <span class="fl">1.4</span>         <span class="fl">0.2</span>  setosa</span>
+<span id="cb109-9"><a href="dataframes.html#cb109-9" aria-hidden="true"></a><span class="dv">6</span>          <span class="fl">5.4</span>         <span class="fl">3.9</span>          <span class="fl">1.7</span>         <span class="fl">0.4</span>  setosa</span></code></pre></div>
 <p>In this dataframe, each row pertains to a unique iris plant. The columns contain related information about each individual plant.</p>
 <p>Here’s another data.frame, built from scratch, which shows that dataframes are just a group of vectors:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dataframes.html#cb110-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">25</span><span class="sc">:</span><span class="dv">29</span></span>
-<span id="cb110-2"><a href="dataframes.html#cb110-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">55</span><span class="sc">:</span><span class="dv">59</span></span>
-<span id="cb110-3"><a href="dataframes.html#cb110-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
-<span id="cb110-4"><a href="dataframes.html#cb110-4" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb110-5"><a href="dataframes.html#cb110-5" aria-hidden="true" tabindex="-1"></a>   x  y</span>
-<span id="cb110-6"><a href="dataframes.html#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></span>
-<span id="cb110-7"><a href="dataframes.html#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></span>
-<span id="cb110-8"><a href="dataframes.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></span>
-<span id="cb110-9"><a href="dataframes.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></span>
-<span id="cb110-10"><a href="dataframes.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dataframes.html#cb110-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">:</span><span class="dv">29</span></span>
+<span id="cb110-2"><a href="dataframes.html#cb110-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="dv">55</span><span class="op">:</span><span class="dv">59</span></span>
+<span id="cb110-3"><a href="dataframes.html#cb110-3" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
+<span id="cb110-4"><a href="dataframes.html#cb110-4" aria-hidden="true"></a>df</span>
+<span id="cb110-5"><a href="dataframes.html#cb110-5" aria-hidden="true"></a>   x  y</span>
+<span id="cb110-6"><a href="dataframes.html#cb110-6" aria-hidden="true"></a><span class="dv">1</span> <span class="dv">25</span> <span class="dv">55</span></span>
+<span id="cb110-7"><a href="dataframes.html#cb110-7" aria-hidden="true"></a><span class="dv">2</span> <span class="dv">26</span> <span class="dv">56</span></span>
+<span id="cb110-8"><a href="dataframes.html#cb110-8" aria-hidden="true"></a><span class="dv">3</span> <span class="dv">27</span> <span class="dv">57</span></span>
+<span id="cb110-9"><a href="dataframes.html#cb110-9" aria-hidden="true"></a><span class="dv">4</span> <span class="dv">28</span> <span class="dv">58</span></span>
+<span id="cb110-10"><a href="dataframes.html#cb110-10" aria-hidden="true"></a><span class="dv">5</span> <span class="dv">29</span> <span class="dv">59</span></span></code></pre></div>
 <p>In this command, we used the <code>data.frame()</code> function to combine two vectors into a dataframe with two columns named <code>x</code> and <code>y</code>. <code>R</code> then saved this result in a new variable named <code>df</code>. When we call <code>df</code>, <code>R</code> shows us the dataframe.</p>
 <p>The great thing about dataframes is that they allow you to relate different data types to each other.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="dataframes.html#cb111-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</span>
-<span id="cb111-2"><a href="dataframes.html#cb111-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">height=</span><span class="fu">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</span>
-<span id="cb111-3"><a href="dataframes.html#cb111-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb111-4"><a href="dataframes.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  name height</span>
-<span id="cb111-5"><a href="dataframes.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  Ben     <span class="dv">75</span></span>
-<span id="cb111-6"><a href="dataframes.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  Joe     <span class="dv">73</span></span>
-<span id="cb111-7"><a href="dataframes.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Eric     <span class="dv">80</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="dataframes.html#cb111-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>),</span>
+<span id="cb111-2"><a href="dataframes.html#cb111-2" aria-hidden="true"></a>                 <span class="dt">height=</span><span class="kw">c</span>(<span class="dv">75</span>,<span class="dv">73</span>,<span class="dv">80</span>))</span>
+<span id="cb111-3"><a href="dataframes.html#cb111-3" aria-hidden="true"></a>df</span>
+<span id="cb111-4"><a href="dataframes.html#cb111-4" aria-hidden="true"></a>  name height</span>
+<span id="cb111-5"><a href="dataframes.html#cb111-5" aria-hidden="true"></a><span class="dv">1</span>  Ben     <span class="dv">75</span></span>
+<span id="cb111-6"><a href="dataframes.html#cb111-6" aria-hidden="true"></a><span class="dv">2</span>  Joe     <span class="dv">73</span></span>
+<span id="cb111-7"><a href="dataframes.html#cb111-7" aria-hidden="true"></a><span class="dv">3</span> Eric     <span class="dv">80</span></span></code></pre></div>
 <p>This dataframe has one column of class <code>character</code> and another of class <code>numeric</code>.</p>
 </div>
-<div id="subsetting-exploring-dataframes" class="section level2 unnumbered hasAnchor">
+<div id="subsetting-exploring-dataframes" class="section level2 unnumbered hasAnchor" number="">
 <h2>Subsetting &amp; exploring dataframes<a href="dataframes.html#subsetting-exploring-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To explore dataframes, let’s use a dataset on fuel mileage for all cars sold from 1985 to 2014.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dataframes.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></span>
-<span id="cb112-2"><a href="dataframes.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fueleconomy)</span>
-<span id="cb112-3"><a href="dataframes.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(vehicles)</span>
-<span id="cb112-4"><a href="dataframes.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vehicles)</span>
-<span id="cb112-5"><a href="dataframes.html#cb112-5" aria-hidden="true" tabindex="-1"></a>     id  make       model year           class           trans</span>
-<span id="cb112-6"><a href="dataframes.html#cb112-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb112-7"><a href="dataframes.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb112-8"><a href="dataframes.html#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb112-9"><a href="dataframes.html#cb112-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb112-10"><a href="dataframes.html#cb112-10" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb112-11"><a href="dataframes.html#cb112-11" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb112-12"><a href="dataframes.html#cb112-12" aria-hidden="true" tabindex="-1"></a>              drive cyl displ    fuel hwy cty</span>
-<span id="cb112-13"><a href="dataframes.html#cb112-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb112-14"><a href="dataframes.html#cb112-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb112-15"><a href="dataframes.html#cb112-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb112-16"><a href="dataframes.html#cb112-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></span>
-<span id="cb112-17"><a href="dataframes.html#cb112-17" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></span>
-<span id="cb112-18"><a href="dataframes.html#cb112-18" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dataframes.html#cb112-1" aria-hidden="true"></a><span class="co"># need to install first install.packages(&#39;fueleconomy&#39;)</span></span>
+<span id="cb112-2"><a href="dataframes.html#cb112-2" aria-hidden="true"></a><span class="kw">library</span>(fueleconomy)</span>
+<span id="cb112-3"><a href="dataframes.html#cb112-3" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">library</span>(fueleconomy)<span class="op">:</span><span class="st"> </span>there is no package called <span class="st">&#39;fueleconomy&#39;</span></span>
+<span id="cb112-4"><a href="dataframes.html#cb112-4" aria-hidden="true"></a><span class="kw">data</span>(vehicles)</span>
+<span id="cb112-5"><a href="dataframes.html#cb112-5" aria-hidden="true"></a><span class="kw">head</span>(vehicles)</span>
+<span id="cb112-6"><a href="dataframes.html#cb112-6" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">head</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>To look at this dataframe in full, you call display it in a separate tab within <code>RStudio</code> using the <code>View()</code> function:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="dataframes.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vehicles)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="dataframes.html#cb113-1" aria-hidden="true"></a><span class="kw">View</span>(vehicles)</span></code></pre></div>
 <p>A dataframe has rows of data organized into columns. In this dataframe, each row pertains to a single vehicle make/model – i.e., a single <em>observation</em>. Each column pertains to a single <em>type</em> of data. Columns are named in the <em>header</em> of the dataframe.</p>
 <p>All the same useful exploration and subsetting functions that applied to vectors now apply to dataframes. In addition to those functions you already know, let’s add some new functions to your inventory of useful functions.</p>
-<div id="exploration" class="section level3 unnumbered hasAnchor">
+<div id="exploration" class="section level3 unnumbered hasAnchor" number="">
 <h3>Exploration<a href="dataframes.html#exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><code>head()</code></strong> and <strong><code>tail()</code></strong> summarize the beginning and end of the object:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="dataframes.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vehicles) </span>
-<span id="cb114-2"><a href="dataframes.html#cb114-2" aria-hidden="true" tabindex="-1"></a>     id  make       model year           class           trans</span>
-<span id="cb114-3"><a href="dataframes.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-4"><a href="dataframes.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars    Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb114-5"><a href="dataframes.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-6"><a href="dataframes.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-7"><a href="dataframes.html#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="dv">14039</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars    Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb114-8"><a href="dataframes.html#cb114-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">14040</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span> Subcompact Cars Automatic <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-9"><a href="dataframes.html#cb114-9" aria-hidden="true" tabindex="-1"></a>              drive cyl displ    fuel hwy cty</span>
-<span id="cb114-10"><a href="dataframes.html#cb114-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb114-11"><a href="dataframes.html#cb114-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.2</span> Regular  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb114-12"><a href="dataframes.html#cb114-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb114-13"><a href="dataframes.html#cb114-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">27</span>  <span class="dv">19</span></span>
-<span id="cb114-14"><a href="dataframes.html#cb114-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">2.3</span> Regular  <span class="dv">29</span>  <span class="dv">21</span></span>
-<span id="cb114-15"><a href="dataframes.html#cb114-15" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">6</span>   <span class="fl">3.0</span> Regular  <span class="dv">26</span>  <span class="dv">17</span></span>
-<span id="cb114-16"><a href="dataframes.html#cb114-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-17"><a href="dataframes.html#cb114-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(vehicles) </span>
-<span id="cb114-18"><a href="dataframes.html#cb114-18" aria-hidden="true" tabindex="-1"></a>         id make             model year            class        trans</span>
-<span id="cb114-19"><a href="dataframes.html#cb114-19" aria-hidden="true" tabindex="-1"></a><span class="dv">33437</span> <span class="dv">28868</span> Yugo GV Plus<span class="sc">/</span>GV<span class="sc">/</span>Cabrio <span class="dv">1990</span> Minicompact Cars Manual <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-20"><a href="dataframes.html#cb114-20" aria-hidden="true" tabindex="-1"></a><span class="dv">33438</span>  <span class="dv">6635</span> Yugo GV Plus<span class="sc">/</span>GV<span class="sc">/</span>Cabrio <span class="dv">1990</span>  Subcompact Cars Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb114-21"><a href="dataframes.html#cb114-21" aria-hidden="true" tabindex="-1"></a><span class="dv">33439</span>  <span class="dv">3157</span> Yugo            GV<span class="sc">/</span>GVX <span class="dv">1987</span>  Subcompact Cars Manual <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-22"><a href="dataframes.html#cb114-22" aria-hidden="true" tabindex="-1"></a><span class="dv">33440</span>  <span class="dv">5497</span> Yugo            GV<span class="sc">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-23"><a href="dataframes.html#cb114-23" aria-hidden="true" tabindex="-1"></a><span class="dv">33441</span>  <span class="dv">5498</span> Yugo            GV<span class="sc">/</span>GVX <span class="dv">1989</span>  Subcompact Cars Manual <span class="dv">5</span><span class="sc">-</span>spd</span>
-<span id="cb114-24"><a href="dataframes.html#cb114-24" aria-hidden="true" tabindex="-1"></a><span class="dv">33442</span>  <span class="dv">1745</span> Yugo       Gy<span class="sc">/</span>yugo GVX <span class="dv">1986</span> Minicompact Cars Manual <span class="dv">4</span><span class="sc">-</span>spd</span>
-<span id="cb114-25"><a href="dataframes.html#cb114-25" aria-hidden="true" tabindex="-1"></a>                  drive cyl displ    fuel hwy cty</span>
-<span id="cb114-26"><a href="dataframes.html#cb114-26" aria-hidden="true" tabindex="-1"></a><span class="dv">33437</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">27</span>  <span class="dv">21</span></span>
-<span id="cb114-27"><a href="dataframes.html#cb114-27" aria-hidden="true" tabindex="-1"></a><span class="dv">33438</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></span>
-<span id="cb114-28"><a href="dataframes.html#cb114-28" aria-hidden="true" tabindex="-1"></a><span class="dv">33439</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></span>
-<span id="cb114-29"><a href="dataframes.html#cb114-29" aria-hidden="true" tabindex="-1"></a><span class="dv">33440</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">24</span></span>
-<span id="cb114-30"><a href="dataframes.html#cb114-30" aria-hidden="true" tabindex="-1"></a><span class="dv">33441</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.3</span> Regular  <span class="dv">28</span>  <span class="dv">23</span></span>
-<span id="cb114-31"><a href="dataframes.html#cb114-31" aria-hidden="true" tabindex="-1"></a><span class="dv">33442</span> Front<span class="sc">-</span>Wheel Drive   <span class="dv">4</span>   <span class="fl">1.1</span> Regular  <span class="dv">29</span>  <span class="dv">22</span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="dataframes.html#cb114-1" aria-hidden="true"></a><span class="kw">head</span>(vehicles) </span>
+<span id="cb114-2"><a href="dataframes.html#cb114-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">head</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb114-3"><a href="dataframes.html#cb114-3" aria-hidden="true"></a></span>
+<span id="cb114-4"><a href="dataframes.html#cb114-4" aria-hidden="true"></a><span class="kw">tail</span>(vehicles) </span>
+<span id="cb114-5"><a href="dataframes.html#cb114-5" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">tail</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p><strong><code>names()</code></strong> tells you the column names:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="dataframes.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(vehicles) </span>
-<span id="cb115-2"><a href="dataframes.html#cb115-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;id&quot;</span>    <span class="st">&quot;make&quot;</span>  <span class="st">&quot;model&quot;</span> <span class="st">&quot;year&quot;</span>  <span class="st">&quot;class&quot;</span> <span class="st">&quot;trans&quot;</span> <span class="st">&quot;drive&quot;</span> <span class="st">&quot;cyl&quot;</span>   <span class="st">&quot;displ&quot;</span></span>
-<span id="cb115-3"><a href="dataframes.html#cb115-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">10</span>] <span class="st">&quot;fuel&quot;</span>  <span class="st">&quot;hwy&quot;</span>   <span class="st">&quot;cty&quot;</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="dataframes.html#cb115-1" aria-hidden="true"></a><span class="kw">names</span>(vehicles) </span>
+<span id="cb115-2"><a href="dataframes.html#cb115-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p><strong><code>nrow()</code></strong>, <strong><code>ncol()</code></strong>, and <strong><code>dim()</code></strong> tell you about the dimensions of your dataframe:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="dataframes.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(vehicles) </span>
-<span id="cb116-2"><a href="dataframes.html#cb116-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">33442</span></span></code></pre></div>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="dataframes.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(vehicles) </span>
-<span id="cb117-2"><a href="dataframes.html#cb117-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">12</span></span></code></pre></div>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="dataframes.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vehicles) </span>
-<span id="cb118-2"><a href="dataframes.html#cb118-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">33442</span>    <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="dataframes.html#cb116-1" aria-hidden="true"></a><span class="kw">nrow</span>(vehicles) </span>
+<span id="cb116-2"><a href="dataframes.html#cb116-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">nrow</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="dataframes.html#cb117-1" aria-hidden="true"></a><span class="kw">ncol</span>(vehicles) </span>
+<span id="cb117-2"><a href="dataframes.html#cb117-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">ncol</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="dataframes.html#cb118-1" aria-hidden="true"></a><span class="kw">dim</span>(vehicles) </span>
+<span id="cb118-2"><a href="dataframes.html#cb118-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Note that <strong><code>length()</code></strong> does not work the same on dataframes as it does with vectors. In dataframes, <code>length()</code> is the equivalent of <code>ncol()</code>; it will <em>not</em> give you the number of rows in a dataset.</p>
 <p>Importantly, you can use <strong><code>is.na()</code></strong> to ask whether columns or rows contain <code>NA</code>s:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="dataframes.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for NAs</span></span>
-<span id="cb119-2"><a href="dataframes.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-3"><a href="dataframes.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Which rows in the `hwy` column have NA&#39;s?</span></span>
-<span id="cb119-4"><a href="dataframes.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(vehicles<span class="sc">$</span>hwy))</span>
-<span id="cb119-5"><a href="dataframes.html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="fu">integer</span>(<span class="dv">0</span>)</span>
-<span id="cb119-6"><a href="dataframes.html#cb119-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-7"><a href="dataframes.html#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (No NAs in that column!)</span></span>
-<span id="cb119-8"><a href="dataframes.html#cb119-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-9"><a href="dataframes.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="co"># What about rows in the `cyl` column?</span></span>
-<span id="cb119-10"><a href="dataframes.html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(vehicles<span class="sc">$</span>cyl))</span>
-<span id="cb119-11"><a href="dataframes.html#cb119-11" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">1232</span>  <span class="dv">1233</span>  <span class="dv">2347</span>  <span class="dv">3246</span>  <span class="dv">3247</span>  <span class="dv">3248</span>  <span class="dv">6115</span>  <span class="dv">6116</span>  <span class="dv">6533</span>  <span class="dv">7783</span>  <span class="dv">7784</span>  <span class="dv">8472</span></span>
-<span id="cb119-12"><a href="dataframes.html#cb119-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">13</span>] <span class="dv">10613</span> <span class="dv">10614</span> <span class="dv">11696</span> <span class="dv">11697</span> <span class="dv">12411</span> <span class="dv">12412</span> <span class="dv">12413</span> <span class="dv">12928</span> <span class="dv">12929</span> <span class="dv">12934</span> <span class="dv">12935</span> <span class="dv">12944</span></span>
-<span id="cb119-13"><a href="dataframes.html#cb119-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">25</span>] <span class="dv">16429</span> <span class="dv">16430</span> <span class="dv">21070</span> <span class="dv">23472</span> <span class="dv">23473</span> <span class="dv">23474</span> <span class="dv">24485</span> <span class="dv">24486</span> <span class="dv">24487</span> <span class="dv">24488</span> <span class="dv">24489</span> <span class="dv">26150</span></span>
-<span id="cb119-14"><a href="dataframes.html#cb119-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">37</span>] <span class="dv">28628</span> <span class="dv">28704</span> <span class="dv">28705</span> <span class="dv">28706</span> <span class="dv">28707</span> <span class="dv">28708</span> <span class="dv">28709</span> <span class="dv">29314</span> <span class="dv">29315</span> <span class="dv">30023</span> <span class="dv">30024</span> <span class="dv">30025</span></span>
-<span id="cb119-15"><a href="dataframes.html#cb119-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">49</span>] <span class="dv">30026</span> <span class="dv">30027</span> <span class="dv">30028</span> <span class="dv">31063</span> <span class="dv">31064</span> <span class="dv">31065</span> <span class="dv">31066</span> <span class="dv">31067</span> <span class="dv">31068</span> <span class="dv">31069</span></span>
-<span id="cb119-16"><a href="dataframes.html#cb119-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-17"><a href="dataframes.html#cb119-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (lots of NAs in that column!)</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="dataframes.html#cb119-1" aria-hidden="true"></a><span class="co"># Check for NAs</span></span>
+<span id="cb119-2"><a href="dataframes.html#cb119-2" aria-hidden="true"></a></span>
+<span id="cb119-3"><a href="dataframes.html#cb119-3" aria-hidden="true"></a><span class="co"># Which rows in the `hwy` column have NA&#39;s?</span></span>
+<span id="cb119-4"><a href="dataframes.html#cb119-4" aria-hidden="true"></a><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))</span>
+<span id="cb119-5"><a href="dataframes.html#cb119-5" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>hwy))<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb119-6"><a href="dataframes.html#cb119-6" aria-hidden="true"></a></span>
+<span id="cb119-7"><a href="dataframes.html#cb119-7" aria-hidden="true"></a><span class="co"># (No NAs in that column!)</span></span>
+<span id="cb119-8"><a href="dataframes.html#cb119-8" aria-hidden="true"></a></span>
+<span id="cb119-9"><a href="dataframes.html#cb119-9" aria-hidden="true"></a><span class="co"># What about rows in the `cyl` column?</span></span>
+<span id="cb119-10"><a href="dataframes.html#cb119-10" aria-hidden="true"></a><span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))</span>
+<span id="cb119-11"><a href="dataframes.html#cb119-11" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">which</span>(<span class="kw">is.na</span>(vehicles<span class="op">$</span>cyl))<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb119-12"><a href="dataframes.html#cb119-12" aria-hidden="true"></a></span>
+<span id="cb119-13"><a href="dataframes.html#cb119-13" aria-hidden="true"></a><span class="co"># (lots of NAs in that column!)</span></span></code></pre></div>
 </div>
-<div id="subsetting" class="section level3 unnumbered hasAnchor">
+<div id="subsetting" class="section level3 unnumbered hasAnchor" number="">
 <h3>Subsetting<a href="dataframes.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Recall that dataframes are filtered by row and/or column using this format: <strong><code>dataframe[rows,columns]</code></strong>. To get the third element of the second column, for example, you type <code>dataframe[3,2]</code>.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dataframes.html#cb120-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</span>
-<span id="cb120-2"><a href="dataframes.html#cb120-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Acura&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dataframes.html#cb120-1" aria-hidden="true"></a>vehicles[<span class="dv">3</span>,<span class="dv">2</span>]</span>
+<span id="cb120-2"><a href="dataframes.html#cb120-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Note that the comma is necessary even if you do not want to specify columns. If you try to type this …</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="dataframes.html#cb121-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="dataframes.html#cb121-1" aria-hidden="true"></a>vehicles[<span class="dv">3</span>]</span></code></pre></div>
 <p>…<code>R</code> will assume you are asking for the third column, not the third row.</p>
 <p>To filter a dataframe to multiple values, you can specify vectors for the <code>row</code> and <code>column</code></p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dataframes.html#cb122-1" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></span>
-<span id="cb122-2"><a href="dataframes.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  hwy cty</span>
-<span id="cb122-3"><a href="dataframes.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb122-4"><a href="dataframes.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb122-5"><a href="dataframes.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">26</span>  <span class="dv">18</span></span>
-<span id="cb122-6"><a href="dataframes.html#cb122-6" aria-hidden="true" tabindex="-1"></a>vehicles[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>)]  <span class="co"># can use c()</span></span>
-<span id="cb122-7"><a href="dataframes.html#cb122-7" aria-hidden="true" tabindex="-1"></a>     id hwy cty</span>
-<span id="cb122-8"><a href="dataframes.html#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">13309</span>  <span class="dv">26</span>  <span class="dv">20</span></span>
-<span id="cb122-9"><a href="dataframes.html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">13310</span>  <span class="dv">28</span>  <span class="dv">22</span></span>
-<span id="cb122-10"><a href="dataframes.html#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">13311</span>  <span class="dv">26</span>  <span class="dv">18</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dataframes.html#cb122-1" aria-hidden="true"></a>vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>] <span class="co"># can use colons</span></span>
+<span id="cb122-2"><a href="dataframes.html#cb122-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb122-3"><a href="dataframes.html#cb122-3" aria-hidden="true"></a>vehicles[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span><span class="op">:</span><span class="dv">12</span>)]  <span class="co"># can use c()</span></span>
+<span id="cb122-4"><a href="dataframes.html#cb122-4" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Columns can also be called according to their names. Use the <strong><code>$</code></strong> sign to specify a column.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dataframes.html#cb123-1" aria-hidden="true" tabindex="-1"></a>vehicles<span class="sc">$</span>hwy[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb123-2"><a href="dataframes.html#cb123-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">28</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dataframes.html#cb123-1" aria-hidden="true"></a>vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb123-2"><a href="dataframes.html#cb123-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Note that when you use a <code>$</code>, you will not need to use a comma within your brackets. If you try to run this …</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dataframes.html#cb124-1" aria-hidden="true" tabindex="-1"></a>vehicles<span class="sc">$</span>hwy[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dataframes.html#cb124-1" aria-hidden="true"></a>vehicles<span class="op">$</span>hwy[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
 <p>…<code>R</code> will throw a fit.</p>
 <p>Also recall that you can use logical tests, which return boolean values <code>TRUE</code> or <code>FALSE</code>, to filter dataframes to rows that meet certain conditions. For example, to filter to only the rows for cars with better than 100 mpg, you can use this syntax:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dataframes.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build your logical test</span></span>
-<span id="cb125-2"><a href="dataframes.html#cb125-2" aria-hidden="true" tabindex="-1"></a>verdicts <span class="ot">&lt;-</span> vehicles<span class="sc">$</span>hwy <span class="sc">&gt;</span> <span class="dv">100</span></span>
-<span id="cb125-3"><a href="dataframes.html#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-4"><a href="dataframes.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset with booleans</span></span>
-<span id="cb125-5"><a href="dataframes.html#cb125-5" aria-hidden="true" tabindex="-1"></a>vehicles[verdicts,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb125-6"><a href="dataframes.html#cb125-6" aria-hidden="true" tabindex="-1"></a>           make    model</span>
-<span id="cb125-7"><a href="dataframes.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="dv">6533</span>  Chevrolet Spark EV</span>
-<span id="cb125-8"><a href="dataframes.html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="dv">10613</span>      Fiat     500e</span>
-<span id="cb125-9"><a href="dataframes.html#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="dv">10614</span>      Fiat     500e</span>
-<span id="cb125-10"><a href="dataframes.html#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="dv">16429</span>     Honda   Fit EV</span>
-<span id="cb125-11"><a href="dataframes.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="dv">16430</span>     Honda   Fit EV</span>
-<span id="cb125-12"><a href="dataframes.html#cb125-12" aria-hidden="true" tabindex="-1"></a><span class="dv">24487</span>    Nissan     Leaf</span>
-<span id="cb125-13"><a href="dataframes.html#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="dv">24488</span>    Nissan     Leaf</span>
-<span id="cb125-14"><a href="dataframes.html#cb125-14" aria-hidden="true" tabindex="-1"></a><span class="dv">24489</span>    Nissan     Leaf</span>
-<span id="cb125-15"><a href="dataframes.html#cb125-15" aria-hidden="true" tabindex="-1"></a><span class="dv">28628</span>     Scion    iQ EV</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dataframes.html#cb125-1" aria-hidden="true"></a><span class="co"># Build your logical test</span></span>
+<span id="cb125-2"><a href="dataframes.html#cb125-2" aria-hidden="true"></a>verdicts &lt;-<span class="st"> </span>vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span></span>
+<span id="cb125-3"><a href="dataframes.html#cb125-3" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb125-4"><a href="dataframes.html#cb125-4" aria-hidden="true"></a></span>
+<span id="cb125-5"><a href="dataframes.html#cb125-5" aria-hidden="true"></a><span class="co"># Subset with booleans</span></span>
+<span id="cb125-6"><a href="dataframes.html#cb125-6" aria-hidden="true"></a>vehicles[verdicts,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb125-7"><a href="dataframes.html#cb125-7" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Or you can write all this in a single line, to be more efficient:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dataframes.html#cb126-1" aria-hidden="true" tabindex="-1"></a>vehicles[ vehicles<span class="sc">$</span>hwy <span class="sc">&gt;</span> <span class="dv">100</span>  , <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb126-2"><a href="dataframes.html#cb126-2" aria-hidden="true" tabindex="-1"></a>           make    model</span>
-<span id="cb126-3"><a href="dataframes.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="dv">6533</span>  Chevrolet Spark EV</span>
-<span id="cb126-4"><a href="dataframes.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10613</span>      Fiat     500e</span>
-<span id="cb126-5"><a href="dataframes.html#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="dv">10614</span>      Fiat     500e</span>
-<span id="cb126-6"><a href="dataframes.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="dv">16429</span>     Honda   Fit EV</span>
-<span id="cb126-7"><a href="dataframes.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="dv">16430</span>     Honda   Fit EV</span>
-<span id="cb126-8"><a href="dataframes.html#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="dv">24487</span>    Nissan     Leaf</span>
-<span id="cb126-9"><a href="dataframes.html#cb126-9" aria-hidden="true" tabindex="-1"></a><span class="dv">24488</span>    Nissan     Leaf</span>
-<span id="cb126-10"><a href="dataframes.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="dv">24489</span>    Nissan     Leaf</span>
-<span id="cb126-11"><a href="dataframes.html#cb126-11" aria-hidden="true" tabindex="-1"></a><span class="dv">28628</span>     Scion    iQ EV</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dataframes.html#cb126-1" aria-hidden="true"></a>vehicles[ vehicles<span class="op">$</span>hwy <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>  , <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb126-2"><a href="dataframes.html#cb126-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Recall that the logical test is returning a bunch of <code>TRUE</code>’s and <code>FALSE</code>’s, one for each row of <code>vehicles</code>. Only the <code>TRUE</code> rows will be returned.</p>
 </div>
-<div id="summarizing" class="section level3 unnumbered hasAnchor">
+<div id="summarizing" class="section level3 unnumbered hasAnchor" number="">
 <h3>Summarizing<a href="dataframes.html#summarizing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The same summary functions that you have used for vectors work for the columns in dataframes, since each column is also a vector. Check it out:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dataframes.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(vehicles<span class="sc">$</span>hwy)</span>
-<span id="cb127-2"><a href="dataframes.html#cb127-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dataframes.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(vehicles<span class="sc">$</span>hwy)</span>
-<span id="cb128-2"><a href="dataframes.html#cb128-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">109</span></span></code></pre></div>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dataframes.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vehicles<span class="sc">$</span>cty)</span>
-<span id="cb129-2"><a href="dataframes.html#cb129-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">17.491</span></span></code></pre></div>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dataframes.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vehicles<span class="sc">$</span>cty)</span>
-<span id="cb130-2"><a href="dataframes.html#cb130-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.582174</span></span></code></pre></div>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dataframes.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vehicles<span class="sc">$</span>make)</span>
-<span id="cb131-2"><a href="dataframes.html#cb131-2" aria-hidden="true" tabindex="-1"></a> chr [<span class="dv">1</span><span class="sc">:</span><span class="dv">33442</span>] <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> <span class="st">&quot;Acura&quot;</span> ...</span></code></pre></div>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dataframes.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vehicles<span class="sc">$</span>hwy)</span>
-<span id="cb132-2"><a href="dataframes.html#cb132-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dataframes.html#cb127-1" aria-hidden="true"></a><span class="kw">min</span>(vehicles<span class="op">$</span>hwy)</span>
+<span id="cb127-2"><a href="dataframes.html#cb127-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dataframes.html#cb128-1" aria-hidden="true"></a><span class="kw">max</span>(vehicles<span class="op">$</span>hwy)</span>
+<span id="cb128-2"><a href="dataframes.html#cb128-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dataframes.html#cb129-1" aria-hidden="true"></a><span class="kw">mean</span>(vehicles<span class="op">$</span>cty)</span>
+<span id="cb129-2"><a href="dataframes.html#cb129-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">mean</span>(vehicles<span class="op">$</span>cty)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dataframes.html#cb130-1" aria-hidden="true"></a><span class="kw">sd</span>(vehicles<span class="op">$</span>cty)</span>
+<span id="cb130-2"><a href="dataframes.html#cb130-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">is.data.frame</span>(x)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dataframes.html#cb131-1" aria-hidden="true"></a><span class="kw">str</span>(vehicles<span class="op">$</span>make)</span>
+<span id="cb131-2"><a href="dataframes.html#cb131-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">str</span>(vehicles<span class="op">$</span>make)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dataframes.html#cb132-1" aria-hidden="true"></a><span class="kw">class</span>(vehicles<span class="op">$</span>hwy)</span>
+<span id="cb132-2"><a href="dataframes.html#cb132-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>You can also use the <strong><code>summary()</code></strong> function, which provides summary statistics for each column in your dataframe:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dataframes.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vehicles)</span>
-<span id="cb133-2"><a href="dataframes.html#cb133-2" aria-hidden="true" tabindex="-1"></a>       id            make              model                year     </span>
-<span id="cb133-3"><a href="dataframes.html#cb133-3" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span>    <span class="dv">1</span>   Length<span class="sc">:</span><span class="dv">33442</span>       Length<span class="sc">:</span><span class="dv">33442</span>       Min.   <span class="sc">:</span><span class="dv">1984</span>  </span>
-<span id="cb133-4"><a href="dataframes.html#cb133-4" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span> <span class="dv">8361</span>   Class <span class="sc">:</span>character   Class <span class="sc">:</span>character   1st Qu.<span class="sc">:</span><span class="dv">1991</span>  </span>
-<span id="cb133-5"><a href="dataframes.html#cb133-5" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="dv">16724</span>   Mode  <span class="sc">:</span>character   Mode  <span class="sc">:</span>character   Median <span class="sc">:</span><span class="dv">1999</span>  </span>
-<span id="cb133-6"><a href="dataframes.html#cb133-6" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="dv">17038</span>                                         Mean   <span class="sc">:</span><span class="dv">1999</span>  </span>
-<span id="cb133-7"><a href="dataframes.html#cb133-7" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="dv">25265</span>                                         3rd Qu.<span class="sc">:</span><span class="dv">2008</span>  </span>
-<span id="cb133-8"><a href="dataframes.html#cb133-8" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="dv">34932</span>                                         Max.   <span class="sc">:</span><span class="dv">2015</span>  </span>
-<span id="cb133-9"><a href="dataframes.html#cb133-9" aria-hidden="true" tabindex="-1"></a>                                                                     </span>
-<span id="cb133-10"><a href="dataframes.html#cb133-10" aria-hidden="true" tabindex="-1"></a>    class              trans              drive                cyl        </span>
-<span id="cb133-11"><a href="dataframes.html#cb133-11" aria-hidden="true" tabindex="-1"></a> Length<span class="sc">:</span><span class="dv">33442</span>       Length<span class="sc">:</span><span class="dv">33442</span>       Length<span class="sc">:</span><span class="dv">33442</span>       Min.   <span class="sc">:</span> <span class="fl">2.000</span>  </span>
-<span id="cb133-12"><a href="dataframes.html#cb133-12" aria-hidden="true" tabindex="-1"></a> Class <span class="sc">:</span>character   Class <span class="sc">:</span>character   Class <span class="sc">:</span>character   1st Qu.<span class="sc">:</span> <span class="fl">4.000</span>  </span>
-<span id="cb133-13"><a href="dataframes.html#cb133-13" aria-hidden="true" tabindex="-1"></a> Mode  <span class="sc">:</span>character   Mode  <span class="sc">:</span>character   Mode  <span class="sc">:</span>character   Median <span class="sc">:</span> <span class="fl">6.000</span>  </span>
-<span id="cb133-14"><a href="dataframes.html#cb133-14" aria-hidden="true" tabindex="-1"></a>                                                          Mean   <span class="sc">:</span> <span class="fl">5.772</span>  </span>
-<span id="cb133-15"><a href="dataframes.html#cb133-15" aria-hidden="true" tabindex="-1"></a>                                                          3rd Qu.<span class="sc">:</span> <span class="fl">6.000</span>  </span>
-<span id="cb133-16"><a href="dataframes.html#cb133-16" aria-hidden="true" tabindex="-1"></a>                                                          Max.   <span class="sc">:</span><span class="fl">16.000</span>  </span>
-<span id="cb133-17"><a href="dataframes.html#cb133-17" aria-hidden="true" tabindex="-1"></a>                                                          NA<span class="st">&#39;s   :58      </span></span>
-<span id="cb133-18"><a href="dataframes.html#cb133-18" aria-hidden="true" tabindex="-1"></a><span class="st">     displ           fuel                hwy              cty        </span></span>
-<span id="cb133-19"><a href="dataframes.html#cb133-19" aria-hidden="true" tabindex="-1"></a><span class="st"> Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  </span></span>
-<span id="cb133-20"><a href="dataframes.html#cb133-20" aria-hidden="true" tabindex="-1"></a><span class="st"> 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  </span></span>
-<span id="cb133-21"><a href="dataframes.html#cb133-21" aria-hidden="true" tabindex="-1"></a><span class="st"> Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  </span></span>
-<span id="cb133-22"><a href="dataframes.html#cb133-22" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  </span></span>
-<span id="cb133-23"><a href="dataframes.html#cb133-23" aria-hidden="true" tabindex="-1"></a><span class="st"> 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  </span></span>
-<span id="cb133-24"><a href="dataframes.html#cb133-24" aria-hidden="true" tabindex="-1"></a><span class="st"> Max.   :8.400                      Max.   :109.00   Max.   :138.00  </span></span>
-<span id="cb133-25"><a href="dataframes.html#cb133-25" aria-hidden="true" tabindex="-1"></a><span class="st"> NA&#39;</span>s   <span class="sc">:</span><span class="dv">57</span>                                                          </span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dataframes.html#cb133-1" aria-hidden="true"></a><span class="kw">summary</span>(vehicles)</span>
+<span id="cb133-2"><a href="dataframes.html#cb133-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">summary</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>The function <strong><code>unique()</code></strong> returns unique values within a column:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dataframes.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(vehicles<span class="sc">$</span>fuel)</span>
-<span id="cb134-2"><a href="dataframes.html#cb134-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;Regular&quot;</span>                     <span class="st">&quot;Premium&quot;</span>                    </span>
-<span id="cb134-3"><a href="dataframes.html#cb134-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">3</span>] <span class="st">&quot;Diesel&quot;</span>                      <span class="st">&quot;Premium or E85&quot;</span>             </span>
-<span id="cb134-4"><a href="dataframes.html#cb134-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">5</span>] <span class="st">&quot;Electricity&quot;</span>                 <span class="st">&quot;Gasoline or E85&quot;</span>            </span>
-<span id="cb134-5"><a href="dataframes.html#cb134-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] <span class="st">&quot;Premium Gas or Electricity&quot;</span>  <span class="st">&quot;Gasoline or natural gas&quot;</span>    </span>
-<span id="cb134-6"><a href="dataframes.html#cb134-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">9</span>] <span class="st">&quot;CNG&quot;</span>                         <span class="st">&quot;Midgrade&quot;</span>                   </span>
-<span id="cb134-7"><a href="dataframes.html#cb134-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">11</span>] <span class="st">&quot;Regular Gas and Electricity&quot;</span> <span class="st">&quot;Gasoline or propane&quot;</span>        </span>
-<span id="cb134-8"><a href="dataframes.html#cb134-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">13</span>] <span class="st">&quot;Premium and Electricity&quot;</span>    </span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dataframes.html#cb134-1" aria-hidden="true"></a><span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)</span>
+<span id="cb134-2"><a href="dataframes.html#cb134-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">unique</span>(vehicles<span class="op">$</span>fuel)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span></code></pre></div>
 <p>Finally, the <strong><code>order()</code></strong> function helps you sort a dataframe according to the values in one of its columns.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="dataframes.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort dataframe by highway mileage</span></span>
-<span id="cb135-2"><a href="dataframes.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep certain columns</span></span>
-<span id="cb135-3"><a href="dataframes.html#cb135-3" aria-hidden="true" tabindex="-1"></a>vehicles_sorted <span class="ot">&lt;-</span> vehicles[<span class="fu">order</span>(vehicles<span class="sc">$</span>hwy), </span>
-<span id="cb135-4"><a href="dataframes.html#cb135-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>)] </span>
-<span id="cb135-5"><a href="dataframes.html#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vehicles_sorted)</span>
-<span id="cb135-6"><a href="dataframes.html#cb135-6" aria-hidden="true" tabindex="-1"></a>              make                  model year    fuel hwy cty</span>
-<span id="cb135-7"><a href="dataframes.html#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="dv">397</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb135-8"><a href="dataframes.html#cb135-8" aria-hidden="true" tabindex="-1"></a><span class="dv">398</span>   Aston Martin                Lagonda <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb135-9"><a href="dataframes.html#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="dv">406</span>   Aston Martin Saloon<span class="sc">/</span>Vantage<span class="sc">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb135-10"><a href="dataframes.html#cb135-10" aria-hidden="true" tabindex="-1"></a><span class="dv">408</span>   Aston Martin Saloon<span class="sc">/</span>Vantage<span class="sc">/</span>Volante <span class="dv">1985</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb135-11"><a href="dataframes.html#cb135-11" aria-hidden="true" tabindex="-1"></a><span class="dv">27725</span>  Rolls<span class="sc">-</span>Royce               Camargue <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span>
-<span id="cb135-12"><a href="dataframes.html#cb135-12" aria-hidden="true" tabindex="-1"></a><span class="dv">27726</span>  Rolls<span class="sc">-</span>Royce            Continental <span class="dv">1987</span> Regular   <span class="dv">9</span>   <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="dataframes.html#cb135-1" aria-hidden="true"></a><span class="co"># Sort dataframe by highway mileage</span></span>
+<span id="cb135-2"><a href="dataframes.html#cb135-2" aria-hidden="true"></a><span class="co"># Only keep certain columns</span></span>
+<span id="cb135-3"><a href="dataframes.html#cb135-3" aria-hidden="true"></a>vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">order</span>(vehicles<span class="op">$</span>hwy), </span>
+<span id="cb135-4"><a href="dataframes.html#cb135-4" aria-hidden="true"></a>                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)] </span>
+<span id="cb135-5"><a href="dataframes.html#cb135-5" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb135-6"><a href="dataframes.html#cb135-6" aria-hidden="true"></a><span class="kw">head</span>(vehicles_sorted)</span>
+<span id="cb135-7"><a href="dataframes.html#cb135-7" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">head</span>(vehicles_sorted)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles_sorted&#39;</span> not found</span></code></pre></div>
 <p>Reverse the order by wrapping <strong><code>rev()</code></strong> around the <code>order()</code> call:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dataframes.html#cb136-1" aria-hidden="true" tabindex="-1"></a>vehicles_sorted <span class="ot">&lt;-</span> vehicles[<span class="fu">rev</span>(<span class="fu">order</span>(vehicles<span class="sc">$</span>hwy)),</span>
-<span id="cb136-2"><a href="dataframes.html#cb136-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>)]</span>
-<span id="cb136-3"><a href="dataframes.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(vehicles_sorted)</span>
-<span id="cb136-4"><a href="dataframes.html#cb136-4" aria-hidden="true" tabindex="-1"></a>           make    model year        fuel hwy cty</span>
-<span id="cb136-5"><a href="dataframes.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="dv">6533</span>  Chevrolet Spark EV <span class="dv">2014</span> Electricity <span class="dv">109</span> <span class="dv">128</span></span>
-<span id="cb136-6"><a href="dataframes.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="dv">10614</span>      Fiat     500e <span class="dv">2014</span> Electricity <span class="dv">108</span> <span class="dv">122</span></span>
-<span id="cb136-7"><a href="dataframes.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10613</span>      Fiat     500e <span class="dv">2013</span> Electricity <span class="dv">108</span> <span class="dv">122</span></span>
-<span id="cb136-8"><a href="dataframes.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="dv">28628</span>     Scion    iQ EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">138</span></span>
-<span id="cb136-9"><a href="dataframes.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="dv">16430</span>     Honda   Fit EV <span class="dv">2014</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span>
-<span id="cb136-10"><a href="dataframes.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="dv">16429</span>     Honda   Fit EV <span class="dv">2013</span> Electricity <span class="dv">105</span> <span class="dv">132</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dataframes.html#cb136-1" aria-hidden="true"></a>vehicles_sorted &lt;-<span class="st"> </span>vehicles[<span class="kw">rev</span>(<span class="kw">order</span>(vehicles<span class="op">$</span>hwy)),</span>
+<span id="cb136-2"><a href="dataframes.html#cb136-2" aria-hidden="true"></a>                            <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>)]</span>
+<span id="cb136-3"><a href="dataframes.html#cb136-3" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">eval</span>(expr, envir, enclos)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb136-4"><a href="dataframes.html#cb136-4" aria-hidden="true"></a><span class="kw">head</span>(vehicles_sorted)</span>
+<span id="cb136-5"><a href="dataframes.html#cb136-5" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">head</span>(vehicles_sorted)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles_sorted&#39;</span> not found</span></code></pre></div>
 </div>
 </div>
-<div id="creating-dataframes" class="section level2 unnumbered hasAnchor">
+<div id="creating-dataframes" class="section level2 unnumbered hasAnchor" number="">
 <h2>Creating dataframes<a href="dataframes.html#creating-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As shown above, to create a new dataframe, use the <code>data.frame()</code> function.</p>
-<pre><code>             car mgp_hwy mpg_city
-100 Acura Legend      23       15
-101 Acura Legend      22       17
-102 Acura Legend      23       16
-103 Acura Legend      21       16
-104 Acura Legend      22       17
-105 Acura Legend      23       16
-106 Acura Legend      24       16</code></pre>
+<pre><code>Error in paste(vehicles$make, vehicles$model): object &#39;vehicles&#39; not found
+Error in eval(expr, envir, enclos): object &#39;my_vehicles&#39; not found</code></pre>
 <p>Note how the columns were named in the <code>data.frame()</code> call, and that each column is separated by a comma.</p>
 <p>You can also stage an empty dataframe, which sounds useless but will become very useful as you start working with <code>for</code> loops and other higher-order <code>R</code> tools.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dataframes.html#cb138-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb138-2"><a href="dataframes.html#cb138-2" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb138-3"><a href="dataframes.html#cb138-3" aria-hidden="true" tabindex="-1"></a>data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dataframes.html#cb138-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb138-2"><a href="dataframes.html#cb138-2" aria-hidden="true"></a>df</span>
+<span id="cb138-3"><a href="dataframes.html#cb138-3" aria-hidden="true"></a>data frame with <span class="dv">0</span> columns and <span class="dv">0</span> rows</span></code></pre></div>
 <p>To coerce an object into a format that <code>R</code> interprets as a dataframe, use <strong><code>as.dataframe()</code></strong>:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dataframes.html#cb139-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(vehicles)</span>
-<span id="cb139-2"><a href="dataframes.html#cb139-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb139-3"><a href="dataframes.html#cb139-3" aria-hidden="true" tabindex="-1"></a>     id  make       model year</span>
-<span id="cb139-4"><a href="dataframes.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">13309</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb139-5"><a href="dataframes.html#cb139-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">13310</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb139-6"><a href="dataframes.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">13311</span> Acura <span class="fl">2.2</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1997</span></span>
-<span id="cb139-7"><a href="dataframes.html#cb139-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">14038</span> Acura <span class="fl">2.3</span>CL<span class="sc">/</span><span class="fl">3.0</span>CL <span class="dv">1998</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dataframes.html#cb139-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(vehicles)</span>
+<span id="cb139-2"><a href="dataframes.html#cb139-2" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">as.data.frame</span>(vehicles)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;vehicles&#39;</span> not found</span>
+<span id="cb139-3"><a href="dataframes.html#cb139-3" aria-hidden="true"></a>df[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span>
+<span id="cb139-4"><a href="dataframes.html#cb139-4" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(df, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)<span class="op">:</span><span class="st"> </span>undefined columns selected</span></code></pre></div>
 </div>
-<div id="modifying-dataframes" class="section level2 unnumbered hasAnchor">
+<div id="modifying-dataframes" class="section level2 unnumbered hasAnchor" number="">
 <h2>Modifying dataframes<a href="dataframes.html#modifying-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="combining-dataframes" class="section level3 unnumbered hasAnchor">
+<div id="combining-dataframes" class="section level3 unnumbered hasAnchor" number="">
 <h3>Combining dataframes<a href="dataframes.html#combining-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To bind multiple dataframes together by row, use <strong><code>rbind()</code></strong>:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dataframes.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build up a dataframe</span></span>
-<span id="cb140-2"><a href="dataframes.html#cb140-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb140-3"><a href="dataframes.html#cb140-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb140-4"><a href="dataframes.html#cb140-4" aria-hidden="true" tabindex="-1"></a>df1</span>
-<span id="cb140-5"><a href="dataframes.html#cb140-5" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb140-6"><a href="dataframes.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb140-7"><a href="dataframes.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb140-8"><a href="dataframes.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb140-9"><a href="dataframes.html#cb140-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dataframes.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build up a second dataframe</span></span>
-<span id="cb141-2"><a href="dataframes.html#cb141-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Matthew&quot;</span>),</span>
-<span id="cb141-3"><a href="dataframes.html#cb141-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Washboard&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="dataframes.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine those dataframes together</span></span>
-<span id="cb142-2"><a href="dataframes.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(df1,df2)</span>
-<span id="cb142-3"><a href="dataframes.html#cb142-3" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb142-4"><a href="dataframes.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb142-5"><a href="dataframes.html#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb142-6"><a href="dataframes.html#cb142-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb142-7"><a href="dataframes.html#cb142-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span>
-<span id="cb142-8"><a href="dataframes.html#cb142-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  Matthew  Washboard</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dataframes.html#cb140-1" aria-hidden="true"></a><span class="co"># Build up a dataframe</span></span>
+<span id="cb140-2"><a href="dataframes.html#cb140-2" aria-hidden="true"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
+<span id="cb140-3"><a href="dataframes.html#cb140-3" aria-hidden="true"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
+<span id="cb140-4"><a href="dataframes.html#cb140-4" aria-hidden="true"></a>df1</span>
+<span id="cb140-5"><a href="dataframes.html#cb140-5" aria-hidden="true"></a>      name instrument</span>
+<span id="cb140-6"><a href="dataframes.html#cb140-6" aria-hidden="true"></a><span class="dv">1</span>      Ben  Nose harp</span>
+<span id="cb140-7"><a href="dataframes.html#cb140-7" aria-hidden="true"></a><span class="dv">2</span>      Joe Concertina</span>
+<span id="cb140-8"><a href="dataframes.html#cb140-8" aria-hidden="true"></a><span class="dv">3</span>     Eric    Ukelele</span>
+<span id="cb140-9"><a href="dataframes.html#cb140-9" aria-hidden="true"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dataframes.html#cb141-1" aria-hidden="true"></a><span class="co"># Build up a second dataframe</span></span>
+<span id="cb141-2"><a href="dataframes.html#cb141-2" aria-hidden="true"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Matthew&quot;</span>),</span>
+<span id="cb141-3"><a href="dataframes.html#cb141-3" aria-hidden="true"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Washboard&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="dataframes.html#cb142-1" aria-hidden="true"></a><span class="co"># Combine those dataframes together</span></span>
+<span id="cb142-2"><a href="dataframes.html#cb142-2" aria-hidden="true"></a><span class="kw">rbind</span>(df1,df2)</span>
+<span id="cb142-3"><a href="dataframes.html#cb142-3" aria-hidden="true"></a>      name instrument</span>
+<span id="cb142-4"><a href="dataframes.html#cb142-4" aria-hidden="true"></a><span class="dv">1</span>      Ben  Nose harp</span>
+<span id="cb142-5"><a href="dataframes.html#cb142-5" aria-hidden="true"></a><span class="dv">2</span>      Joe Concertina</span>
+<span id="cb142-6"><a href="dataframes.html#cb142-6" aria-hidden="true"></a><span class="dv">3</span>     Eric    Ukelele</span>
+<span id="cb142-7"><a href="dataframes.html#cb142-7" aria-hidden="true"></a><span class="dv">4</span> Isabelle      Drums</span>
+<span id="cb142-8"><a href="dataframes.html#cb142-8" aria-hidden="true"></a><span class="dv">5</span>  Matthew  Washboard</span></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of columns and the exact same column names.</p>
 <p>The only exception to this is adding a dataframe with content an empty dataframe. That can work, and that will be helpful in the <strong>Deep <code>R</code></strong> modules ahead.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dataframes.html#cb143-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>() <span class="co"># stage empty dataframe</span></span>
-<span id="cb143-2"><a href="dataframes.html#cb143-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-3"><a href="dataframes.html#cb143-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb143-4"><a href="dataframes.html#cb143-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb143-5"><a href="dataframes.html#cb143-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-6"><a href="dataframes.html#cb143-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df,df1)</span>
-<span id="cb143-7"><a href="dataframes.html#cb143-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-8"><a href="dataframes.html#cb143-8" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb143-9"><a href="dataframes.html#cb143-9" aria-hidden="true" tabindex="-1"></a>      name instrument</span>
-<span id="cb143-10"><a href="dataframes.html#cb143-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      Ben  Nose harp</span>
-<span id="cb143-11"><a href="dataframes.html#cb143-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>      Joe Concertina</span>
-<span id="cb143-12"><a href="dataframes.html#cb143-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Eric    Ukelele</span>
-<span id="cb143-13"><a href="dataframes.html#cb143-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dataframes.html#cb143-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>() <span class="co"># stage empty dataframe</span></span>
+<span id="cb143-2"><a href="dataframes.html#cb143-2" aria-hidden="true"></a></span>
+<span id="cb143-3"><a href="dataframes.html#cb143-3" aria-hidden="true"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
+<span id="cb143-4"><a href="dataframes.html#cb143-4" aria-hidden="true"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
+<span id="cb143-5"><a href="dataframes.html#cb143-5" aria-hidden="true"></a></span>
+<span id="cb143-6"><a href="dataframes.html#cb143-6" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(df,df1)</span>
+<span id="cb143-7"><a href="dataframes.html#cb143-7" aria-hidden="true"></a></span>
+<span id="cb143-8"><a href="dataframes.html#cb143-8" aria-hidden="true"></a>df</span>
+<span id="cb143-9"><a href="dataframes.html#cb143-9" aria-hidden="true"></a>      name instrument</span>
+<span id="cb143-10"><a href="dataframes.html#cb143-10" aria-hidden="true"></a><span class="dv">1</span>      Ben  Nose harp</span>
+<span id="cb143-11"><a href="dataframes.html#cb143-11" aria-hidden="true"></a><span class="dv">2</span>      Joe Concertina</span>
+<span id="cb143-12"><a href="dataframes.html#cb143-12" aria-hidden="true"></a><span class="dv">3</span>     Eric    Ukelele</span>
+<span id="cb143-13"><a href="dataframes.html#cb143-13" aria-hidden="true"></a><span class="dv">4</span> Isabelle      Drums</span></code></pre></div>
 <p>You can also bind multiple dataframes together by column, using <strong><code>cbind()</code></strong>:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dataframes.html#cb144-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
-<span id="cb144-2"><a href="dataframes.html#cb144-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">instrument=</span><span class="fu">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
-<span id="cb144-3"><a href="dataframes.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-4"><a href="dataframes.html#cb144-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age=</span><span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="at">home=</span><span class="fu">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</span>
-<span id="cb144-5"><a href="dataframes.html#cb144-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-6"><a href="dataframes.html#cb144-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(df,df1)</span>
-<span id="cb144-7"><a href="dataframes.html#cb144-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb144-8"><a href="dataframes.html#cb144-8" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb144-9"><a href="dataframes.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument</span>
-<span id="cb144-10"><a href="dataframes.html#cb144-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</span>
-<span id="cb144-11"><a href="dataframes.html#cb144-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</span>
-<span id="cb144-12"><a href="dataframes.html#cb144-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</span>
-<span id="cb144-13"><a href="dataframes.html#cb144-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dataframes.html#cb144-1" aria-hidden="true"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Ben&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Eric&quot;</span>,<span class="st">&quot;Isabelle&quot;</span>),</span>
+<span id="cb144-2"><a href="dataframes.html#cb144-2" aria-hidden="true"></a>                  <span class="dt">instrument=</span><span class="kw">c</span>(<span class="st">&quot;Nose harp&quot;</span>,<span class="st">&quot;Concertina&quot;</span>,<span class="st">&quot;Ukelele&quot;</span>,<span class="st">&quot;Drums&quot;</span>))</span>
+<span id="cb144-3"><a href="dataframes.html#cb144-3" aria-hidden="true"></a></span>
+<span id="cb144-4"><a href="dataframes.html#cb144-4" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">age=</span><span class="kw">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">35</span>,<span class="dv">20</span>), <span class="dt">home=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>,<span class="st">&quot;Spain&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;USA&quot;</span>))</span>
+<span id="cb144-5"><a href="dataframes.html#cb144-5" aria-hidden="true"></a></span>
+<span id="cb144-6"><a href="dataframes.html#cb144-6" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">cbind</span>(df,df1)</span>
+<span id="cb144-7"><a href="dataframes.html#cb144-7" aria-hidden="true"></a></span>
+<span id="cb144-8"><a href="dataframes.html#cb144-8" aria-hidden="true"></a>df</span>
+<span id="cb144-9"><a href="dataframes.html#cb144-9" aria-hidden="true"></a>  age   home     name instrument</span>
+<span id="cb144-10"><a href="dataframes.html#cb144-10" aria-hidden="true"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp</span>
+<span id="cb144-11"><a href="dataframes.html#cb144-11" aria-hidden="true"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina</span>
+<span id="cb144-12"><a href="dataframes.html#cb144-12" aria-hidden="true"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele</span>
+<span id="cb144-13"><a href="dataframes.html#cb144-13" aria-hidden="true"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums</span></code></pre></div>
 <p>Note that to be combined, two dataframes have to have the exact same number of rows and the exact same column names.</p>
 </div>
-<div id="adding-columns" class="section level3 unnumbered hasAnchor">
+<div id="adding-columns" class="section level3 unnumbered hasAnchor" number="">
 <h3>Adding columns<a href="dataframes.html#adding-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create a new column for a dataframe, use the <code>$</code> symbol and provide the name of the new column:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dataframes.html#cb145-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</span>
-<span id="cb145-2"><a href="dataframes.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-3"><a href="dataframes.html#cb145-3" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb145-4"><a href="dataframes.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument x_factor</span>
-<span id="cb145-5"><a href="dataframes.html#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb145-6"><a href="dataframes.html#cb145-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb145-7"><a href="dataframes.html#cb145-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb145-8"><a href="dataframes.html#cb145-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dataframes.html#cb145-1" aria-hidden="true"></a>df<span class="op">$</span>x_factor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">60</span>,<span class="dv">40</span>)</span>
+<span id="cb145-2"><a href="dataframes.html#cb145-2" aria-hidden="true"></a></span>
+<span id="cb145-3"><a href="dataframes.html#cb145-3" aria-hidden="true"></a>df</span>
+<span id="cb145-4"><a href="dataframes.html#cb145-4" aria-hidden="true"></a>  age   home     name instrument x_factor</span>
+<span id="cb145-5"><a href="dataframes.html#cb145-5" aria-hidden="true"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
+<span id="cb145-6"><a href="dataframes.html#cb145-6" aria-hidden="true"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
+<span id="cb145-7"><a href="dataframes.html#cb145-7" aria-hidden="true"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
+<span id="cb145-8"><a href="dataframes.html#cb145-8" aria-hidden="true"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">40</span></span></code></pre></div>
 </div>
-<div id="altering-values" class="section level3 unnumbered hasAnchor">
+<div id="altering-values" class="section level3 unnumbered hasAnchor" number="">
 <h3>Altering values<a href="dataframes.html#altering-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To alter certain values in the dataframe, you can assign new values to a subset of your dataframe.</p>
 <p>Here are four ways to do the same thing: upating Isabelle’s X-factor:</p>
 <p><strong>Option 1: Subsetting a single column</strong></p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dataframes.html#cb146-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dataframes.html#cb146-1" aria-hidden="true"></a>df<span class="op">$</span>x_factor[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
 <p><strong>Option 2: Subsetting both rows and columns</strong></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="dataframes.html#cb147-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">4</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="dataframes.html#cb147-1" aria-hidden="true"></a>df[<span class="dv">4</span>,<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
 <p><strong>Option 3: Subsetting a column based on a logical test</strong></p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dataframes.html#cb148-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x_factor[df<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&#39;Isabelle&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dataframes.html#cb148-1" aria-hidden="true"></a>df<span class="op">$</span>x_factor[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
 <p><strong>Option 3: Subsetting row and columns using logical tests</strong></p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dataframes.html#cb149-1" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&#39;Isabelle&#39;</span>, <span class="fu">names</span>(df) <span class="sc">==</span> <span class="st">&#39;x_factor&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">70</span></span></code></pre></div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dataframes.html#cb150-1" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb150-2"><a href="dataframes.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  age   home     name instrument x_factor</span>
-<span id="cb150-3"><a href="dataframes.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
-<span id="cb150-4"><a href="dataframes.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
-<span id="cb150-5"><a href="dataframes.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
-<span id="cb150-6"><a href="dataframes.html#cb150-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></span></code></pre></div>
-<div id="exercises-4" class="section level4 unnumbered hasAnchor">
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dataframes.html#cb149-1" aria-hidden="true"></a>df[df<span class="op">$</span>name <span class="op">==</span><span class="st"> &#39;Isabelle&#39;</span>, <span class="kw">names</span>(df) <span class="op">==</span><span class="st"> &#39;x_factor&#39;</span>] &lt;-<span class="st"> </span><span class="dv">70</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dataframes.html#cb150-1" aria-hidden="true"></a>df</span>
+<span id="cb150-2"><a href="dataframes.html#cb150-2" aria-hidden="true"></a>  age   home     name instrument x_factor</span>
+<span id="cb150-3"><a href="dataframes.html#cb150-3" aria-hidden="true"></a><span class="dv">1</span>  <span class="dv">33</span> Canada      Ben  Nose harp        <span class="dv">3</span></span>
+<span id="cb150-4"><a href="dataframes.html#cb150-4" aria-hidden="true"></a><span class="dv">2</span>  <span class="dv">35</span>  Spain      Joe Concertina       <span class="dv">20</span></span>
+<span id="cb150-5"><a href="dataframes.html#cb150-5" aria-hidden="true"></a><span class="dv">3</span>  <span class="dv">35</span>    USA     Eric    Ukelele       <span class="dv">60</span></span>
+<span id="cb150-6"><a href="dataframes.html#cb150-6" aria-hidden="true"></a><span class="dv">4</span>  <span class="dv">20</span>    USA Isabelle      Drums       <span class="dv">70</span></span></code></pre></div>
+<div id="exercises-4" class="section level4 unnumbered hasAnchor" number="">
 <h4>Exercises<a href="dataframes.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Reading for errors</strong></p>
 <p>What is wrong with these commands? Why will each of them throw an error if you run them, and how can you fix them?</p>

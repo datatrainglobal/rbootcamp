@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 2 What is data science? | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 2 What is data science? | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -66,7 +67,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,28 +127,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -283,8 +261,7 @@ div.csl-indent {
 </ul></li>
 <li class="part"><span><b>V Review exercises</b></span></li>
 <li class="chapter" data-level="19" data-path="a-mystery-dataset.html"><a href="a-mystery-dataset.html"><i class="fa fa-check"></i><b>19</b> A mystery dataset</a></li>
-<li class="chapter" data-level="20" data-path="a-dplyr-survey.html"><a href="a-dplyr-survey.html"><i class="fa fa-check"></i><b>20</b> A <code>dplyr</code> survey</a></li>
-<li class="chapter" data-level="21" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>21</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="20" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>20</b> Global health &amp; <code>ggplot</code></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
 
@@ -336,7 +313,7 @@ div.csl-indent {
 <p>Our definition is very broad, we know. We consider the “analyst” working in business intelligence to be a data scientist; and so too do we think that a data scientist could be an engineer who is processing large amounts of data to extract basic trends. Again, data scientists are those who <em>do science with data</em>. That’s a lot of people.</p>
 <p>In our experience, the best data scientists aren’t simply the best programmers or best statisticians; the best ones are the people who consider themselves to be <em>something else first.</em> They are the journalists, artists, epidemiologists, psychologists, historians, environmentalists, sports analysts, and political commentators who <em>also</em> know how to work with data. In other words, the best data scientists are the ones already out there, on the ground, already embedded in the system they want to improve, positioned perfectly to get the right data, to ask the right questions, and to actually <em>do</em> something with insights from the data. Again, data science is about <em>DOING</em>.</p>
 <p>To summarize, data science is about applying data to problems. It is impact-driven, transdisciplinary, and suited to well-rounded, multi-dimensional professionals.</p>
-<div id="what-is-the-data-life-cycle" class="section level2 unnumbered hasAnchor">
+<div id="what-is-the-data-life-cycle" class="section level2 unnumbered hasAnchor" number="">
 <h2>What is the data life cycle?<a href="what-is-data-science.html#what-is-the-data-life-cycle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is a misperception about data science work that it is largely or even exclusively interpretative: that is, a data scientist looks at a big set of data and builds a fancy statistical model, then a light bulb goes off in her head, she has some insight, and then acts on that insight.</p>
 <p>The reality is data science is much more than that. And most of data science is a combination of <em>(a)</em> getting data ready for analysis, <em>(b)</em> hypothesis testing, and <em>(c)</em> figuring out what to do with the results of <em>a</em> and <em>b</em>. That is, data science in practice is generally not some artesenal genius staring at a table of numbers until “insight” magically occurs. Rather, it is a lot of work, a lot of structured theories which can be confirmed or falsified, and a lot of <em>imagination</em> applied to the task of implementation.</p>
@@ -357,7 +334,7 @@ div.csl-indent {
 <p><strong>10. Observation:</strong> back to the beginning of the cycle.</p>
 <p>Again, the above should look a lot like the scientific method. The main differences are (a) “data processing”, which in reality takes up most of any data scientist’s time, (b) the bias towards action, and (c) the iterative / looped nature of the lifecycle.</p>
 </div>
-<div id="data-science-in-the-wild" class="section level2 unnumbered hasAnchor">
+<div id="data-science-in-the-wild" class="section level2 unnumbered hasAnchor" number="">
 <h2>Data science ‘in the wild’<a href="what-is-data-science.html#data-science-in-the-wild" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Enough theory. What do data scientists actually do? Again, you can search for an answer online and find complex diagrams like this one:</p>
 <p> </p>

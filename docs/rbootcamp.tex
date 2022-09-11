@@ -2104,7 +2104,7 @@ To find out which folder \texttt{R} is currently using as your working directory
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{getwd}\NormalTok{()}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"/Users/mattrudd/datatrain/rbootcamp"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"/home/joebrew/Documents/rbootcamp"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3193,22 +3193,10 @@ To explore dataframes, let's use a dataset on fuel mileage for all cars sold fro
 \begin{Highlighting}[]
 \CommentTok{\# need to install first install.packages(\textquotesingle{}fueleconomy\textquotesingle{})}
 \FunctionTok{library}\NormalTok{(fueleconomy)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(fueleconomy)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}fueleconomy\textquotesingle{}}
 \FunctionTok{data}\NormalTok{(vehicles)}
 \FunctionTok{head}\NormalTok{(vehicles)}
-\NormalTok{     id  make       model year           class           trans}
-\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\NormalTok{              drive cyl displ    fuel hwy cty}
-\DecValTok{1}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{20}
-\DecValTok{2}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{22}
-\DecValTok{3}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{18}
-\DecValTok{4}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{19}
-\DecValTok{5}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{21}
-\DecValTok{6}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{17}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{head}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3233,36 +3221,10 @@ All the same useful exploration and subsetting functions that applied to vectors
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{head}\NormalTok{(vehicles) }
-\NormalTok{     id  make       model year           class           trans}
-\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{5} \DecValTok{14039}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars    Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{6} \DecValTok{14040}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}\NormalTok{ Subcompact Cars Automatic }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\NormalTok{              drive cyl displ    fuel hwy cty}
-\DecValTok{1}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{20}
-\DecValTok{2}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.2}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{22}
-\DecValTok{3}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{18}
-\DecValTok{4}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{19}
-\DecValTok{5}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{2.3}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{21}
-\DecValTok{6}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{6}   \FloatTok{3.0}\NormalTok{ Regular  }\DecValTok{26}  \DecValTok{17}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{head}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 
 \FunctionTok{tail}\NormalTok{(vehicles) }
-\NormalTok{         id make             model year            class        trans}
-\DecValTok{33437} \DecValTok{28868}\NormalTok{ Yugo GV Plus}\SpecialCharTok{/}\NormalTok{GV}\SpecialCharTok{/}\NormalTok{Cabrio }\DecValTok{1990}\NormalTok{ Minicompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{33438}  \DecValTok{6635}\NormalTok{ Yugo GV Plus}\SpecialCharTok{/}\NormalTok{GV}\SpecialCharTok{/}\NormalTok{Cabrio }\DecValTok{1990}\NormalTok{  Subcompact Cars Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{33439}  \DecValTok{3157}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1987}\NormalTok{  Subcompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{33440}  \DecValTok{5497}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1989}\NormalTok{  Subcompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{33441}  \DecValTok{5498}\NormalTok{ Yugo            GV}\SpecialCharTok{/}\NormalTok{GVX }\DecValTok{1989}\NormalTok{  Subcompact Cars Manual }\DecValTok{5}\SpecialCharTok{{-}}\NormalTok{spd}
-\DecValTok{33442}  \DecValTok{1745}\NormalTok{ Yugo       Gy}\SpecialCharTok{/}\NormalTok{yugo GVX }\DecValTok{1986}\NormalTok{ Minicompact Cars Manual }\DecValTok{4}\SpecialCharTok{{-}}\NormalTok{spd}
-\NormalTok{                  drive cyl displ    fuel hwy cty}
-\DecValTok{33437}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{27}  \DecValTok{21}
-\DecValTok{33438}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{23}
-\DecValTok{33439}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{24}
-\DecValTok{33440}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{24}
-\DecValTok{33441}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.3}\NormalTok{ Regular  }\DecValTok{28}  \DecValTok{23}
-\DecValTok{33442}\NormalTok{ Front}\SpecialCharTok{{-}}\NormalTok{Wheel Drive   }\DecValTok{4}   \FloatTok{1.1}\NormalTok{ Regular  }\DecValTok{29}  \DecValTok{22}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{tail}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3271,8 +3233,7 @@ All the same useful exploration and subsetting functions that applied to vectors
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{names}\NormalTok{(vehicles) }
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"id"}    \StringTok{"make"}  \StringTok{"model"} \StringTok{"year"}  \StringTok{"class"} \StringTok{"trans"} \StringTok{"drive"} \StringTok{"cyl"}   \StringTok{"displ"}
-\NormalTok{[}\DecValTok{10}\NormalTok{] }\StringTok{"fuel"}  \StringTok{"hwy"}   \StringTok{"cty"}  
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3281,21 +3242,21 @@ All the same useful exploration and subsetting functions that applied to vectors
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{nrow}\NormalTok{(vehicles) }
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{33442}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{nrow}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{ncol}\NormalTok{(vehicles) }
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{ncol}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{dim}\NormalTok{(vehicles) }
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{33442}    \DecValTok{12}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3309,17 +3270,13 @@ Importantly, you can use \textbf{\texttt{is.na()}} to ask whether columns or row
 
 \CommentTok{\# Which rows in the \textasciigrave{}hwy\textasciigrave{} column have NA\textquotesingle{}s?}
 \FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy))}
-\FunctionTok{integer}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 
 \CommentTok{\# (No NAs in that column!)}
 
 \CommentTok{\# What about rows in the \textasciigrave{}cyl\textasciigrave{} column?}
 \FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cyl))}
-\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1232}  \DecValTok{1233}  \DecValTok{2347}  \DecValTok{3246}  \DecValTok{3247}  \DecValTok{3248}  \DecValTok{6115}  \DecValTok{6116}  \DecValTok{6533}  \DecValTok{7783}  \DecValTok{7784}  \DecValTok{8472}
-\NormalTok{[}\DecValTok{13}\NormalTok{] }\DecValTok{10613} \DecValTok{10614} \DecValTok{11696} \DecValTok{11697} \DecValTok{12411} \DecValTok{12412} \DecValTok{12413} \DecValTok{12928} \DecValTok{12929} \DecValTok{12934} \DecValTok{12935} \DecValTok{12944}
-\NormalTok{[}\DecValTok{25}\NormalTok{] }\DecValTok{16429} \DecValTok{16430} \DecValTok{21070} \DecValTok{23472} \DecValTok{23473} \DecValTok{23474} \DecValTok{24485} \DecValTok{24486} \DecValTok{24487} \DecValTok{24488} \DecValTok{24489} \DecValTok{26150}
-\NormalTok{[}\DecValTok{37}\NormalTok{] }\DecValTok{28628} \DecValTok{28704} \DecValTok{28705} \DecValTok{28706} \DecValTok{28707} \DecValTok{28708} \DecValTok{28709} \DecValTok{29314} \DecValTok{29315} \DecValTok{30023} \DecValTok{30024} \DecValTok{30025}
-\NormalTok{[}\DecValTok{49}\NormalTok{] }\DecValTok{30026} \DecValTok{30027} \DecValTok{30028} \DecValTok{31063} \DecValTok{31064} \DecValTok{31065} \DecValTok{31066} \DecValTok{31067} \DecValTok{31068} \DecValTok{31069}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cyl))}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 
 \CommentTok{\# (lots of NAs in that column!)}
 \end{Highlighting}
@@ -3334,7 +3291,7 @@ Recall that dataframes are filtered by row and/or column using this format: \tex
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vehicles[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Acura"}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3353,15 +3310,9 @@ To filter a dataframe to multiple values, you can specify vectors for the \textt
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vehicles[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{] }\CommentTok{\# can use colons}
-\NormalTok{  hwy cty}
-\DecValTok{1}  \DecValTok{26}  \DecValTok{20}
-\DecValTok{2}  \DecValTok{28}  \DecValTok{22}
-\DecValTok{3}  \DecValTok{26}  \DecValTok{18}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \NormalTok{vehicles[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)]  }\CommentTok{\# can use c()}
-\NormalTok{     id hwy cty}
-\DecValTok{1} \DecValTok{13309}  \DecValTok{26}  \DecValTok{20}
-\DecValTok{2} \DecValTok{13310}  \DecValTok{28}  \DecValTok{22}
-\DecValTok{3} \DecValTok{13311}  \DecValTok{26}  \DecValTok{18}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3370,7 +3321,7 @@ Columns can also be called according to their names. Use the \textbf{\texttt{\$}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vehicles}\SpecialCharTok{$}\NormalTok{hwy[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{26} \DecValTok{28} \DecValTok{26} \DecValTok{27} \DecValTok{29}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3390,19 +3341,11 @@ Also recall that you can use logical tests, which return boolean values \texttt{
 \begin{Highlighting}[]
 \CommentTok{\# Build your logical test}
 \NormalTok{verdicts }\OtherTok{\textless{}{-}}\NormalTok{ vehicles}\SpecialCharTok{$}\NormalTok{hwy }\SpecialCharTok{\textgreater{}} \DecValTok{100}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 
 \CommentTok{\# Subset with booleans}
 \NormalTok{vehicles[verdicts,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
-\NormalTok{           make    model}
-\DecValTok{6533}\NormalTok{  Chevrolet Spark EV}
-\DecValTok{10613}\NormalTok{      Fiat     500e}
-\DecValTok{10614}\NormalTok{      Fiat     500e}
-\DecValTok{16429}\NormalTok{     Honda   Fit EV}
-\DecValTok{16430}\NormalTok{     Honda   Fit EV}
-\DecValTok{24487}\NormalTok{    Nissan     Leaf}
-\DecValTok{24488}\NormalTok{    Nissan     Leaf}
-\DecValTok{24489}\NormalTok{    Nissan     Leaf}
-\DecValTok{28628}\NormalTok{     Scion    iQ EV}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3411,16 +3354,7 @@ Or you can write all this in a single line, to be more efficient:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vehicles[ vehicles}\SpecialCharTok{$}\NormalTok{hwy }\SpecialCharTok{\textgreater{}} \DecValTok{100}\NormalTok{  , }\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
-\NormalTok{           make    model}
-\DecValTok{6533}\NormalTok{  Chevrolet Spark EV}
-\DecValTok{10613}\NormalTok{      Fiat     500e}
-\DecValTok{10614}\NormalTok{      Fiat     500e}
-\DecValTok{16429}\NormalTok{     Honda   Fit EV}
-\DecValTok{16430}\NormalTok{     Honda   Fit EV}
-\DecValTok{24487}\NormalTok{    Nissan     Leaf}
-\DecValTok{24488}\NormalTok{    Nissan     Leaf}
-\DecValTok{24489}\NormalTok{    Nissan     Leaf}
-\DecValTok{28628}\NormalTok{     Scion    iQ EV}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3435,42 +3369,42 @@ The same summary functions that you have used for vectors work for the columns i
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{min}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{max}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{109}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{mean}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cty)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{17.491}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{mean}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cty)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{cty)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.582174}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{is.data.frame}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{str}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{make)}
-\NormalTok{ chr [}\DecValTok{1}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{] }\StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"} \StringTok{"Acura"}\NormalTok{ ...}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{str}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{make)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{class}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"numeric"}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3479,30 +3413,7 @@ You can also use the \textbf{\texttt{summary()}} function, which provides summar
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(vehicles)}
-\NormalTok{       id            make              model                year     }
-\NormalTok{ Min.   }\SpecialCharTok{:}    \DecValTok{1}\NormalTok{   Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Min.   }\SpecialCharTok{:}\DecValTok{1984}  
-\NormalTok{ 1st Qu.}\SpecialCharTok{:} \DecValTok{8361}\NormalTok{   Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   1st Qu.}\SpecialCharTok{:}\DecValTok{1991}  
-\NormalTok{ Median }\SpecialCharTok{:}\DecValTok{16724}\NormalTok{   Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Median }\SpecialCharTok{:}\DecValTok{1999}  
-\NormalTok{ Mean   }\SpecialCharTok{:}\DecValTok{17038}\NormalTok{                                         Mean   }\SpecialCharTok{:}\DecValTok{1999}  
-\NormalTok{ 3rd Qu.}\SpecialCharTok{:}\DecValTok{25265}\NormalTok{                                         3rd Qu.}\SpecialCharTok{:}\DecValTok{2008}  
-\NormalTok{ Max.   }\SpecialCharTok{:}\DecValTok{34932}\NormalTok{                                         Max.   }\SpecialCharTok{:}\DecValTok{2015}  
-                                                                     
-\NormalTok{    class              trans              drive                cyl        }
-\NormalTok{ Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Length}\SpecialCharTok{:}\DecValTok{33442}\NormalTok{       Min.   }\SpecialCharTok{:} \FloatTok{2.000}  
-\NormalTok{ Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   Class }\SpecialCharTok{:}\NormalTok{character   1st Qu.}\SpecialCharTok{:} \FloatTok{4.000}  
-\NormalTok{ Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Mode  }\SpecialCharTok{:}\NormalTok{character   Median }\SpecialCharTok{:} \FloatTok{6.000}  
-\NormalTok{                                                          Mean   }\SpecialCharTok{:} \FloatTok{5.772}  
-\NormalTok{                                                          3rd Qu.}\SpecialCharTok{:} \FloatTok{6.000}  
-\NormalTok{                                                          Max.   }\SpecialCharTok{:}\FloatTok{16.000}  
-\NormalTok{                                                          NA}\StringTok{\textquotesingle{}s   :58      }
-\StringTok{     displ           fuel                hwy              cty        }
-\StringTok{ Min.   :0.000   Length:33442       Min.   :  9.00   Min.   :  6.00  }
-\StringTok{ 1st Qu.:2.300   Class :character   1st Qu.: 19.00   1st Qu.: 15.00  }
-\StringTok{ Median :3.000   Mode  :character   Median : 23.00   Median : 17.00  }
-\StringTok{ Mean   :3.353                      Mean   : 23.55   Mean   : 17.49  }
-\StringTok{ 3rd Qu.:4.300                      3rd Qu.: 27.00   3rd Qu.: 20.00  }
-\StringTok{ Max.   :8.400                      Max.   :109.00   Max.   :138.00  }
-\StringTok{ NA\textquotesingle{}}\NormalTok{s   }\SpecialCharTok{:}\DecValTok{57}                                                          
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{summary}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3511,13 +3422,7 @@ The function \textbf{\texttt{unique()}} returns unique values within a column:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{unique}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{fuel)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"Regular"}                     \StringTok{"Premium"}                    
-\NormalTok{ [}\DecValTok{3}\NormalTok{] }\StringTok{"Diesel"}                      \StringTok{"Premium or E85"}             
-\NormalTok{ [}\DecValTok{5}\NormalTok{] }\StringTok{"Electricity"}                 \StringTok{"Gasoline or E85"}            
-\NormalTok{ [}\DecValTok{7}\NormalTok{] }\StringTok{"Premium Gas or Electricity"}  \StringTok{"Gasoline or natural gas"}    
-\NormalTok{ [}\DecValTok{9}\NormalTok{] }\StringTok{"CNG"}                         \StringTok{"Midgrade"}                   
-\NormalTok{[}\DecValTok{11}\NormalTok{] }\StringTok{"Regular Gas and Electricity"} \StringTok{"Gasoline or propane"}        
-\NormalTok{[}\DecValTok{13}\NormalTok{] }\StringTok{"Premium and Electricity"}    
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{unique}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{fuel)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3529,14 +3434,9 @@ Finally, the \textbf{\texttt{order()}} function helps you sort a dataframe accor
 \CommentTok{\# Only keep certain columns}
 \NormalTok{vehicles\_sorted }\OtherTok{\textless{}{-}}\NormalTok{ vehicles[}\FunctionTok{order}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy), }
                             \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)] }
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \FunctionTok{head}\NormalTok{(vehicles\_sorted)}
-\NormalTok{              make                  model year    fuel hwy cty}
-\DecValTok{397}\NormalTok{   Aston Martin                Lagonda }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
-\DecValTok{398}\NormalTok{   Aston Martin                Lagonda }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
-\DecValTok{406}\NormalTok{   Aston Martin Saloon}\SpecialCharTok{/}\NormalTok{Vantage}\SpecialCharTok{/}\NormalTok{Volante }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
-\DecValTok{408}\NormalTok{   Aston Martin Saloon}\SpecialCharTok{/}\NormalTok{Vantage}\SpecialCharTok{/}\NormalTok{Volante }\DecValTok{1985}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
-\DecValTok{27725}\NormalTok{  Rolls}\SpecialCharTok{{-}}\NormalTok{Royce               Camargue }\DecValTok{1987}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
-\DecValTok{27726}\NormalTok{  Rolls}\SpecialCharTok{{-}}\NormalTok{Royce            Continental }\DecValTok{1987}\NormalTok{ Regular   }\DecValTok{9}   \DecValTok{7}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{head}\NormalTok{(vehicles\_sorted)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\_sorted\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3546,14 +3446,9 @@ Reverse the order by wrapping \textbf{\texttt{rev()}} around the \texttt{order()
 \begin{Highlighting}[]
 \NormalTok{vehicles\_sorted }\OtherTok{\textless{}{-}}\NormalTok{ vehicles[}\FunctionTok{rev}\NormalTok{(}\FunctionTok{order}\NormalTok{(vehicles}\SpecialCharTok{$}\NormalTok{hwy)),}
                             \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)]}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \FunctionTok{head}\NormalTok{(vehicles\_sorted)}
-\NormalTok{           make    model year        fuel hwy cty}
-\DecValTok{6533}\NormalTok{  Chevrolet Spark EV }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{109} \DecValTok{128}
-\DecValTok{10614}\NormalTok{      Fiat     500e }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{108} \DecValTok{122}
-\DecValTok{10613}\NormalTok{      Fiat     500e }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{108} \DecValTok{122}
-\DecValTok{28628}\NormalTok{     Scion    iQ EV }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{138}
-\DecValTok{16430}\NormalTok{     Honda   Fit EV }\DecValTok{2014}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{132}
-\DecValTok{16429}\NormalTok{     Honda   Fit EV }\DecValTok{2013}\NormalTok{ Electricity }\DecValTok{105} \DecValTok{132}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{head}\NormalTok{(vehicles\_sorted)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\_sorted\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3564,14 +3459,8 @@ Reverse the order by wrapping \textbf{\texttt{rev()}} around the \texttt{order()
 As shown above, to create a new dataframe, use the \texttt{data.frame()} function.
 
 \begin{verbatim}
-             car mgp_hwy mpg_city
-100 Acura Legend      23       15
-101 Acura Legend      22       17
-102 Acura Legend      23       16
-103 Acura Legend      21       16
-104 Acura Legend      22       17
-105 Acura Legend      23       16
-106 Acura Legend      24       16
+Error in paste(vehicles$make, vehicles$model): object 'vehicles' not found
+Error in eval(expr, envir, enclos): object 'my_vehicles' not found
 \end{verbatim}
 
 Note how the columns were named in the \texttt{data.frame()} call, and that each column is separated by a comma.
@@ -3591,12 +3480,9 @@ To coerce an object into a format that \texttt{R} interprets as a dataframe, use
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(vehicles)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{as.data.frame}\NormalTok{(vehicles)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}vehicles\textquotesingle{}}\NormalTok{ not found}
 \NormalTok{df[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
-\NormalTok{     id  make       model year}
-\DecValTok{1} \DecValTok{13309}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
-\DecValTok{2} \DecValTok{13310}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
-\DecValTok{3} \DecValTok{13311}\NormalTok{ Acura }\FloatTok{2.2}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1997}
-\DecValTok{4} \DecValTok{14038}\NormalTok{ Acura }\FloatTok{2.3}\NormalTok{CL}\SpecialCharTok{/}\FloatTok{3.0}\NormalTok{CL }\DecValTok{1998}
+\NormalTok{Error }\ControlFlowTok{in} \StringTok{\textasciigrave{}}\AttributeTok{[.data.frame}\StringTok{\textasciigrave{}}\NormalTok{(df, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ undefined columns selected}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3940,9 +3826,22 @@ To load a package, use the \texttt{library()} function.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(fun)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in library(fun): there is no package called 'fun'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(wesanderson)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Error in library(wesanderson): there is no package called 'wesanderson'
+\end{verbatim}
 
 Now that your new packages are loaded, you can actually use their functions.
 
@@ -3957,7 +3856,7 @@ Most functions from external packages can be used by simply typing the name of t
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"tJ=a|7yVF0sf,H\_O9w\%T{-}2Mk"}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length =} \DecValTok{24}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"random\_password"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3966,7 +3865,7 @@ Sometimes, however, \texttt{R} can get confused if a new package contains a func
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fun}\SpecialCharTok{::}\FunctionTok{random\_password}\NormalTok{(}\AttributeTok{length=}\DecValTok{24}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"\textgreater{}d@+Yv]\textasciitilde{}\_\^{}}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{BwXnG8eQ/2T7V"}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}fun\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4037,18 +3936,11 @@ To review how to use functions from a non-base package in \texttt{R}, follow the
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Royal1"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-174-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Royal1"}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"wes\_palette"}
 \NormalTok{wesanderson}\SpecialCharTok{::}\FunctionTok{wes\_palette}\NormalTok{(}\StringTok{"Zissou1"}\NormalTok{)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}wesanderson\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-174-2.pdf}
 
 \emph{(This function creates a plot displaying the different colors contained within the specified palette.)}
 
@@ -4818,9 +4710,7 @@ Download the dataset on baby names given to newborns in the USA:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(babynames)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(babynames)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}babynames\textquotesingle{}}
 \NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}babynames\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5348,9 +5238,7 @@ Answer these questions using the new \texttt{dplyr} verbs you just learned:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(babynames)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(babynames)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}babynames\textquotesingle{}}
 \NormalTok{bn }\OtherTok{\textless{}{-}}\NormalTok{ babynames}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}babynames\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5904,17 +5792,17 @@ To make a pretty table out of a dataframe, create a chunk that looks like this:
 \hline
 x & y\\
 \hline
-1 & -0.3744686\\
+1 & 0.9573250\\
 \hline
-2 & 2.8959370\\
+2 & 4.0244136\\
 \hline
-3 & 2.4410628\\
+3 & 7.2148004\\
 \hline
-4 & -2.4361144\\
+4 & -0.3266043\\
 \hline
-5 & 3.6207612\\
+5 & -0.4962972\\
 \hline
-6 & 4.7292059\\
+6 & 4.0443074\\
 \hline
 \end{tabular}
 \end{table}
@@ -6087,8 +5975,6 @@ To begin a \texttt{leaflet} map, simply type \texttt{leaflet()}. This creates a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-257-1.pdf}
-
 ~
 
 Now, add the background map. To do so, \texttt{leaflet} uses ``tiles''. Tiles are basically images -- little pictures stitched together to give you a sense of a continuous map.
@@ -6098,8 +5984,6 @@ Now, add the background map. To do so, \texttt{leaflet} uses ``tiles''. Tiles ar
 \FunctionTok{leaflet}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{addTiles}\NormalTok{() }
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-258-1.pdf}
 
 ~
 
@@ -6114,8 +5998,6 @@ To get the map focused on a specific area of interest, bring in ``markers'' base
     \FunctionTok{addMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee)}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-259-1.pdf}
 
 ~
 
@@ -6135,8 +6017,6 @@ How about satellite imagery instead?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-260-1.pdf}
-
 ~
 
 How about topography instead?
@@ -6148,8 +6028,6 @@ How about topography instead?
     \FunctionTok{addMarkers}\NormalTok{(}\AttributeTok{data=}\NormalTok{sewanee)}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-261-1.pdf}
 
 ~
 
@@ -6171,8 +6049,6 @@ To change the markers from a ``dart'' to a circle, use \texttt{addCircleMarkers(
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-262-1.pdf}
-
 ~
 
 To add `pop up' information when you click on your marker, use the \texttt{popup} input:
@@ -6189,8 +6065,6 @@ To add `pop up' information when you click on your marker, use the \texttt{popup
                                     \StringTok{\textquotesingle{}Lon: \textquotesingle{}}\NormalTok{,sewanee}\SpecialCharTok{$}\NormalTok{latitude,}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-263-1.pdf}
 
 ~
 
@@ -6215,8 +6089,6 @@ For example, map the bathymetry of the northeast Pacific basin:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figures/unnamed-chunk-264-1.pdf}
-
 ~
 
 Or get satellite imagery for an island off the coast of Georgia, USA:
@@ -6231,8 +6103,6 @@ Or get satellite imagery for an island off the coast of Georgia, USA:
               \AttributeTok{lat2 =} \FloatTok{31.7}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-265-1.pdf}
 
 \hypertarget{geocoding}{%
 \section*{Geocoding}\label{geocoding}}
@@ -6251,6 +6121,7 @@ First, install \& load the package:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidygeocoder)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(tidygeocoder)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}tidygeocoder\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6269,6 +6140,7 @@ Now, geocode:
 \begin{Highlighting}[]
 \NormalTok{lat\_longs }\OtherTok{\textless{}{-}}\NormalTok{ addresses }\SpecialCharTok{\%\textgreater{}\%}
     \FunctionTok{geocode}\NormalTok{(addr, }\AttributeTok{method =} \StringTok{\textquotesingle{}osm\textquotesingle{}}\NormalTok{, }\AttributeTok{lat =}\NormalTok{ latitude , }\AttributeTok{long =}\NormalTok{ longitude)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{geocode}\NormalTok{(., addr, }\AttributeTok{method =} \StringTok{"osm"}\NormalTok{, }\AttributeTok{lat =}\NormalTok{ latitude, }\AttributeTok{long =}\NormalTok{ longitude)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"geocode"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6277,10 +6149,7 @@ Check out the result:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{lat\_longs}
-\CommentTok{\# A tibble: 1 x 4}
-\NormalTok{  name        addr                                     latitude longitude}
-  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}       \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}                                       \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}
-\DecValTok{1}\NormalTok{ White House }\DecValTok{1600}\NormalTok{ Pennsylvania Ave NW, Washington, DC     }\FloatTok{38.9}     \SpecialCharTok{{-}}\FloatTok{77.0}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}lat\_longs\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6291,10 +6160,9 @@ And check out your map:
 \FunctionTok{leaflet}\NormalTok{(}\AttributeTok{data=}\NormalTok{lat\_longs) }\SpecialCharTok{\%\textgreater{}\%} 
     \FunctionTok{addProviderTiles}\NormalTok{(providers}\SpecialCharTok{$}\NormalTok{Stamen.Watercolor) }\SpecialCharTok{\%\textgreater{}\%} 
     \FunctionTok{addMarkers}\NormalTok{()}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{structure}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{options =}\NormalTok{ options), }\AttributeTok{leafletData =}\NormalTok{ data)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}lat\_longs\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-271-1.pdf}
 
 ~
 
@@ -6316,6 +6184,7 @@ Now, reverse-geocode:
 \NormalTok{reverse }\OtherTok{\textless{}{-}}\NormalTok{ lat\_longs }\SpecialCharTok{\%\textgreater{}\%}
     \FunctionTok{reverse\_geocode}\NormalTok{(}\AttributeTok{lat =}\NormalTok{ latitude, }
                     \AttributeTok{long =}\NormalTok{ longitude)}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{reverse\_geocode}\NormalTok{(., }\AttributeTok{lat =}\NormalTok{ latitude, }\AttributeTok{long =}\NormalTok{ longitude)}\SpecialCharTok{:}\NormalTok{ could not find }\ControlFlowTok{function} \StringTok{"reverse\_geocode"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6324,10 +6193,7 @@ Check out the result:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{reverse}
-\CommentTok{\# A tibble: 1 x 3}
-\NormalTok{  latitude longitude address                                                    }
-     \SpecialCharTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}}     \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}                                                      
-\DecValTok{1}     \FloatTok{48.9}      \FloatTok{2.29}\NormalTok{ Tour Eiffel, }\DecValTok{5}\NormalTok{, Avenue Anatole France, Quartier du Gros}\SpecialCharTok{{-}}\NormalTok{Ca}\SpecialCharTok{\textasciitilde{}}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{eval}\NormalTok{(expr, envir, enclos)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}reverse\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6341,10 +6207,9 @@ Now, add the mailing address as a \texttt{popup} in your marker:
                      \AttributeTok{color =} \StringTok{"firebrick"}\NormalTok{,}
                      \AttributeTok{radius =} \DecValTok{15}\NormalTok{,}
                      \AttributeTok{popup =} \FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{",\textless{}br\textgreater{}"}\NormalTok{, reverse}\SpecialCharTok{$}\NormalTok{address))}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{is.factor}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ object }\StringTok{\textquotesingle{}reverse\textquotesingle{}}\NormalTok{ not found}
 \end{Highlighting}
 \end{Shaded}
-
-\includegraphics{figures/unnamed-chunk-275-1.pdf}
 
 \hypertarget{final-thoughts-1}{%
 \section*{Final thoughts}\label{final-thoughts-1}}
@@ -6564,9 +6429,7 @@ First, let's read in some data on health from the World Bank:
 \FunctionTok{library}\NormalTok{(readr)}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(gapminder)}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{library}\NormalTok{(gapminder)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
 \NormalTok{gm }\OtherTok{\textless{}{-}}\NormalTok{ gapminder}\SpecialCharTok{::}\NormalTok{gapminder}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{loadNamespace}\NormalTok{(x)}\SpecialCharTok{:}\NormalTok{ there is no package called }\StringTok{\textquotesingle{}gapminder\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 

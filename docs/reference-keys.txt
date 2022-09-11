@@ -19,5 +19,4 @@ markdown-documentation
 r-markdown
 interactive-maps
 a-mystery-dataset
-a-dplyr-survey
 global-health-ggplot
