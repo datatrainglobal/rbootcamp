@@ -1,5 +1,5 @@
-fig:unnamed-chunk-251
-tab:unnamed-chunk-252
+fig:unnamed-chunk-254
+tab:unnamed-chunk-255
 welcome
 what-is-data-science
 the-reproducibility-crisis
@@ -8,6 +8,7 @@ dataviz
 setting-up-rstudio
 running-r-code
 using-rstudio-r-scripts
+an-early-victory---interactive-map-with-leaflet
 variables
 vectors
 dataframes
