@@ -50,7 +50,7 @@ A single observational unit is stored in multiple tables.
 > "Tidy datasets are all alike, but every messy dataset is messy in its own way."\
 > --- Hadley Wickham
 
-## Tidy data 
+## Examples 
 
 You can represent the same underlying data in multiple ways.
 The example below shows the same data organised in four different ways.
@@ -58,7 +58,8 @@ Each dataset shows the same values of four variables: *country*, *year*, *popula
 
 <!-- TODO redraw as tables -->
 
-```{r}
+```{r, eval = TRUE}
+library(tidyverse)
 table1
 table2
 table3

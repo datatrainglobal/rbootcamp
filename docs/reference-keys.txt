@@ -16,7 +16,7 @@ data-tidying
 data-semantics
 tidy-data
 messy-data
-tidy-data-1
+examples
 packages
 importing-data
 ggplot

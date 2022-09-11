@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2" data-path="dataframes.html"><a href="dataframes.html#data-semantics"><i class="fa fa-check"></i><b>12.2</b> Data semantics</a></li>
 <li class="chapter" data-level="12.3" data-path="dataframes.html"><a href="dataframes.html#tidy-data"><i class="fa fa-check"></i><b>12.3</b> Tidy data</a></li>
 <li class="chapter" data-level="12.4" data-path="dataframes.html"><a href="dataframes.html#messy-data"><i class="fa fa-check"></i><b>12.4</b> Messy data</a></li>
-<li class="chapter" data-level="12.5" data-path="dataframes.html"><a href="dataframes.html#tidy-data-1"><i class="fa fa-check"></i><b>12.5</b> Tidy data</a></li>
+<li class="chapter" data-level="12.5" data-path="dataframes.html"><a href="dataframes.html#examples"><i class="fa fa-check"></i><b>12.5</b> Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>13</b> Packages</a>
 <ul>
@@ -330,17 +330,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 — Hadley Wickham</p>
 </blockquote>
 </div>
-<div id="tidy-data-1" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Tidy data<a href="dataframes.html#tidy-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="examples" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Examples<a href="dataframes.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can represent the same underlying data in multiple ways.
 The example below shows the same data organised in four different ways.
 Each dataset shows the same values of four variables: <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em> of TB (tuberculosis), but each dataset organizes the values in a different way.</p>
 <!-- TODO redraw as tables -->
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;table1&#39; not found
-#&gt; Error in eval(expr, envir, enclos): object &#39;table2&#39; not found
-#&gt; Error in eval(expr, envir, enclos): object &#39;table3&#39; not found
-#&gt; Error in eval(expr, envir, enclos): object &#39;table4a&#39; not found
-#&gt; Error in eval(expr, envir, enclos): object &#39;table4b&#39; not found</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 4
+#&gt;   country      year  cases population
+#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+#&gt; 1 Afghanistan  1999    745   19987071
+#&gt; 2 Afghanistan  2000   2666   20595360
+#&gt; 3 Brazil       1999  37737  172006362
+#&gt; 4 Brazil       2000  80488  174504898
+#&gt; 5 China        1999 212258 1272915272
+#&gt; 6 China        2000 213766 1280428583
+#&gt; # A tibble: 12 × 4
+#&gt;   country      year type           count
+#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;
+#&gt; 1 Afghanistan  1999 cases            745
+#&gt; 2 Afghanistan  1999 population  19987071
+#&gt; 3 Afghanistan  2000 cases           2666
+#&gt; 4 Afghanistan  2000 population  20595360
+#&gt; 5 Brazil       1999 cases          37737
+#&gt; 6 Brazil       1999 population 172006362
+#&gt; # … with 6 more rows
+#&gt; # A tibble: 6 × 3
+#&gt;   country      year rate             
+#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+#&gt; 1 Afghanistan  1999 745/19987071     
+#&gt; 2 Afghanistan  2000 2666/20595360    
+#&gt; 3 Brazil       1999 37737/172006362  
+#&gt; 4 Brazil       2000 80488/174504898  
+#&gt; 5 China        1999 212258/1272915272
+#&gt; 6 China        2000 213766/1280428583
+#&gt; # A tibble: 3 × 3
+#&gt;   country     `1999` `2000`
+#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+#&gt; 1 Afghanistan    745   2666
+#&gt; 2 Brazil       37737  80488
+#&gt; 3 China       212258 213766
+#&gt; # A tibble: 3 × 3
+#&gt;   country         `1999`     `2000`
+#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+#&gt; 1 Afghanistan   19987071   20595360
+#&gt; 2 Brazil       172006362  174504898
+#&gt; 3 China       1272915272 1280428583</code></pre>
 <p>These are all representations of the same underlying data, but they are not equally easy to use.
 One of them, <code>table1</code>, will be much easier to work with inside the tidyverse because it’s tidy.</p>
 <p>There are three interrelated rules that make a dataset tidy:</p>
