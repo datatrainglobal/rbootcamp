@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 6 Setting up RStudio | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 6 Setting up RStudio | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -67,6 +66,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -291,33 +313,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>First, download and install <code>R</code>: </strong></p>
 <p>Go to the following website, click the <em>Download</em> button, and follow the website’s instructions from there.
 <a href="https://mirrors.nics.utk.edu/cran/" target="blank">https://mirrors.nics.utk.edu/cran/</a></p>
-<p> </p>
 <p><strong>Second, download and install <code>RStudio</code>:</strong></p>
 <p>Go to the following website and choose the free Desktop version:
 <a href="https://rstudio.com/products/rstudio/download/" target="blank">https://rstudio.com/products/rstudio/download/</a></p>
-<p> </p>
 <p><strong>Third, make sure <code>RStudio</code> opens successfully:</strong></p>
 <p>Open the <code>RStudio</code> app. A window should appear that looks like this:</p>
-<p><img src="img/rstudio_firstopen.png" />
- </p>
+<p><img src="img/rstudio_firstopen.png" /></p>
 <p><strong>Fourth, make sure <code>R</code> is running correctly in the background:</strong></p>
 <p>In <code>RStudio</code>, in the pane on the left (the “Console”), type 2+2 and hit Enter.<br />
 If <code>R</code> is working properly, the number “4” will be printed in the next line down.</p>
-<p> </p>
 <p><strong>Finally, some minor adjustments to make <code>RStudio</code> run smoother (and look cooler):</strong></p>
 <p>Go to <code>Tools &gt; Global Options</code> and make sure your <code>General</code> settings match these exactly:</p>
-<p><img src="img/rstudio_settings.png" />
-Specifically, <strong>uncheck</strong> the option under <em>Workspace</em> to ‘Restore .RData into workspace at startup.’</p>
+<p><img src="img/rstudio_settings.png" /></p>
+<p>Specifically, <strong>uncheck</strong> the option under <em>Workspace</em> to ‘Restore .RData into workspace at startup.’</p>
 <p>Now go to the <code>Appearance</code> settings and choose a cool theme!</p>
 <p><img src="img/rstudio_theme.png" /></p>
 <p><strong>Boom!</strong></p>
-<p> </p>
-<p> </p>
 <p><strong>Appendix, install supplementary software:</strong></p>
 <p>In order to install certain packages, you’ll need to take one more step:</p>
 <ul>
 <li>On Windows, download <a href="http://cran.r-project.org/bin/windows/Rtools/" class="uri">http://cran.r-project.org/bin/windows/Rtools/</a> and run the installer</li>
-<li>On Mac, you need Xcode Command Line Tools. You might already have this. Check by running <code>devtools::has_devel()</code>. If You don’t have it, open shell/terminal and run</li>
+<li>On Mac, you need Xcode Command Line Tools. You might already have this. Check by running <code>devtools::has_devel()</code>. If you don’t have it, open shell/terminal and run</li>
 </ul>
 <pre><code>xcode-select --install</code></pre>
 <ul>
@@ -385,6 +401,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

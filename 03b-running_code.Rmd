@@ -17,7 +17,7 @@ When you open `RStudio`, you see several different panes within the program's wi
 
 ## Running code in the *Console*  {-}
 
-Type your first command into the *Console*, then press `Enter`:
+Type `1 + 1` into the *Console*, then press `Enter` &mdash; you should get the following:
 
 ```{r,echo=TRUE, collapse=TRUE}
 1 + 1
@@ -25,7 +25,7 @@ Type your first command into the *Console*, then press `Enter`:
 
 When you press `Enter`, you send your line of code to `R`; you post it for `R` to see. Then `R` takes it, does some processing, and posts a result (`2`) just below your command.
 
-Note that spaces don't matter. Both of the following two commands are legible to `R` and return the same thing:
+Note that spaces don't matter &mdash; both of the following two commands are legible to `R` and return the same thing:
 
 ```{r,echo=TRUE,collapse=TRUE}
 4+4
@@ -41,13 +41,9 @@ However, it is better to make your code as easy to read as possible, which usual
 4 + 4
 ```
 
-Try typing in other basic calculations:
-
 ## Use R like a calculator {-}
 
-As you can tell from those commands you just ran, `R` is, at heart, a fancy calculator.
-
-Some calculations are straightforward, like addition and subtraction:
+At heart, `R` is really just a (very) fancy calculator. Some calculations are straightforward, like addition and subtraction:
 
 ```{r,echo=TRUE,collapse=TRUE}
 490 + 1000
@@ -72,15 +68,15 @@ For multiplication, use an asterisk (`*`):
 You denote exponents like this: 
 
 ```{r,echo=TRUE,collapse=TRUE}
-2 ^2
+2^2
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-2 ^3
+2^3
 ```
 
 ```{r,echo=TRUE,collapse=TRUE}
-2 ^4
+2^4
 ```
 
 Finally, note that `R` is fine with negative numbers:
@@ -244,27 +240,21 @@ Other commonly used operators in `R` include greater than / less than symbols (`
 
 ### Use built-in `R` functions {-}
 
-`R` has some built-in "functions" for common calculations, such as finding square roots and logarithms. Functions are packages of code that take a given value, transform it according to some internal code instructions, and provide an output. You will learn more about functions in a few modules. 
-
-To find the square-root of a number, use the 'squirt' command, `sqrt()`: 
+`R` has some built-in "functions" for common calculations, such as finding square roots and logarithms. Functions are packages of code that take a given value, transform it according to some internal code instructions, and provide an output. As you learn more about `R`, you will learn to write your very own functions; for starters, though, let's just learn to use some functions that `R` provides. To find the square-root of a number, for example, use the function `sqrt()`: 
 
 ```{r,echo=TRUE,collapse=TRUE}
 sqrt(16)
 ```
 
-Note the use of parentheses here. When you are calling a function, when you see parentheses, think of the word 'of'. You are taking the `sqrt` **of** the number inside the parenthetical.  
+Note the use of parentheses here. When you are calling a function, when you see parentheses, think of the word 'of' &mdash; you are taking the `sqrt` **of** the number inside the parentheses.
 
-To get the log of a value:
+To get the natural (base $e$) logarithm of a number, use `log()`:
 
 ```{r,echo=TRUE,collapse=TRUE}
 log(4)
 ```
 
-Note that the function `log()` is the *natural log* function (i.e., the value that *e* must be raised to in order to equal 4). To calculate a base-10 logarithm, use `log10( )`.
-
-```{r,echo=TRUE,collapse=TRUE}
-log(10)
-```
+This is the value that $e$ must be raised to to equal 4; we'll see the value of $e$ and check $e^{\log{4}}$ below. To calculate a common (base 10) logarithm instead, use `log10( )`:
 
 ```{r,echo=TRUE,collapse=TRUE}
 log10(10)
@@ -292,12 +282,22 @@ round(100/3,digits=2)
 round(100/3,digits=3)
 ```
 
-Finally, `R` also comes with some built-in *values*, such as `pi`:
+Finally, `R` also comes with some built-in *values*, such as $\pi$ :
 
 ```{r,echo=TRUE,collapse=TRUE}
 pi
 ```
 
+Some values you might want to use are not built in, but are easy to get with a built-in function. For example, 
+use `exp()` to get powers of $e$ (the base of the natural logarithm) :
+
+```{r,echo=TRUE,collapse=TRUE}
+exp(1)
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+exp(log(4))
+```
 
 #### Exercises {-}
 
@@ -318,7 +318,7 @@ pi
 
 **6.** Now recall that command and adjust it to determine the *average* age of the members of your family.  
 
-**7.** Find the square root of *pi* and round the answer to the 2 decimal places.
+**7.** Find the square root of $\pi$ and round the answer to the 2 decimal places.
 
 &nbsp;    
 
@@ -349,11 +349,11 @@ round(100/3,digits+3)
 
 **Show that the following statements are TRUE:**
 
-**12.** `pi` is greater than the square root of 9  
+**12.** $\pi$ is greater than the square root of 9  
 
-**13.** It is FALSE that the square root of 9 is greater than `pi`  
+**13.** It is FALSE that the square root of 9 is greater than $\pi$  
 
-**14.** `pi` rounded to the nearest whole number equals the square root of 9  
+**14.** $\pi$ rounded to the nearest whole number equals the square root of 9  
 
 &nbsp;  
 
@@ -370,7 +370,6 @@ round(100/3,digits+3)
 ```
 
 **16.** Now write and run a line of code that asks whether the first calculation is larger than the second:
-
 
 &nbsp;
 

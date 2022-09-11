@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 13 Packages | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 13 Packages | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -67,6 +66,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -287,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="packages" class="section level1 hasAnchor" number="13">
 <h1><span class="header-section-number">Module 13</span> Packages<a href="packages.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-goals-6" class="section level4 unnumbered hasAnchor" number="">
+<div id="learning-goals-6" class="section level4 unnumbered hasAnchor">
 <h4>Learning goals<a href="packages.html#learning-goals-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Learn what <code>R</code> packages are and why they are awesome</li>
@@ -301,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Some packages are designed to be broadly useful for almost any application, such as the packages you will be learning in this course (<code>ggplot</code>, <code>dplyr</code>, <code>stringr</code>, etc.). Such packages make it easier and more efficient to do your work with <code>R</code>.</p>
 <p>Others are designed for niche problems that can be made much more doable with specialized functions or datasets. For example, the package <code>PBSmapping</code> contains shoreline, seafloor, and oceanographic datasets and custom mapping functions that make it easier for marine scientists at the Pacific Biological Station (PBS) in British Columbia, Canada, to carry out their work.</p>
 </div>
-<div id="packages-you-already-have" class="section level2 unnumbered hasAnchor" number="">
+<div id="packages-you-already-have" class="section level2 unnumbered hasAnchor">
 <h2>Packages you already have<a href="packages.html#packages-you-already-have" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In <code>RStudio</code>, look to the pane in the bottom right and click on the <em>Packages</em> tab. You should see something like this:</p>
 <p><img src="img/rstudio_packages.png" />
@@ -310,97 +332,94 @@ This is displaying all the packages already installed in your system.</p>
 <p><img src="img/rstudio_base-package.png" /></p>
 <p>When you click on one of these functions, you will be taken to the help page for that function. This is the equivalent of typing <code>? &lt;function_name&gt;</code> into the <em>Console</em>.</p>
 </div>
-<div id="installing-a-new-package" class="section level2 unnumbered hasAnchor" number="">
+<div id="installing-a-new-package" class="section level2 unnumbered hasAnchor">
 <h2>Installing a new package<a href="packages.html#installing-a-new-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are a couple ways to download and install a new <code>R</code> package on your computer. Most packages are available from an open-source repository known as <code>CRAN</code> (which stands for Comprehensive <code>R</code> Archive Network). However, an increasingly common practice is to release packages on a public repository such as <code>GitHub</code>.</p>
-<div id="installing-from-cran" class="section level3 unnumbered hasAnchor" number="">
+<div id="installing-from-cran" class="section level3 unnumbered hasAnchor">
 <h3>Installing from <code>CRAN</code><a href="packages.html#installing-from-cran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can install <code>CRAN</code> packages one of two ways:</p>
-<div id="through-clicks" class="section level4 unnumbered hasAnchor" number="">
+<div id="through-clicks" class="section level4 unnumbered hasAnchor">
 <h4>Through clicks:<a href="packages.html#through-clicks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In <code>RStudio</code>, in the bottom-right pane, return to the <em>Packages</em> tab. Click on the “Install” button.</p>
 <p><img src="img/rstudio_install-package.png" /></p>
 <p>You can then search for the package you wish to install then click <strong>Install</strong>.</p>
 </div>
-<div id="through-code" class="section level4 unnumbered hasAnchor" number="">
+<div id="through-code" class="section level4 unnumbered hasAnchor">
 <h4>Through code:<a href="packages.html#through-code" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>You can download packages from the <em>Console</em> using the <code>install.packages()</code> function.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="packages.html#cb113-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&#39;fun&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="packages.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;fun&#39;</span>)</span></code></pre></div>
 <p>Note that the package name must be in quotation marks.</p>
 </div>
 </div>
-<div id="installing-from-github" class="section level3 unnumbered hasAnchor" number="">
+<div id="installing-from-github" class="section level3 unnumbered hasAnchor">
 <h3>Installing from <code>GitHub</code><a href="packages.html#installing-from-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To install packages from <code>GitHub</code>, you must first download a <code>CRAN</code> package that makes it easy to do so:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="packages.html#cb114-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="packages.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span></code></pre></div>
 <p>Most packages on <code>GitHub</code> include instructions for downloading it on its <code>GitHub</code> page.</p>
 <p>For example, visit <a href="https://github.com/karthik/wesanderson" target="blank">this <code>GitHub</code> page</a> to see the documentation for the package <strong>wesanderson</strong>, which provides color palette themes based upon Wes Anderson’s films. On this site, scroll down and you will find instructions for downloading the package. These instructions show you how to install this package from your <code>R</code> <em>Console</em>:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="packages.html#cb115-1" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="packages.html#cb116-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
 <p>Now go to your <em>Packages</em> tab in the bottom-right pane of <code>RStudio</code>, scroll down to find the <strong>wesanderson</strong> package, and click on it to check out its functions.</p>
 </div>
 </div>
-<div id="loading-an-installed-package" class="section level2 unnumbered hasAnchor" number="">
+<div id="loading-an-installed-package" class="section level2 unnumbered hasAnchor">
 <h2>Loading an installed package<a href="packages.html#loading-an-installed-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is a difference between <em>installed</em> and <em>loaded</em> packages. Go back to your <em>Packages</em> tab. Notice that some of the packages have a checked box next to their names, while others don’t.</p>
 <p>These checked boxes indicate which packages are currently <em>loaded</em>. All packages in the list are <em>installed</em> on your computer, but only the checked packages are <em>loaded</em>, i.e., ready for use.</p>
 <p>To load a package, use the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="packages.html#cb116-1" aria-hidden="true"></a><span class="kw">library</span>(fun)</span>
-<span id="cb116-2"><a href="packages.html#cb116-2" aria-hidden="true"></a><span class="co">#&gt; Error in library(fun): there is no package called &#39;fun&#39;</span></span>
-<span id="cb116-3"><a href="packages.html#cb116-3" aria-hidden="true"></a><span class="kw">library</span>(wesanderson)</span>
-<span id="cb116-4"><a href="packages.html#cb116-4" aria-hidden="true"></a><span class="co">#&gt; Error in library(wesanderson): there is no package called &#39;wesanderson&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="packages.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fun)</span>
+<span id="cb117-2"><a href="packages.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
 <p>Now that your new packages are loaded, you can actually use their functions.</p>
 <p><strong>To emphasize:</strong> a package is installed <em>only once</em>, but you <code>library()</code> the package in <em>each and every</em> script that uses it. Think of a package as camping gear. Like an <code>R</code> package, camping gear helps you do cool things that you can’t really do with the regular stuff in your closet. And, like an <code>R</code> package, you only need to install (i.e., purchase) your gear once; but it is useless unless you pack it in your car (i.e., <code>library()</code> it) <em>every time</em> you go on a trip.</p>
 </div>
-<div id="calling-functions-from-a-package" class="section level2 unnumbered hasAnchor" number="">
+<div id="calling-functions-from-a-package" class="section level2 unnumbered hasAnchor">
 <h2>Calling functions from a package<a href="packages.html#calling-functions-from-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most functions from external packages can be used by simply typing the name of the function. For example, the package <code>fun</code> contains a function for generating a random password:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="packages.html#cb117-1" aria-hidden="true"></a><span class="kw">random_password</span>(<span class="dt">length=</span><span class="dv">24</span>)</span>
-<span id="cb117-2"><a href="packages.html#cb117-2" aria-hidden="true"></a><span class="co">#&gt; Error in random_password(length = 24): could not find function &quot;random_password&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="packages.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
+<span id="cb118-2"><a href="packages.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;L6k^N&gt;chd$7nl!]VJpsuK\\Ae&quot;</span></span></code></pre></div>
 <p>Sometimes, however, <code>R</code> can get confused if a new package contains a function that has the same name of some function from a different package. If <code>R</code> seems confused about a function you are calling, it can help to specify which package the function can be found in. This is done using the syntax <code>&lt;package_name&gt;::&lt;function_name&gt;</code>. For example, the following command is a fine alternative to the command above:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="packages.html#cb118-1" aria-hidden="true"></a>fun<span class="op">::</span><span class="kw">random_password</span>(<span class="dt">length=</span><span class="dv">24</span>)</span>
-<span id="cb118-2"><a href="packages.html#cb118-2" aria-hidden="true"></a><span class="co">#&gt; Error in loadNamespace(x): there is no package called &#39;fun&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="packages.html#cb119-1" aria-hidden="true" tabindex="-1"></a>fun<span class="sc">::</span><span class="fu">random_password</span>(<span class="at">length=</span><span class="dv">24</span>)</span>
+<span id="cb119-2"><a href="packages.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;^#ABxuJ&amp;?Te(5)v|0SWr toR&quot;</span></span></code></pre></div>
 <p>Note that this was done in the example above using the <code>devtools</code> package.</p>
-<div id="side-notes" class="section level3 unnumbered hasAnchor" number="">
+<div id="side-notes" class="section level3 unnumbered hasAnchor">
 <h3>Side notes<a href="packages.html#side-notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="package-dependencies" class="section level4 unnumbered hasAnchor" number="">
+<div id="package-dependencies" class="section level4 unnumbered hasAnchor">
 <h4>Package dependencies<a href="packages.html#package-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Most packages contain functions that are built using functions built from other packages. Those new functions depend on the functions from those other packages, and that’s why those other packages are known as <em>dependencies</em>. When you install one function, you will notice that <code>R</code> typically has to install several other packages at the same time; these are the dependencies that allow the package of interest to function.</p>
 </div>
-<div id="package-versions" class="section level4 unnumbered hasAnchor" number="">
+<div id="package-versions" class="section level4 unnumbered hasAnchor">
 <h4>Package versions<a href="packages.html#package-versions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Packages are updated regularly, and sometimes new versions can break the functions that use it as a dependency. Sometimes you may have to install a new version (<em>or sometimes an older version!</em>) of a dependency in order to get your package of interest to work as desired.</p>
 </div>
-<div id="review-the-workflow-for-using-a-package" class="section level4 unnumbered hasAnchor" number="">
+<div id="review-the-workflow-for-using-a-package" class="section level4 unnumbered hasAnchor">
 <h4>Review: the workflow for using a package<a href="packages.html#review-the-workflow-for-using-a-package" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To review how to use functions from a non-base package in <code>R</code>, follow these steps (examples provided:)</p>
 <ol style="list-style-type: decimal">
 <li>Install the package <em>once.</em></li>
 </ol>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="packages.html#cb119-1" aria-hidden="true"></a><span class="co"># Example from CRAN</span></span>
-<span id="cb119-2"><a href="packages.html#cb119-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;wesanderson&quot;</span>)</span>
-<span id="cb119-3"><a href="packages.html#cb119-3" aria-hidden="true"></a></span>
-<span id="cb119-4"><a href="packages.html#cb119-4" aria-hidden="true"></a><span class="co"># Example from GitHub</span></span>
-<span id="cb119-5"><a href="packages.html#cb119-5" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="packages.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from CRAN</span></span>
+<span id="cb120-2"><a href="packages.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;wesanderson&quot;</span>)</span>
+<span id="cb120-3"><a href="packages.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="packages.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example from GitHub</span></span>
+<span id="cb120-5"><a href="packages.html#cb120-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;karthik/wesanderson&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Load the package <em>in each script.</em></li>
 </ol>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="packages.html#cb120-1" aria-hidden="true"></a><span class="co"># Example</span></span>
-<span id="cb120-2"><a href="packages.html#cb120-2" aria-hidden="true"></a><span class="kw">library</span>(wesanderson)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="packages.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb121-2"><a href="packages.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wesanderson)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Call the function.</li>
 </ol>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="packages.html#cb121-1" aria-hidden="true"></a><span class="kw">wes_palette</span>(<span class="st">&quot;Royal1&quot;</span>)</span>
-<span id="cb121-2"><a href="packages.html#cb121-2" aria-hidden="true"></a><span class="co">#&gt; Error in wes_palette(&quot;Royal1&quot;): could not find function &quot;wes_palette&quot;</span></span>
-<span id="cb121-3"><a href="packages.html#cb121-3" aria-hidden="true"></a>wesanderson<span class="op">::</span><span class="kw">wes_palette</span>(<span class="st">&quot;Zissou1&quot;</span>)</span>
-<span id="cb121-4"><a href="packages.html#cb121-4" aria-hidden="true"></a><span class="co">#&gt; Error in loadNamespace(x): there is no package called &#39;wesanderson&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="packages.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wes_palette</span>(<span class="st">&quot;Royal1&quot;</span>)</span>
+<span id="cb122-2"><a href="packages.html#cb122-2" aria-hidden="true" tabindex="-1"></a>wesanderson<span class="sc">::</span><span class="fu">wes_palette</span>(<span class="st">&quot;Zissou1&quot;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-138-1.png" width="925.44" /><img src="figures/unnamed-chunk-138-2.png" width="925.44" /></p>
 <p><em>(This function creates a plot displaying the different colors contained within the specified palette.)</em></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Get help with the question mark: <code>?</code></li>
 </ol>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="packages.html#cb122-1" aria-hidden="true"></a>?wes_palette</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="packages.html#cb123-1" aria-hidden="true" tabindex="-1"></a>?wes_palette</span></code></pre></div>
 </div>
 </div>
-<div id="exercises-4" class="section level3 unnumbered hasAnchor" number="">
+<div id="exercises-4" class="section level3 unnumbered hasAnchor">
 <h3>Exercises<a href="packages.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s install some packages:</p>
 <p><strong>1.</strong> Install the <code>babynames</code> package.</p>
@@ -480,6 +499,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

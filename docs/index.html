@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -67,6 +66,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -290,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="welcome" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Module 1</span> Welcome!<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="what-this-is-and-what-it-isnt" class="section level2 unnumbered hasAnchor" number="">
+<div id="what-this-is-and-what-it-isnt" class="section level2 unnumbered hasAnchor">
 <h2>What this is, and what it isn’t<a href="index.html#what-this-is-and-what-it-isnt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is not a textbook or an encyclopedia. This is not a reference manual. It is not exhaustive or comprehensive. We won’t mention statistical tests at all. There is almost no theory. In fact, this curriculum is biased, non-representative, and incomplete – <em>by design.</em></p>
 <p><strong>So what is this?</strong> This guide is an <em>accelerator,</em> an <em>incubator</em> designed to guide you along the most direct path from your first line of code to becoming a capable data scientist. Our goal is to help you through the most dangerous period in your data science education: your very first steps. The first three weeks. That is when 99% percent of people give up on learning to code.</p>
@@ -300,11 +322,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Premise 2: We learn best with purpose.</strong> Once you gain comfort with the basic skills, you will be able to start working on real data, for real projects, with real impact. You will start to <em>care about what you are coding</em>. And that is when the learning curve <em>skyrockets</em> – because you are motivated, and because you are learning <em>reactively</em>, instead of passively. Our goal is to get you to the point of take-off as quickly as possible.</p>
 <p><strong>Premise 3: A simple toolbox is all you need to build a house.</strong> Once you become comfortable with a few basic coding tools, you can build pretty much anything. The toolbox doesn’t need to be that big; if you know how to use your tools well, and if you have enough building supplies (i.e., data), the possibilities are limitless.</p>
 </div>
-<div id="who-this-is-for" class="section level2 unnumbered hasAnchor" number="">
+<div id="who-this-is-for" class="section level2 unnumbered hasAnchor">
 <h2>Who this is for<a href="index.html#who-this-is-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The target audience for these tutorials is the <em>rookie</em>: the student who <em>wants</em> to work with data but has <em>zero</em> formal training in programming, computer science, or statistics.</p>
 </div>
-<div id="what-you-will-learn" class="section level2 unnumbered hasAnchor" number="">
+<div id="what-you-will-learn" class="section level2 unnumbered hasAnchor">
 <h2>What you will learn<a href="index.html#what-you-will-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>The <strong>Core theory</strong> unit establishes the conceptual foundations and motivations for this work: what data science is, why it matters, and ethical issues surrounding it: the good, the bad, and the ugly. Don’t slog through this all at once. Sprinkle it in here and there. The most important thing, at first, is to start writing code.</li>
@@ -321,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 allowing users to explore the data themselves with an interactive <code>Shiny</code> dashboard or web app; and sharing your code and tracking versions of your code using <code>Git</code>.</p></li>
 </ul>
 </div>
-<div id="who-are-we" class="section level2 unnumbered hasAnchor" number="">
+<div id="who-are-we" class="section level2 unnumbered hasAnchor">
 <h2>Who are we?<a href="index.html#who-are-we" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://datatrain.global">www.datatrain.global</a>.</p>
 <p> </p>
@@ -391,6 +413,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

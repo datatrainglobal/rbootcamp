@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 4 Data ethics | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
-  <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 4 Data ethics | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -67,6 +66,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -100,7 +100,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -113,7 +113,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -127,6 +127,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -287,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-ethics" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Module 4</span> Data ethics<a href="data-ethics.html#data-ethics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="a-few-principles" class="section level2 unnumbered hasAnchor" number="">
+<div id="a-few-principles" class="section level2 unnumbered hasAnchor">
 <h2>A few principles<a href="data-ethics.html#a-few-principles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This orientation to the principles of data ethics is not going to be adequate or sufficient. We just need to provide enough context for you (1) to appreciate the limitless complexity and uncertainty of many ethical issues in data science, and (2) to start exploring the complex ethical scenarios below on your own or in dialogue with others.</p>
 <p>In most frameworks for data ethics, three foundational principles are used to help us think about whether certain research actions are ethical. Those three principles are:</p>
@@ -300,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note also that these principles were designed with <strong>individual human subjects</strong> in mind. It is an open question of active debate how exactly these principles can be applied to <strong>communities of individuals</strong> all at once – what exactly does it mean for a group to consent to something? Does every single individual need to consent? The majority? – or how they translate to our treatment of <strong>non-human communities</strong>: animals, plants, and places.</p>
 <p>Let’s stop there and explore some concrete scenarios. For a better orientation to ethical precepts underlying issues of data ethics, <a href="https://www.scu.edu/media/ethics-center/technology-ethics/IntroToDataEthics.pdf">this chapter by Shannon Vallor</a> is the best open-source resource that we have been able to find. Many of the case studies and scenarios presented below are adapted from that chapter.</p>
 </div>
-<div id="warm-up-scenarios" class="section level2 unnumbered hasAnchor" number="">
+<div id="warm-up-scenarios" class="section level2 unnumbered hasAnchor">
 <h2>Warm up scenarios<a href="data-ethics.html#warm-up-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Practice applying the above principles to these scenario questions. For each scenario, describe your <strong>opinion vector</strong> (the <em>direction</em> of your opinion – yes or no – and the <em>strength</em> of your opinion).</p>
 <p><strong>Location tracking</strong><br />
@@ -314,10 +336,10 @@ Is it ethical for Instagram to count how many milliseconds you spend on each pos
 <p><strong>Controversial content</strong><br />
 You are a data scientist at Facebook. Based on your analyses of user data, you have discovered that when you show readers sensational or hyperbolic content, such as someone ranting that a new vaccine is an attempt at government-subsidized mind control, the readers stay on Facebook longer and scroll through more contet. Since that translates to profits, is it OK for your team to increase the amount of sensational content in users’ feeds?</p>
 </div>
-<div id="case-studies" class="section level2 unnumbered hasAnchor" number="">
+<div id="case-studies" class="section level2 unnumbered hasAnchor">
 <h2>Case studies<a href="data-ethics.html#case-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use these case studies to reflect upon and discuss the ambiguity, complexity, and dangers of data ethics issues.</p>
-<div id="the-facebook-social-contagion-study" class="section level3 unnumbered hasAnchor" number="">
+<div id="the-facebook-social-contagion-study" class="section level3 unnumbered hasAnchor">
 <h3>The Facebook ‘Social Contagion’ Study<a href="data-ethics.html#the-facebook-social-contagion-study" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In 2014, data scientists from Facebook published an <a href="https://www.pnas.org/content/111/24/8788">article</a> in a prestigious academic journal. In this article, they demonstrated that the emotions and moods of users could be manipulated by toggling the amount of positive or negative content in their feeds. They found that these emotional effects would then be passed to other users in the social network; in other words, emotions and moods could be seeded and were ‘contagious’. To carry out this research, they manipulated the Facebook feeds of 689,000 users.</p>
  <br />
@@ -335,7 +357,7 @@ You are a data scientist at Facebook. Based on your analyses of user data, you h
 <li><p>Who exactly should be held morally accountable for any harms caused by this study? The data scientists employed to analyze and publish the data? Mark Zuckerberg? All Facebook employees? Facebook stock holders? Are Facebook users accountable at all?</p></li>
 </ol>
 </div>
-<div id="machine-bias-beauty-contests-recidivism" class="section level3 unnumbered hasAnchor" number="">
+<div id="machine-bias-beauty-contests-recidivism" class="section level3 unnumbered hasAnchor">
 <h3>Machine bias: Beauty contests &amp; recidivism<a href="data-ethics.html#machine-bias-beauty-contests-recidivism" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Machine learning (ML) algorithms are developed by ‘training’ models on known datasets. The models are then used to predict values in other datasets. For example, if you label cars in a batch of photos then use them to train a ML model on that labeled dataset, you can then use that model to identify cars in thousands of other photos.</p>
 <p>Sounds neat, but this means that ML models are only as good as the data they are trained upon, and often those training datasets are created by human labelers who carry unkown or unspoken biases. A classic example is the <a href="https://www.theguardian.com/technology/2016/sep/08/artificial-intelligence-beauty-contest-doesnt-like-black-people">Beauty.AI</a> beauty contest that occurred in 2016. A ML algorithm was trained on a large set of human-labeled photos of women, then women around the world were invited to submit selfies in a global beauty contest. A key advertising hook for the contest was that the ‘robot jury’ – the ML algorithm – would be fully impartial and fair. But the results revealed that the ML model was racist: 75% of the 6,000 contestants were white, but 98% of the 44 winners were white. How did this happen? The people who labeled the training set of photos carried implicit bias.</p>
@@ -359,7 +381,7 @@ You are a data scientist at Facebook. Based on your analyses of user data, you h
 <li><p>Returning to the beauty contest debacle. The attraction of a ‘robot jury’ compelled people to seek out a single, simplistic definition of beauty, and to place all contestants on the same spectrum of beauty scores. Other than the racial bias baked into their model, what other problems is there with this endeavor? Articulate and enumerate as many as you can. What do those problems tell you about other ethical and humanistic dangers inherent to data science?</p></li>
 </ol>
 </div>
-<div id="web-scraping-okcupid" class="section level3 unnumbered hasAnchor" number="">
+<div id="web-scraping-okcupid" class="section level3 unnumbered hasAnchor">
 <h3>Web-scraping OKCupid<a href="data-ethics.html#web-scraping-okcupid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In 2016, Danish researchers used new web scraping and text mining software to inventory the user profiles of 60,000 users on the online dating site <a href="https://fortune.com/2016/05/18/okcupid-data-research/">OkCupid</a>. Their goal was to use this dataset to test for correlations between ‘cognitive ability’ and sexual orientation, religious affinity, and other personality traits. They chose these user profiles because they were publicly available online to anyone who wanted to sign up for a free account with OKCupid.</p>
 <p>When they published their paper, they included a spreadsheet of the 60,000 user profiles in the supplementary material for their article. They had removed the first and last names of the users, but kept everything else, including username, location, sexual orientation, religious orientation, sexual habits, relationship fidelity, drug use history, political views, and more.</p>
@@ -380,7 +402,7 @@ You are a data scientist at Facebook. Based on your analyses of user data, you h
 </ol>
 </div>
 </div>
-<div id="more-scenarios" class="section level2 unnumbered hasAnchor" number="">
+<div id="more-scenarios" class="section level2 unnumbered hasAnchor">
 <h2>More scenarios<a href="data-ethics.html#more-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Airport screening</strong><br />
 A data scientist has come up with a model that prioritizes security screening at airports according to various passenger characteristics. If using ‘place of origin’ as a predictor in this model improves the model’s predictive performance at identifying passengers who are security threats, is it ethical to include that variable in the model and screen certain passengers disproportionately?</p>
@@ -464,6 +486,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
