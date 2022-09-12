@@ -25,4 +25,5 @@ markdown-documentation
 r-markdown
 interactive-maps
 a-mystery-dataset
+airbnb-ggplot
 global-health-ggplot

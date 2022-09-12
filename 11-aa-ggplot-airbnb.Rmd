@@ -1,0 +1,26 @@
+# AirBnB & `ggplot`  
+
+This review exercise is useful immediately after you learn `ggplot2` 
+
+&nbsp;  
+
+First, let's start a new script and load up some useful libraries.
+
+```{r,echo=TRUE,collapse=TRUE,message=FALSE,warning=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+Then, download a csv from [here](https://drive.google.com/file/d/1vAdkM-UOliPeDAMqZ-6VHbvN_KZyQve9/view?usp=sharing) and put it in your working directory.
+
+Finally, read in the downloaded csv and name the dataframe `air`.
+
+**1.** How many rows are in the dataset?
+
+**2.** How many columns are in the dataset?
+
+**3.** What are the names of the columns?
+
+**4.** Map the coordinates using ggplot.
+
+**5.** Make lots of interesting plots.

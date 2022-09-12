@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 12 Dataframes | The Datatrain R Bootcamp</title>
+  <title>Module 21 AirBnB &amp; ggplot | The Datatrain R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="generator" content="bookdown 0.28.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 12 Dataframes | The Datatrain R Bootcamp" />
+  <meta property="og:title" content="Module 21 AirBnB &amp; ggplot | The Datatrain R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 12 Dataframes | The Datatrain R Bootcamp" />
+  <meta name="twitter:title" content="Module 21 AirBnB &amp; ggplot | The Datatrain R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for the Datatrain R Bootcamp" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="vectors.html"/>
-<link rel="next" href="packages.html"/>
+<link rel="prev" href="a-mystery-dataset.html"/>
+<link rel="next" href="global-health-ggplot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -286,116 +286,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dataframes" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Module 12</span> Dataframes<a href="dataframes.html#dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-goals-5" class="section level4 unnumbered hasAnchor" number="">
-<h4>Learning goals<a href="dataframes.html#learning-goals-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li>Understand what a dataframe is and how to effectively explore it</li>
-<li>Understand the concept of “tidy” data</li>
-</ul>
+<div id="airbnb-ggplot" class="section level1 hasAnchor" number="21">
+<h1><span class="header-section-number">Module 21</span> AirBnB &amp; <code>ggplot</code><a href="airbnb-ggplot.html#airbnb-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This review exercise is useful immediately after you learn <code>ggplot2</code></p>
 <p> </p>
-<p>As a data scientist, the most common data structure you will be working with – by far – is a <strong>dataframe</strong>. But before working with dataframes, we need to understand what they are and how they should be structured. The below is largely borrowed from Hadley Wickham’s excellent tutorial on “tidy data” <a href="https://r4ds.had.co.nz/tidy-data.html">here</a> and the vignette on tidy data <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">here</a>.</p>
-</div>
-<div id="data-tidying" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Data tidying<a href="dataframes.html#data-tidying" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>It is often said that 80% of data analysis is spent on the cleaning and preparing data. And it’s not just a first step, but it must be repeated many times over the course of analysis as new problems come to light or new data is collected. To get a handle on the problem, this paper focuses on a small, but important, aspect of data cleaning that I call data tidying: structuring datasets to facilitate analysis.</p>
-<p>The principles of tidy data provide a standard way to organise data values within a dataset. A standard makes initial data cleaning easier because you don’t need to start from scratch and reinvent the wheel every time. The tidy data standard has been designed to facilitate initial exploration and analysis of the data, and to simplify the development of data analysis tools that work well together. Current tools often require translation. You have to spend time munging the output from one tool so you can input it into another. Tidy datasets and tidy tools work hand in hand to make data analysis easier, allowing you to focus on the interesting domain problem, not on the uninteresting logistics of data.</p>
-</div>
-<div id="data-semantics" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Data semantics<a href="dataframes.html#data-semantics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A dataset is a collection of values, usually either numbers (if quantitative) or strings (if qualitative). Values are organised in two ways. Every value belongs to a variable and an observation. A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units. An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.</p>
-</div>
-<div id="tidy-data" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Tidy data<a href="dataframes.html#tidy-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. In tidy data:</p>
-<ol style="list-style-type: decimal">
-<li><p>Every column is a variable.</p></li>
-<li><p>Every row is an observation.</p></li>
-<li><p>Every cell is a single value.</p></li>
-</ol>
-</div>
-<div id="messy-data" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> Messy data<a href="dataframes.html#messy-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Column headers are values, not variable names.</p>
-<p>Multiple variables are stored in one column.</p>
-<p>Variables are stored in both rows and columns.</p>
-<p>Multiple types of observational units are stored in the same table.</p>
-<p>A single observational unit is stored in multiple tables.</p>
-<blockquote>
-<p>“Happy families are all alike; every unhappy family is unhappy in its own way.”<br />
-— Leo Tolstoy</p>
-</blockquote>
-<blockquote>
-<p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.”<br />
-— Hadley Wickham</p>
-</blockquote>
-</div>
-<div id="examples" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Examples<a href="dataframes.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can represent the same underlying data in multiple ways.
-The example below shows the same data organised in four different ways.
-Each dataset shows the same values of four variables: <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em> of TB (tuberculosis), but each dataset organizes the values in a different way.</p>
-<!-- TODO redraw as tables -->
-<pre><code>#&gt; # A tibble: 6 × 4
-#&gt;   country      year  cases population
-#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-#&gt; 1 Afghanistan  1999    745   19987071
-#&gt; 2 Afghanistan  2000   2666   20595360
-#&gt; 3 Brazil       1999  37737  172006362
-#&gt; 4 Brazil       2000  80488  174504898
-#&gt; 5 China        1999 212258 1272915272
-#&gt; 6 China        2000 213766 1280428583
-#&gt; # A tibble: 12 × 4
-#&gt;   country      year type           count
-#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;
-#&gt; 1 Afghanistan  1999 cases            745
-#&gt; 2 Afghanistan  1999 population  19987071
-#&gt; 3 Afghanistan  2000 cases           2666
-#&gt; 4 Afghanistan  2000 population  20595360
-#&gt; 5 Brazil       1999 cases          37737
-#&gt; 6 Brazil       1999 population 172006362
-#&gt; # … with 6 more rows
-#&gt; # A tibble: 6 × 3
-#&gt;   country      year rate             
-#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
-#&gt; 1 Afghanistan  1999 745/19987071     
-#&gt; 2 Afghanistan  2000 2666/20595360    
-#&gt; 3 Brazil       1999 37737/172006362  
-#&gt; 4 Brazil       2000 80488/174504898  
-#&gt; 5 China        1999 212258/1272915272
-#&gt; 6 China        2000 213766/1280428583
-#&gt; # A tibble: 3 × 3
-#&gt;   country     `1999` `2000`
-#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-#&gt; 1 Afghanistan    745   2666
-#&gt; 2 Brazil       37737  80488
-#&gt; 3 China       212258 213766
-#&gt; # A tibble: 3 × 3
-#&gt;   country         `1999`     `2000`
-#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
-#&gt; 1 Afghanistan   19987071   20595360
-#&gt; 2 Brazil       172006362  174504898
-#&gt; 3 China       1272915272 1280428583</code></pre>
-<p>These are all representations of the same underlying data, but they are not equally easy to use.
-One of them, <code>table1</code>, will be much easier to work with inside the tidyverse because it’s tidy.</p>
-<p>There are three interrelated rules that make a dataset tidy:</p>
-<ol style="list-style-type: decimal">
-<li>Each variable is a column; each column is a variable.</li>
-<li>Each observation is row; each row is an observation.</li>
-<li>Each value is a cell; each cell is a single value.</li>
-</ol>
-<p><img src="img/tidy-1.png" width="683" /></p>
+<p>First, let’s start a new script and load up some useful libraries.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="airbnb-ggplot.html#cb219-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb219-2"><a href="airbnb-ggplot.html#cb219-2" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>Then, download a csv from <a href="https://drive.google.com/file/d/1vAdkM-UOliPeDAMqZ-6VHbvN_KZyQve9/view?usp=sharing">here</a> and put it in your working directory.</p>
+<p>Finally, read in the downloaded csv and name the dataframe <code>air</code>.</p>
+<p><strong>1.</strong> How many rows are in the dataset?</p>
+<p><strong>2.</strong> How many columns are in the dataset?</p>
+<p><strong>3.</strong> What are the names of the columns?</p>
+<p><strong>4.</strong> Map the coordinates using ggplot.</p>
+<p><strong>5.</strong> Make lots of interesting plots.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="a-mystery-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="global-health-ggplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -426,7 +339,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/03f-dataframes.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/11-aa-ggplot-airbnb.Rmd",
 "text": "Edit"
 },
 "history": {
