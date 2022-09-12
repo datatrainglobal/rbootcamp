@@ -292,13 +292,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>First, let’s start a new script and load up some useful libraries.</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="airbnb-ggplot.html#cb219-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb219-2"><a href="airbnb-ggplot.html#cb219-2" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<span id="cb219-2"><a href="airbnb-ggplot.html#cb219-2" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb219-3"><a href="airbnb-ggplot.html#cb219-3" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb219-4"><a href="airbnb-ggplot.html#cb219-4" aria-hidden="true"></a><span class="kw">library</span>(ggthemes)</span></code></pre></div>
 <p>Then, download a csv from <a href="https://drive.google.com/file/d/1vAdkM-UOliPeDAMqZ-6VHbvN_KZyQve9/view?usp=sharing">here</a> and put it in your working directory.</p>
 <p>Finally, read in the downloaded csv and name the dataframe <code>air</code>.</p>
 <p><strong>1.</strong> How many rows are in the dataset?</p>
 <p><strong>2.</strong> How many columns are in the dataset?</p>
 <p><strong>3.</strong> What are the names of the columns?</p>
 <p><strong>4.</strong> Map the coordinates using ggplot.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="airbnb-ggplot.html#cb220-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> air) <span class="op">+</span></span>
+<span id="cb220-2"><a href="airbnb-ggplot.html#cb220-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> longitude,</span>
+<span id="cb220-3"><a href="airbnb-ggplot.html#cb220-3" aria-hidden="true"></a>                 <span class="dt">y =</span> latitude))</span>
+<span id="cb220-4"><a href="airbnb-ggplot.html#cb220-4" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">ggplot</span>(<span class="dt">data =</span> air)<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;air&#39;</span> not found</span></code></pre></div>
 <p><strong>5.</strong> Make lots of interesting plots.</p>
 
 </div>
