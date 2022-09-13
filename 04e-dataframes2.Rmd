@@ -291,11 +291,11 @@ bn <- babynames
 
 **5.**  What is the earliest year in this dataset?  
 
-**6.**  Create a dataframe named `turn_of_century`, which contain data only for the year 1900. 
+**6.**  Create a dataframe named `turn_of_century` that contains data only for the year 1900. 
 
 **7.**  Create a dataframe named `boys`, containing only boys. 
 
-**8.**  Create a dataframe named `moms_gen`. This should be females born in the year of birth of your mom.
+**8.**  Create a dataframe named `moms_gen` that contains females born in the year your mom was born.
 
 **9.**  Order `moms_gen` by `n`, in ascending order (i.e., with the least popular name at top). Look at the result; what is the least popular name among women the year your mom was born?
 
@@ -305,9 +305,9 @@ bn <- babynames
 
 **12.**  Arrange `boys2k` from most to least popular. What was the most popular boys name in 2000?
 
-**13.**  What percentage of boys were named `Joseph` in 2000?
-
-**14.**  Were there more Jims or Matthews in 2020?
+**13.** Were there more `Paula`s or `Joseph`s in 2020?
+  
+**14.**  What percentage of boys were named `Carlos` in 2000?
 
 **15.** Create an object named `tot_names_by_year`, which contains the total counts for boy and girl names assigned in each year of the dataset. You should have four columns: `year`, `boys`, `girls`, and `tot`. 
 
