@@ -1,14 +1,3 @@
 welcome
-what-is-data-science
-setting-up-rstudio
-using-rstudio-r-scripts
-packages
-importing-data
-ggplot
-dplyr
-markdown-documentation
-r-markdown
-interactive-maps
-a-mystery-dataset
-airbnb-ggplot
-global-health-ggplot
+setting-up-your-computer
+install-some-packages

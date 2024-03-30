@@ -1,5 +1,5 @@
 ---
-title: Introduction to R
+title: R Bootcamp
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -27,7 +27,7 @@ opts_chunk$set(comment = NA,
 options(scipen=999)
 ```
 
-# Welcome!
+# Welcome
 
 ## What is this website? {.unnumbered}
 
@@ -47,17 +47,8 @@ You want to be part of the 1%? Okay, then you need to understand these 3 things:
 
 Instead, you will be doing your work on your *own machine*, working with *real folders and files*, downloading data and moving it around, etc. -- all the things you will be doing as a real data scientist in the real world.
 
-## Who this is for {.unnumbered}
+Enough talk. Let's go. Click on "Setting up your computer" and let's get to work.
 
-This curriculum covers everything from the absolute basics of writing code in `R` to machine learning. As such, it is designed to be useful to everyone in some way. But the target audience for these tutorials is the *rookie*: the student who *wants* to work with data but has *zero* formal training in programming, computer science, or statistics.
-
-## What you will learn {.unnumbered}
-
--   The **Getting started** unit teaches you how to use `R` (in `RStudio`). Here you will add the first and most important tools to your toolbox: working with variables, vectors, dataframes, scripts, and file directories.
-
--   More sections will go here...
-
- 
 
 ```{r,include=TRUE,eval=FALSE}
 library(dplyr)
