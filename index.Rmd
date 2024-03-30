@@ -149,7 +149,7 @@ allowing users to explore the data themselves with an interactive `Shiny` dashbo
 
 ## Who are we? {-}
 
-[www.datatrain.global](https://datatrain.global).
+[www.datatrain.global](https://datatrain.global). Datatrain is a project of Databrew ([www.databrew.cc](https://databrew.cc)).
 
 
 &nbsp;  
