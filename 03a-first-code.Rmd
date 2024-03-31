@@ -1,0 +1,52 @@
+# First code
+
+Are you ready to write some code? I hope so, because it's time.
+
+## Scripts and your workspace {.unnumbered}
+
+In RStudio, click "File" in the upper left and then "New file -> R Script". This will open a window pane in the upper left of your screen. This "script" is basically a place for you to write and save code. Got it? Good.
+
+Now click "File" then "Save as" and then save your script locally somewhere where you'll remember it. For example, you could save it on your "Desktop" as a file named "firstcode.R".
+
+Your workspace consists of:
+
+- Your script (upper left). This is where you talk to R.  
+- The console (bottom left). This is where R talks back to you.  
+- The "environment" (upper right). This is a place where you can explore data "objects" you've created (don't worry, we'll get there).  
+- The "plots" tab (bottom right). This is where you'll see outputs of charts, maps, etc.  
+
+## R as a calculator {.unnumbered}
+
+At its most basic, R is a big calculator. Or a conversation partner. However you like to think of it. You talk to R by typing some code in your script (upper left), and R talks back by printing something in the console (bottom left).
+
+For example, if you want to ask R what two plus two is, you'd write this on line one of your script.
+
+```{r, eval = FALSE, echo = TRUE}
+2 + 2
+```
+
+Then, if you place your cursor on that line and run "ctrl + enter" (or "cmd + enter" if on Mac), that code will "run" and R will give you the response.
+
+
+```{r, eval = TRUE, echo = FALSE}
+2 + 2
+```
+
+Cool, huh? You can, of course, type more complex math problems. Try typing the following on line 2:
+
+
+```{r, eval = FALSE, echo = TRUE}
+10392 * (13/72)^2 - sqrt(9.123) + (475/2.2)^3
+```
+
+Did you get the below as an answer?
+
+```{r, eval = TRUE, echo = FALSE}
+10392 * (13/72)^2 - sqrt(9.123) + (475/2.2)^3
+```
+
+Good.
+
+## Objects {.unnumbered}
+
+

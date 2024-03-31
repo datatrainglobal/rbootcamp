@@ -3,9 +3,6 @@ title: R Bootcamp
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [packages.bib]
-biblio-style: apalike
-link-citations: yes
 github-repo: datatrainglobal/rbootcamp
 description: "A resource & workbook for learning R"
 favicon: img/favicon.ico
@@ -57,6 +54,11 @@ library(knitr)
 files <- dir()
 files <- files[grepl('.Rmd', files)]
 files <- files[files != 'index.Rmd']
+# # knit them all
+# for(i in 1:length(files)){
+#   this_file <- files[i]
+#   rmarkdown::render(this_file)
+# }
 files <- gsub('.Rmd', '', files)
 files <- Hmisc::capitalize(files)
 files <- gsub('_', ' ', files)
@@ -70,13 +72,6 @@ toc <-
   )
 toc <- toc[which(toc$Number != "Intro"),]
 knitr::kable(toc)
-```
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
 ```
 
 ## Who are we? {.unnumbered}
