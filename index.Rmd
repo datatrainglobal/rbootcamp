@@ -1,7 +1,13 @@
 ---
 title: R Bootcamp
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output:
+  bookdown::html_document2:
+    includes:
+      in_header: header.html
+  bookdown::gitbook:
+    includes:
+      in_header: header.html
 documentclass: book
 github-repo: datatrainglobal/rbootcamp
 description: "A resource & workbook for learning R"
