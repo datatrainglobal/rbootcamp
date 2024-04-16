@@ -27,13 +27,11 @@ For example, if you want to ask R what two plus two is, you'd write this on line
 
 Then, if you place your cursor on that line and run "ctrl + enter" (or "cmd + enter" if on Mac), that code will "run" and R will give you the response.
 
-
 ```{r, eval = TRUE, echo = FALSE}
 2 + 2
 ```
 
 Cool, huh? You can, of course, type more complex math problems. Try typing the following on line 2:
-
 
 ```{r, eval = FALSE, echo = TRUE}
 10392 * (13/72)^2 - sqrt(9.123) + (475/2.2)^3
@@ -47,5 +45,195 @@ Did you get the below as an answer?
 
 Good.
 
-## Objects {.unnumbered}
+As you can see, some calculations are pretty straightforward, like addition (+), subtraction (-), division (/), and even multiplication (*).
 
+```{r, eval = FALSE, echo = TRUE}
+4 + 4
+
+4 - 3
+
+12 / 6
+
+10 * 10
+```
+
+You can even perform calculations with negative numbers.
+
+```{r, eval = FALSE, echo = TRUE}
+96 + -2 
+```
+
+And exponents can be denoted like this.
+
+```{r, eval = FALSE, echo = TRUE}
+2 ^2
+
+100 ^5
+```
+
+Make sure you have run all of these in your computer. Done? Great, that's R as a calculator.
+
+## Re-running code {.unnumbered}
+
+Sometimes you may want to re-run a line of code that you just ran or to recall code so that you can adjust it slightly. Click anywhere in the Console and then press your keyboard's Up arrow. That line of code that appears in your Console is the last line of code you just ran. Good work!
+
+Try clicking the Up arrow three times. Do you see the line of code that you ran three times ago? Yes you do. That's because R keeps a history of everything you have said to it since you opened this window. So if you keep pressing your Up arrow, R will show you all of the lines of code you previously ran. 
+
+If you don't want this old command, simply press Escape to reset the Console's command line, and now you're ready to re-run code in the Console.
+
+## Incomplete commands {.unnumbered}
+
+Similar to talking to a friend, if you start a sentence and don't finish it, your friend will get confused. R gets confused when you enter an incomplete command and will wait for you to finish it in the Console before doing anything.
+
+For example, try running this code in your Console:
+
+```{r, eval = FALSE, echo = TRUE}
+45 -
+```
+
+Is R giving you a little + sign on the line under your command? That's because it is waiting for you to complete your command.
+
+If you want to complete it, add a number (e.g., 3) and hit Enter. You should now be given an answer (e.g., 42).
+
+Or, if instead you want R to stop waiting and stop running, just press the Escape key
+
+## Getting errors {.unnumbered}
+
+Our commands can't only be complete, but they need to follow the rules of R. We know that if the command is incomplete that R will give us a + sign, but what about when we don't follow the rules of R?
+
+Try running this code in your Console:
+
+```{r, eval = FALSE, echo = TRUE}
+4 + y
+```
+
+You probably received a message in red font stating: Error: object 'y' not found. That is because R did know how to interpret the symbol y in this case, so it just gave up. 
+
+If R does not understand your code, it will throw an error and give up on trying to execute that line of code but don't be deterred when you see an error! They happen all the time, even to the professionals. The only thing we can do is read your code, find the errors, and fix them.
+
+Here’s another piece of code that will produce an error (just for fun):
+
+```{r, eval = FALSE, echo = TRUE}
+dfjkltr9fitwt985ut9e3
+```
+
+## Using parentheses {.unnumbered}
+
+Another rule of R pertains to parentheses. Exactly how it is done in math, you can use parentheses to exert control over the order in which you perform calculations. For example, these two commands produce different results:
+
+```{r, eval = TRUE, echo = TRUE}
+2*7 - 2*5 / 2
+
+(2*7 - 2*5) / 2
+```
+
+__Note__ parentheses need to come in pairs: whenever you type an open parenthesis, (eventually you need to provide a corresponding closed parenthesis).
+
+A very common way to get errors is by missing a parentheses. For instance, the following line of code will return a plus sign (+) since R is waiting for you to close the parenthetical before it processes your command:
+
+```{r, eval = FALSE, echo = TRUE}
+4 + (5
+```
+
+No matter how many parenthesis you have always close your parenthesis. Based on this which of the below is correct and why? 
+
+```{r, eval = FALSE, echo = TRUE}
+(((5+5)))
+
+(((5+5))
+```
+
+So lesson is... always close your parentheses even for the funny ones like {...} and [...].
+
+## Use built-in R functions {.unnumbered}
+
+R has some built-in “functions” for common calculations. Rather than defining a function let's just do some.
+
+Let's find the square-root of a number using the ‘squirt’ command, sqrt():
+
+```{r, eval = TRUE, echo = TRUE}
+sqrt(16)
+```
+
+Note the use of parentheses here. When you are calling a function, when you see parentheses, think of the word ‘of’. This line translates to 'the square root of 16'. You are taking the sqrt of the number inside the parenthetical.
+
+Let's try again with a different function. Find: the log of 4. 
+
+```{r, eval = TRUE, echo = TRUE}
+log(4)
+```
+
+Note that the function `log()` is the natural log function (i.e., the value that e must be raised to in order to equal 4). To calculate a base-10 logarithm, use `log10( )`.
+
+```{r, eval = TRUE, echo = TRUE}
+log(10)
+
+log10(10)
+```
+
+Another handy function is round(), for rounding numbers to a specific number of decimal places.
+
+```{r, eval = FALSE, echo = TRUE}
+100/3
+
+round(100/3)
+
+round(100/3,digits=1)
+
+round(100/3,digits=2)
+
+round(100/3,digits=3)
+```
+
+Finally, R also comes with some built-in values, such as pi:
+
+```{r, eval = FALSE, echo = TRUE}
+pi
+```
+
+So now that you have used a few functions, let's define it. A function is a package of code that does the following:
+
+* takes a given value, 
+* transforms it according to some internal code instructions, 
+* and provides an output. 
+
+You will learn more about functions later, but this is a good intro.
+
+## `R` and `RStudio`: what's the difference? {.unnumbered}
+
+These two entities are similar, but it is important to understand how they are different. 
+
+In short, `R` is an open-source (i.e., free) coding language: a powerful programming engine that can be used to do really cool things with data.
+
+`R Studio`, in contrast, is a free _user interface_ that helps you interact with `R`. If you think of `R` as an engine, then it helps to think of `RStudio` as the car that makes it easier and more comfortable to use the engine to get where you want to go. 
+
+`RStudio` needs `R` in order to function, but `R` can technically be used on its own outside of `RStudio` if you want. However, just as a good car mechanic can get an engine to run without being installed within a car, using `R` on its own is a bit clunky and requires some expertise. For beginners (and everyone else, really), `R` is just so much more pleasant to use when you are operating it from within `RStudio`.
+
+`RStudio` als has increasingly powerful _features_ that make `R` even more useful and versatile in data science. For instance you can make an interactive data dashboard, beautifyl and reproducible data reports, presentations, websites, and even this book! And new features are regularly being added to `RStudio` by its all-star team of data scientists.
+
+That's why we will _always_ use `RStudio´ when working with `R` in this book. 
+
+## Two-minute tour of `RStudio` {.unnumbered}
+
+When you open `RStudio`, you will see a window that looks like the screenshot below:
+
+![](img/rstudio_windows.png)
+
+### Console {.unnumbered}
+
+You are already acquainted with RStudio’s Console, the window pane on the left that you use to “talk” to `R`.
+
+### Environment {.unnumbered}
+
+In the top right pane, the _Environment_, `RStudio` will maintain a list of all the datasets, variables, and functions that you are using as you work. The next modules will explain what variables and functions are.
+
+### Files, Plots, Packages, & Help {.unnumbered}
+
+You will use the bottom right pane very often.
+
+* The **Files** tab lets you see all the files within your **working directory**, which will be explained in the section below.
+* The **Plots** tab lets you see the plots you are producing with your code.
+* The **Packages** tab lets you see the packages you currently have installed on your computer. Packages are bundles of R functions downloaded from the internet; they will be explained in detail a few modules down the road.
+* The **Help** tab is very important! It lets you see documentation (i.e., user’s guides) for the functions you use in your code. Functions will also be explained in detail a few modules down the road.
+
+These three panes are useful, but the most useful window pane of all is actually _missing_ when you first open RStudio. This important pane is where you work with **scripts**.
