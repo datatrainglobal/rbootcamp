@@ -121,7 +121,7 @@ dfjkltr9fitwt985ut9e3
 
 Another rule of R pertains to parentheses. Exactly how it is done in math, you can use parentheses to exert control over the order in which you perform calculations. For example, these two commands produce different results:
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE}
 2*7 - 2*5 / 2
 
 (2*7 - 2*5) / 2
@@ -151,7 +151,7 @@ R has some built-in “functions” for common calculations. Rather than definin
 
 Let's find the square-root of a number using the ‘squirt’ command, sqrt():
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE}
 sqrt(16)
 ```
 
@@ -159,13 +159,13 @@ Note the use of parentheses here. When you are calling a function, when you see 
 
 Let's try again with a different function. Find: the log of 4. 
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE}
 log(4)
 ```
 
 Note that the function `log()` is the natural log function (i.e., the value that e must be raised to in order to equal 4). To calculate a base-10 logarithm, use `log10( )`.
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE}
 log(10)
 
 log10(10)
@@ -199,45 +199,135 @@ So now that you have used a few functions, let's define it. A function is a pack
 
 You will learn more about functions later, but this is a good intro.
 
-## Objects and vectors
+## Objects and vectors {.unnumbered}
 
-```{r}
+`R` can do so much more than be just a calculator. Your first step in uncovering the potential of `R` is to make variables.
+
+### All things variables {.unnumbered}
+
+To assign numbers or other types of data to a variable, you use the `<` and `-` characters to make the arrow symbol `<-`. 
+
+```{r, eval = FALSE, echo = TRUE}
 x <- 1
 y <- 2
-z <- x + y
 ```
 
-```{r}
+Where did those values go? You do not see the numbers printed in the _Console_ because the values were stored in the variables x, and y. These are now in the _Environment_. So how do we use or see these variables?
+
+If you want R to tell you what x is, just type the variable name and run it.
+
+```{r, eval = FALSE, echo = TRUE}
+x
+```
+
+If you want to do calculations with the variables then do it.
+
+```{r, eval = FALSE, echo = TRUE}
+x + 100
+x * 2
+x + y
+```
+
+If you want to do calculations with variables and make that answer into a new variable, you can do that too. 
+
+```{r, eval = FALSE, echo = TRUE}
+z <- x + y - 1
+```
+
+In `R`, a variable is another way to refer to value. That value can be as simple as a single number (e.g., 6) or as complex as a spreadsheet with thousands of rows and columns. Think of a variable as a cup; just as cups make it easy to hold your coffee and carry it from the kitchen to the couch, variables make it easy to contain and work with data.
+
+Let's make a new variable from x that isn't just one value but is multiple values. 
+
+```{r, eval = FALSE, echo = TRUE}
 a <- rep(x, 5)
-a
+```
+
+How do you look at the response of `a` again? What does it look like the `rep()` function does?
+
+Since `a` isn't just a single value, we can do some cool things, like find how many values are in the variable:
+
+```{r, eval = FALSE, echo = TRUE}
 length(a)
+```
+
+Let's create a vector, which is very similar to what we did above, and do some calculations:
+
+```{r, eval = FALSE, echo = TRUE}
 b <- c(1,2,3)
-b
 b + 100
 b * 2
 ```
 
-```{r}
+Good work! You're a master of this. So let's make it interesting. Let's look at some various ages. To start we need to make a new vector and give it a name, however
+
+* A variable/vector name has to have at least one letter in it,
+* A variable/vector name has to be connected. AKA no spaces. Instead of a space try a period  ( . ) or an underscore ( _ ). _Note: hyphens cannot be used_,
+
+There are some other rules, but we can learn them as we go so let's jump in and create a variable with some ages and find out some information about these ages.
+
+```{r, eval = FALSE, echo = TRUE}
 ages <- c(20, 30, 25, 35)
 mean(ages)
 max(ages)
 min(ages)
-sd(ages)
 median(ages)
 summary(ages)
-ages <- c(20, 30, 25, 35, NA, 28)
 ```
 
-## Comparisons
+Now, in data it is super common to have NAs so let's make a vector called ages but introduce an NA and re-do all those functions. Does it work?
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
+ages <- c(20, 30, 25, 35, NA, 28)
+mean(ages)
+```
+
+It doesn't work! Well what if we try this:
+
+```{r, eval = FALSE, echo = TRUE}
+ages <- c(20, 30, 25, 35, NA, 28)
+mean(ages, na.rm = TRUE)
+```
+
+Did it work? Of course it did because you're a genius! But more importantly it actually worked because the `na.rm = TRUE` is removing the NA. We are saying "take the mean of ages and remove the NAs." What happens if we set na.rm to FALSE?
+
+```{r, eval = FALSE, echo = TRUE}
+mean(ages, na.rm = FALSE)
+```
+
+Why didn't this work? This is because we said "take the mean of ages and do not remove the NAs." We can't know the mean of ages when we are missing an age, so we need to remove the unknown in order to be able to do a calculation. Try the na.rm with the calculations we performed above.
+
+```{r, eval = FALSE, echo = TRUE}
+max(ages, na.rm = TRUE)
+min(ages, na.rm = TRUE)
+median(ages, na.rm = TRUE)
+summary(ages, na.rm = TRUE)
+```
+
+Another interesting feature is that we can do comparisons like greater than and smaller than in R. Let's compare one age with many ages.
+
+```{r, eval = FALSE, echo = TRUE}
 old_threshold <- 30
 ages > old_threshold
 ages < old_threshold
 table(ages > old_threshold)
 ```
 
-```{r}
+This can be very useful right? Let's make an even larger vector and learn some tricks to do so. 
+
+Sometimes it can be hard to type out each individual number hundreds of times so let's take a look below at what are some other ways to look at vectors.
+
+```{r, eval = FALSE, echo = TRUE}
+a <- c(1, 2, 3, 4, 5, 6, 7)
+b <- 1:1000
+d <- seq(0, 1000000, by = 10000)
+length(d)
+```
+
+Up until this point we have focused on numbers which are numeric, but we can also work with words which we refer to as logical. Let's create a vector with some names of people and call it people and explore the names.
+
+_Note: while you may want to name it names, R already has a function called names, and we want to avoid naming variables and vectors after functions. Just like we don't want to make a variable called mean or min._
+
+```{r, eval = FALSE, echo = TRUE}
 people <- c('Joe', 'Nika', 'Eldo')
 people == 'Imani'
 people == 'Nika'
@@ -245,17 +335,6 @@ table(people == 'Nika')
 'John' %in% people
 'John' == people
 ```
-
-## Big vectors
-
-```{r}
-a <- c(1, 2, 3, 4, 5, 6, 7)
-b <- 1:1000
-d <- seq(0, 1000000, by = 10000)
-# rev(d)
-length(d)
-```
-
 
 ## `R` and `RStudio`: what's the difference? {.unnumbered}
 
