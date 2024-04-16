@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 4 In-class survey | R Bootcamp</title>
+  <title>Module 5 Exploring a dataset | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 4 In-class survey | R Bootcamp" />
+  <meta property="og:title" content="Module 5 Exploring a dataset | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 4 In-class survey | R Bootcamp" />
+  <meta name="twitter:title" content="Module 5 Exploring a dataset | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="first-code.html"/>
-<link rel="next" href="exploring-a-dataset.html"/>
+<link rel="prev" href="in-class-survey.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -732,56 +732,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="in-class-survey" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Module 4</span> In-class survey<a href="in-class-survey.html#in-class-survey" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="exploring-a-dataset" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Module 5</span> Exploring a dataset<a href="exploring-a-dataset.html#exploring-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Let’s explore a dataset that consists of people who died and survived during a major event. Maybe, you can even guess the event.</p>
 <ol style="list-style-type: decimal">
-<li><p>Open a new R script and name it <code>survey.R</code></p></li>
+<li><p>Open a new R script and name it <code>survival.R</code></p></li>
 <li><p>Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, and <code>ggplot2</code></p></li>
+<li><p>Read in the data by running the following:</p></li>
 </ol>
-<pre><code>Error in library(gsheets): there is no package called &#39;gsheets&#39;</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Fill out the survey at <a href="https://forms.gle/TRKuQ2in47zBk7Qt9" class="uri">https://forms.gle/TRKuQ2in47zBk7Qt9</a>.</p></li>
-<li><p>Once everybody is done, read in the survey by running the below:</p></li>
-</ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="in-class-survey.html#cb29-1" tabindex="-1"></a><span class="cf">if</span>(<span class="st">&#39;survey.RData&#39;</span> <span class="sc">%in%</span> <span class="fu">dir</span>()){</span>
-<span id="cb29-2"><a href="in-class-survey.html#cb29-2" tabindex="-1"></a>  <span class="fu">load</span>(<span class="st">&#39;survey.RData&#39;</span>)</span>
-<span id="cb29-3"><a href="in-class-survey.html#cb29-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb29-4"><a href="in-class-survey.html#cb29-4" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span>
-<span id="cb29-5"><a href="in-class-survey.html#cb29-5" tabindex="-1"></a><span class="fu">save</span>(survey, <span class="at">file =</span> <span class="st">&#39;survey.RData&#39;</span>)</span>
-<span id="cb29-6"><a href="in-class-survey.html#cb29-6" tabindex="-1"></a>}</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Run the below code to process the data a bit</li>
-</ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="in-class-survey.html#cb30-1" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span></span>
-<span id="cb30-2"><a href="in-class-survey.html#cb30-2" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb30-3"><a href="in-class-survey.html#cb30-3" tabindex="-1"></a>   <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &#39;Timestamp&#39;,</span></span>
-<span id="cb30-4"><a href="in-class-survey.html#cb30-4" tabindex="-1"></a>  <span class="st">&#39;name&#39;</span>, <span class="co">#&#39;What is your name?&#39;,</span></span>
-<span id="cb30-5"><a href="in-class-survey.html#cb30-5" tabindex="-1"></a>  <span class="st">&#39;email&#39;</span>, <span class="co">#&#39;What is your email address?&#39;,</span></span>
-<span id="cb30-6"><a href="in-class-survey.html#cb30-6" tabindex="-1"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co">#&#39;How much experience do you have in R?&#39;,</span></span>
-<span id="cb30-7"><a href="in-class-survey.html#cb30-7" tabindex="-1"></a>  <span class="st">&#39;alcohol&#39;</span>, <span class="co">#&#39;How many alcoholic beverages do you drink per week?&#39;,</span></span>
-<span id="cb30-8"><a href="in-class-survey.html#cb30-8" tabindex="-1"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co">#&#39;How long do you think you can hold a wall squat (seconds)? (ie, the &quot;imaginary chair&quot;)&#39;,</span></span>
-<span id="cb30-9"><a href="in-class-survey.html#cb30-9" tabindex="-1"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co">#&#39;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&#39;,</span></span>
-<span id="cb30-10"><a href="in-class-survey.html#cb30-10" tabindex="-1"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co">#&#39;Do you know how to ride a bike?&#39;,</span></span>
-<span id="cb30-11"><a href="in-class-survey.html#cb30-11" tabindex="-1"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co">#&#39;Do you know how to swim?&#39;,</span></span>
-<span id="cb30-12"><a href="in-class-survey.html#cb30-12" tabindex="-1"></a>  <span class="st">&#39;age&#39;</span>, <span class="co">#&#39;How old are you in years?&#39;,</span></span>
-<span id="cb30-13"><a href="in-class-survey.html#cb30-13" tabindex="-1"></a>  <span class="st">&#39;origin&#39;</span>, <span class="co">#&#39;Where are you from?&#39;,</span></span>
-<span id="cb30-14"><a href="in-class-survey.html#cb30-14" tabindex="-1"></a>  <span class="st">&#39;swahili&#39;</span>, <span class="co">#&#39;Do you know how to speak Swahili?&#39;,</span></span>
-<span id="cb30-15"><a href="in-class-survey.html#cb30-15" tabindex="-1"></a>  <span class="st">&#39;height&#39;</span>, <span class="co">#&#39;How tall are you in centimeters?&#39;,</span></span>
-<span id="cb30-16"><a href="in-class-survey.html#cb30-16" tabindex="-1"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co">#&#39;What size shoe do you wear (EU sizes)?&#39;,</span></span>
-<span id="cb30-17"><a href="in-class-survey.html#cb30-17" tabindex="-1"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co">#&#39;Are you right-handed or left-handed?&#39;,</span></span>
-<span id="cb30-18"><a href="in-class-survey.html#cb30-18" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co">#&#39;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person&#39;,</span></span>
-<span id="cb30-19"><a href="in-class-survey.html#cb30-19" tabindex="-1"></a>  <span class="st">&#39;gender&#39;</span>, <span class="co">#&#39;What is your gender?&#39;,</span></span>
-<span id="cb30-20"><a href="in-class-survey.html#cb30-20" tabindex="-1"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co">#&#39;Do you consider yourself better or worse than average at singing?&#39;,</span></span>
-<span id="cb30-21"><a href="in-class-survey.html#cb30-21" tabindex="-1"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co">#&#39;Do you consider yourself better than average at dancing?&#39;,</span></span>
-<span id="cb30-22"><a href="in-class-survey.html#cb30-22" tabindex="-1"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co">#&#39;How many hours did you sleep last night?&#39;,</span></span>
-<span id="cb30-23"><a href="in-class-survey.html#cb30-23" tabindex="-1"></a>  <span class="st">&#39;net&#39;</span>, <span class="co">#&#39;Did you sleep under a mosquito net last night?&#39;,</span></span>
-<span id="cb30-24"><a href="in-class-survey.html#cb30-24" tabindex="-1"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co">#&#39;Would you rather eat&#39;,</span></span>
-<span id="cb30-25"><a href="in-class-survey.html#cb30-25" tabindex="-1"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
-<span id="cb30-26"><a href="in-class-survey.html#cb30-26" tabindex="-1"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
-<span id="cb30-27"><a href="in-class-survey.html#cb30-27" tabindex="-1"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
-<span id="cb30-28"><a href="in-class-survey.html#cb30-28" tabindex="-1"></a>  <span class="st">&#39;siblings&#39;</span>) <span class="co">#&#39;How many brothers and sisters do you have?&#39;)</span></span></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li>Ask some questions to the data. Answer them through charts and tables.</li>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="exploring-a-dataset.html#cb31-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/survival.csv&#39;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>How many columns are in the data?</p></li>
+<li><p>What are the names of the columns in the data?</p></li>
+<li><p>How many rows are in the data?</p></li>
+<li><p>Write code to look at just the first few rows of the data.</p></li>
+<li><p>Write code to look at just the last few rows of the data.</p></li>
+<li><p>What do you suppose the <code>survived</code> variable refers to?</p></li>
+<li><p>Re-order the dataset by age, from youngest to oldest.</p></li>
+<li><p>How old was the youngest person in the dataset?</p></li>
+<li><p>Re-order the dataset by age, from oldest to youngest.</p></li>
+<li><p>How old was the oldest person in the dataset?</p></li>
+<li><p>How many males are there in the dataset?</p></li>
+<li><p>How many females are there in the dataset?</p></li>
+<li><p>What percentage of the dataset is female?</p></li>
+<li><p>How many people survived?</p></li>
+<li><p>How many people died?</p></li>
+<li><p>What percentage of the people died?</p></li>
+<li><p>How many males survived?</p></li>
+<li><p>How many females died?</p></li>
+<li><p>What percentage of males died?</p></li>
+<li><p>What percentage of people who died were male?</p></li>
+<li><p>What percentage of people who survived were male?</p></li>
+<li><p>What percentage of people who died were female?</p></li>
+<li><p>How many people were in each <code>class</code>?</p></li>
+<li><p>How many people from each class survived and died?</p></li>
+<li><p>What percentage of people from each class died?</p></li>
+<li><p>What is the age of the youngest survivor?</p></li>
+<li><p>What is the age of the oldest survivor?</p></li>
+<li><p>What is the age of the youngest surviving male?</p></li>
+<li><p>What is the sex of the oldest person who died?</p></li>
+<li><p>What is the average of age of females who died?</p></li>
+<li><p>What is the average age of males who survived?</p></li>
+<li><p>Make a table showing the exact number of people that died and survived, grouping also by class and sex.</p></li>
+<li><p>Create a variable named <code>outcome</code>. Populate this variable with the characters “survived” or “died” depending on the <code>survived</code> variable.</p></li>
+<li><p>Make another variable called <code>age_group</code>. If the person is over 18, call them “adult”; otherwise, call them “child”.</p></li>
+<li><p>Make another variable called <code>person_type</code>. Use <code>paste0</code> to combine the <code>sex</code> and <code>age_group</code> variables, in that order.</p></li>
+<li><p>Make another variable called <code>initial</code>. This should be the first letter of each person’s last name. Hint, use <code>substr</code>.</p></li>
+<li><p>What is the most prevalent <code>initial</code> in the dataset?</p></li>
+<li><p>What is the least prevalent second letter in people’s last names?</p></li>
+<li><p>Use <code>nchar</code> to calculate the number of letters in each person’s name, and make a variable with that value named <code>name_length</code>.</p></li>
+<li><p>Who has the longest name in the dataset?</p></li>
+<li><p>Who has the shortest name in the dataset?</p></li>
+<li><p>Make a variable called <code>above_average_name_length</code>. This should be <code>TRUE</code> if the person’s name length is above average, and false if below or at average.</p></li>
+<li><p>Who is more likely to have survived: those with short names, or those with long names.</p></li>
+<li><p>What is the age of the female with the shortest name who survived?</p></li>
+<li><p>What is the sex of the oldest person to have died who had an above average name length?</p></li>
+<li><p>Who, on average, has shorter names: males or females?</p></li>
+<li><p>What is the total number of characters in all female names, and all male names?</p></li>
+<li><p>Make a histogram of the age of people.</p></li>
+<li><p>Make a barchart of the class of people.</p></li>
+<li><p>Make a barchart of the <code>outcome</code> variable.</p></li>
+<li><p>Make a scatterplot of the <code>name_length</code> and <code>age</code> variables.</p></li>
+<li><p>Make a chart showing the age of males and females separately.</p></li>
+<li><p>Make a chart showing survivorship by sex.</p></li>
+<li><p>Make a chart showing survivorship by age.</p></li>
+<li><p>Make a chart showing the age, sex, and survivor status of people.</p></li>
+<li><p>Make a chart showing the distribution of the lengh of people’s names.</p></li>
+<li><p>Assume that the average life expectancy is 80. How many years of life were lost due to this event?</p></li>
+<li><p>How many years of life lost were attributible to males? How many to females?</p></li>
+<li><p>Make three more charts.</p></li>
+<li><p>What caused this event?</p></li>
 </ol>
 
 </div>
@@ -790,8 +810,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="first-code.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exploring-a-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="in-class-survey.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -822,7 +842,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04b-exploring-a-dataset.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04c-in-class-survey-data.Rmd",
 "text": "Edit"
 },
 "history": {

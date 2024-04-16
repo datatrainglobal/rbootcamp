@@ -1,0 +1,5 @@
+welcome
+setting-up-your-computer
+first-code
+in-class-survey
+exploring-a-dataset
