@@ -1,8 +1,6 @@
-# Exploring a dataset
+# In-class survey
 
-Let's explore a dataset that consists of people who died and survived during a major event. Maybe, you can even guess the event.
-
-1. Open a new R script and name it `survival.R`
+1. Open a new R script and name it `survey.R`
 
 2. Write code to load the following libraries: `dplyr`, `readr`, and `ggplot2`
 
@@ -10,130 +8,54 @@ Let's explore a dataset that consists of people who died and survived during a m
 library(dplyr)
 library(readr)
 library(ggplot2)
+library(gsheets)
 ```
 
-3. Read in the data by running the following:
+3. Fill out the survey at https://forms.gle/TRKuQ2in47zBk7Qt9.
+
+4. Once everybody is done, read in the survey by running the below:
 
 ```{r, echo = TRUE, eval = TRUE}
-people <- readr::read_csv('https://datatrain.cc/data/survival.csv')
+if('survey.RData' %in% dir()){
+  load('survey.RData')
+} else {
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+save(survey, file = 'survey.RData')
+}
+
 ```
 
-4. How many columns are in the data?
+5. Run the below code to process the data a bit
 
-5. What are the names of the columns in the data?
+```{r, echo = TRUE, eval = TRUE}
+names(survey) <-
+  c(
+   'timestamp', #  'Timestamp',
+  'name', #'What is your name?',
+  'email', #'What is your email address?',
+  'experience', #'How much experience do you have in R?',
+  'alcohol', #'How many alcoholic beverages do you drink per week?',
+  'squat', #'How long do you think you can hold a wall squat (seconds)? (ie, the "imaginary chair")',
+  'egypt_or_france', #'Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?',
+  'bike', #'Do you know how to ride a bike?',
+  'swim', #'Do you know how to swim?',
+  'age', #'How old are you in years?',
+  'origin', #'Where are you from?',
+  'swahili', #'Do you know how to speak Swahili?',
+  'height', #'How tall are you in centimeters?',
+  'shoe', #'What size shoe do you wear (EU sizes)?',
+  'hand', #'Are you right-handed or left-handed?',
+  'happy', #'How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person',
+  'gender', #'What is your gender?',
+  'sing', #'Do you consider yourself better or worse than average at singing?',
+  'dance', #'Do you consider yourself better than average at dancing?',
+  'sleep', #'How many hours did you sleep last night?',
+  'net', #'Did you sleep under a mosquito net last night?',
+  'eat', #'Would you rather eat',
+  'money_or_love', #'What is better, money or love?',
+  'pizza_or_love', #'What is better, pizza or love?',
+  'adjective', #'What is the one adjective that best describes you',
+  'siblings') #'How many brothers and sisters do you have?')
+```
 
-6. How many rows are in the data?
-
-7. Write code to look at just the first few rows of the data.
-
-8. Write code to look at just the last few rows of the data.
-
-9. What do you suppose the `survived` variable refers to? 
-
-10. Re-order the dataset by age, from youngest to oldest.
-
-11. How old was the youngest person in the dataset?
-
-12. Re-order the dataset by age, from oldest to youngest.
-
-13. How old was the oldest person in the dataset?
-
-14. How many males are there in the dataset?
-
-15. How many females are there in the dataset?
-
-16. What percentage of the dataset is female?
-
-17. How many people survived?
-
-18. How many people died?
-
-19. What percentage of the people died?
-
-20. How many males survived?
-
-21. How many females died?
-
-22. What percentage of males died?
-
-23. What percentage of people who died were male?
-
-24. What percentage of people who survived were male?
-
-25. What percentage of people who died were female?
-
-26. How many people were in each `class`?
-
-27. How many people from each class survived and died?
-
-28. What percentage of people from each class died?
-
-29. What is the age of the youngest survivor?
-
-30. What is the age of the oldest survivor?
-
-31. What is the age of the youngest surviving male?
-
-32. What is the sex of the oldest person who died?
-
-33. What is the average of age of females who died?
-
-34. What is the average age of males who survived?
-
-35. Make a table showing the exact number of people that died and survived, grouping also by class and sex.
-
-36. Create a variable named `outcome`. Populate this variable with the characters "survived" or "died" depending on the `survived` variable. 
-
-37. Make another variable called `age_group`. If the person is over 18, call them "adult"; otherwise, call them "child".
-
-38. Make another variable called `person_type`. Use `paste0` to combine the `sex` and `age_group` variables, in that order. 
-
-39. Make another variable called `initial`. This should be the first letter of each person's last name. Hint, use `substr`.
-
-40. What is the most prevalent `initial` in the dataset?
-
-41. What is the least prevalent second letter in people's last names?
-
-42. Use `nchar` to calculate the number of letters in each person's name, and make a variable with that value named `name_length`.
-
-43. Who has the longest name in the dataset?
-
-44. Who has the shortest name in the dataset?
-
-45. Make a variable called `above_average_name_length`. This should be `TRUE` if the person's name length is above average, and false if below or at average.
-
-46. Who is more likely to have survived: those with short names, or those with long names.
-
-47. What is the age of the female with the shortest name who survived?
-
-48. What is the sex of the oldest person to have died who had an above average name length?
-
-49. Who, on average, has shorter names: males or females?
-
-50. What is the total number of characters in all female names, and all male names?
-
-51. Make a histogram of the age of people.
-
-52. Make a barchart of the class of people.
-
-53. Make a barchart of the `outcome` variable.
-
-54. Make a scatterplot of the `name_length` and `age` variables.
-
-55. Make a chart showing the age of males and females separately.
-
-56. Make a chart showing survivorship by sex.
-
-57. Make a chart showing survivorship by age.
-
-58. Make a chart showing the age, sex, and survivor status of people.
-
-59. Make a chart showing the distribution of the lengh of people's names.
-
-60. Assume that the average life expectancy is 80. How many years of life were lost due to this event?
-
-61. How many years of life lost were attributible to males? How many to females?
-
-62. Make three more charts.
-
-63. What caused this event?
+6. Ask some questions to the data. Answer them through charts and tables.
