@@ -15,15 +15,20 @@ library(gsheet)
 
 4. Once everybody is done, read in the survey by running the below:
 
-```{r, echo = TRUE, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE}
 if('survey.RData' %in% dir()){
   load('survey.RData')
 } else {
 survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
 save(survey, file = 'survey.RData')
 }
-
 ```
+
+
+```{r, echo = TRUE, eval = FALSE}
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+```
+
 
 5. Run the below code to process the data a bit
 
@@ -55,7 +60,15 @@ names(survey) <-
   'money_or_love', #'What is better, money or love?',
   'pizza_or_love', #'What is better, pizza or love?',
   'adjective', #'What is the one adjective that best describes you',
-  'siblings') #'How many brothers and sisters do you have?')
+  'siblings',
+  'teeth',
+  'color',
+  'ivermectin',
+  'pilau_or_tchapati',
+  'race',
+  'live',
+  'kwale',
+  'movies')
 ```
 
 6. Ask some questions to the data. Answer them through charts and tables.

@@ -743,12 +743,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Fill out the survey at <a href="https://forms.gle/TRKuQ2in47zBk7Qt9" class="uri">https://forms.gle/TRKuQ2in47zBk7Qt9</a>.</p></li>
 <li><p>Once everybody is done, read in the survey by running the below:</p></li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="in-class-survey.html#cb48-1" aria-hidden="true"></a><span class="cf">if</span>(<span class="st">&#39;survey.RData&#39;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">dir</span>()){</span>
-<span id="cb48-2"><a href="in-class-survey.html#cb48-2" aria-hidden="true"></a>  <span class="kw">load</span>(<span class="st">&#39;survey.RData&#39;</span>)</span>
-<span id="cb48-3"><a href="in-class-survey.html#cb48-3" aria-hidden="true"></a>} <span class="cf">else</span> {</span>
-<span id="cb48-4"><a href="in-class-survey.html#cb48-4" aria-hidden="true"></a>survey &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span>
-<span id="cb48-5"><a href="in-class-survey.html#cb48-5" aria-hidden="true"></a><span class="kw">save</span>(survey, <span class="dt">file =</span> <span class="st">&#39;survey.RData&#39;</span>)</span>
-<span id="cb48-6"><a href="in-class-survey.html#cb48-6" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="in-class-survey.html#cb48-1" aria-hidden="true"></a>survey &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Run the below code to process the data a bit</li>
 </ol>
@@ -779,7 +774,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb49-25"><a href="in-class-survey.html#cb49-25" aria-hidden="true"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
 <span id="cb49-26"><a href="in-class-survey.html#cb49-26" aria-hidden="true"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
 <span id="cb49-27"><a href="in-class-survey.html#cb49-27" aria-hidden="true"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
-<span id="cb49-28"><a href="in-class-survey.html#cb49-28" aria-hidden="true"></a>  <span class="st">&#39;siblings&#39;</span>) <span class="co">#&#39;How many brothers and sisters do you have?&#39;)</span></span></code></pre></div>
+<span id="cb49-28"><a href="in-class-survey.html#cb49-28" aria-hidden="true"></a>  <span class="st">&#39;siblings&#39;</span>,</span>
+<span id="cb49-29"><a href="in-class-survey.html#cb49-29" aria-hidden="true"></a>  <span class="st">&#39;teeth&#39;</span>,</span>
+<span id="cb49-30"><a href="in-class-survey.html#cb49-30" aria-hidden="true"></a>  <span class="st">&#39;color&#39;</span>,</span>
+<span id="cb49-31"><a href="in-class-survey.html#cb49-31" aria-hidden="true"></a>  <span class="st">&#39;ivermectin&#39;</span>,</span>
+<span id="cb49-32"><a href="in-class-survey.html#cb49-32" aria-hidden="true"></a>  <span class="st">&#39;pilau_or_tchapati&#39;</span>,</span>
+<span id="cb49-33"><a href="in-class-survey.html#cb49-33" aria-hidden="true"></a>  <span class="st">&#39;race&#39;</span>,</span>
+<span id="cb49-34"><a href="in-class-survey.html#cb49-34" aria-hidden="true"></a>  <span class="st">&#39;live&#39;</span>,</span>
+<span id="cb49-35"><a href="in-class-survey.html#cb49-35" aria-hidden="true"></a>  <span class="st">&#39;kwale&#39;</span>,</span>
+<span id="cb49-36"><a href="in-class-survey.html#cb49-36" aria-hidden="true"></a>  <span class="st">&#39;movies&#39;</span>)</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>Ask some questions to the data. Answer them through charts and tables.</li>
 </ol>
