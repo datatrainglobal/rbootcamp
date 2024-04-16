@@ -1,4 +1,0 @@
-welcome
-setting-up-your-computer
-first-code
-files-plots-packages-help

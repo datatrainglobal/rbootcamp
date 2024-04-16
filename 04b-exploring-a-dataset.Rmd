@@ -1,0 +1,61 @@
+# In-class survey
+
+1. Open a new R script and name it `survey.R`
+
+2. Write code to load the following libraries: `dplyr`, `readr`, and `ggplot2`
+
+```{r, echo = FALSE, eval = TRUE}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(gsheets)
+```
+
+3. Fill out the survey at https://forms.gle/TRKuQ2in47zBk7Qt9.
+
+4. Once everybody is done, read in the survey by running the below:
+
+```{r, echo = TRUE, eval = TRUE}
+if('survey.RData' %in% dir()){
+  load('survey.RData')
+} else {
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+save(survey, file = 'survey.RData')
+}
+
+```
+
+5. Run the below code to process the data a bit
+
+```{r, echo = TRUE, eval = TRUE}
+names(survey) <-
+  c(
+   'timestamp', #  'Timestamp',
+  'name', #'What is your name?',
+  'email', #'What is your email address?',
+  'experience', #'How much experience do you have in R?',
+  'alcohol', #'How many alcoholic beverages do you drink per week?',
+  'squat', #'How long do you think you can hold a wall squat (seconds)? (ie, the "imaginary chair")',
+  'egypt_or_france', #'Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?',
+  'bike', #'Do you know how to ride a bike?',
+  'swim', #'Do you know how to swim?',
+  'age', #'How old are you in years?',
+  'origin', #'Where are you from?',
+  'swahili', #'Do you know how to speak Swahili?',
+  'height', #'How tall are you in centimeters?',
+  'shoe', #'What size shoe do you wear (EU sizes)?',
+  'hand', #'Are you right-handed or left-handed?',
+  'happy', #'How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person',
+  'gender', #'What is your gender?',
+  'sing', #'Do you consider yourself better or worse than average at singing?',
+  'dance', #'Do you consider yourself better than average at dancing?',
+  'sleep', #'How many hours did you sleep last night?',
+  'net', #'Did you sleep under a mosquito net last night?',
+  'eat', #'Would you rather eat',
+  'money_or_love', #'What is better, money or love?',
+  'pizza_or_love', #'What is better, pizza or love?',
+  'adjective', #'What is the one adjective that best describes you',
+  'siblings') #'How many brothers and sisters do you have?')
+```
+
+6. Ask some questions to the data. Answer them through charts and tables.
