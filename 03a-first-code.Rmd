@@ -199,6 +199,64 @@ So now that you have used a few functions, let's define it. A function is a pack
 
 You will learn more about functions later, but this is a good intro.
 
+## Objects and vectors
+
+```{r}
+x <- 1
+y <- 2
+z <- x + y
+```
+
+```{r}
+a <- rep(x, 5)
+a
+length(a)
+b <- c(1,2,3)
+b
+b + 100
+b * 2
+```
+
+```{r}
+ages <- c(20, 30, 25, 35)
+mean(ages)
+max(ages)
+min(ages)
+sd(ages)
+median(ages)
+summary(ages)
+ages <- c(20, 30, 25, 35, NA, 28)
+```
+
+## Comparisons
+
+```{r}
+old_threshold <- 30
+ages > old_threshold
+ages < old_threshold
+table(ages > old_threshold)
+```
+
+```{r}
+people <- c('Joe', 'Nika', 'Eldo')
+people == 'Imani'
+people == 'Nika'
+table(people == 'Nika')
+'John' %in% people
+'John' == people
+```
+
+## Big vectors
+
+```{r}
+a <- c(1, 2, 3, 4, 5, 6, 7)
+b <- 1:1000
+d <- seq(0, 1000000, by = 10000)
+# rev(d)
+length(d)
+```
+
+
 ## `R` and `RStudio`: what's the difference? {.unnumbered}
 
 These two entities are similar, but it is important to understand how they are different. 

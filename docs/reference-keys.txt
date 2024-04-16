@@ -1,5 +1,8 @@
 welcome
 setting-up-your-computer
 first-code
+objects-and-vectors
+comparisons
+big-vectors
 in-class-survey
 exploring-a-dataset

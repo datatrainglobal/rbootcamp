@@ -8,7 +8,7 @@
 library(dplyr)
 library(readr)
 library(ggplot2)
-library(gsheets)
+library(gsheet)
 ```
 
 3. Fill out the survey at https://forms.gle/TRKuQ2in47zBk7Qt9.
