@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 2 Setting up your computer | R Bootcamp</title>
+  <title>Module 4 Exploring a dataset | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 2 Setting up your computer | R Bootcamp" />
+  <meta property="og:title" content="Module 4 Exploring a dataset | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 2 Setting up your computer | R Bootcamp" />
+  <meta name="twitter:title" content="Module 4 Exploring a dataset | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="first-code.html"/>
+<link rel="prev" href="first-code.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -725,57 +725,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setting-up-your-computer" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Module 2</span> Setting up your computer<a href="setting-up-your-computer.html#setting-up-your-computer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>It’s time to set up your system. Ready? Let’s go.</p>
-<div id="install-r" class="section level2 unnumbered hasAnchor" number="">
-<h2>Install R<a href="setting-up-your-computer.html#install-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First, let’s get the right programs installed on your computer. Then we will explain what they are and why you need them.</p>
-<p><strong>First, download and install <code>R</code>: </strong></p>
-<p>Go to the following website, click the <em>Download</em> button, and follow the website’s instructions from there.
-<a href="https://mirrors.nics.utk.edu/cran/" target="blank">https://mirrors.nics.utk.edu/cran/</a></p>
-</div>
-<div id="install-rstudio" class="section level2 unnumbered hasAnchor" number="">
-<h2>Install RStudio<a href="setting-up-your-computer.html#install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Second, download and install <code>RStudio</code>:</strong></p>
-<p>Go to the following website and choose the free Desktop version:
-<a href="https://rstudio.com/products/rstudio/download/" target="blank">https://rstudio.com/products/rstudio/download/</a></p>
-<p><strong>Third, make sure <code>RStudio</code> opens successfully:</strong></p>
-<p>Open the <code>RStudio</code> app. A window should appear that looks like this:</p>
-<p><img src="img/rstudio_firstopen.png" /></p>
-<p><strong>Fourth, make sure <code>R</code> is running correctly in the background:</strong></p>
-<p>In <code>RStudio</code>, in the pane on the left (the “Console”), type 2+2 and hit Enter.<br />
-If <code>R</code> is working properly, the number “4” will be printed in the next line down.</p>
-<p><strong>Finally, some minor adjustments to make <code>RStudio</code> run smoother (and look cooler):</strong></p>
-<p>Go to <code>Tools &gt; Global Options</code> and make sure your <code>General</code> settings match these exactly:</p>
-<p><img src="img/rstudio_settings.png" /></p>
-<p>Specifically, <strong>uncheck</strong> the option under <em>Workspace</em> to ‘Restore .RData into workspace at startup.’</p>
-<p>Now go to the <code>Appearance</code> settings and choose a cool theme!</p>
-<p><img src="img/rstudio_theme.png" /></p>
-<p><strong>Boom!</strong> You’ve got R up and running. Now it’s time to install some packages.</p>
-</div>
-<div id="install-packages" class="section level2 unnumbered hasAnchor" number="">
-<h2>Install packages<a href="setting-up-your-computer.html#install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Packages are what makes R so great. To install a package, open Rstudio and type the following code into the “Console” in the bottom left</p>
-<p>Did that work? Probably not, because “packagename” is not a real R package. The packages we’ll be using are the following:</p>
-<pre><code>tidyverse
-RColorBrewer
-leaflet
-ggthemes
-rmarkdown
-sp</code></pre>
-<p>To install all of these, you can run <code>install.packages</code> for each package:</p>
-<p>So, now you’ve got R, RStudio, and some cool packages. Good job. You’re ready for the next module.</p>
+<div id="exploring-a-dataset" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Module 4</span> Exploring a dataset<a href="exploring-a-dataset.html#exploring-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Let’s explore a dataset that consists of people who died and survived during a major event. Maybe, you can even guess the event.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open a new R script and name it <code>survival.R</code></p></li>
+<li><p>Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, and <code>ggplot2</code></p></li>
+<li><p>Read in the data by running the following:</p></li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="exploring-a-dataset.html#cb6-1" aria-hidden="true"></a>people &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/survival.csv&#39;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>How many columns are in the data?</p></li>
+<li><p>What are the names of the columns in the data?</p></li>
+<li><p>How many rows are in the data?</p></li>
+<li><p>Write code to look at just the first few rows of the data.</p></li>
+<li><p>Write code to look at just the last few rows of the data.</p></li>
+<li><p>What do you suppose the <code>survived</code> variable refers to?</p></li>
+<li><p>Re-order the dataset by age, from youngest to oldest.</p></li>
+<li><p>How old was the youngest person in the dataset?</p></li>
+<li><p>Re-order the dataset by age, from oldest to youngest.</p></li>
+<li><p>How old was the oldest person in the dataset?</p></li>
+<li><p>How many males are there in the dataset?</p></li>
+<li><p>How many females are there in the dataset?</p></li>
+<li><p>What percentage of the dataset is female?</p></li>
+<li><p>How many people survived?</p></li>
+<li><p>How many people died?</p></li>
+<li><p>What percentage of the people died?</p></li>
+<li><p>How many males survived?</p></li>
+<li><p>How many females died?</p></li>
+<li><p>What percentage of males died?</p></li>
+<li><p>What percentage of people who died were male?</p></li>
+<li><p>What percentage of people who survived were male?</p></li>
+<li><p>What percentage of people who died were female?</p></li>
+<li><p>How many people were in each <code>class</code>?</p></li>
+<li><p>How many people from each class survived and died?</p></li>
+<li><p>What percentage of people from each class died?</p></li>
+<li><p>What is the age of the youngest survivor?</p></li>
+<li><p>What is the age of the oldest survivor?</p></li>
+<li><p>What is the age of the youngest surviving male?</p></li>
+<li><p>What is the sex of the oldest person who died?</p></li>
+<li><p>What is the average of age of females who died?</p></li>
+<li><p>What is the average age of males who survived?</p></li>
+<li><p>Make a table showing the exact number of people that died and survived, grouping also by class and sex.</p></li>
+<li><p>Create a variable named <code>outcome</code>. Populate this variable with the characters “survived” or “died” depending on the <code>survived</code> variable.</p></li>
+<li><p>Make another variable called <code>age_group</code>. If the person is over 18, call them “adult”; otherwise, call them “child”.</p></li>
+<li><p>Make another variable called <code>person_type</code>. Use <code>paste0</code> to combine the <code>sex</code> and <code>age_group</code> variables, in that order.</p></li>
+<li><p>Make another variable called <code>initial</code>. This should be the first letter of each person’s last name. Hint, use <code>substr</code>.</p></li>
+<li><p>What is the most prevalent <code>initial</code> in the dataset?</p></li>
+<li><p>What is the least prevalent second letter in people’s last names?</p></li>
+<li><p>Use <code>nchar</code> to calculate the number of letters in each person’s name, and make a variable with that value named <code>name_length</code>.</p></li>
+<li><p>Who has the longest name in the dataset?</p></li>
+<li><p>Who has the shortest name in the dataset?</p></li>
+<li><p>Make a variable called <code>above_average_name_length</code>. This should be <code>TRUE</code> if the person’s name length is above average, and false if below or at average.</p></li>
+<li><p>Who is more likely to have survived: those with short names, or those with long names.</p></li>
+<li><p>What is the age of the female with the shortest name who survived?</p></li>
+<li><p>What is the sex of the oldest person to have died who had an above average name length?</p></li>
+<li><p>Who, on average, has shorter names: males or females?</p></li>
+<li><p>What is the total number of characters in all female names, and all male names?</p></li>
+<li><p>Make a histogram of the age of people.</p></li>
+<li><p>Make a barchart of the class of people.</p></li>
+<li><p>Make a barchart of the <code>outcome</code> variable.</p></li>
+<li><p>Make a scatterplot of the <code>name_length</code> and <code>age</code> variables.</p></li>
+<li><p>Make a chart showing the age of males and females separately.</p></li>
+<li><p>Make a chart showing survivorship by sex.</p></li>
+<li><p>Make a chart showing survivorship by age.</p></li>
+<li><p>Make a chart showing the age, sex, and survivor status of people.</p></li>
+<li><p>Make a chart showing the distribution of the lengh of people’s names.</p></li>
+<li><p>Assume that the average life expectancy is 80. How many years of life were lost due to this event?</p></li>
+<li><p>How many years of life lost were attributible to males? How many to females?</p></li>
+<li><p>Make three more charts.</p></li>
+<li><p>What caused this event?</p></li>
+</ol>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="first-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="first-code.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -806,7 +835,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/02a-setting-up-your-computer.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04b-exploring-a-dataset.Rmd",
 "text": "Edit"
 },
 "history": {
