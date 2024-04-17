@@ -72,3 +72,4 @@ names(survey) <-
 ```
 
 6. Ask some questions to the data. Answer them through charts and tables.
+
