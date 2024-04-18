@@ -4,3 +4,6 @@ first-code
 in-class-survey
 exploring-a-dataset
 global-health-ggplot
+introduction-to-ggplot2
+gapminder-exercises
+more-demography-exercises

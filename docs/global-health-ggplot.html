@@ -713,7 +713,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a></li>
 <li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a></li>
-<li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a></li>
+<li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>6.1</b> Introduction to ggplot2</a></li>
+<li class="chapter" data-level="6.2" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#gapminder-exercises"><i class="fa fa-check"></i><b>6.2</b> Gapminder exercises</a></li>
+<li class="chapter" data-level="6.3" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#more-demography-exercises"><i class="fa fa-check"></i><b>6.3</b> More demography exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
 
@@ -736,6 +741,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="global-health-ggplot" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Module 6</span> Global health &amp; <code>ggplot</code><a href="global-health-ggplot.html#global-health-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-ggplot2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction to ggplot2<a href="global-health-ggplot.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Something very useful in the world of data is making plots. So let’s dive right in.</p>
 <p><strong>1.</strong> Open a new R script and name it <code>ggplot.R</code>.</p>
 <p><strong>2.</strong> Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, <code>ggthemes</code>, and <code>ggplot2</code>.</p>
@@ -754,14 +761,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb40-4"><a href="global-health-ggplot.html#cb40-4" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> cluster, <span class="dt">y =</span> num_houses)) <span class="op">+</span></span>
 <span id="cb40-5"><a href="global-health-ggplot.html#cb40-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-46-1.png" width="925.44" /></p>
+</div>
+<div id="gapminder-exercises" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Gapminder exercises<a href="global-health-ggplot.html#gapminder-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
 <p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
 <p> </p>
 <p>First, let’s read in some data on health from the World Bank:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="global-health-ggplot.html#cb41-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
 <span id="cb41-2"><a href="global-health-ggplot.html#cb41-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" aria-hidden="true"></a><span class="kw">library</span>(gapminder)</span>
-<span id="cb41-4"><a href="global-health-ggplot.html#cb41-4" aria-hidden="true"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
+<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb41-4"><a href="global-health-ggplot.html#cb41-4" aria-hidden="true"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb41-5"><a href="global-health-ggplot.html#cb41-5" aria-hidden="true"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
 <p><strong>1.</strong> How many rows are in the dataset?</p>
 <p><strong>2.</strong> How many columns are in the dataset?</p>
 <p><strong>3.</strong> What are the names of the columns?</p>
@@ -802,7 +813,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>33.</strong> Create the same chart as above, but with bars side-by-side (<code>geom_bar(position = 'dodge')</code>)</p>
 <p><strong>34.</strong> Generate 3-5 more charts / tables that show interesting things about the data.</p>
 <p><strong>35.</strong> Make the above charts as aesthetically pleasing as possible.</p>
+</div>
+<div id="more-demography-exercises" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> More demography exercises<a href="global-health-ggplot.html#more-demography-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re going to work on some anonymized demography data, both households and individuals. Let’s start by creating a new script, naming it <code>demography.R</code>, and reading in some data as per the below:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="global-health-ggplot.html#cb42-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb42-2"><a href="global-health-ggplot.html#cb42-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb42-3"><a href="global-health-ggplot.html#cb42-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb42-4"><a href="global-health-ggplot.html#cb42-4" aria-hidden="true"></a>households &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography.csv&#39;</span>)</span>
+<span id="cb42-5"><a href="global-health-ggplot.html#cb42-5" aria-hidden="true"></a>people &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography_individuals.csv&#39;</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>What is the average age of people?</p></li>
+<li><p>On average, who is older: men or women?</p></li>
+<li><p>How many children are there in the dataset?</p></li>
+<li><p>Make a histogram of age.</p></li>
+<li><p>Make a smoothed histogram using <code>geom_density</code> of age.</p></li>
+<li><p>Make a smoothed histogram of age, but make different “fill” colors for men and women.</p></li>
+<li><p>Make a point chart wherein the x-axis is sex and the y-axis is age.</p></li>
+<li><p>Replace <code>geom_point</code> with <code>geom_jitter</code> so that the points don’t overlap so much.</p></li>
+<li><p>Make the points semi-transparent.</p></li>
+<li><p>Make the points twice as large.</p></li>
+<li><p>Give the plot a title, an x label, and a y label.</p></li>
+<li><p>Add a “violin” plot to the plot.</p></li>
+<li><p>Move the violin to <em>behind</em> the points.</p></li>
+<li><p>Make the points colored by sex.</p></li>
+<li><p>Replace the violin chart with a boxplot.</p></li>
+<li><p>What is the breakdown of household heads and sex (ie, what number and percentage of household heads are male vs female)?</p></li>
+<li><p>Make a barchart showing the number of households which are headed by men vs women.</p></li>
+<li><p>What is the average age of household heads who are female vs. the average age of household heads who are male?</p></li>
+<li><p>Make a chart showing the distribution of household heads’ age, which shows both males and females separately.</p></li>
+<li><p>What do you think explains this difference in age?</p></li>
+<li><p>Make a new variable indicating whether the household head is the oldest person in their household or not.</p></li>
+<li><p>What percentage of female household heads are the oldest person in their household? And males?</p></li>
+<li><p>What is the age of the youngest household head?</p></li>
+<li><p>Create a simple scatter plot with longitude as the x value and latitude as the y value.</p></li>
+<li><p>Make a table showing the distribution of wall types.</p></li>
+<li><p>Make a chart to replace the above table.</p></li>
+<li><p>Which fieldworker visited the most households?</p></li>
+<li><p>Which cluster has the most cattle?</p></li>
+<li><p>On what date were most households visited?</p></li>
+</ol>
 
+</div>
 </div>
             </section>
 

@@ -1,5 +1,7 @@
 # Global health & `ggplot`  
 
+## Introduction to ggplot2
+
 Something very useful in the world of data is making plots. So let's dive right in.
 
 **1.** Open a new R script and name it `ggplot.R`.
@@ -38,7 +40,7 @@ ggplot(data = demography,
 
 
 
-
+## Gapminder exercises
 
 ***
 
@@ -51,6 +53,7 @@ First, let's read in some data on health from the World Bank:
 ```{r,echo=TRUE,collapse=TRUE,message=FALSE,warning=FALSE}
 library(readr)
 library(dplyr)
+library(ggplot2)
 library(gapminder)
 gm <- gapminder::gapminder
 ```
@@ -135,3 +138,72 @@ gm <- gapminder::gapminder
 
 **35.** Make the above charts as aesthetically pleasing as possible.
 
+## More demography exercises
+
+We're going to work on some anonymized demography data, both households and individuals. Let's start by creating a new script, naming it `demography.R`, and reading in some data as per the below:
+
+```{r,echo=TRUE,collapse=TRUE,message=FALSE,warning=FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+households <- readr::read_csv('https://datatrain.cc/data/anonymized_demography.csv')
+people <- readr::read_csv('https://datatrain.cc/data/anonymized_demography_individuals.csv')
+```
+
+1. What is the average age of people?
+
+2. On average, who is older: men or women?
+
+3. How many children are there in the dataset?
+
+4. Make a histogram of age.
+
+5. Make a smoothed histogram using `geom_density` of age.
+
+6. Make a smoothed histogram of age, but make different "fill" colors for men and women.
+
+7. Make a point chart wherein the x-axis is sex and the y-axis is age.
+
+8. Replace `geom_point` with `geom_jitter` so that the points don't overlap so much.
+
+9. Make the points semi-transparent.
+
+10. Make the points twice as large.
+
+11. Give the plot a title, an x label, and a y label.
+
+12. Add a "violin" plot to the plot.
+
+13. Move the violin to _behind_ the points.
+
+14. Make the points colored by sex.
+
+15. Replace the violin chart with a boxplot.
+
+16. What is the breakdown of household heads and sex (ie, what number and percentage of household heads are male vs female)?
+
+17. Make a barchart showing the number of households which are headed by men vs women.
+
+18. What is the average age of household heads who are female vs. the average age of household heads who are male?
+
+19. Make a chart showing the distribution of household heads' age, which shows both males and females separately.
+
+20. What do you think explains this difference in age?
+
+21. Make a new variable indicating whether the household head is the oldest person in their household or not.
+
+22. What percentage of female household heads are the oldest person in their household? And males?
+
+23. What is the age of the youngest household head?
+
+24. Create a simple scatter plot with longitude as the x value and latitude as the y value.
+
+25. Make a table showing the distribution of wall types.
+
+26. Make a chart to replace the above table.
+
+27. Which fieldworker visited the most households?
+
+28. Which cluster has the most cattle?
+
+29. On what date were most households visited?
