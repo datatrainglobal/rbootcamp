@@ -1,5 +1,47 @@
 # Global health & `ggplot`  
 
+Something very useful in the world of data is making plots. So let's dive right in.
+
+**1.** Open a new R script and name it `ggplot.R`.
+
+**2.** Write code to load the following libraries: `dplyr`, `readr`, `ggthemes`, and `ggplot2`.
+
+**3.** Load in your data:
+
+```{r}
+demography <- readr::read_csv('https://datatrain.cc/data/anonymized_demography.csv')
+```
+
+**4.** In order to make a plot we need a piece of paper or a canvas. So make a canvas.
+
+```{r,echo=TRUE, message=FALSE}
+ggplot()
+```
+
+**5.** Draw your x axis and your y axis _(aka make your coordinates)_. 
+
+```{r,echo=TRUE, message=FALSE}
+ggplot(data = demography,
+       aes(x = cluster, y = num_houses))
+```
+
+**6.** Map the data to the coordinates. _Here we will map the data to the coordinates using points._
+
+```{r,echo=TRUE, message=FALSE}
+demography <- demography %>% filter(num_houses < 20000)
+
+ggplot(data = demography,
+       aes(x = cluster, y = num_houses)) +
+  geom_point()
+```
+
+
+
+
+
+
+***
+
 This review exercise is useful immediately after you learn `ggplot2` and `dplyr`.  
 
 &nbsp;  
