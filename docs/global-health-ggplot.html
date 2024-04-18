@@ -47,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -605,7 +606,6 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -639,7 +639,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -652,7 +652,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -741,27 +741,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>2.</strong> Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, <code>ggthemes</code>, and <code>ggplot2</code>.</p>
 <p><strong>3.</strong> Load in your data:</p>
 <p><strong>4.</strong> In order to make a plot we need a piece of paper or a canvas. So make a canvas.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="global-health-ggplot.html#cb38-1" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="global-health-ggplot.html#cb38-1" aria-hidden="true"></a><span class="kw">ggplot</span>()</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-44-1.png" width="925.44" /></p>
 <p><strong>5.</strong> Draw your x axis and your y axis <em>(aka make your coordinates)</em>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="global-health-ggplot.html#cb39-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> demography,</span>
-<span id="cb39-2"><a href="global-health-ggplot.html#cb39-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cluster, <span class="at">y =</span> num_houses))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="global-health-ggplot.html#cb39-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> demography,</span>
+<span id="cb39-2"><a href="global-health-ggplot.html#cb39-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> cluster, <span class="dt">y =</span> num_houses))</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-45-1.png" width="925.44" /></p>
 <p><strong>6.</strong> Map the data to the coordinates. <em>Here we will map the data to the coordinates using points.</em></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="global-health-ggplot.html#cb40-1" tabindex="-1"></a>demography <span class="ot">&lt;-</span> demography <span class="sc">%&gt;%</span> <span class="fu">filter</span>(num_houses <span class="sc">&lt;</span> <span class="dv">20000</span>)</span>
-<span id="cb40-2"><a href="global-health-ggplot.html#cb40-2" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="global-health-ggplot.html#cb40-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> demography,</span>
-<span id="cb40-4"><a href="global-health-ggplot.html#cb40-4" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cluster, <span class="at">y =</span> num_houses)) <span class="sc">+</span></span>
-<span id="cb40-5"><a href="global-health-ggplot.html#cb40-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="global-health-ggplot.html#cb40-1" aria-hidden="true"></a>demography &lt;-<span class="st"> </span>demography <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(num_houses <span class="op">&lt;</span><span class="st"> </span><span class="dv">20000</span>)</span>
+<span id="cb40-2"><a href="global-health-ggplot.html#cb40-2" aria-hidden="true"></a></span>
+<span id="cb40-3"><a href="global-health-ggplot.html#cb40-3" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> demography,</span>
+<span id="cb40-4"><a href="global-health-ggplot.html#cb40-4" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> cluster, <span class="dt">y =</span> num_houses)) <span class="op">+</span></span>
+<span id="cb40-5"><a href="global-health-ggplot.html#cb40-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-46-1.png" width="925.44" /></p>
 <hr />
 <p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
 <p> </p>
 <p>First, let’s read in some data on health from the World Bank:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="global-health-ggplot.html#cb41-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb41-2"><a href="global-health-ggplot.html#cb41-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb41-4"><a href="global-health-ggplot.html#cb41-4" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder<span class="sc">::</span>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="global-health-ggplot.html#cb41-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb41-2"><a href="global-health-ggplot.html#cb41-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" aria-hidden="true"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb41-4"><a href="global-health-ggplot.html#cb41-4" aria-hidden="true"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
 <p><strong>1.</strong> How many rows are in the dataset?</p>
 <p><strong>2.</strong> How many columns are in the dataset?</p>
 <p><strong>3.</strong> What are the names of the columns?</p>
