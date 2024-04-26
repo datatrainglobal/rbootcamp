@@ -207,3 +207,19 @@ people <- readr::read_csv('https://datatrain.cc/data/anonymized_demography_indiv
 28. Which cluster has the most cattle?
 
 29. On what date were most households visited?
+
+## Exercises with world health data
+
+Start by reading in your data.
+
+```{r}
+library(dplyr)
+library(readr)
+df <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/hefpi.csv')
+```
+
+1. Explore the data, and write 3 questions you'd like to ask it.
+
+2. Answer the questions with tables.
+
+3. Answer the questions with charts.

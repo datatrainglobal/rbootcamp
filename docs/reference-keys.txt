@@ -7,3 +7,4 @@ global-health-ggplot
 introduction-to-ggplot2
 gapminder-exercises
 more-demography-exercises
+exercises-with-world-health-data
