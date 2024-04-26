@@ -1,6 +1,6 @@
 # Global health & `ggplot`  
 
-## Introduction to ggplot2
+## Introduction to ggplot2 {.unnumbered}
 
 Something very useful in the world of data is making plots. So let's dive right in.
 
@@ -8,41 +8,151 @@ Something very useful in the world of data is making plots. So let's dive right 
 
 **2.** Write code to load the following libraries: `dplyr`, `readr`, `ggthemes`, and `ggplot2`.
 
-**3.** Load in your data:
+**3.** Load in your data and process the it a bit:
 
-```{r}
-demography <- readr::read_csv('https://datatrain.cc/data/anonymized_demography.csv')
+```{r, echo=TRUE, message=FALSE}
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+
+names(survey) <-
+  c(
+   'timestamp', #  'Timestamp',
+  'name', #'What is your name?',
+  'email', #'What is your email address?',
+  'experience', #'How much experience do you have in R?',
+  'alcohol', #'How many alcoholic beverages do you drink per week?',
+  'squat', #'How long do you think you can hold a wall squat (seconds)? (ie, the "imaginary chair")',
+  'egypt_or_france', #'Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?',
+  'bike', #'Do you know how to ride a bike?',
+  'swim', #'Do you know how to swim?',
+  'age', #'How old are you in years?',
+  'origin', #'Where are you from?',
+  'swahili', #'Do you know how to speak Swahili?',
+  'height', #'How tall are you in centimeters?',
+  'shoe', #'What size shoe do you wear (EU sizes)?',
+  'hand', #'Are you right-handed or left-handed?',
+  'happy', #'How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person',
+  'gender', #'What is your gender?',
+  'sing', #'Do you consider yourself better or worse than average at singing?',
+  'dance', #'Do you consider yourself better than average at dancing?',
+  'sleep', #'How many hours did you sleep last night?',
+  'net', #'Did you sleep under a mosquito net last night?',
+  'eat', #'Would you rather eat',
+  'money_or_love', #'What is better, money or love?',
+  'pizza_or_love', #'What is better, pizza or love?',
+  'adjective', #'What is the one adjective that best describes you',
+  'siblings',
+  'teeth',
+  'color',
+  'ivermectin',
+  'pilau_or_tchapati',
+  'race',
+  'live',
+  'kwale',
+  'movies')
 ```
 
 **4.** In order to make a plot we need a piece of paper or a canvas. So make a canvas.
 
-```{r,echo=TRUE, message=FALSE}
+```{r, echo=TRUE, message=FALSE}
 ggplot()
 ```
 
 **5.** Draw your x axis and your y axis _(aka make your coordinates)_. 
 
 ```{r,echo=TRUE, message=FALSE}
-ggplot(data = demography,
-       aes(x = cluster, y = num_houses))
+ggplot(data = survey,
+       aes(x = age, y = teeth))
 ```
 
 **6.** Map the data to the coordinates. _Here we will map the data to the coordinates using points._
 
 ```{r,echo=TRUE, message=FALSE}
-demography <- demography %>% filter(num_houses < 20000)
-
-ggplot(data = demography,
-       aes(x = cluster, y = num_houses)) +
+ggplot(data = survey,
+       aes(x = age, y = teeth)) +
   geom_point()
 ```
 
+**7.** What if I want to color code these points based on people's gender?
 
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey,
+       aes(x = age, 
+           y = teeth,
+           color = gender)) +
+  geom_point()
+```
 
+**8.** Add some labels. `ggplot()` automatically added axis titles and a legend, but we can add some more using the `labs()` function. Let’s add an overhead title, a sub-title, and a caption.
 
-## Gapminder exercises
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey,
+       aes(x = age, 
+           y = teeth,
+           color = gender)) +
+  geom_point() + 
+  labs(title = 'Relationship between age, teeth, and gender',
+              subtitle = 'We are the people',
+              caption = 'Property of Kenya (2024)')
+```
+
+**9.** Add a statistical summary like a smoothed regression line.
+
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey,
+       aes(x = age, 
+           y = teeth,
+           color = gender)) +
+  geom_point() + 
+  labs(title = 'Relationship between age, teeth, and gender',
+              subtitle = 'We are the people',
+              caption = 'Property of Kenya (2024)') +
+  geom_smooth(method = 'lm')
+```
+
+**10.** We can also make separate plots for a variable by faceting.
+
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey,
+       aes(x = age, 
+           y = teeth,
+           color = gender)) +
+  geom_point() + 
+  labs(title = 'Relationship between age, teeth, and gender',
+              subtitle = 'We are the people',
+              caption = 'Property of Kenya (2024)') + 
+  geom_smooth(method = 'lm') + 
+  facet_wrap(~gender)
+```
+
+**11.** Let's stylize the plot with a different theme.
+
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey,
+       aes(x = age, 
+           y = teeth,
+           color = gender)) +
+  geom_point() + 
+  labs(title = 'Relationship between age, teeth, and gender',
+              subtitle = 'We are the people',
+              caption = 'Property of Kenya (2024)') + 
+  geom_smooth(method = 'lm') + 
+  facet_wrap(~money_or_love) +
+  theme_economist_white()
+```
+
+**12.** Let's make a bar plot of gender to look at the data a little differently.
+
+```{r, echo=TRUE, message=FALSE}
+ggplot(data = survey, 
+       aes(x = gender)) + 
+  geom_bar(stat='count')
+```
+
+As you can see, we can make a lot of different types of charts in R. You can even make a new variable and use it in your plot, but let's not get ahead of ourselves. So let's learn by doing rather than lecturing and move on to a new dataset.
 
 ***
+
+## Gapminder exercises {.unnumbered}
 
 This review exercise is useful immediately after you learn `ggplot2` and `dplyr`.  
 
@@ -138,7 +248,7 @@ gm <- gapminder::gapminder
 
 **35.** Make the above charts as aesthetically pleasing as possible.
 
-## More demography exercises
+## More demography exercises {.unnumbered}
 
 We're going to work on some anonymized demography data, both households and individuals. Let's start by creating a new script, naming it `demography.R`, and reading in some data as per the below:
 
