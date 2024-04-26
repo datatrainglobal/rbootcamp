@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 6 Global health &amp; ggplot | R Bootcamp</title>
+  <meta name="description" content="A resource &amp; workbook for learning R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 6 Global health &amp; ggplot | R Bootcamp" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A resource &amp; workbook for learning R" />
+  <meta name="github-repo" content="datatrainglobal/rbootcamp" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 6 Global health &amp; ggplot | R Bootcamp" />
+  
+  <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="exploring-a-dataset.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">www.datatrain.cc</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-this-website"><i class="fa fa-check"></i>What is this website?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who are we?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html"><i class="fa fa-check"></i><b>2</b> Setting up your computer</a>
+<ul>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-packages"><i class="fa fa-check"></i>Install packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="first-code.html"><a href="first-code.html"><i class="fa fa-check"></i><b>3</b> First code</a>
+<ul>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#scripts-and-your-workspace"><i class="fa fa-check"></i>Scripts and your workspace</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-as-a-calculator"><i class="fa fa-check"></i>R as a calculator</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#re-running-code"><i class="fa fa-check"></i>Re-running code</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#incomplete-commands"><i class="fa fa-check"></i>Incomplete commands</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#getting-errors"><i class="fa fa-check"></i>Getting errors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#using-parentheses"><i class="fa fa-check"></i>Using parentheses</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#use-built-in-r-functions"><i class="fa fa-check"></i>Use built-in R functions</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#objects-and-vectors"><i class="fa fa-check"></i>Objects and vectors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a></li>
+<li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a></li>
+<li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#introduction-to-ggplot2"><i class="fa fa-check"></i>Introduction to ggplot2</a></li>
+<li class="chapter" data-level="" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#gapminder-exercises"><i class="fa fa-check"></i>Gapminder exercises</a></li>
+<li class="chapter" data-level="" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#more-demography-exercises"><i class="fa fa-check"></i>More demography exercises</a></li>
+<li class="chapter" data-level="6.1" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#exercises-with-world-health-data"><i class="fa fa-check"></i><b>6.1</b> Exercises with world health data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Bootcamp</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="global-health-ggplot" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Module 6</span> Global health &amp; <code>ggplot</code><a href="global-health-ggplot.html#global-health-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-ggplot2" class="section level2 unnumbered hasAnchor" number="">
+<h2>Introduction to ggplot2<a href="global-health-ggplot.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Something very useful in the world of data is making plots. So let’s dive right in.</p>
+<p><strong>1.</strong> Open a new R script and name it <code>ggplot.R</code>.</p>
+<p><strong>2.</strong> Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, <code>ggthemes</code>, and <code>ggplot2</code>.</p>
+<p><strong>3.</strong> Load in your data and process the it a bit:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="global-health-ggplot.html#cb38-1" aria-hidden="true"></a>survey &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span>
+<span id="cb38-2"><a href="global-health-ggplot.html#cb38-2" aria-hidden="true"></a></span>
+<span id="cb38-3"><a href="global-health-ggplot.html#cb38-3" aria-hidden="true"></a><span class="kw">names</span>(survey) &lt;-</span>
+<span id="cb38-4"><a href="global-health-ggplot.html#cb38-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">c</span>(</span>
+<span id="cb38-5"><a href="global-health-ggplot.html#cb38-5" aria-hidden="true"></a>   <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &#39;Timestamp&#39;,</span></span>
+<span id="cb38-6"><a href="global-health-ggplot.html#cb38-6" aria-hidden="true"></a>  <span class="st">&#39;name&#39;</span>, <span class="co">#&#39;What is your name?&#39;,</span></span>
+<span id="cb38-7"><a href="global-health-ggplot.html#cb38-7" aria-hidden="true"></a>  <span class="st">&#39;email&#39;</span>, <span class="co">#&#39;What is your email address?&#39;,</span></span>
+<span id="cb38-8"><a href="global-health-ggplot.html#cb38-8" aria-hidden="true"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co">#&#39;How much experience do you have in R?&#39;,</span></span>
+<span id="cb38-9"><a href="global-health-ggplot.html#cb38-9" aria-hidden="true"></a>  <span class="st">&#39;alcohol&#39;</span>, <span class="co">#&#39;How many alcoholic beverages do you drink per week?&#39;,</span></span>
+<span id="cb38-10"><a href="global-health-ggplot.html#cb38-10" aria-hidden="true"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co">#&#39;How long do you think you can hold a wall squat (seconds)? (ie, the &quot;imaginary chair&quot;)&#39;,</span></span>
+<span id="cb38-11"><a href="global-health-ggplot.html#cb38-11" aria-hidden="true"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co">#&#39;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&#39;,</span></span>
+<span id="cb38-12"><a href="global-health-ggplot.html#cb38-12" aria-hidden="true"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co">#&#39;Do you know how to ride a bike?&#39;,</span></span>
+<span id="cb38-13"><a href="global-health-ggplot.html#cb38-13" aria-hidden="true"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co">#&#39;Do you know how to swim?&#39;,</span></span>
+<span id="cb38-14"><a href="global-health-ggplot.html#cb38-14" aria-hidden="true"></a>  <span class="st">&#39;age&#39;</span>, <span class="co">#&#39;How old are you in years?&#39;,</span></span>
+<span id="cb38-15"><a href="global-health-ggplot.html#cb38-15" aria-hidden="true"></a>  <span class="st">&#39;origin&#39;</span>, <span class="co">#&#39;Where are you from?&#39;,</span></span>
+<span id="cb38-16"><a href="global-health-ggplot.html#cb38-16" aria-hidden="true"></a>  <span class="st">&#39;swahili&#39;</span>, <span class="co">#&#39;Do you know how to speak Swahili?&#39;,</span></span>
+<span id="cb38-17"><a href="global-health-ggplot.html#cb38-17" aria-hidden="true"></a>  <span class="st">&#39;height&#39;</span>, <span class="co">#&#39;How tall are you in centimeters?&#39;,</span></span>
+<span id="cb38-18"><a href="global-health-ggplot.html#cb38-18" aria-hidden="true"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co">#&#39;What size shoe do you wear (EU sizes)?&#39;,</span></span>
+<span id="cb38-19"><a href="global-health-ggplot.html#cb38-19" aria-hidden="true"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co">#&#39;Are you right-handed or left-handed?&#39;,</span></span>
+<span id="cb38-20"><a href="global-health-ggplot.html#cb38-20" aria-hidden="true"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co">#&#39;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person&#39;,</span></span>
+<span id="cb38-21"><a href="global-health-ggplot.html#cb38-21" aria-hidden="true"></a>  <span class="st">&#39;gender&#39;</span>, <span class="co">#&#39;What is your gender?&#39;,</span></span>
+<span id="cb38-22"><a href="global-health-ggplot.html#cb38-22" aria-hidden="true"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co">#&#39;Do you consider yourself better or worse than average at singing?&#39;,</span></span>
+<span id="cb38-23"><a href="global-health-ggplot.html#cb38-23" aria-hidden="true"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co">#&#39;Do you consider yourself better than average at dancing?&#39;,</span></span>
+<span id="cb38-24"><a href="global-health-ggplot.html#cb38-24" aria-hidden="true"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co">#&#39;How many hours did you sleep last night?&#39;,</span></span>
+<span id="cb38-25"><a href="global-health-ggplot.html#cb38-25" aria-hidden="true"></a>  <span class="st">&#39;net&#39;</span>, <span class="co">#&#39;Did you sleep under a mosquito net last night?&#39;,</span></span>
+<span id="cb38-26"><a href="global-health-ggplot.html#cb38-26" aria-hidden="true"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co">#&#39;Would you rather eat&#39;,</span></span>
+<span id="cb38-27"><a href="global-health-ggplot.html#cb38-27" aria-hidden="true"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
+<span id="cb38-28"><a href="global-health-ggplot.html#cb38-28" aria-hidden="true"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
+<span id="cb38-29"><a href="global-health-ggplot.html#cb38-29" aria-hidden="true"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
+<span id="cb38-30"><a href="global-health-ggplot.html#cb38-30" aria-hidden="true"></a>  <span class="st">&#39;siblings&#39;</span>,</span>
+<span id="cb38-31"><a href="global-health-ggplot.html#cb38-31" aria-hidden="true"></a>  <span class="st">&#39;teeth&#39;</span>,</span>
+<span id="cb38-32"><a href="global-health-ggplot.html#cb38-32" aria-hidden="true"></a>  <span class="st">&#39;color&#39;</span>,</span>
+<span id="cb38-33"><a href="global-health-ggplot.html#cb38-33" aria-hidden="true"></a>  <span class="st">&#39;ivermectin&#39;</span>,</span>
+<span id="cb38-34"><a href="global-health-ggplot.html#cb38-34" aria-hidden="true"></a>  <span class="st">&#39;pilau_or_tchapati&#39;</span>,</span>
+<span id="cb38-35"><a href="global-health-ggplot.html#cb38-35" aria-hidden="true"></a>  <span class="st">&#39;race&#39;</span>,</span>
+<span id="cb38-36"><a href="global-health-ggplot.html#cb38-36" aria-hidden="true"></a>  <span class="st">&#39;live&#39;</span>,</span>
+<span id="cb38-37"><a href="global-health-ggplot.html#cb38-37" aria-hidden="true"></a>  <span class="st">&#39;kwale&#39;</span>,</span>
+<span id="cb38-38"><a href="global-health-ggplot.html#cb38-38" aria-hidden="true"></a>  <span class="st">&#39;movies&#39;</span>)</span></code></pre></div>
+<p><strong>4.</strong> In order to make a plot we need a piece of paper or a canvas. So make a canvas.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="global-health-ggplot.html#cb39-1" aria-hidden="true"></a><span class="kw">ggplot</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-44-1.png" width="925.44" /></p>
+<p><strong>5.</strong> Draw your x axis and your y axis <em>(aka make your coordinates)</em>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="global-health-ggplot.html#cb40-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb40-2"><a href="global-health-ggplot.html#cb40-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> teeth))</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-45-1.png" width="925.44" /></p>
+<p><strong>6.</strong> Map the data to the coordinates. <em>Here we will map the data to the coordinates using points.</em></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="global-health-ggplot.html#cb41-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb41-2"><a href="global-health-ggplot.html#cb41-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> teeth)) <span class="op">+</span></span>
+<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-46-1.png" width="925.44" /></p>
+<p><strong>7.</strong> What if I want to color code these points based on people’s gender?</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="global-health-ggplot.html#cb42-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb42-2"><a href="global-health-ggplot.html#cb42-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
+<span id="cb42-3"><a href="global-health-ggplot.html#cb42-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
+<span id="cb42-4"><a href="global-health-ggplot.html#cb42-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
+<span id="cb42-5"><a href="global-health-ggplot.html#cb42-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-47-1.png" width="925.44" /></p>
+<p><strong>8.</strong> Add some labels. <code>ggplot()</code> automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="global-health-ggplot.html#cb43-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb43-2"><a href="global-health-ggplot.html#cb43-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
+<span id="cb43-3"><a href="global-health-ggplot.html#cb43-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
+<span id="cb43-4"><a href="global-health-ggplot.html#cb43-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
+<span id="cb43-5"><a href="global-health-ggplot.html#cb43-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb43-6"><a href="global-health-ggplot.html#cb43-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb43-7"><a href="global-health-ggplot.html#cb43-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb43-8"><a href="global-health-ggplot.html#cb43-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-48-1.png" width="925.44" /></p>
+<p><strong>9.</strong> Add a statistical summary like a smoothed regression line.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="global-health-ggplot.html#cb44-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb44-2"><a href="global-health-ggplot.html#cb44-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
+<span id="cb44-3"><a href="global-health-ggplot.html#cb44-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
+<span id="cb44-4"><a href="global-health-ggplot.html#cb44-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
+<span id="cb44-5"><a href="global-health-ggplot.html#cb44-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb44-6"><a href="global-health-ggplot.html#cb44-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb44-7"><a href="global-health-ggplot.html#cb44-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb44-8"><a href="global-health-ggplot.html#cb44-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span></span>
+<span id="cb44-9"><a href="global-health-ggplot.html#cb44-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-49-1.png" width="925.44" /></p>
+<p><strong>10.</strong> We can also make separate plots for a variable by faceting.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="global-health-ggplot.html#cb45-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb45-2"><a href="global-health-ggplot.html#cb45-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
+<span id="cb45-3"><a href="global-health-ggplot.html#cb45-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
+<span id="cb45-4"><a href="global-health-ggplot.html#cb45-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
+<span id="cb45-5"><a href="global-health-ggplot.html#cb45-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb45-6"><a href="global-health-ggplot.html#cb45-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb45-7"><a href="global-health-ggplot.html#cb45-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb45-8"><a href="global-health-ggplot.html#cb45-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb45-9"><a href="global-health-ggplot.html#cb45-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb45-10"><a href="global-health-ggplot.html#cb45-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>gender)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-50-1.png" width="925.44" /></p>
+<p><strong>11.</strong> Let’s stylize the plot with a different theme.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="global-health-ggplot.html#cb46-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
+<span id="cb46-2"><a href="global-health-ggplot.html#cb46-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
+<span id="cb46-3"><a href="global-health-ggplot.html#cb46-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
+<span id="cb46-4"><a href="global-health-ggplot.html#cb46-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
+<span id="cb46-5"><a href="global-health-ggplot.html#cb46-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb46-6"><a href="global-health-ggplot.html#cb46-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb46-7"><a href="global-health-ggplot.html#cb46-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb46-8"><a href="global-health-ggplot.html#cb46-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb46-9"><a href="global-health-ggplot.html#cb46-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb46-10"><a href="global-health-ggplot.html#cb46-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>money_or_love) <span class="op">+</span></span>
+<span id="cb46-11"><a href="global-health-ggplot.html#cb46-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_economist_white</span>()</span></code></pre></div>
+<pre><code>Error in theme_economist_white(): could not find function &quot;theme_economist_white&quot;</code></pre>
+<p><strong>12.</strong> Let’s make a bar plot of gender to look at the data a little differently.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="global-health-ggplot.html#cb48-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey, </span>
+<span id="cb48-2"><a href="global-health-ggplot.html#cb48-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> gender)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb48-3"><a href="global-health-ggplot.html#cb48-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-52-1.png" width="925.44" /></p>
+<p>As you can see, we can make a lot of different types of charts in R. You can even make a new variable and use it in your plot, but let’s not get ahead of ourselves. So let’s learn by doing rather than lecturing and move on to a new dataset.</p>
+<hr />
+</div>
+<div id="gapminder-exercises" class="section level2 unnumbered hasAnchor" number="">
+<h2>Gapminder exercises<a href="global-health-ggplot.html#gapminder-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
+<p> </p>
+<p>First, let’s read in some data on health from the World Bank:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="global-health-ggplot.html#cb49-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb49-2"><a href="global-health-ggplot.html#cb49-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb49-3"><a href="global-health-ggplot.html#cb49-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb49-4"><a href="global-health-ggplot.html#cb49-4" aria-hidden="true"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb49-5"><a href="global-health-ggplot.html#cb49-5" aria-hidden="true"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
+<p><strong>1.</strong> How many rows are in the dataset?</p>
+<p><strong>2.</strong> How many columns are in the dataset?</p>
+<p><strong>3.</strong> What are the names of the columns?</p>
+<p><strong>4.</strong> What is the oldest year in the dataset?</p>
+<p><strong>5.</strong> What is the country/year with the greatest population in the dataset?</p>
+<p><strong>6.</strong> Get the average GDP per capita for each continent in 1952.</p>
+<p><strong>7.</strong> Get the average GDP per capita for each continent for the most recent year in the dataset.</p>
+<p><strong>8.</strong> Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function <code>weighted.mean</code>. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.</p>
+<p> </p>
+<p><strong>9.</strong> Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).</p>
+<p><strong>10.</strong> Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line <code>theme(axis.text.x = element_text(angle = 90))</code> in order to make the x-axis text vertically aligned. What’s the problem with this plot? How many points are there per country?</p>
+<p><strong>11.</strong> Make a new version of the above, but filter down to just the earliest year in the dataset.</p>
+<p><strong>12.</strong> Make a scatterplot of life expectancy and GDP per capita, just for 1972.</p>
+<p><strong>13.</strong> Make the same plot as above, but for the most recent year in the data.</p>
+<p><strong>14.</strong> Make the same plot as the above, but have the size of the points reflect the population.</p>
+<p><strong>15.</strong> Make the same plot as the above, but have the color of the points reflect the continent.</p>
+<p> </p>
+<p><strong>16.</strong> Filter the data down to just the most recent year in the data, and make a histogram (<code>geom_histogram</code>) showing the distribution of GDP per capita.</p>
+<p><strong>17.</strong> Get the average GDP per capita for each continent/year, weighted by the population of each country.</p>
+<p><strong>18.</strong> Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.</p>
+<p><strong>19.</strong> Make the same plot as the above, but facet the plot by continent.</p>
+<p><strong>20.</strong> Make the same plot as the above, but remove the coloring by continent.</p>
+<p> </p>
+<p><strong>21.</strong> Make a plot showing France’s population over time.</p>
+<p><strong>22.</strong> Make a plot showing all European countries’ population over time, with color reflecting the name of the country.</p>
+<p><strong>23.</strong> Create a variable called <code>status</code>. If GDP per capita is over 20,000, this should be “rich”; if between 5,000 and 20,000, this should be “middle”; if this is less than 5,000, this should be “poor”.</p>
+<p><strong>24.</strong> Create an object with the number of rich countries per year.</p>
+<p><strong>25.</strong> Create an object with the percentage of countries that were rich each year.</p>
+<p> </p>
+<p><strong>26.</strong> Create a plot showing the percentage of countries which were rich each year.</p>
+<p><strong>27.</strong> Create an object with the number of people living in poor countries each year.</p>
+<p><strong>28.</strong> Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by <code>status</code>).</p>
+<p><strong>29.</strong> Create a chart showing the life expectancy in Somalia over time.</p>
+<p><strong>30.</strong> Create a chart showing GDP per capita in Somalia over time.</p>
+<p> </p>
+<p><strong>31.</strong> Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.</p>
+<p><strong>32.</strong> Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (<code>geom_bar(position = 'stack')</code>).</p>
+<p><strong>33.</strong> Create the same chart as above, but with bars side-by-side (<code>geom_bar(position = 'dodge')</code>)</p>
+<p><strong>34.</strong> Generate 3-5 more charts / tables that show interesting things about the data.</p>
+<p><strong>35.</strong> Make the above charts as aesthetically pleasing as possible.</p>
+</div>
+<div id="more-demography-exercises" class="section level2 unnumbered hasAnchor" number="">
+<h2>More demography exercises<a href="global-health-ggplot.html#more-demography-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re going to work on some anonymized demography data, both households and individuals. Let’s start by creating a new script, naming it <code>demography.R</code>, and reading in some data as per the below:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="global-health-ggplot.html#cb50-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb50-2"><a href="global-health-ggplot.html#cb50-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb50-3"><a href="global-health-ggplot.html#cb50-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb50-4"><a href="global-health-ggplot.html#cb50-4" aria-hidden="true"></a>households &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography.csv&#39;</span>)</span>
+<span id="cb50-5"><a href="global-health-ggplot.html#cb50-5" aria-hidden="true"></a>people &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography_individuals.csv&#39;</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>What is the average age of people?</p></li>
+<li><p>On average, who is older: men or women?</p></li>
+<li><p>How many children are there in the dataset?</p></li>
+<li><p>Make a histogram of age.</p></li>
+<li><p>Make a smoothed histogram using <code>geom_density</code> of age.</p></li>
+<li><p>Make a smoothed histogram of age, but make different “fill” colors for men and women.</p></li>
+<li><p>Make a point chart wherein the x-axis is sex and the y-axis is age.</p></li>
+<li><p>Replace <code>geom_point</code> with <code>geom_jitter</code> so that the points don’t overlap so much.</p></li>
+<li><p>Make the points semi-transparent.</p></li>
+<li><p>Make the points twice as large.</p></li>
+<li><p>Give the plot a title, an x label, and a y label.</p></li>
+<li><p>Add a “violin” plot to the plot.</p></li>
+<li><p>Move the violin to <em>behind</em> the points.</p></li>
+<li><p>Make the points colored by sex.</p></li>
+<li><p>Replace the violin chart with a boxplot.</p></li>
+<li><p>What is the breakdown of household heads and sex (ie, what number and percentage of household heads are male vs female)?</p></li>
+<li><p>Make a barchart showing the number of households which are headed by men vs women.</p></li>
+<li><p>What is the average age of household heads who are female vs. the average age of household heads who are male?</p></li>
+<li><p>Make a chart showing the distribution of household heads’ age, which shows both males and females separately.</p></li>
+<li><p>What do you think explains this difference in age?</p></li>
+<li><p>Make a new variable indicating whether the household head is the oldest person in their household or not.</p></li>
+<li><p>What percentage of female household heads are the oldest person in their household? And males?</p></li>
+<li><p>What is the age of the youngest household head?</p></li>
+<li><p>Create a simple scatter plot with longitude as the x value and latitude as the y value.</p></li>
+<li><p>Make a table showing the distribution of wall types.</p></li>
+<li><p>Make a chart to replace the above table.</p></li>
+<li><p>Which fieldworker visited the most households?</p></li>
+<li><p>Which cluster has the most cattle?</p></li>
+<li><p>On what date were most households visited?</p></li>
+</ol>
+</div>
+<div id="exercises-with-world-health-data" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Exercises with world health data<a href="global-health-ggplot.html#exercises-with-world-health-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Start by reading in your data.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explore the data, and write 3 questions you’d like to ask it.</p></li>
+<li><p>Answer the questions with tables.</p></li>
+<li><p>Answer the questions with charts.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploring-a-dataset.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04d-global-health-with-ggplot.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rbootcamp.pdf", "rbootcamp.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
