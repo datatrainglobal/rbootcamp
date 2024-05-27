@@ -2,7 +2,7 @@
 
 Are you ready to write some code? I hope so, because it's time.
 
-## File paths
+## File paths {.unnumbered}
 
 Good organization is the key to success, so let's start by creating a folder for all of your DataLab work. 
 

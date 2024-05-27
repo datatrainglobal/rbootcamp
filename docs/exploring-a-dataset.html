@@ -700,7 +700,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="first-code.html"><a href="first-code.html"><i class="fa fa-check"></i><b>3</b> First code</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="first-code.html"><a href="first-code.html#file-paths"><i class="fa fa-check"></i><b>3.1</b> File paths</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#file-paths"><i class="fa fa-check"></i>File paths</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#scripts-and-your-workspace"><i class="fa fa-check"></i>Scripts and your workspace</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-as-a-calculator"><i class="fa fa-check"></i>R as a calculator</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#re-running-code"><i class="fa fa-check"></i>Re-running code</a></li>
@@ -715,10 +715,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="in-class-survey.html"><a href="in-class-survey.html#exploring-data"><i class="fa fa-check"></i><b>4.1</b> Exploring data</a></li>
-<li class="chapter" data-level="4.2" data-path="in-class-survey.html"><a href="in-class-survey.html#r-as-a-calculator-1"><i class="fa fa-check"></i><b>4.2</b> R as a calculator</a></li>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#exploring-data"><i class="fa fa-check"></i>Exploring data</a></li>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#r-as-a-calculator-1"><i class="fa fa-check"></i>R as a calculator</a></li>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#dplyr"><i class="fa fa-check"></i><code>dplyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a></li>
+<li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#dplyr-1"><i class="fa fa-check"></i><code>dplyr</code></a></li>
+<li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a>
 <ul>
 <li class="chapter" data-level="" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html#introduction-to-ggplot2"><i class="fa fa-check"></i>Introduction to ggplot2</a></li>
@@ -755,6 +760,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Read in the data by running the following:</p></li>
 </ol>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exploring-a-dataset.html#cb43-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/survival.csv&#39;</span>)</span></code></pre></div>
+<div id="dplyr-1" class="section level2 unnumbered hasAnchor">
+<h2><code>dplyr</code><a href="exploring-a-dataset.html#dplyr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="4" style="list-style-type: decimal">
 <li><p>How many columns are in the data?</p></li>
 <li><p>What are the names of the columns in the data?</p></li>
@@ -803,6 +810,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>What is the sex of the oldest person to have died who had an above average name length?</p></li>
 <li><p>Who, on average, has shorter names: males or females?</p></li>
 <li><p>What is the total number of characters in all female names, and all male names?</p></li>
+</ol>
+</div>
+<div id="ggplot2" class="section level2 unnumbered hasAnchor">
+<h2><code>ggplot2</code><a href="exploring-a-dataset.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="51" style="list-style-type: decimal">
 <li><p>Make a histogram of the age of people.</p></li>
 <li><p>Make a barchart of the class of people.</p></li>
 <li><p>Make a barchart of the <code>outcome</code> variable.</p></li>
@@ -818,6 +830,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>What caused this event?</p></li>
 </ol>
 
+</div>
 </div>
             </section>
 

@@ -74,7 +74,7 @@ names(survey) <- c(
 View( survey )
 ```
 
-## Exploring data
+## Exploring data {.unnumbered}
 
 7. How many columns are in the data?
 
@@ -94,7 +94,7 @@ View( survey )
 
 15. How happy are people?
 
-## R as a calculator
+## R as a calculator {.unnumbered}
 
 16. What is the average number of teeth per person?
 
@@ -106,5 +106,11 @@ View( survey )
 
 20. What percentage of people think that pizza is more important than love?
 
-21. Summarize how much people slept last night and how many sodas they drink per week.
+21. Summarize how much people slept last night.
+
+22. Summarize how many sodas people drink per week.
+
+## `dplyr` {.unnumbered}
+
+Get in groups of two. Create 3 questions to ask of this survey data, each of which involves at least 2 variables. 
 

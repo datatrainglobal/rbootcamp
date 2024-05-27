@@ -1,10 +1,7 @@
 welcome
 setting-up-your-computer
 first-code
-file-paths
 in-class-survey
-exploring-data
-r-as-a-calculator-1
 exploring-a-dataset
 global-health-ggplot
 exercises-with-world-health-data

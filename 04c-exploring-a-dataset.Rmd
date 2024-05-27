@@ -18,6 +18,8 @@ library(ggplot2)
 people <- readr::read_csv('https://datatrain.cc/data/survival.csv')
 ```
 
+## `dplyr` {.unnumbered}
+
 4. How many columns are in the data?
 
 5. What are the names of the columns in the data?
@@ -111,6 +113,8 @@ people <- readr::read_csv('https://datatrain.cc/data/survival.csv')
 49. Who, on average, has shorter names: males or females?
 
 50. What is the total number of characters in all female names, and all male names?
+
+## `ggplot2` {.unnumbered}
 
 51. Make a histogram of the age of people.
 
