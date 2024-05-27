@@ -713,7 +713,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a></li>
+<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="in-class-survey.html"><a href="in-class-survey.html#exploring-data"><i class="fa fa-check"></i><b>4.1</b> Exploring data</a></li>
+<li class="chapter" data-level="4.2" data-path="in-class-survey.html"><a href="in-class-survey.html#r-as-a-calculator-1"><i class="fa fa-check"></i><b>4.2</b> R as a calculator</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a></li>
 <li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a>
 <ul>
@@ -928,10 +932,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb33-2"><a href="first-code.html#cb33-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
 <span id="cb33-3"><a href="first-code.html#cb33-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1000000</span>, <span class="at">by =</span> <span class="dv">10000</span>)</span>
 <span id="cb33-4"><a href="first-code.html#cb33-4" tabindex="-1"></a><span class="fu">length</span>(d)</span></code></pre></div>
-<p>Up until this point we have focused on numbers which are numeric, but we can also work with words which we refer to as logical. Let’s create a vector with some names of people and call it people and explore the names.</p>
+<p>Up until this point we have focused on numbers which are numeric, but we can also work with words which we refer to as strings. Let’s create a vector with some names of people and call it people and explore the names.</p>
 <p><em>Note: while you may want to name it names, R already has a function called names, and we want to avoid naming variables and vectors after functions. Just like we don’t want to make a variable called mean or min.</em></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="first-code.html#cb34-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Joe&#39;</span>, <span class="st">&#39;Nika&#39;</span>, <span class="st">&#39;Eldo&#39;</span>)</span>
-<span id="cb34-2"><a href="first-code.html#cb34-2" tabindex="-1"></a>people <span class="sc">==</span> <span class="st">&#39;Imani&#39;</span></span>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="first-code.html#cb34-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Michael&#39;</span>, <span class="st">&#39;Nika&#39;</span>, <span class="st">&#39;Delana&#39;</span>)</span>
+<span id="cb34-2"><a href="first-code.html#cb34-2" tabindex="-1"></a>people <span class="sc">==</span> <span class="st">&#39;Matthew&#39;</span></span>
 <span id="cb34-3"><a href="first-code.html#cb34-3" tabindex="-1"></a>people <span class="sc">==</span> <span class="st">&#39;Nika&#39;</span></span>
 <span id="cb34-4"><a href="first-code.html#cb34-4" tabindex="-1"></a><span class="fu">table</span>(people <span class="sc">==</span> <span class="st">&#39;Nika&#39;</span>)</span>
 <span id="cb34-5"><a href="first-code.html#cb34-5" tabindex="-1"></a><span class="st">&#39;John&#39;</span> <span class="sc">%in%</span> people</span>

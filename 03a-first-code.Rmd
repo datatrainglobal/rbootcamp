@@ -329,13 +329,13 @@ d <- seq(0, 1000000, by = 10000)
 length(d)
 ```
 
-Up until this point we have focused on numbers which are numeric, but we can also work with words which we refer to as logical. Let's create a vector with some names of people and call it people and explore the names.
+Up until this point we have focused on numbers which are numeric, but we can also work with words which we refer to as strings. Let's create a vector with some names of people and call it people and explore the names.
 
 _Note: while you may want to name it names, R already has a function called names, and we want to avoid naming variables and vectors after functions. Just like we don't want to make a variable called mean or min._
 
 ```{r, eval = FALSE, echo = TRUE}
-people <- c('Joe', 'Nika', 'Eldo')
-people == 'Imani'
+people <- c('Michael', 'Nika', 'Delana')
+people == 'Matthew'
 people == 'Nika'
 table(people == 'Nika')
 'John' %in% people

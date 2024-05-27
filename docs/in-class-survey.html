@@ -713,7 +713,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a></li>
+<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="in-class-survey.html"><a href="in-class-survey.html#exploring-data"><i class="fa fa-check"></i><b>4.1</b> Exploring data</a></li>
+<li class="chapter" data-level="4.2" data-path="in-class-survey.html"><a href="in-class-survey.html#r-as-a-calculator-1"><i class="fa fa-check"></i><b>4.2</b> R as a calculator</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a></li>
 <li class="chapter" data-level="6" data-path="global-health-ggplot.html"><a href="global-health-ggplot.html"><i class="fa fa-check"></i><b>6</b> Global health &amp; <code>ggplot</code></a>
 <ul>
@@ -771,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-15"><a href="in-class-survey.html#cb41-15" tabindex="-1"></a>  <span class="st">&#39;height&#39;</span>, <span class="co"># &quot;How tall are you in inches?&quot;, </span></span>
 <span id="cb41-16"><a href="in-class-survey.html#cb41-16" tabindex="-1"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co"># &quot;What size shoe do you wear? (US Size)&quot;, </span></span>
 <span id="cb41-17"><a href="in-class-survey.html#cb41-17" tabindex="-1"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co"># &quot;Are you right-handed or left-handed?&quot;, </span></span>
-<span id="cb41-18"><a href="in-class-survey.html#cb41-18" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co"># &quot;How happy do you consider yourself on a scale from 1 to 5, with 1 beign extremely unhappy, 5 being extremely happy, and 3 being the average person?&quot;, </span></span>
+<span id="cb41-18"><a href="in-class-survey.html#cb41-18" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co"># &quot;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person?&quot;, </span></span>
 <span id="cb41-19"><a href="in-class-survey.html#cb41-19" tabindex="-1"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co"># &quot;Do you consider yourself better or worse than average at singing?&quot;, </span></span>
 <span id="cb41-20"><a href="in-class-survey.html#cb41-20" tabindex="-1"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co"># &quot;What&#39;s more important pizza or love?&quot;, </span></span>
 <span id="cb41-21"><a href="in-class-survey.html#cb41-21" tabindex="-1"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co"># &quot;Do you consider yourself better than average at dancing?&quot;, </span></span>
@@ -783,12 +787,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-27"><a href="in-class-survey.html#cb41-27" tabindex="-1"></a>  <span class="st">&#39;siblings&#39;</span>, <span class="co"># &quot;How many siblings do you have?&quot;, </span></span>
 <span id="cb41-28"><a href="in-class-survey.html#cb41-28" tabindex="-1"></a>  <span class="st">&#39;wrestle&#39;</span>, <span class="co"># &quot;Of the people in this room, who would win a pinky wrestle against Michael?&quot;, </span></span>
 <span id="cb41-29"><a href="in-class-survey.html#cb41-29" tabindex="-1"></a>  <span class="st">&#39;hangout&#39;</span>, <span class="co"># &quot;What is the best place to hang out in Sewanee?&quot;, </span></span>
-<span id="cb41-30"><a href="in-class-survey.html#cb41-30" tabindex="-1"></a>  <span class="st">&#39;movies&#39;</span> <span class="co"># &quot;How many movies have you watched in the last month?&quot;</span></span>
-<span id="cb41-31"><a href="in-class-survey.html#cb41-31" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb41-30"><a href="in-class-survey.html#cb41-30" tabindex="-1"></a>  <span class="st">&#39;movies&#39;</span>, <span class="co"># &quot;How many movies have you watched in the last month?&quot;</span></span>
+<span id="cb41-31"><a href="in-class-survey.html#cb41-31" tabindex="-1"></a>  <span class="st">&#39;dob&#39;</span> <span class="co"># &quot;What is your date of birth?&quot;</span></span>
+<span id="cb41-32"><a href="in-class-survey.html#cb41-32" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
-<li>Ask some questions of the data. Answer them through charts and tables.</li>
+<li>Run the following code to inspect the data</li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="in-class-survey.html#cb42-1" tabindex="-1"></a><span class="fu">View</span>( survey )</span></code></pre></div>
+<div id="exploring-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Exploring data<a href="in-class-survey.html#exploring-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="7" style="list-style-type: decimal">
+<li><p>How many columns are in the data?</p></li>
+<li><p>What are the names of the columns in the data?</p></li>
+<li><p>How many rows are in the data?</p></li>
+<li><p>Write code to look at just the first few rows of the data.</p></li>
+<li><p>Write code to look at just the last few rows of the data.</p></li>
+<li><p>How many people can ride a bike? Cannot ride a bike?</p></li>
+<li><p>How many people can swim? Cannot swim?</p></li>
+<li><p>How many teeth do people have?</p></li>
+<li><p>How happy are people?</p></li>
+</ol>
+</div>
+<div id="r-as-a-calculator-1" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> R as a calculator<a href="in-class-survey.html#r-as-a-calculator-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="16" style="list-style-type: decimal">
+<li><p>What is the average number of teeth per person?</p></li>
+<li><p>What are the minimum and maximum number of teeth per person?</p></li>
+<li><p>What are the average and median heights?</p></li>
+<li><p>What percentage of people can ride a bike? Cannot ride a bike?</p></li>
+<li><p>What percentage of people think that pizza is more important than love?</p></li>
+<li><p>Summarize how much people slept last night and how many sodas they drink per week.</p></li>
 </ol>
 
+</div>
 </div>
             </section>
 
@@ -827,7 +858,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04b-exploring-a-dataset.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04b-in-class-survey-data.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -50,7 +50,7 @@ names(survey) <- c(
   'height', # "How tall are you in inches?", 
   'shoe', # "What size shoe do you wear? (US Size)", 
   'hand', # "Are you right-handed or left-handed?", 
-  'happy', # "How happy do you consider yourself on a scale from 1 to 5, with 1 beign extremely unhappy, 5 being extremely happy, and 3 being the average person?", 
+  'happy', # "How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person?", 
   'sing', # "Do you consider yourself better or worse than average at singing?", 
   'pizza_or_love', # "What's more important pizza or love?", 
   'dance', # "Do you consider yourself better than average at dancing?", 
@@ -62,10 +62,49 @@ names(survey) <- c(
   'siblings', # "How many siblings do you have?", 
   'wrestle', # "Of the people in this room, who would win a pinky wrestle against Michael?", 
   'hangout', # "What is the best place to hang out in Sewanee?", 
-  'movies' # "How many movies have you watched in the last month?"
+  'movies', # "How many movies have you watched in the last month?"
+  'dob' # "What is your date of birth?"
 )
 
 ```
 
-6. Ask some questions of the data. Answer them through charts and tables.
+6. Run the following code to inspect the data
+
+```{r, echo = TRUE, eval = FALSE}
+View( survey )
+```
+
+## Exploring data
+
+7. How many columns are in the data?
+
+8. What are the names of the columns in the data?
+
+9. How many rows are in the data?
+
+10. Write code to look at just the first few rows of the data.
+
+11. Write code to look at just the last few rows of the data.
+
+12. How many people can ride a bike? Cannot ride a bike?
+
+13. How many people can swim? Cannot swim?
+
+14. How many teeth do people have?
+
+15. How happy are people?
+
+## R as a calculator
+
+16. What is the average number of teeth per person?
+
+17. What are the minimum and maximum number of teeth per person?
+
+18. What are the average and median heights?
+
+19. What percentage of people can ride a bike? Cannot ride a bike?
+
+20. What percentage of people think that pizza is more important than love?
+
+21. Summarize how much people slept last night and how many sodas they drink per week.
 
