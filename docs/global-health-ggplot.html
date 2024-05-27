@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 6 Global health &amp; ggplot | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 6 Global health &amp; ggplot | R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -604,8 +603,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -639,7 +639,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -652,7 +652,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -700,6 +700,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="first-code.html"><a href="first-code.html"><i class="fa fa-check"></i><b>3</b> First code</a>
 <ul>
+<li class="chapter" data-level="3.1" data-path="first-code.html"><a href="first-code.html#file-paths"><i class="fa fa-check"></i><b>3.1</b> File paths</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#scripts-and-your-workspace"><i class="fa fa-check"></i>Scripts and your workspace</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-as-a-calculator"><i class="fa fa-check"></i>R as a calculator</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#re-running-code"><i class="fa fa-check"></i>Re-running code</a></li>
@@ -708,6 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#using-parentheses"><i class="fa fa-check"></i>Using parentheses</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#use-built-in-r-functions"><i class="fa fa-check"></i>Use built-in R functions</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#objects-and-vectors"><i class="fa fa-check"></i>Objects and vectors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 </ul></li>
@@ -742,133 +744,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="global-health-ggplot" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Module 6</span> Global health &amp; <code>ggplot</code><a href="global-health-ggplot.html#global-health-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-to-ggplot2" class="section level2 unnumbered hasAnchor" number="">
+<div id="introduction-to-ggplot2" class="section level2 unnumbered hasAnchor">
 <h2>Introduction to ggplot2<a href="global-health-ggplot.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Something very useful in the world of data is making plots. So let’s dive right in.</p>
 <p><strong>1.</strong> Open a new R script and name it <code>ggplot.R</code>.</p>
 <p><strong>2.</strong> Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, <code>ggthemes</code>, and <code>ggplot2</code>.</p>
 <p><strong>3.</strong> Load in your data and process the it a bit:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="global-health-ggplot.html#cb38-1" aria-hidden="true"></a>survey &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span>
-<span id="cb38-2"><a href="global-health-ggplot.html#cb38-2" aria-hidden="true"></a></span>
-<span id="cb38-3"><a href="global-health-ggplot.html#cb38-3" aria-hidden="true"></a><span class="kw">names</span>(survey) &lt;-</span>
-<span id="cb38-4"><a href="global-health-ggplot.html#cb38-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">c</span>(</span>
-<span id="cb38-5"><a href="global-health-ggplot.html#cb38-5" aria-hidden="true"></a>   <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &#39;Timestamp&#39;,</span></span>
-<span id="cb38-6"><a href="global-health-ggplot.html#cb38-6" aria-hidden="true"></a>  <span class="st">&#39;name&#39;</span>, <span class="co">#&#39;What is your name?&#39;,</span></span>
-<span id="cb38-7"><a href="global-health-ggplot.html#cb38-7" aria-hidden="true"></a>  <span class="st">&#39;email&#39;</span>, <span class="co">#&#39;What is your email address?&#39;,</span></span>
-<span id="cb38-8"><a href="global-health-ggplot.html#cb38-8" aria-hidden="true"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co">#&#39;How much experience do you have in R?&#39;,</span></span>
-<span id="cb38-9"><a href="global-health-ggplot.html#cb38-9" aria-hidden="true"></a>  <span class="st">&#39;alcohol&#39;</span>, <span class="co">#&#39;How many alcoholic beverages do you drink per week?&#39;,</span></span>
-<span id="cb38-10"><a href="global-health-ggplot.html#cb38-10" aria-hidden="true"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co">#&#39;How long do you think you can hold a wall squat (seconds)? (ie, the &quot;imaginary chair&quot;)&#39;,</span></span>
-<span id="cb38-11"><a href="global-health-ggplot.html#cb38-11" aria-hidden="true"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co">#&#39;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&#39;,</span></span>
-<span id="cb38-12"><a href="global-health-ggplot.html#cb38-12" aria-hidden="true"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co">#&#39;Do you know how to ride a bike?&#39;,</span></span>
-<span id="cb38-13"><a href="global-health-ggplot.html#cb38-13" aria-hidden="true"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co">#&#39;Do you know how to swim?&#39;,</span></span>
-<span id="cb38-14"><a href="global-health-ggplot.html#cb38-14" aria-hidden="true"></a>  <span class="st">&#39;age&#39;</span>, <span class="co">#&#39;How old are you in years?&#39;,</span></span>
-<span id="cb38-15"><a href="global-health-ggplot.html#cb38-15" aria-hidden="true"></a>  <span class="st">&#39;origin&#39;</span>, <span class="co">#&#39;Where are you from?&#39;,</span></span>
-<span id="cb38-16"><a href="global-health-ggplot.html#cb38-16" aria-hidden="true"></a>  <span class="st">&#39;swahili&#39;</span>, <span class="co">#&#39;Do you know how to speak Swahili?&#39;,</span></span>
-<span id="cb38-17"><a href="global-health-ggplot.html#cb38-17" aria-hidden="true"></a>  <span class="st">&#39;height&#39;</span>, <span class="co">#&#39;How tall are you in centimeters?&#39;,</span></span>
-<span id="cb38-18"><a href="global-health-ggplot.html#cb38-18" aria-hidden="true"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co">#&#39;What size shoe do you wear (EU sizes)?&#39;,</span></span>
-<span id="cb38-19"><a href="global-health-ggplot.html#cb38-19" aria-hidden="true"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co">#&#39;Are you right-handed or left-handed?&#39;,</span></span>
-<span id="cb38-20"><a href="global-health-ggplot.html#cb38-20" aria-hidden="true"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co">#&#39;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person&#39;,</span></span>
-<span id="cb38-21"><a href="global-health-ggplot.html#cb38-21" aria-hidden="true"></a>  <span class="st">&#39;gender&#39;</span>, <span class="co">#&#39;What is your gender?&#39;,</span></span>
-<span id="cb38-22"><a href="global-health-ggplot.html#cb38-22" aria-hidden="true"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co">#&#39;Do you consider yourself better or worse than average at singing?&#39;,</span></span>
-<span id="cb38-23"><a href="global-health-ggplot.html#cb38-23" aria-hidden="true"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co">#&#39;Do you consider yourself better than average at dancing?&#39;,</span></span>
-<span id="cb38-24"><a href="global-health-ggplot.html#cb38-24" aria-hidden="true"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co">#&#39;How many hours did you sleep last night?&#39;,</span></span>
-<span id="cb38-25"><a href="global-health-ggplot.html#cb38-25" aria-hidden="true"></a>  <span class="st">&#39;net&#39;</span>, <span class="co">#&#39;Did you sleep under a mosquito net last night?&#39;,</span></span>
-<span id="cb38-26"><a href="global-health-ggplot.html#cb38-26" aria-hidden="true"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co">#&#39;Would you rather eat&#39;,</span></span>
-<span id="cb38-27"><a href="global-health-ggplot.html#cb38-27" aria-hidden="true"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
-<span id="cb38-28"><a href="global-health-ggplot.html#cb38-28" aria-hidden="true"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
-<span id="cb38-29"><a href="global-health-ggplot.html#cb38-29" aria-hidden="true"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
-<span id="cb38-30"><a href="global-health-ggplot.html#cb38-30" aria-hidden="true"></a>  <span class="st">&#39;siblings&#39;</span>,</span>
-<span id="cb38-31"><a href="global-health-ggplot.html#cb38-31" aria-hidden="true"></a>  <span class="st">&#39;teeth&#39;</span>,</span>
-<span id="cb38-32"><a href="global-health-ggplot.html#cb38-32" aria-hidden="true"></a>  <span class="st">&#39;color&#39;</span>,</span>
-<span id="cb38-33"><a href="global-health-ggplot.html#cb38-33" aria-hidden="true"></a>  <span class="st">&#39;ivermectin&#39;</span>,</span>
-<span id="cb38-34"><a href="global-health-ggplot.html#cb38-34" aria-hidden="true"></a>  <span class="st">&#39;pilau_or_tchapati&#39;</span>,</span>
-<span id="cb38-35"><a href="global-health-ggplot.html#cb38-35" aria-hidden="true"></a>  <span class="st">&#39;race&#39;</span>,</span>
-<span id="cb38-36"><a href="global-health-ggplot.html#cb38-36" aria-hidden="true"></a>  <span class="st">&#39;live&#39;</span>,</span>
-<span id="cb38-37"><a href="global-health-ggplot.html#cb38-37" aria-hidden="true"></a>  <span class="st">&#39;kwale&#39;</span>,</span>
-<span id="cb38-38"><a href="global-health-ggplot.html#cb38-38" aria-hidden="true"></a>  <span class="st">&#39;movies&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="global-health-ggplot.html#cb43-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span>
+<span id="cb43-2"><a href="global-health-ggplot.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="global-health-ggplot.html#cb43-3" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span></span>
+<span id="cb43-4"><a href="global-health-ggplot.html#cb43-4" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb43-5"><a href="global-health-ggplot.html#cb43-5" tabindex="-1"></a>   <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &#39;Timestamp&#39;,</span></span>
+<span id="cb43-6"><a href="global-health-ggplot.html#cb43-6" tabindex="-1"></a>  <span class="st">&#39;name&#39;</span>, <span class="co">#&#39;What is your name?&#39;,</span></span>
+<span id="cb43-7"><a href="global-health-ggplot.html#cb43-7" tabindex="-1"></a>  <span class="st">&#39;email&#39;</span>, <span class="co">#&#39;What is your email address?&#39;,</span></span>
+<span id="cb43-8"><a href="global-health-ggplot.html#cb43-8" tabindex="-1"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co">#&#39;How much experience do you have in R?&#39;,</span></span>
+<span id="cb43-9"><a href="global-health-ggplot.html#cb43-9" tabindex="-1"></a>  <span class="st">&#39;alcohol&#39;</span>, <span class="co">#&#39;How many alcoholic beverages do you drink per week?&#39;,</span></span>
+<span id="cb43-10"><a href="global-health-ggplot.html#cb43-10" tabindex="-1"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co">#&#39;How long do you think you can hold a wall squat (seconds)? (ie, the &quot;imaginary chair&quot;)&#39;,</span></span>
+<span id="cb43-11"><a href="global-health-ggplot.html#cb43-11" tabindex="-1"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co">#&#39;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&#39;,</span></span>
+<span id="cb43-12"><a href="global-health-ggplot.html#cb43-12" tabindex="-1"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co">#&#39;Do you know how to ride a bike?&#39;,</span></span>
+<span id="cb43-13"><a href="global-health-ggplot.html#cb43-13" tabindex="-1"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co">#&#39;Do you know how to swim?&#39;,</span></span>
+<span id="cb43-14"><a href="global-health-ggplot.html#cb43-14" tabindex="-1"></a>  <span class="st">&#39;age&#39;</span>, <span class="co">#&#39;How old are you in years?&#39;,</span></span>
+<span id="cb43-15"><a href="global-health-ggplot.html#cb43-15" tabindex="-1"></a>  <span class="st">&#39;origin&#39;</span>, <span class="co">#&#39;Where are you from?&#39;,</span></span>
+<span id="cb43-16"><a href="global-health-ggplot.html#cb43-16" tabindex="-1"></a>  <span class="st">&#39;swahili&#39;</span>, <span class="co">#&#39;Do you know how to speak Swahili?&#39;,</span></span>
+<span id="cb43-17"><a href="global-health-ggplot.html#cb43-17" tabindex="-1"></a>  <span class="st">&#39;height&#39;</span>, <span class="co">#&#39;How tall are you in centimeters?&#39;,</span></span>
+<span id="cb43-18"><a href="global-health-ggplot.html#cb43-18" tabindex="-1"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co">#&#39;What size shoe do you wear (EU sizes)?&#39;,</span></span>
+<span id="cb43-19"><a href="global-health-ggplot.html#cb43-19" tabindex="-1"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co">#&#39;Are you right-handed or left-handed?&#39;,</span></span>
+<span id="cb43-20"><a href="global-health-ggplot.html#cb43-20" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co">#&#39;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person&#39;,</span></span>
+<span id="cb43-21"><a href="global-health-ggplot.html#cb43-21" tabindex="-1"></a>  <span class="st">&#39;gender&#39;</span>, <span class="co">#&#39;What is your gender?&#39;,</span></span>
+<span id="cb43-22"><a href="global-health-ggplot.html#cb43-22" tabindex="-1"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co">#&#39;Do you consider yourself better or worse than average at singing?&#39;,</span></span>
+<span id="cb43-23"><a href="global-health-ggplot.html#cb43-23" tabindex="-1"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co">#&#39;Do you consider yourself better than average at dancing?&#39;,</span></span>
+<span id="cb43-24"><a href="global-health-ggplot.html#cb43-24" tabindex="-1"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co">#&#39;How many hours did you sleep last night?&#39;,</span></span>
+<span id="cb43-25"><a href="global-health-ggplot.html#cb43-25" tabindex="-1"></a>  <span class="st">&#39;net&#39;</span>, <span class="co">#&#39;Did you sleep under a mosquito net last night?&#39;,</span></span>
+<span id="cb43-26"><a href="global-health-ggplot.html#cb43-26" tabindex="-1"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co">#&#39;Would you rather eat&#39;,</span></span>
+<span id="cb43-27"><a href="global-health-ggplot.html#cb43-27" tabindex="-1"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
+<span id="cb43-28"><a href="global-health-ggplot.html#cb43-28" tabindex="-1"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
+<span id="cb43-29"><a href="global-health-ggplot.html#cb43-29" tabindex="-1"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
+<span id="cb43-30"><a href="global-health-ggplot.html#cb43-30" tabindex="-1"></a>  <span class="st">&#39;siblings&#39;</span>,</span>
+<span id="cb43-31"><a href="global-health-ggplot.html#cb43-31" tabindex="-1"></a>  <span class="st">&#39;teeth&#39;</span>,</span>
+<span id="cb43-32"><a href="global-health-ggplot.html#cb43-32" tabindex="-1"></a>  <span class="st">&#39;color&#39;</span>,</span>
+<span id="cb43-33"><a href="global-health-ggplot.html#cb43-33" tabindex="-1"></a>  <span class="st">&#39;ivermectin&#39;</span>,</span>
+<span id="cb43-34"><a href="global-health-ggplot.html#cb43-34" tabindex="-1"></a>  <span class="st">&#39;pilau_or_tchapati&#39;</span>,</span>
+<span id="cb43-35"><a href="global-health-ggplot.html#cb43-35" tabindex="-1"></a>  <span class="st">&#39;race&#39;</span>,</span>
+<span id="cb43-36"><a href="global-health-ggplot.html#cb43-36" tabindex="-1"></a>  <span class="st">&#39;live&#39;</span>,</span>
+<span id="cb43-37"><a href="global-health-ggplot.html#cb43-37" tabindex="-1"></a>  <span class="st">&#39;kwale&#39;</span>,</span>
+<span id="cb43-38"><a href="global-health-ggplot.html#cb43-38" tabindex="-1"></a>  <span class="st">&#39;movies&#39;</span>)</span></code></pre></div>
 <p><strong>4.</strong> In order to make a plot we need a piece of paper or a canvas. So make a canvas.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="global-health-ggplot.html#cb39-1" aria-hidden="true"></a><span class="kw">ggplot</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-44-1.png" width="925.44" /></p>
-<p><strong>5.</strong> Draw your x axis and your y axis <em>(aka make your coordinates)</em>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="global-health-ggplot.html#cb40-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb40-2"><a href="global-health-ggplot.html#cb40-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> teeth))</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-45-1.png" width="925.44" /></p>
-<p><strong>6.</strong> Map the data to the coordinates. <em>Here we will map the data to the coordinates using points.</em></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="global-health-ggplot.html#cb41-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb41-2"><a href="global-health-ggplot.html#cb41-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> teeth)) <span class="op">+</span></span>
-<span id="cb41-3"><a href="global-health-ggplot.html#cb41-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-46-1.png" width="925.44" /></p>
-<p><strong>7.</strong> What if I want to color code these points based on people’s gender?</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="global-health-ggplot.html#cb42-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb42-2"><a href="global-health-ggplot.html#cb42-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
-<span id="cb42-3"><a href="global-health-ggplot.html#cb42-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
-<span id="cb42-4"><a href="global-health-ggplot.html#cb42-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
-<span id="cb42-5"><a href="global-health-ggplot.html#cb42-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-47-1.png" width="925.44" /></p>
-<p><strong>8.</strong> Add some labels. <code>ggplot()</code> automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="global-health-ggplot.html#cb43-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb43-2"><a href="global-health-ggplot.html#cb43-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
-<span id="cb43-3"><a href="global-health-ggplot.html#cb43-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
-<span id="cb43-4"><a href="global-health-ggplot.html#cb43-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
-<span id="cb43-5"><a href="global-health-ggplot.html#cb43-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb43-6"><a href="global-health-ggplot.html#cb43-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
-<span id="cb43-7"><a href="global-health-ggplot.html#cb43-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
-<span id="cb43-8"><a href="global-health-ggplot.html#cb43-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-48-1.png" width="925.44" /></p>
-<p><strong>9.</strong> Add a statistical summary like a smoothed regression line.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="global-health-ggplot.html#cb44-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb44-2"><a href="global-health-ggplot.html#cb44-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
-<span id="cb44-3"><a href="global-health-ggplot.html#cb44-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
-<span id="cb44-4"><a href="global-health-ggplot.html#cb44-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
-<span id="cb44-5"><a href="global-health-ggplot.html#cb44-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb44-6"><a href="global-health-ggplot.html#cb44-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
-<span id="cb44-7"><a href="global-health-ggplot.html#cb44-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
-<span id="cb44-8"><a href="global-health-ggplot.html#cb44-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span></span>
-<span id="cb44-9"><a href="global-health-ggplot.html#cb44-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="global-health-ggplot.html#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-49-1.png" width="925.44" /></p>
-<p><strong>10.</strong> We can also make separate plots for a variable by faceting.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="global-health-ggplot.html#cb45-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb45-2"><a href="global-health-ggplot.html#cb45-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
-<span id="cb45-3"><a href="global-health-ggplot.html#cb45-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
-<span id="cb45-4"><a href="global-health-ggplot.html#cb45-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
-<span id="cb45-5"><a href="global-health-ggplot.html#cb45-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb45-6"><a href="global-health-ggplot.html#cb45-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
-<span id="cb45-7"><a href="global-health-ggplot.html#cb45-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
-<span id="cb45-8"><a href="global-health-ggplot.html#cb45-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb45-9"><a href="global-health-ggplot.html#cb45-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb45-10"><a href="global-health-ggplot.html#cb45-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>gender)</span></code></pre></div>
+<p><strong>5.</strong> Draw your x axis and your y axis <em>(aka make your coordinates)</em>.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="global-health-ggplot.html#cb45-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb45-2"><a href="global-health-ggplot.html#cb45-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> teeth))</span></code></pre></div>
 <p><img src="figures/unnamed-chunk-50-1.png" width="925.44" /></p>
+<p><strong>6.</strong> Map the data to the coordinates. <em>Here we will map the data to the coordinates using points.</em></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="global-health-ggplot.html#cb46-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb46-2"><a href="global-health-ggplot.html#cb46-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> teeth)) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="global-health-ggplot.html#cb46-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-51-1.png" width="925.44" /></p>
+<p><strong>7.</strong> What if I want to color code these points based on people’s gender?</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="global-health-ggplot.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb47-2"><a href="global-health-ggplot.html#cb47-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, </span>
+<span id="cb47-3"><a href="global-health-ggplot.html#cb47-3" tabindex="-1"></a>           <span class="at">y =</span> teeth,</span>
+<span id="cb47-4"><a href="global-health-ggplot.html#cb47-4" tabindex="-1"></a>           <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="global-health-ggplot.html#cb47-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-52-1.png" width="925.44" /></p>
+<p><strong>8.</strong> Add some labels. <code>ggplot()</code> automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="global-health-ggplot.html#cb48-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb48-2"><a href="global-health-ggplot.html#cb48-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, </span>
+<span id="cb48-3"><a href="global-health-ggplot.html#cb48-3" tabindex="-1"></a>           <span class="at">y =</span> teeth,</span>
+<span id="cb48-4"><a href="global-health-ggplot.html#cb48-4" tabindex="-1"></a>           <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="global-health-ggplot.html#cb48-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb48-6"><a href="global-health-ggplot.html#cb48-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb48-7"><a href="global-health-ggplot.html#cb48-7" tabindex="-1"></a>              <span class="at">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb48-8"><a href="global-health-ggplot.html#cb48-8" tabindex="-1"></a>              <span class="at">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-53-1.png" width="925.44" /></p>
+<p><strong>9.</strong> Add a statistical summary like a smoothed regression line.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="global-health-ggplot.html#cb49-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb49-2"><a href="global-health-ggplot.html#cb49-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, </span>
+<span id="cb49-3"><a href="global-health-ggplot.html#cb49-3" tabindex="-1"></a>           <span class="at">y =</span> teeth,</span>
+<span id="cb49-4"><a href="global-health-ggplot.html#cb49-4" tabindex="-1"></a>           <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="global-health-ggplot.html#cb49-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb49-6"><a href="global-health-ggplot.html#cb49-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb49-7"><a href="global-health-ggplot.html#cb49-7" tabindex="-1"></a>              <span class="at">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb49-8"><a href="global-health-ggplot.html#cb49-8" tabindex="-1"></a>              <span class="at">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb49-9"><a href="global-health-ggplot.html#cb49-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-54-1.png" width="925.44" /></p>
+<p><strong>10.</strong> We can also make separate plots for a variable by faceting.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="global-health-ggplot.html#cb50-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb50-2"><a href="global-health-ggplot.html#cb50-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, </span>
+<span id="cb50-3"><a href="global-health-ggplot.html#cb50-3" tabindex="-1"></a>           <span class="at">y =</span> teeth,</span>
+<span id="cb50-4"><a href="global-health-ggplot.html#cb50-4" tabindex="-1"></a>           <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="global-health-ggplot.html#cb50-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb50-6"><a href="global-health-ggplot.html#cb50-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb50-7"><a href="global-health-ggplot.html#cb50-7" tabindex="-1"></a>              <span class="at">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb50-8"><a href="global-health-ggplot.html#cb50-8" tabindex="-1"></a>              <span class="at">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb50-9"><a href="global-health-ggplot.html#cb50-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb50-10"><a href="global-health-ggplot.html#cb50-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>gender)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-55-1.png" width="925.44" /></p>
 <p><strong>11.</strong> Let’s stylize the plot with a different theme.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="global-health-ggplot.html#cb46-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey,</span>
-<span id="cb46-2"><a href="global-health-ggplot.html#cb46-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, </span>
-<span id="cb46-3"><a href="global-health-ggplot.html#cb46-3" aria-hidden="true"></a>           <span class="dt">y =</span> teeth,</span>
-<span id="cb46-4"><a href="global-health-ggplot.html#cb46-4" aria-hidden="true"></a>           <span class="dt">color =</span> gender)) <span class="op">+</span></span>
-<span id="cb46-5"><a href="global-health-ggplot.html#cb46-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb46-6"><a href="global-health-ggplot.html#cb46-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
-<span id="cb46-7"><a href="global-health-ggplot.html#cb46-7" aria-hidden="true"></a>              <span class="dt">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
-<span id="cb46-8"><a href="global-health-ggplot.html#cb46-8" aria-hidden="true"></a>              <span class="dt">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb46-9"><a href="global-health-ggplot.html#cb46-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb46-10"><a href="global-health-ggplot.html#cb46-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>money_or_love) <span class="op">+</span></span>
-<span id="cb46-11"><a href="global-health-ggplot.html#cb46-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_economist_white</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="global-health-ggplot.html#cb51-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey,</span>
+<span id="cb51-2"><a href="global-health-ggplot.html#cb51-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, </span>
+<span id="cb51-3"><a href="global-health-ggplot.html#cb51-3" tabindex="-1"></a>           <span class="at">y =</span> teeth,</span>
+<span id="cb51-4"><a href="global-health-ggplot.html#cb51-4" tabindex="-1"></a>           <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb51-5"><a href="global-health-ggplot.html#cb51-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-6"><a href="global-health-ggplot.html#cb51-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Relationship between age, teeth, and gender&#39;</span>,</span>
+<span id="cb51-7"><a href="global-health-ggplot.html#cb51-7" tabindex="-1"></a>              <span class="at">subtitle =</span> <span class="st">&#39;We are the people&#39;</span>,</span>
+<span id="cb51-8"><a href="global-health-ggplot.html#cb51-8" tabindex="-1"></a>              <span class="at">caption =</span> <span class="st">&#39;Property of Kenya (2024)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb51-9"><a href="global-health-ggplot.html#cb51-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb51-10"><a href="global-health-ggplot.html#cb51-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>money_or_love) <span class="sc">+</span></span>
+<span id="cb51-11"><a href="global-health-ggplot.html#cb51-11" tabindex="-1"></a>  <span class="fu">theme_economist_white</span>()</span></code></pre></div>
 <pre><code>Error in theme_economist_white(): could not find function &quot;theme_economist_white&quot;</code></pre>
 <p><strong>12.</strong> Let’s make a bar plot of gender to look at the data a little differently.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="global-health-ggplot.html#cb48-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> survey, </span>
-<span id="cb48-2"><a href="global-health-ggplot.html#cb48-2" aria-hidden="true"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> gender)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb48-3"><a href="global-health-ggplot.html#cb48-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
-<p><img src="figures/unnamed-chunk-52-1.png" width="925.44" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="global-health-ggplot.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> survey, </span>
+<span id="cb53-2"><a href="global-health-ggplot.html#cb53-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb53-3"><a href="global-health-ggplot.html#cb53-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;count&#39;</span>)</span></code></pre></div>
+<p><img src="figures/unnamed-chunk-57-1.png" width="925.44" /></p>
 <p>As you can see, we can make a lot of different types of charts in R. You can even make a new variable and use it in your plot, but let’s not get ahead of ourselves. So let’s learn by doing rather than lecturing and move on to a new dataset.</p>
 <hr />
 </div>
-<div id="gapminder-exercises" class="section level2 unnumbered hasAnchor" number="">
+<div id="gapminder-exercises" class="section level2 unnumbered hasAnchor">
 <h2>Gapminder exercises<a href="global-health-ggplot.html#gapminder-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
 <p> </p>
 <p>First, let’s read in some data on health from the World Bank:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="global-health-ggplot.html#cb49-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
-<span id="cb49-2"><a href="global-health-ggplot.html#cb49-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb49-3"><a href="global-health-ggplot.html#cb49-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb49-4"><a href="global-health-ggplot.html#cb49-4" aria-hidden="true"></a><span class="kw">library</span>(gapminder)</span>
-<span id="cb49-5"><a href="global-health-ggplot.html#cb49-5" aria-hidden="true"></a>gm &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="global-health-ggplot.html#cb54-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb54-2"><a href="global-health-ggplot.html#cb54-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb54-3"><a href="global-health-ggplot.html#cb54-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb54-4"><a href="global-health-ggplot.html#cb54-4" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb54-5"><a href="global-health-ggplot.html#cb54-5" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">library</span>(gapminder)<span class="sc">:</span> there is no package called <span class="st">&#39;gapminder&#39;</span></span>
+<span id="cb54-6"><a href="global-health-ggplot.html#cb54-6" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder<span class="sc">::</span>gapminder</span>
+<span id="cb54-7"><a href="global-health-ggplot.html#cb54-7" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">loadNamespace</span>(x)<span class="sc">:</span> there is no package called <span class="st">&#39;gapminder&#39;</span></span></code></pre></div>
 <p><strong>1.</strong> How many rows are in the dataset?</p>
 <p><strong>2.</strong> How many columns are in the dataset?</p>
 <p><strong>3.</strong> What are the names of the columns?</p>
@@ -910,14 +914,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>34.</strong> Generate 3-5 more charts / tables that show interesting things about the data.</p>
 <p><strong>35.</strong> Make the above charts as aesthetically pleasing as possible.</p>
 </div>
-<div id="more-demography-exercises" class="section level2 unnumbered hasAnchor" number="">
+<div id="more-demography-exercises" class="section level2 unnumbered hasAnchor">
 <h2>More demography exercises<a href="global-health-ggplot.html#more-demography-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We’re going to work on some anonymized demography data, both households and individuals. Let’s start by creating a new script, naming it <code>demography.R</code>, and reading in some data as per the below:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="global-health-ggplot.html#cb50-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
-<span id="cb50-2"><a href="global-health-ggplot.html#cb50-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb50-3"><a href="global-health-ggplot.html#cb50-3" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb50-4"><a href="global-health-ggplot.html#cb50-4" aria-hidden="true"></a>households &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography.csv&#39;</span>)</span>
-<span id="cb50-5"><a href="global-health-ggplot.html#cb50-5" aria-hidden="true"></a>people &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography_individuals.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="global-health-ggplot.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb55-2"><a href="global-health-ggplot.html#cb55-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb55-3"><a href="global-health-ggplot.html#cb55-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb55-4"><a href="global-health-ggplot.html#cb55-4" tabindex="-1"></a>households <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography.csv&#39;</span>)</span>
+<span id="cb55-5"><a href="global-health-ggplot.html#cb55-5" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography_individuals.csv&#39;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>What is the average age of people?</p></li>
 <li><p>On average, who is older: men or women?</p></li>

@@ -1,6 +1,7 @@
 welcome
 setting-up-your-computer
 first-code
+file-paths
 in-class-survey
 exploring-a-dataset
 global-health-ggplot

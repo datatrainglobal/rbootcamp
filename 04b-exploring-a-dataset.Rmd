@@ -11,7 +11,7 @@ library(ggplot2)
 library(gsheet)
 ```
 
-3. Fill out the survey at https://forms.gle/TRKuQ2in47zBk7Qt9.
+3. Fill out the survey at https://docs.google.com/forms/d/e/1FAIpQLSf_-POnYlMPAJO-RJxfbrZef6q9YAEQuPMb3qIBfcmizAkZAw/viewform?usp=sf_link.
 
 4. Once everybody is done, read in the survey by running the below:
 
@@ -19,57 +19,53 @@ library(gsheet)
 if('survey.RData' %in% dir()){
   load('survey.RData')
 } else {
-survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Ra5LhxdCRbmEp-wV07ZlREDt3gysBgyUG4AWuaa1pzk/edit?usp=sharing')
 save(survey, file = 'survey.RData')
 }
 ```
 
 
 ```{r, echo = TRUE, eval = FALSE}
-survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')
+survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Ra5LhxdCRbmEp-wV07ZlREDt3gysBgyUG4AWuaa1pzk/edit?usp=sharing')
 ```
 
 
 5. Run the below code to process the data a bit
 
 ```{r, echo = TRUE, eval = TRUE}
-names(survey) <-
-  c(
-   'timestamp', #  'Timestamp',
-  'name', #'What is your name?',
-  'email', #'What is your email address?',
-  'experience', #'How much experience do you have in R?',
-  'alcohol', #'How many alcoholic beverages do you drink per week?',
-  'squat', #'How long do you think you can hold a wall squat (seconds)? (ie, the "imaginary chair")',
-  'egypt_or_france', #'Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?',
-  'bike', #'Do you know how to ride a bike?',
-  'swim', #'Do you know how to swim?',
-  'age', #'How old are you in years?',
-  'origin', #'Where are you from?',
-  'swahili', #'Do you know how to speak Swahili?',
-  'height', #'How tall are you in centimeters?',
-  'shoe', #'What size shoe do you wear (EU sizes)?',
-  'hand', #'Are you right-handed or left-handed?',
-  'happy', #'How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person',
-  'gender', #'What is your gender?',
-  'sing', #'Do you consider yourself better or worse than average at singing?',
-  'dance', #'Do you consider yourself better than average at dancing?',
-  'sleep', #'How many hours did you sleep last night?',
-  'net', #'Did you sleep under a mosquito net last night?',
-  'eat', #'Would you rather eat',
-  'money_or_love', #'What is better, money or love?',
-  'pizza_or_love', #'What is better, pizza or love?',
-  'adjective', #'What is the one adjective that best describes you',
-  'siblings',
-  'teeth',
-  'color',
-  'ivermectin',
-  'pilau_or_tchapati',
-  'race',
-  'live',
-  'kwale',
-  'movies')
+names(survey) <- c(
+  'timestamp', #  "Timestamp", 
+  'name', # "What is your name?", 
+  'experience', # "How much experience do you have in R?", 
+  'soda', # "How many sodas do you drink a week?", 
+  'squat', # "How long do you think you can hold a wall squat (seconds)? (ie, the 'imaginary chair')?", 
+  'egypt_or_france', # "Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?", 
+  'bike', # "Do you know how to ride a bike?", 
+  'swim', # "Do you know how to swim?", 
+  'age', # "How old are you in years?", 
+  'where', # "Where do you live?", 
+  'lng', # "What is the longitude of your hometown?",
+  'lat', # "What is the latitude of your hometown?", 
+  'language', # "Do you know how to speak another language aside from English?", 
+  'height', # "How tall are you in inches?", 
+  'shoe', # "What size shoe do you wear? (US Size)", 
+  'hand', # "Are you right-handed or left-handed?", 
+  'happy', # "How happy do you consider yourself on a scale from 1 to 5, with 1 beign extremely unhappy, 5 being extremely happy, and 3 being the average person?", 
+  'sing', # "Do you consider yourself better or worse than average at singing?", 
+  'pizza_or_love', # "What's more important pizza or love?", 
+  'dance', # "Do you consider yourself better than average at dancing?", 
+  'sleep', # "How many hours did you sleep last night", 
+  'eat', # "Would you rather eat", 
+  'adjective', # "What is the one adjective that best describes you?", 
+  'teeth', # "How many teeth do you have?", 
+  'braces', # "If you had to have braces the rest of your life, which color would you choose?", 
+  'siblings', # "How many siblings do you have?", 
+  'wrestle', # "Of the people in this room, who would win a pinky wrestle against Michael?", 
+  'hangout', # "What is the best place to hang out in Sewanee?", 
+  'movies' # "How many movies have you watched in the last month?"
+)
+
 ```
 
-6. Ask some questions to the data. Answer them through charts and tables.
+6. Ask some questions of the data. Answer them through charts and tables.
 

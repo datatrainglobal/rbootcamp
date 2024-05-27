@@ -2,6 +2,12 @@
 
 Are you ready to write some code? I hope so, because it's time.
 
+## File paths
+
+Good organization is the key to success, so let's start by creating a folder for all of your DataLab work. 
+
+... now that you've done this, **REMEMBER WHERE YOUR FOLDER IS AND STAY ORGANIZED!!** 
+
 ## Scripts and your workspace {.unnumbered}
 
 In RStudio, click "File" in the upper left and then "New file -> R Script". This will open a window pane in the upper left of your screen. This "script" is basically a place for you to write and save code. Got it? Good.
@@ -336,6 +342,80 @@ table(people == 'Nika')
 'John' == people
 ```
 
+## Exercises {.unnumbered}
+
+**Use `R` like a calculator**  
+
+**1.** Type a command in the *Console* to determine the sum of 596 and 198.  
+
+**2.** Re-run the sum of 596 and 198 without re-typing it.  
+
+**3.** Recall the command again, but this time adjust the code to find the sum of 596 and 298.  
+
+**4.** Practice escaping an accidentally called command: recall your most recent command, then press the right key to clear the *Console*'s command line.  
+
+&nbsp;  
+**Recalling commands**  
+
+**5.** Find the sum of the ages of everyone in your immediate family.  
+
+**6.** Now recall that command and adjust it to determine the *average* age of the members of your family.  
+
+**7.** Find the square root of *pi* and round the answer to the 2 decimal places.
+
+&nbsp;    
+
+**Finding errors**  
+
+**8.** This line of code won't run; instead, `R` will wait for more with a `+` symbol. Find the problem and re-write the code so that it works.  
+
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+5 * 6 +
+```
+
+**9.** The same goes for this line of code. Fix it, too.  
+
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+sqrt(16
+```
+
+**10.** This line of code will trigger an error. Find the problem and re-write the code so that it works.
+
+```{r,echo=TRUE,eval=FALSE,collapse=TRUE}
+round(100/3,digits+3)
+```
+
+**11.** Type a command of your own into R that throws an error, then recall the command and revise so that `R` can understand it.
+
+&nbsp;  
+
+
+**Show that the following statements are TRUE:**
+
+**12.** `pi` is greater than the square root of 9  
+
+**13.** It is FALSE that the square root of 9 is greater than `pi`  
+
+**14.** `pi` rounded to the nearest whole number equals the square root of 9  
+
+&nbsp;  
+
+**Asking `TRUE` / `FALSE` questions**
+
+**15.** Write and run a line of code that asks whether these two calculations return the same result:
+
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
+2*7 - 2*5 / 2
+```
+
+```{r,echo=TRUE,collapse=TRUE}
+(2*7 - 2*5) / 2
+```
+
+**16.** Now write and run a line of code that asks whether the first calculation is larger than the second:
+
+&nbsp;
+
 ## `R` and `RStudio`: what's the difference? {.unnumbered}
 
 These two entities are similar, but it is important to understand how they are different. 
@@ -374,3 +454,4 @@ You will use the bottom right pane very often.
 * The **Help** tab is very important! It lets you see documentation (i.e., user’s guides) for the functions you use in your code. Functions will also be explained in detail a few modules down the road.
 
 These three panes are useful, but the most useful window pane of all is actually _missing_ when you first open RStudio. This important pane is where you work with **scripts**.
+

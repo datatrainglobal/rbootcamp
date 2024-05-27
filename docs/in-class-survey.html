@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 4 In-class survey | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 4 In-class survey | R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -47,7 +47,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -604,8 +603,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -639,7 +639,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -652,7 +652,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -700,6 +700,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="first-code.html"><a href="first-code.html"><i class="fa fa-check"></i><b>3</b> First code</a>
 <ul>
+<li class="chapter" data-level="3.1" data-path="first-code.html"><a href="first-code.html#file-paths"><i class="fa fa-check"></i><b>3.1</b> File paths</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#scripts-and-your-workspace"><i class="fa fa-check"></i>Scripts and your workspace</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-as-a-calculator"><i class="fa fa-check"></i>R as a calculator</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#re-running-code"><i class="fa fa-check"></i>Re-running code</a></li>
@@ -708,6 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#using-parentheses"><i class="fa fa-check"></i>Using parentheses</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#use-built-in-r-functions"><i class="fa fa-check"></i>Use built-in R functions</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#objects-and-vectors"><i class="fa fa-check"></i>Objects and vectors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
 <li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
 </ul></li>
@@ -745,51 +747,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Open a new R script and name it <code>survey.R</code></p></li>
 <li><p>Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, and <code>ggplot2</code></p></li>
-<li><p>Fill out the survey at <a href="https://forms.gle/TRKuQ2in47zBk7Qt9" class="uri">https://forms.gle/TRKuQ2in47zBk7Qt9</a>.</p></li>
+<li><p>Fill out the survey at <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_-POnYlMPAJO-RJxfbrZef6q9YAEQuPMb3qIBfcmizAkZAw/viewform?usp=sf_link" class="uri">https://docs.google.com/forms/d/e/1FAIpQLSf_-POnYlMPAJO-RJxfbrZef6q9YAEQuPMb3qIBfcmizAkZAw/viewform?usp=sf_link</a>.</p></li>
 <li><p>Once everybody is done, read in the survey by running the below:</p></li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="in-class-survey.html#cb35-1" aria-hidden="true"></a>survey &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="in-class-survey.html#cb40-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Ra5LhxdCRbmEp-wV07ZlREDt3gysBgyUG4AWuaa1pzk/edit?usp=sharing&#39;</span>)</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Run the below code to process the data a bit</li>
 </ol>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="in-class-survey.html#cb36-1" aria-hidden="true"></a><span class="kw">names</span>(survey) &lt;-</span>
-<span id="cb36-2"><a href="in-class-survey.html#cb36-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">c</span>(</span>
-<span id="cb36-3"><a href="in-class-survey.html#cb36-3" aria-hidden="true"></a>   <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &#39;Timestamp&#39;,</span></span>
-<span id="cb36-4"><a href="in-class-survey.html#cb36-4" aria-hidden="true"></a>  <span class="st">&#39;name&#39;</span>, <span class="co">#&#39;What is your name?&#39;,</span></span>
-<span id="cb36-5"><a href="in-class-survey.html#cb36-5" aria-hidden="true"></a>  <span class="st">&#39;email&#39;</span>, <span class="co">#&#39;What is your email address?&#39;,</span></span>
-<span id="cb36-6"><a href="in-class-survey.html#cb36-6" aria-hidden="true"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co">#&#39;How much experience do you have in R?&#39;,</span></span>
-<span id="cb36-7"><a href="in-class-survey.html#cb36-7" aria-hidden="true"></a>  <span class="st">&#39;alcohol&#39;</span>, <span class="co">#&#39;How many alcoholic beverages do you drink per week?&#39;,</span></span>
-<span id="cb36-8"><a href="in-class-survey.html#cb36-8" aria-hidden="true"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co">#&#39;How long do you think you can hold a wall squat (seconds)? (ie, the &quot;imaginary chair&quot;)&#39;,</span></span>
-<span id="cb36-9"><a href="in-class-survey.html#cb36-9" aria-hidden="true"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co">#&#39;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&#39;,</span></span>
-<span id="cb36-10"><a href="in-class-survey.html#cb36-10" aria-hidden="true"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co">#&#39;Do you know how to ride a bike?&#39;,</span></span>
-<span id="cb36-11"><a href="in-class-survey.html#cb36-11" aria-hidden="true"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co">#&#39;Do you know how to swim?&#39;,</span></span>
-<span id="cb36-12"><a href="in-class-survey.html#cb36-12" aria-hidden="true"></a>  <span class="st">&#39;age&#39;</span>, <span class="co">#&#39;How old are you in years?&#39;,</span></span>
-<span id="cb36-13"><a href="in-class-survey.html#cb36-13" aria-hidden="true"></a>  <span class="st">&#39;origin&#39;</span>, <span class="co">#&#39;Where are you from?&#39;,</span></span>
-<span id="cb36-14"><a href="in-class-survey.html#cb36-14" aria-hidden="true"></a>  <span class="st">&#39;swahili&#39;</span>, <span class="co">#&#39;Do you know how to speak Swahili?&#39;,</span></span>
-<span id="cb36-15"><a href="in-class-survey.html#cb36-15" aria-hidden="true"></a>  <span class="st">&#39;height&#39;</span>, <span class="co">#&#39;How tall are you in centimeters?&#39;,</span></span>
-<span id="cb36-16"><a href="in-class-survey.html#cb36-16" aria-hidden="true"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co">#&#39;What size shoe do you wear (EU sizes)?&#39;,</span></span>
-<span id="cb36-17"><a href="in-class-survey.html#cb36-17" aria-hidden="true"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co">#&#39;Are you right-handed or left-handed?&#39;,</span></span>
-<span id="cb36-18"><a href="in-class-survey.html#cb36-18" aria-hidden="true"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co">#&#39;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person&#39;,</span></span>
-<span id="cb36-19"><a href="in-class-survey.html#cb36-19" aria-hidden="true"></a>  <span class="st">&#39;gender&#39;</span>, <span class="co">#&#39;What is your gender?&#39;,</span></span>
-<span id="cb36-20"><a href="in-class-survey.html#cb36-20" aria-hidden="true"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co">#&#39;Do you consider yourself better or worse than average at singing?&#39;,</span></span>
-<span id="cb36-21"><a href="in-class-survey.html#cb36-21" aria-hidden="true"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co">#&#39;Do you consider yourself better than average at dancing?&#39;,</span></span>
-<span id="cb36-22"><a href="in-class-survey.html#cb36-22" aria-hidden="true"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co">#&#39;How many hours did you sleep last night?&#39;,</span></span>
-<span id="cb36-23"><a href="in-class-survey.html#cb36-23" aria-hidden="true"></a>  <span class="st">&#39;net&#39;</span>, <span class="co">#&#39;Did you sleep under a mosquito net last night?&#39;,</span></span>
-<span id="cb36-24"><a href="in-class-survey.html#cb36-24" aria-hidden="true"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co">#&#39;Would you rather eat&#39;,</span></span>
-<span id="cb36-25"><a href="in-class-survey.html#cb36-25" aria-hidden="true"></a>  <span class="st">&#39;money_or_love&#39;</span>, <span class="co">#&#39;What is better, money or love?&#39;,</span></span>
-<span id="cb36-26"><a href="in-class-survey.html#cb36-26" aria-hidden="true"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co">#&#39;What is better, pizza or love?&#39;,</span></span>
-<span id="cb36-27"><a href="in-class-survey.html#cb36-27" aria-hidden="true"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co">#&#39;What is the one adjective that best describes you&#39;,</span></span>
-<span id="cb36-28"><a href="in-class-survey.html#cb36-28" aria-hidden="true"></a>  <span class="st">&#39;siblings&#39;</span>,</span>
-<span id="cb36-29"><a href="in-class-survey.html#cb36-29" aria-hidden="true"></a>  <span class="st">&#39;teeth&#39;</span>,</span>
-<span id="cb36-30"><a href="in-class-survey.html#cb36-30" aria-hidden="true"></a>  <span class="st">&#39;color&#39;</span>,</span>
-<span id="cb36-31"><a href="in-class-survey.html#cb36-31" aria-hidden="true"></a>  <span class="st">&#39;ivermectin&#39;</span>,</span>
-<span id="cb36-32"><a href="in-class-survey.html#cb36-32" aria-hidden="true"></a>  <span class="st">&#39;pilau_or_tchapati&#39;</span>,</span>
-<span id="cb36-33"><a href="in-class-survey.html#cb36-33" aria-hidden="true"></a>  <span class="st">&#39;race&#39;</span>,</span>
-<span id="cb36-34"><a href="in-class-survey.html#cb36-34" aria-hidden="true"></a>  <span class="st">&#39;live&#39;</span>,</span>
-<span id="cb36-35"><a href="in-class-survey.html#cb36-35" aria-hidden="true"></a>  <span class="st">&#39;kwale&#39;</span>,</span>
-<span id="cb36-36"><a href="in-class-survey.html#cb36-36" aria-hidden="true"></a>  <span class="st">&#39;movies&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="in-class-survey.html#cb41-1" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb41-2"><a href="in-class-survey.html#cb41-2" tabindex="-1"></a>  <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &quot;Timestamp&quot;, </span></span>
+<span id="cb41-3"><a href="in-class-survey.html#cb41-3" tabindex="-1"></a>  <span class="st">&#39;name&#39;</span>, <span class="co"># &quot;What is your name?&quot;, </span></span>
+<span id="cb41-4"><a href="in-class-survey.html#cb41-4" tabindex="-1"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co"># &quot;How much experience do you have in R?&quot;, </span></span>
+<span id="cb41-5"><a href="in-class-survey.html#cb41-5" tabindex="-1"></a>  <span class="st">&#39;soda&#39;</span>, <span class="co"># &quot;How many sodas do you drink a week?&quot;, </span></span>
+<span id="cb41-6"><a href="in-class-survey.html#cb41-6" tabindex="-1"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co"># &quot;How long do you think you can hold a wall squat (seconds)? (ie, the &#39;imaginary chair&#39;)?&quot;, </span></span>
+<span id="cb41-7"><a href="in-class-survey.html#cb41-7" tabindex="-1"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co"># &quot;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&quot;, </span></span>
+<span id="cb41-8"><a href="in-class-survey.html#cb41-8" tabindex="-1"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co"># &quot;Do you know how to ride a bike?&quot;, </span></span>
+<span id="cb41-9"><a href="in-class-survey.html#cb41-9" tabindex="-1"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co"># &quot;Do you know how to swim?&quot;, </span></span>
+<span id="cb41-10"><a href="in-class-survey.html#cb41-10" tabindex="-1"></a>  <span class="st">&#39;age&#39;</span>, <span class="co"># &quot;How old are you in years?&quot;, </span></span>
+<span id="cb41-11"><a href="in-class-survey.html#cb41-11" tabindex="-1"></a>  <span class="st">&#39;where&#39;</span>, <span class="co"># &quot;Where do you live?&quot;, </span></span>
+<span id="cb41-12"><a href="in-class-survey.html#cb41-12" tabindex="-1"></a>  <span class="st">&#39;lng&#39;</span>, <span class="co"># &quot;What is the longitude of your hometown?&quot;,</span></span>
+<span id="cb41-13"><a href="in-class-survey.html#cb41-13" tabindex="-1"></a>  <span class="st">&#39;lat&#39;</span>, <span class="co"># &quot;What is the latitude of your hometown?&quot;, </span></span>
+<span id="cb41-14"><a href="in-class-survey.html#cb41-14" tabindex="-1"></a>  <span class="st">&#39;language&#39;</span>, <span class="co"># &quot;Do you know how to speak another language aside from English?&quot;, </span></span>
+<span id="cb41-15"><a href="in-class-survey.html#cb41-15" tabindex="-1"></a>  <span class="st">&#39;height&#39;</span>, <span class="co"># &quot;How tall are you in inches?&quot;, </span></span>
+<span id="cb41-16"><a href="in-class-survey.html#cb41-16" tabindex="-1"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co"># &quot;What size shoe do you wear? (US Size)&quot;, </span></span>
+<span id="cb41-17"><a href="in-class-survey.html#cb41-17" tabindex="-1"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co"># &quot;Are you right-handed or left-handed?&quot;, </span></span>
+<span id="cb41-18"><a href="in-class-survey.html#cb41-18" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co"># &quot;How happy do you consider yourself on a scale from 1 to 5, with 1 beign extremely unhappy, 5 being extremely happy, and 3 being the average person?&quot;, </span></span>
+<span id="cb41-19"><a href="in-class-survey.html#cb41-19" tabindex="-1"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co"># &quot;Do you consider yourself better or worse than average at singing?&quot;, </span></span>
+<span id="cb41-20"><a href="in-class-survey.html#cb41-20" tabindex="-1"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co"># &quot;What&#39;s more important pizza or love?&quot;, </span></span>
+<span id="cb41-21"><a href="in-class-survey.html#cb41-21" tabindex="-1"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co"># &quot;Do you consider yourself better than average at dancing?&quot;, </span></span>
+<span id="cb41-22"><a href="in-class-survey.html#cb41-22" tabindex="-1"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co"># &quot;How many hours did you sleep last night&quot;, </span></span>
+<span id="cb41-23"><a href="in-class-survey.html#cb41-23" tabindex="-1"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co"># &quot;Would you rather eat&quot;, </span></span>
+<span id="cb41-24"><a href="in-class-survey.html#cb41-24" tabindex="-1"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co"># &quot;What is the one adjective that best describes you?&quot;, </span></span>
+<span id="cb41-25"><a href="in-class-survey.html#cb41-25" tabindex="-1"></a>  <span class="st">&#39;teeth&#39;</span>, <span class="co"># &quot;How many teeth do you have?&quot;, </span></span>
+<span id="cb41-26"><a href="in-class-survey.html#cb41-26" tabindex="-1"></a>  <span class="st">&#39;braces&#39;</span>, <span class="co"># &quot;If you had to have braces the rest of your life, which color would you choose?&quot;, </span></span>
+<span id="cb41-27"><a href="in-class-survey.html#cb41-27" tabindex="-1"></a>  <span class="st">&#39;siblings&#39;</span>, <span class="co"># &quot;How many siblings do you have?&quot;, </span></span>
+<span id="cb41-28"><a href="in-class-survey.html#cb41-28" tabindex="-1"></a>  <span class="st">&#39;wrestle&#39;</span>, <span class="co"># &quot;Of the people in this room, who would win a pinky wrestle against Michael?&quot;, </span></span>
+<span id="cb41-29"><a href="in-class-survey.html#cb41-29" tabindex="-1"></a>  <span class="st">&#39;hangout&#39;</span>, <span class="co"># &quot;What is the best place to hang out in Sewanee?&quot;, </span></span>
+<span id="cb41-30"><a href="in-class-survey.html#cb41-30" tabindex="-1"></a>  <span class="st">&#39;movies&#39;</span> <span class="co"># &quot;How many movies have you watched in the last month?&quot;</span></span>
+<span id="cb41-31"><a href="in-class-survey.html#cb41-31" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
-<li>Ask some questions to the data. Answer them through charts and tables.</li>
+<li>Ask some questions of the data. Answer them through charts and tables.</li>
 </ol>
 
 </div>
