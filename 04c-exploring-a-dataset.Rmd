@@ -1,6 +1,6 @@
 # Exploring a dataset
 
-Let's explore a dataset that consists of people who died and survived during a major event. Maybe, you can even guess the event.
+Let's explore a dataset that consists of people who died and survived during a major event. Maybe you can even guess the event!
 
 1. Open a new R script and name it `survival.R`
 

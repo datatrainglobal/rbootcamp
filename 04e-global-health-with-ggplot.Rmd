@@ -8,7 +8,7 @@ Something very useful in the world of data is making plots. So let's dive right 
 
 **2.** Write code to load the following libraries: `dplyr`, `readr`, `ggthemes`, and `ggplot2`.
 
-**3.** Load in your data and process the it a bit:
+**3.** Load in your data and process it a bit:
 
 ```{r, echo=TRUE, message=FALSE}
 survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1Uq_F6SmDOH1q5AZaxcGOIJnO-2DKdc_HUSw3akXpI3w/edit?usp=sharing')

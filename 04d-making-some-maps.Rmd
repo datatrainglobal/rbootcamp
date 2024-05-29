@@ -1,0 +1,23 @@
+# Making some maps
+
+Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
+demographics of voting districts in different states. In addition to being efficient data visualizations, 
+well made maps can be beautiful to look at!
+
+1. Open a new R script and name it `maps.R`
+
+2. Write code to load the following libraries: `dplyr`, `sf`, `spData`, `tmap`, and `tidycensus`
+
+```{r, echo = FALSE, eval = TRUE}
+library(dplyr)
+library(sf)
+library(spData)
+library(tmap)
+library(tidycensus)
+```
+
+3. Add the following code to your script and run it to make your first map:
+
+```{r, echo = TRUE, eval = TRUE}
+tm_shape( us_states ) + tm_polygons( )
+```

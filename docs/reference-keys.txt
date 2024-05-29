@@ -3,5 +3,6 @@ setting-up-your-computer
 first-code
 in-class-survey
 exploring-a-dataset
+making-some-maps
 global-health-ggplot
 exercises-with-world-health-data
