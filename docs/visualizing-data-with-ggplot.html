@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 7 Making some maps | R Bootcamp</title>
+  <title>Module 6 Visualizing data with ggplot | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 7 Making some maps | R Bootcamp" />
+  <meta property="og:title" content="Module 6 Visualizing data with ggplot | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 7 Making some maps | R Bootcamp" />
+  <meta name="twitter:title" content="Module 6 Visualizing data with ggplot | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="visualizing-data-with-ggplot2.html"/>
-
+<link rel="prev" href="exploring-a-dataset.html"/>
+<link rel="next" href="making-some-maps.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -724,12 +724,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#dplyr-1"><i class="fa fa-check"></i><code>dplyr</code></a></li>
 <li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Visualizing data with <code>ggplot2</code></a>
+<li class="chapter" data-level="6" data-path="visualizing-data-with-ggplot.html"><a href="visualizing-data-with-ggplot.html"><i class="fa fa-check"></i><b>6</b> Visualizing data with <code>ggplot</code></a>
 <ul>
-<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#introduction-to-ggplot2"><i class="fa fa-check"></i>Introduction to ggplot2</a></li>
-<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#demography-exercises"><i class="fa fa-check"></i>Demography exercises</a></li>
-<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#gapminder-exercises"><i class="fa fa-check"></i>Gapminder exercises</a></li>
-<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#exercises-with-world-health-data"><i class="fa fa-check"></i>Exercises with world health data</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot.html"><a href="visualizing-data-with-ggplot.html#introduction-to-ggplot2"><i class="fa fa-check"></i>Introduction to ggplot2</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot.html"><a href="visualizing-data-with-ggplot.html#demography-exercises"><i class="fa fa-check"></i>Demography exercises</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot.html"><a href="visualizing-data-with-ggplot.html#gapminder-exercises"><i class="fa fa-check"></i>Gapminder exercises</a></li>
+<li class="chapter" data-level="6.1" data-path="visualizing-data-with-ggplot.html"><a href="visualizing-data-with-ggplot.html#exercises-with-world-health-data"><i class="fa fa-check"></i><b>6.1</b> Exercises with world health data</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="making-some-maps.html"><a href="making-some-maps.html"><i class="fa fa-check"></i><b>7</b> Making some maps</a></li>
 <li class="divider"></li>
@@ -752,38 +752,175 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="making-some-maps" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Module 7</span> Making some maps<a href="making-some-maps.html#making-some-maps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
-demographics of voting districts in different states. In addition to being efficient data visualizations,
-well made maps can be beautiful to look at!</p>
+<div id="visualizing-data-with-ggplot" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Module 6</span> Visualizing data with <code>ggplot</code><a href="visualizing-data-with-ggplot.html#visualizing-data-with-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-ggplot2" class="section level2 unnumbered hasAnchor">
+<h2>Introduction to ggplot2<a href="visualizing-data-with-ggplot.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tables and summary statistics are fine, but a good visualization is even better! This is where the <code>tidyverse</code> shines, so it’s time to learn how to use its fantastic visualization package <code>ggplot2</code>.</p>
+<p><strong>1.</strong> Open a new R script and name it <code>ggplot.R</code>.</p>
+<p><strong>2.</strong> Write code to load the <code>tidyverse</code>.</p>
+<p><strong>3.</strong> Load our survey data and clean things up a bit:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="visualizing-data-with-ggplot.html#cb44-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1Ra5LhxdCRbmEp-wV07ZlREDt3gysBgyUG4AWuaa1pzk/edit?usp=sharing&#39;</span>)</span>
+<span id="cb44-2"><a href="visualizing-data-with-ggplot.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="visualizing-data-with-ggplot.html#cb44-3" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb44-4"><a href="visualizing-data-with-ggplot.html#cb44-4" tabindex="-1"></a>  <span class="st">&#39;timestamp&#39;</span>, <span class="co">#  &quot;Timestamp&quot;, </span></span>
+<span id="cb44-5"><a href="visualizing-data-with-ggplot.html#cb44-5" tabindex="-1"></a>  <span class="st">&#39;name&#39;</span>, <span class="co"># &quot;What is your name?&quot;, </span></span>
+<span id="cb44-6"><a href="visualizing-data-with-ggplot.html#cb44-6" tabindex="-1"></a>  <span class="st">&#39;experience&#39;</span>, <span class="co"># &quot;How much experience do you have in R?&quot;, </span></span>
+<span id="cb44-7"><a href="visualizing-data-with-ggplot.html#cb44-7" tabindex="-1"></a>  <span class="st">&#39;soda&#39;</span>, <span class="co"># &quot;How many sodas do you drink a week?&quot;, </span></span>
+<span id="cb44-8"><a href="visualizing-data-with-ggplot.html#cb44-8" tabindex="-1"></a>  <span class="st">&#39;squat&#39;</span>, <span class="co"># &quot;How long do you think you can hold a wall squat (seconds)? (ie, the &#39;imaginary chair&#39;)?&quot;, </span></span>
+<span id="cb44-9"><a href="visualizing-data-with-ggplot.html#cb44-9" tabindex="-1"></a>  <span class="st">&#39;egypt_or_france&#39;</span>, <span class="co"># &quot;Would you rather visit the pyramids of Egypt or the Eiffel tower of Paris?&quot;, </span></span>
+<span id="cb44-10"><a href="visualizing-data-with-ggplot.html#cb44-10" tabindex="-1"></a>  <span class="st">&#39;bike&#39;</span>, <span class="co"># &quot;Do you know how to ride a bike?&quot;, </span></span>
+<span id="cb44-11"><a href="visualizing-data-with-ggplot.html#cb44-11" tabindex="-1"></a>  <span class="st">&#39;swim&#39;</span>, <span class="co"># &quot;Do you know how to swim?&quot;, </span></span>
+<span id="cb44-12"><a href="visualizing-data-with-ggplot.html#cb44-12" tabindex="-1"></a>  <span class="st">&#39;age&#39;</span>, <span class="co"># &quot;How old are you in years?&quot;, </span></span>
+<span id="cb44-13"><a href="visualizing-data-with-ggplot.html#cb44-13" tabindex="-1"></a>  <span class="st">&#39;where&#39;</span>, <span class="co"># &quot;Where do you live?&quot;, </span></span>
+<span id="cb44-14"><a href="visualizing-data-with-ggplot.html#cb44-14" tabindex="-1"></a>  <span class="st">&#39;lng&#39;</span>, <span class="co"># &quot;What is the longitude of your hometown?&quot;,</span></span>
+<span id="cb44-15"><a href="visualizing-data-with-ggplot.html#cb44-15" tabindex="-1"></a>  <span class="st">&#39;lat&#39;</span>, <span class="co"># &quot;What is the latitude of your hometown?&quot;, </span></span>
+<span id="cb44-16"><a href="visualizing-data-with-ggplot.html#cb44-16" tabindex="-1"></a>  <span class="st">&#39;language&#39;</span>, <span class="co"># &quot;Do you know how to speak another language aside from English?&quot;, </span></span>
+<span id="cb44-17"><a href="visualizing-data-with-ggplot.html#cb44-17" tabindex="-1"></a>  <span class="st">&#39;height&#39;</span>, <span class="co"># &quot;How tall are you in inches?&quot;, </span></span>
+<span id="cb44-18"><a href="visualizing-data-with-ggplot.html#cb44-18" tabindex="-1"></a>  <span class="st">&#39;shoe&#39;</span>, <span class="co"># &quot;What size shoe do you wear? (US Size)&quot;, </span></span>
+<span id="cb44-19"><a href="visualizing-data-with-ggplot.html#cb44-19" tabindex="-1"></a>  <span class="st">&#39;hand&#39;</span>, <span class="co"># &quot;Are you right-handed or left-handed?&quot;, </span></span>
+<span id="cb44-20"><a href="visualizing-data-with-ggplot.html#cb44-20" tabindex="-1"></a>  <span class="st">&#39;happy&#39;</span>, <span class="co"># &quot;How happy do you consider yourself on a scale from 1 to 5, with 1 being extremely unhappy, 5 being extremely happy, and 3 being the average person?&quot;, </span></span>
+<span id="cb44-21"><a href="visualizing-data-with-ggplot.html#cb44-21" tabindex="-1"></a>  <span class="st">&#39;sing&#39;</span>, <span class="co"># &quot;Do you consider yourself better or worse than average at singing?&quot;, </span></span>
+<span id="cb44-22"><a href="visualizing-data-with-ggplot.html#cb44-22" tabindex="-1"></a>  <span class="st">&#39;pizza_or_love&#39;</span>, <span class="co"># &quot;What&#39;s more important pizza or love?&quot;, </span></span>
+<span id="cb44-23"><a href="visualizing-data-with-ggplot.html#cb44-23" tabindex="-1"></a>  <span class="st">&#39;dance&#39;</span>, <span class="co"># &quot;Do you consider yourself better than average at dancing?&quot;, </span></span>
+<span id="cb44-24"><a href="visualizing-data-with-ggplot.html#cb44-24" tabindex="-1"></a>  <span class="st">&#39;sleep&#39;</span>, <span class="co"># &quot;How many hours did you sleep last night&quot;, </span></span>
+<span id="cb44-25"><a href="visualizing-data-with-ggplot.html#cb44-25" tabindex="-1"></a>  <span class="st">&#39;eat&#39;</span>, <span class="co"># &quot;Would you rather eat&quot;, </span></span>
+<span id="cb44-26"><a href="visualizing-data-with-ggplot.html#cb44-26" tabindex="-1"></a>  <span class="st">&#39;adjective&#39;</span>, <span class="co"># &quot;What is the one adjective that best describes you?&quot;, </span></span>
+<span id="cb44-27"><a href="visualizing-data-with-ggplot.html#cb44-27" tabindex="-1"></a>  <span class="st">&#39;teeth&#39;</span>, <span class="co"># &quot;How many teeth do you have?&quot;, </span></span>
+<span id="cb44-28"><a href="visualizing-data-with-ggplot.html#cb44-28" tabindex="-1"></a>  <span class="st">&#39;braces&#39;</span>, <span class="co"># &quot;If you had to have braces the rest of your life, which color would you choose?&quot;, </span></span>
+<span id="cb44-29"><a href="visualizing-data-with-ggplot.html#cb44-29" tabindex="-1"></a>  <span class="st">&#39;siblings&#39;</span>, <span class="co"># &quot;How many siblings do you have?&quot;, </span></span>
+<span id="cb44-30"><a href="visualizing-data-with-ggplot.html#cb44-30" tabindex="-1"></a>  <span class="st">&#39;wrestle&#39;</span>, <span class="co"># &quot;Of the people in this room, who would win a pinky wrestle against Michael?&quot;, </span></span>
+<span id="cb44-31"><a href="visualizing-data-with-ggplot.html#cb44-31" tabindex="-1"></a>  <span class="st">&#39;hangout&#39;</span>, <span class="co"># &quot;What is the best place to hang out in Sewanee?&quot;, </span></span>
+<span id="cb44-32"><a href="visualizing-data-with-ggplot.html#cb44-32" tabindex="-1"></a>  <span class="st">&#39;movies&#39;</span>, <span class="co"># &quot;How many movies have you watched in the last month?&quot;</span></span>
+<span id="cb44-33"><a href="visualizing-data-with-ggplot.html#cb44-33" tabindex="-1"></a>  <span class="st">&#39;dob&#39;</span> <span class="co"># &quot;What is your date of birth?&quot;</span></span>
+<span id="cb44-34"><a href="visualizing-data-with-ggplot.html#cb44-34" tabindex="-1"></a>)</span>
+<span id="cb44-35"><a href="visualizing-data-with-ggplot.html#cb44-35" tabindex="-1"></a></span>
+<span id="cb44-36"><a href="visualizing-data-with-ggplot.html#cb44-36" tabindex="-1"></a>survey <span class="ot">&lt;-</span> survey <span class="sc">%&gt;%</span> </span>
+<span id="cb44-37"><a href="visualizing-data-with-ggplot.html#cb44-37" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">dob =</span> <span class="fu">mdy</span>( dob ),</span>
+<span id="cb44-38"><a href="visualizing-data-with-ggplot.html#cb44-38" tabindex="-1"></a>          <span class="at">age_in_weeks =</span> <span class="fu">as.numeric</span>( <span class="fu">difftime</span>( <span class="fu">Sys.Date</span>(), dob, <span class="at">units =</span> <span class="st">&#39;weeks&#39;</span>) ) ) </span></code></pre></div>
+<p><strong>4.</strong> In order to make a plot we need a piece of paper or a canvas. So let’s make a canvas:</p>
+<p><strong>5.</strong> To get started, let’s make some bar plots.</p>
+<p><strong>6.</strong> Great! Now let’s make a different kind of plot. First, draw your x axis and your y axis <em>(aka make your coordinates)</em>. Ask yourself: <strong><em>What do I want to see?</em></strong></p>
+<p><strong>7.</strong> Map the data to the coordinates. _Here we will map the data to the coordinates using points. Ask yourself: <strong>How do I want to show what I want to see?</strong></p>
+<p><strong>8.</strong> What if you want to color code these points? Now you’re choosing what else you want to see and how.</p>
+<p><strong>9.</strong> Add some labels. <code>ggplot()</code> automatically added axis titles and a legend, but we can add some more using the <code>labs()</code> function. Let’s add an overhead title, a sub-title, and a caption.</p>
+<p><strong>10.</strong> We can also make separate plots for a variable by faceting.</p>
+<p><strong>11.</strong> Let’s stylize the plot with a different theme.</p>
+<p><strong>12.</strong>
+Ready for something different? Let’s make a histogram.</p>
+<p><strong>13.</strong>
+As you can see, we can make a lot of different types of charts in R. You can even make a new variable and use it in your plot, but let’s not get ahead of ourselves. So let’s learn by doing rather than lecturing and move on to a new dataset.</p>
+<hr />
+</div>
+<div id="demography-exercises" class="section level2 unnumbered hasAnchor">
+<h2>Demography exercises<a href="visualizing-data-with-ggplot.html#demography-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re going to work with some anonymized demography data, both households and individuals. Let’s start by creating a new script, naming it <code>demography.R</code>, and reading in some data as per the below:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="visualizing-data-with-ggplot.html#cb45-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb45-2"><a href="visualizing-data-with-ggplot.html#cb45-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb45-3"><a href="visualizing-data-with-ggplot.html#cb45-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-4"><a href="visualizing-data-with-ggplot.html#cb45-4" tabindex="-1"></a>households <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography.csv&#39;</span>)</span>
+<span id="cb45-5"><a href="visualizing-data-with-ggplot.html#cb45-5" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/anonymized_demography_individuals.csv&#39;</span>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>Open a new R script and name it <code>maps.R</code></p></li>
-<li><p>Write code to load the following libraries: <code>dplyr</code>, <code>sf</code>, <code>spData</code>, <code>tmap</code>, and <code>tidycensus</code></p></li>
-<li><p>Add the following code to your script and run it to make your first map:</p></li>
+<li><p>What is the average age of people?</p></li>
+<li><p>On average, who is older: men or women?</p></li>
+<li><p>How many children are there in the dataset?</p></li>
+<li><p>Make a histogram of age.</p></li>
+<li><p>Make a smoothed histogram using <code>geom_density</code> of age.</p></li>
+<li><p>Make a smoothed histogram of age, but make different “fill” colors for men and women.</p></li>
+<li><p>Make a point chart wherein the x-axis is sex and the y-axis is age.</p></li>
+<li><p>Replace <code>geom_point</code> with <code>geom_jitter</code> so that the points don’t overlap so much.</p></li>
+<li><p>Make the points semi-transparent.</p></li>
+<li><p>Make the points twice as large.</p></li>
+<li><p>Give the plot a title, an x label, and a y label.</p></li>
+<li><p>Add a “violin” plot to the plot.</p></li>
+<li><p>Move the violin to <em>behind</em> the points.</p></li>
+<li><p>Make the points colored by sex.</p></li>
+<li><p>Replace the violin chart with a boxplot.</p></li>
+<li><p>What is the breakdown of household heads and sex (i.e., what number and percentage of household heads are male vs female)?</p></li>
+<li><p>Make a bar chart showing the number of households which are headed by men vs women.</p></li>
+<li><p>What is the average age of household heads who are female vs. the average age of household heads who are male?</p></li>
+<li><p>Make a chart showing the distribution of household heads’ age, which shows both males and females separately.</p></li>
+<li><p>What do you think explains this difference in age?</p></li>
+<li><p>Make a new variable indicating whether the household head is the oldest person in their household or not.</p></li>
+<li><p>What percentage of female household heads are the oldest person in their household? And males?</p></li>
+<li><p>What is the age of the youngest household head?</p></li>
+<li><p>Create a simple scatter plot with longitude as the x value and latitude as the y value.</p></li>
+<li><p>Make a table showing the distribution of wall types.</p></li>
+<li><p>Make a chart to replace the above table.</p></li>
+<li><p>Which fieldworker visited the most households?</p></li>
+<li><p>Which cluster has the most cattle?</p></li>
+<li><p>On what date were most households visited?</p></li>
 </ol>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="making-some-maps.html#cb47-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( )</span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li>What the heck is <code>us_states</code>? It’s a geospatial dataset provided by the <code>spData</code> package, and you know from its name and the map above what it’s for. To learn more, add the following code to your script and run it:</li>
-</ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="making-some-maps.html#cb48-1" tabindex="-1"></a><span class="fu">data</span>( us_states )</span>
-<span id="cb48-2"><a href="making-some-maps.html#cb48-2" tabindex="-1"></a><span class="fu">View</span>( us_states )</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Let’s make our first choropleth! Here’s the code:</li>
-</ol>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="making-some-maps.html#cb49-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( <span class="at">col =</span> <span class="st">&quot;REGION&quot;</span>)</span></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li>Ack!! Whoever made this dataset forgot to check their spelling. Let’s fix that and clean up our choropleth.</li>
+</div>
+<div id="gapminder-exercises" class="section level2 unnumbered hasAnchor">
+<h2>Gapminder exercises<a href="visualizing-data-with-ggplot.html#gapminder-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This review exercise is useful immediately after you learn <code>ggplot2</code> and <code>dplyr</code>.</p>
+<p> </p>
+<p>First, let’s read in some data on health from the World Bank:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="visualizing-data-with-ggplot.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb46-2"><a href="visualizing-data-with-ggplot.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb46-3"><a href="visualizing-data-with-ggplot.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-4"><a href="visualizing-data-with-ggplot.html#cb46-4" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb46-5"><a href="visualizing-data-with-ggplot.html#cb46-5" tabindex="-1"></a>gm <span class="ot">&lt;-</span> gapminder<span class="sc">::</span>gapminder</span></code></pre></div>
+<p><strong>1.</strong> How many rows are in the dataset?</p>
+<p><strong>2.</strong> How many columns are in the dataset?</p>
+<p><strong>3.</strong> What are the names of the columns?</p>
+<p><strong>4.</strong> What is the oldest year in the dataset?</p>
+<p><strong>5.</strong> What is the country/year with the greatest population in the dataset?</p>
+<p><strong>6.</strong> Get the average GDP per capita for each continent in 1952.</p>
+<p><strong>7.</strong> Get the average GDP per capita for each continent for the most recent year in the dataset.</p>
+<p><strong>8.</strong> Average GDP is a bit misleading, since it does not take into account the relative size (in population) of the different countries (ie, China is a lot bigger than Cambodia). Look up the function <code>weighted.mean</code>. Use it to get the average life expectancy by continent for the most recent year in the dataset, weighted by population.</p>
+<p> </p>
+<p><strong>9.</strong> Make a barplot of the above table (ie, average life expectancy by continent, weighted by population).</p>
+<p><strong>10.</strong> Make a point plot in which the x-axis is country, and the y-axis is GDP. Add the line <code>theme(axis.text.x = element_text(angle = 90))</code> in order to make the x-axis text vertically aligned. What’s the problem with this plot? How many points are there per country?</p>
+<p><strong>11.</strong> Make a new version of the above, but filter down to just the earliest year in the dataset.</p>
+<p><strong>12.</strong> Make a scatterplot of life expectancy and GDP per capita, just for 1972.</p>
+<p><strong>13.</strong> Make the same plot as above, but for the most recent year in the data.</p>
+<p><strong>14.</strong> Make the same plot as the above, but have the size of the points reflect the population.</p>
+<p><strong>15.</strong> Make the same plot as the above, but have the color of the points reflect the continent.</p>
+<p> </p>
+<p><strong>16.</strong> Filter the data down to just the most recent year in the data, and make a histogram (<code>geom_histogram</code>) showing the distribution of GDP per capita.</p>
+<p><strong>17.</strong> Get the average GDP per capita for each continent/year, weighted by the population of each country.</p>
+<p><strong>18.</strong> Using the data created above, make a plot in which the x-axis is year, the y-axis is (weighted) average GDP per capita, and the color of the lines reflects the content.</p>
+<p><strong>19.</strong> Make the same plot as the above, but facet the plot by continent.</p>
+<p><strong>20.</strong> Make the same plot as the above, but remove the coloring by continent.</p>
+<p> </p>
+<p><strong>21.</strong> Make a plot showing France’s population over time.</p>
+<p><strong>22.</strong> Make a plot showing all European countries’ population over time, with color reflecting the name of the country.</p>
+<p><strong>23.</strong> Create a variable called <code>status</code>. If GDP per capita is over 20,000, this should be “rich”; if between 5,000 and 20,000, this should be “middle”; if this is less than 5,000, this should be “poor”.</p>
+<p><strong>24.</strong> Create an object with the number of rich countries per year.</p>
+<p><strong>25.</strong> Create an object with the percentage of countries that were rich each year.</p>
+<p> </p>
+<p><strong>26.</strong> Create a plot showing the percentage of countries which were rich each year.</p>
+<p><strong>27.</strong> Create an object with the number of people living in poor countries each year.</p>
+<p><strong>28.</strong> Create a chart showing the number of people living in rich, medium, and poor countries per year (line chart, coloring by <code>status</code>).</p>
+<p><strong>29.</strong> Create a chart showing the life expectancy in Somalia over time.</p>
+<p><strong>30.</strong> Create a chart showing GDP per capita in Somalia over time.</p>
+<p> </p>
+<p><strong>31.</strong> Create a histogram of life expectancy for the most recent year in the data. Facet this chart by continent.</p>
+<p><strong>32.</strong> Create a barchart showing average continent-level GDP over time, weighted for population, with one bar for each year, stacked bars with the color of the bars indicating continent (<code>geom_bar(position = 'stack')</code>).</p>
+<p><strong>33.</strong> Create the same chart as above, but with bars side-by-side (<code>geom_bar(position = 'dodge')</code>)</p>
+<p><strong>34.</strong> Generate 3-5 more charts / tables that show interesting things about the data.</p>
+<p><strong>35.</strong> Make the above charts as aesthetically pleasing as possible.</p>
+</div>
+<div id="exercises-with-world-health-data" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Exercises with world health data<a href="visualizing-data-with-ggplot.html#exercises-with-world-health-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Start by reading in your data.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explore the data, and write 3 questions you’d like to ask it.</p></li>
+<li><p>Answer the questions with tables.</p></li>
+<li><p>Answer the questions with charts.</p></li>
 </ol>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualizing-data-with-ggplot2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="exploring-a-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="making-some-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -814,7 +951,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04e-making-some-maps.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04d-global-health-with-ggplot.Rmd",
 "text": "Edit"
 },
 "history": {
