@@ -18,6 +18,22 @@ library(tidycensus)
 
 3. Add the following code to your script and run it to make your first map:
 
-```{r, echo = TRUE, eval = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 tm_shape( us_states ) + tm_polygons( )
 ```
+
+4. What the heck is `us_states`? It's a geospatial dataset provided by the `spData` package, and you know from its name and the map above what it's for. To learn more, add the following code to your script and run it:
+
+```{r echo = TRUE, eval = FALSE}
+data( us_states )
+View( us_states )
+```
+
+5. Let's make our first choropleth! Here's the code:
+
+```{r echo = TRUE, eval = FALSE}
+tm_shape( us_states ) + tm_polygons( col = "REGION")
+```
+
+6. Ack!! Whoever made this dataset forgot to check their spelling. Let's fix that and clean up our choropleth.
+
