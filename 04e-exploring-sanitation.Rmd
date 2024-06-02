@@ -1,0 +1,70 @@
+# Exploring sanitation with `dplyr` and `ggplot`
+
+In the world of data science and public health, we have to work as a team to solve problems. Today you are going to be learning about sanitation around the world. Good luck!
+
+**1.** Make a folder in your datalab folder on your desktop and call it `sanitation`.
+
+**2.** Open up an RScript and name it `sanitation.R` and save it into your `sanitation` folder.
+
+**3.** In your RScript copy the following questions 4-7 and answer them as a team.
+
+**4.** Look up improved vs. unimproved sanitation. What kind of sanitation does the US use, improved, unimproved or both?
+
+**5.** What is open defecation?  Is it a type of improved or unimproved sanitation?
+
+**6.** Is open defecation bad or good? Why or why not?
+
+**7.** Why do some countries have high rates of open defecation and others do not?
+
+**8.** Now that you know a bit about sanitation, let's start looking at some data. Download the dataset shared with you on slack (`sanitation.csv`) and save it to your `sanitation` folder.
+
+**9.** **STOP! WE WILL DO THIS TOGETHER!** In your `sanitation.R` script underneath your questions, copy and paste the following line of code and inside the quotes hit tab. Then follow your files until you are in your `sanitation` folder which is inside your datalab folder on your desktop. If it is not there, go back and re-do questions 1 and 2 above (don't forget to comment your script!):
+
+```{r, echo=TRUE, message=FALSE, eval = FALSE}
+# set working directory
+setwd("")
+```
+
+**10.** Write code to load the `tidyverse`.
+
+**11.** Now load `sanitation.csv` into R and assign it a name using the following line of code:
+
+```{r, echo=TRUE, message=FALSE, eval = FALSE}
+# load in the data
+sanitation <- read_csv('sanitation.csv')
+```
+
+**12.** What are the column names and based on these column names what is this dataset about? 
+
+**13.** Make a table of the World Bank's income classifications.
+
+**STOP! WE WILL DO THE NEXT FEW QUESTIONS TOGETHER!**
+
+**14.** Since working with really long column names with spaces is really hard, let's change the column names together.
+
+**15.** Let's look at data for the most recent year. 
+
+**16.** To make it easier to explore the most recent data, let's name this dataset `latest`. 
+
+**17.** Using `latest`, how many countries are there? 
+
+**18.** How many countries are there from each continent?
+
+**19.** How many countries are there from each income group?
+
+**20.** Let's look at data for the low-income countries in Asia. How have their open defecation rates changed over time? **Let's talk through this together before writing any code!**
+
+**RESUME WORKING WITH YOUR GROUP NOW!**
+
+**21.** Make a line graph of safely managed sanitation services over the years in India.
+
+**22.** Make a line graph of open defecation rates over the years for the country of your choice.
+
+**23.** Using `latest`, make a scatterplot showing GDP per capita versus open defecation rates. Color the points by income group and give your plot good labels.
+
+**24.** To make this scatterplot nicer, let's move the legend and reorder the income groups. We'll do this one together!
+
+**25.** To learn another new thing, let's make a bar chart of sanitation services for South America. Then improve it by filling by income group.
+
+**26.** Now make a bar chart of sanitation services for the continent of your choice. Remember to fill by income group!
+
