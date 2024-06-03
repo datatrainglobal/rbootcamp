@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 7 Making some maps | R Bootcamp</title>
+  <title>Module 8 Making some maps | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 7 Making some maps | R Bootcamp" />
+  <meta property="og:title" content="Module 8 Making some maps | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 7 Making some maps | R Bootcamp" />
+  <meta name="twitter:title" content="Module 8 Making some maps | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="visualizing-data-with-ggplot2.html"/>
+<link rel="prev" href="exploring-sanitation.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -731,7 +731,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#gapminder-exercises"><i class="fa fa-check"></i>Gapminder exercises</a></li>
 <li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#exercises-with-world-health-data"><i class="fa fa-check"></i>Exercises with world health data</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="making-some-maps.html"><a href="making-some-maps.html"><i class="fa fa-check"></i><b>7</b> Making some maps</a></li>
+<li class="chapter" data-level="7" data-path="exploring-sanitation.html"><a href="exploring-sanitation.html"><i class="fa fa-check"></i><b>7</b> Exploring sanitation</a></li>
+<li class="chapter" data-level="8" data-path="making-some-maps.html"><a href="making-some-maps.html"><i class="fa fa-check"></i><b>8</b> Making some maps</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
 
@@ -752,8 +753,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="making-some-maps" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Module 7</span> Making some maps<a href="making-some-maps.html#making-some-maps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="making-some-maps" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Module 8</span> Making some maps<a href="making-some-maps.html#making-some-maps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
 demographics of voting districts in different states. In addition to being efficient data visualizations,
 well made maps can be beautiful to look at!</p>
@@ -762,16 +763,16 @@ well made maps can be beautiful to look at!</p>
 <li><p>Write code to load the following libraries: <code>dplyr</code>, <code>sf</code>, <code>spData</code>, <code>tmap</code>, and <code>tidycensus</code></p></li>
 <li><p>Add the following code to your script and run it to make your first map:</p></li>
 </ol>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="making-some-maps.html#cb47-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( )</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="making-some-maps.html#cb49-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( )</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>What the heck is <code>us_states</code>? It’s a geospatial dataset provided by the <code>spData</code> package, and you know from its name and the map above what it’s for. To learn more, add the following code to your script and run it:</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="making-some-maps.html#cb48-1" tabindex="-1"></a><span class="fu">data</span>( us_states )</span>
-<span id="cb48-2"><a href="making-some-maps.html#cb48-2" tabindex="-1"></a><span class="fu">View</span>( us_states )</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="making-some-maps.html#cb50-1" tabindex="-1"></a><span class="fu">data</span>( us_states )</span>
+<span id="cb50-2"><a href="making-some-maps.html#cb50-2" tabindex="-1"></a><span class="fu">View</span>( us_states )</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Let’s make our first choropleth! Here’s the code:</li>
 </ol>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="making-some-maps.html#cb49-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( <span class="at">col =</span> <span class="st">&quot;REGION&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="making-some-maps.html#cb51-1" tabindex="-1"></a><span class="fu">tm_shape</span>( us_states ) <span class="sc">+</span> <span class="fu">tm_polygons</span>( <span class="at">col =</span> <span class="st">&quot;REGION&quot;</span>)</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>Ack!! Whoever made this dataset forgot to check their spelling. Let’s fix that and clean up our choropleth.</li>
 </ol>
@@ -782,7 +783,7 @@ well made maps can be beautiful to look at!</p>
           </div>
         </div>
       </div>
-<a href="visualizing-data-with-ggplot2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exploring-sanitation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -814,7 +815,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04e-making-some-maps.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04f-making-some-maps.Rmd",
 "text": "Edit"
 },
 "history": {

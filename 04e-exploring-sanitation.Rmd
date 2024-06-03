@@ -1,6 +1,6 @@
-# Exploring sanitation with `dplyr` and `ggplot`
+# Exploring sanitation 
 
-In the world of data science and public health, we have to work as a team to solve problems. Today you are going to be learning about sanitation around the world. Good luck!
+In the world of data science and public health, we have to work as a team to solve problems. Today you are going to apply what you've learned about `dplyr` and `ggplot` to learn about sanitation around the world. Good luck!
 
 **1.** Make a folder in your datalab folder on your desktop and call it `sanitation`.
 
