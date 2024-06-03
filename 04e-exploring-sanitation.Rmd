@@ -62,9 +62,17 @@ sanitation <- read_csv('sanitation.csv')
 
 **23.** Using `latest`, make a scatterplot showing GDP per capita versus open defecation rates. Color the points by income group and give your plot good labels.
 
-**24.** To make this scatterplot nicer, let's move the legend and reorder the income groups. We'll do this one together!
+**24.** Now create separate panels showing the same scatterplots by continent.
 
-**25.** To learn another new thing, let's make a bar chart of sanitation services for South America. Then improve it by filling by income group.
+**25.** To make these scatterplots nicer, let's move the legends and reorder the income groups. We'll do this one together!
 
-**26.** Now make a bar chart of sanitation services for the continent of your choice. Remember to fill by income group!
+**26.** To learn another new thing, let's make a bar chart of sanitation services for South America. Then improve it by filling by income group.
+
+**27.** Now make a bar chart of sanitation services for the continent of your choice. Remember to fill by income group!
+
+**28.** Using `latest`, make a scatterplot showing rural versus urban open defecation rates. Color the points in an informative way and give your plot good labels.
+
+**29.** Put the sanitation data for the first year in `sanitation` in an object called `oldest`.
+
+**30.** Recreate the visuals above using `oldest` and compare the results to what you got with `latest`. What's changed? What hasn't changed?
 
