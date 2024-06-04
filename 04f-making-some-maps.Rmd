@@ -2,38 +2,121 @@
 
 Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
 demographics of voting districts in different states. In addition to being efficient data visualizations, 
-well made maps can be beautiful to look at!
+well-made maps are beautiful!
 
-1. Open a new R script and name it `maps.R`
+**1.** Open a new R script and name it `maps.R`
 
-2. Write code to load the following libraries: `dplyr`, `sf`, `spData`, `tmap`, and `tidycensus`
+**2.** Install the following libraries: `sf`, `rnaturalearth`, `rnaturalearthhires`, `rnaturalearthdata`, `tmap`, `osmdata`, and `tidycensus`
 
-```{r, echo = FALSE, eval = TRUE}
+**3.** Now that you've installed these libraries, write code to load them along with `dplyr`.
+
+```{r, echo = FALSE, eval = FALSE}
 library(dplyr)
 library(sf)
-library(spData)
 library(tmap)
+library(rnaturalearth)
+library(rnaturalearthhires)
+library(rnaturalearthdata)
 library(tidycensus)
 ```
 
-3. Add the following code to your script and run it to make your first map:
+**4.** The first thing you have to do to make a map is to get the underlying geospatial data -- we'll use the `rnaturalearth` packages to streamline this step, which can sometimes be quite challenging! Since you met people from KEMRI this morning, let's start by getting the data we need for a map of Kenya:
 
-```{r, echo = TRUE, eval = FALSE}
-tm_shape( us_states ) + tm_polygons( )
+```{r, echo=TRUE, eval=FALSE}
+
+kenya <- ne_countries( country = "Kenya", returnclass = "sf" )
+
 ```
 
-4. What the heck is `us_states`? It's a geospatial dataset provided by the `spData` package, and you know from its name and the map above what it's for. To learn more, add the following code to your script and run it:
+**5.** Look at the data in the `kenya` object to get a feel for what's there. How many columns are there? What are their names?
 
-```{r echo = TRUE, eval = FALSE}
-data( us_states )
-View( us_states )
+**6.** For right now, the most important column is the one called `geometry`. Let's look at it:
+
+```{r, echo=TRUE, eval=FALSE}
+
+kenya$geometry
+
 ```
 
-5. Let's make our first choropleth! Here's the code:
+**7.** This tells us what kind of geospatial data we've got: a polygon. This also tells us how to make our map!
 
-```{r echo = TRUE, eval = FALSE}
-tm_shape( us_states ) + tm_polygons( col = "REGION")
+```{r, echo=TRUE, eval=FALSE}
+
+tm_shape( kenya ) + 
+  tm_polygons()
+
 ```
 
-6. Ack!! Whoever made this dataset forgot to check their spelling. Let's fix that and clean up our choropleth.
+**8.** Great! That's Kenya. Not a very exciting map, though -- let's make it better and more interactive:
 
+```{r, echo=TRUE, eval=FALSE}
+
+# get a good background :
+tmap_options( basemaps = providers$OpenStreetMap ) 
+
+# make the map interactive :
+tmap_mode( "view" )
+
+# make a map of Kenya with a nice transparency setting :
+tm_shape( kenya ) + 
+  tm_polygons( alpha = 0.5 )
+
+```
+
+**9.** Time to try something new: with your partner, get the data you need and make a map of Mozambique.
+
+**10.** Countries are not just monoliths -- they have constituent states or districts. Let's get a more detailed map of Kenya:
+
+```{r, echo=TRUE, eval=FALSE}
+
+kenya_states <- ne_states( country = "Kenya", returnclass = "sf" )
+
+tm_shape( kenya_states ) + 
+  tm_polygons( alpha = 0.5 )
+
+```
+
+**11.** Wouldn't it be nice if we could see the names of the states easily? Great idea! 
+
+```{r, echo=TRUE, eval=FALSE}
+
+tm_shape( kenya_states ) + 
+  tm_polygons( alpha = 0.5, id = "name" )
+
+```
+
+**12.** Update your map of Mozambique to show its districts with their names.
+
+**13.** What if you want to make a map of all of Africa? That's easy, too, once you have the right geospatial data. Let's start big:
+
+```{r, echo=TRUE, eval=FALSE}
+
+world <- ne_countries( scale = "medium", returnclass = "sf" )
+
+tm_shape( world ) + 
+  tm_polygons( alpha = 0.5 )
+
+```
+
+**14.** Explore the names of the columns in `world`. How can we get the countries in Africa? Use your `dplyr` skills!
+
+```{r, echo=FALSE, eval=FALSE}
+
+tm_shape( world %>% filter( continent == "Africa") ) + 
+  tm_polygons( alpha = 0.5, id = "name" )
+
+```
+
+**15.** Make a map of South America, with country names shown when you mouse over them.
+
+**16.** Now for a challenge: let's make a map of South America showing all of the countries' constituent states/districts.
+
+**17.** Usually, you want to add information to a map (populations, death rates, access to resources, etc.). Let's start with a U.S. map -- first, get the data:
+
+```{r, echo=FALSE, eval=FALSE}
+us_states <- spData::us_states
+```
+
+**18.** Now that you have the data, make a map of the U.S. 
+
+**19.** Explore the data a bit -- what other information could we show on our map? Let's do it!
