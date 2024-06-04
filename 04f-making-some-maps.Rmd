@@ -113,10 +113,12 @@ tm_shape( world %>% filter( continent == "Africa") ) +
 
 **17.** Usually, you want to add information to a map (populations, death rates, access to resources, etc.). Let's start with a U.S. map -- first, get the data:
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=TRUE, eval=FALSE}
 us_states <- spData::us_states
 ```
 
 **18.** Now that you have the data, make a map of the U.S. 
 
 **19.** Explore the data a bit -- what other information could we show on our map? Let's do it!
+
+Maps like these, with regions colored according to some data, are called _choropleths_. Now you know a fancy new word you can use to impress your friends and teachers! 
