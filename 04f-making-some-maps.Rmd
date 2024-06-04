@@ -122,3 +122,7 @@ us_states <- spData::us_states
 **19.** Explore the data a bit -- what other information could we show on our map? Let's do it!
 
 Maps like these, with regions colored according to some data, are called _choropleths_. Now you know a fancy new word you can use to impress your friends and teachers! 
+
+## Exploring features with `osmdata` {.unnumbered}
+
+## Exploring census tracts with `tidycensus` {.unnumbered}
