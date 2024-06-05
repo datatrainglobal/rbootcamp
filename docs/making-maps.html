@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 2 Setting up your computer | R Bootcamp</title>
+  <title>Module 8 Making maps | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 2 Setting up your computer | R Bootcamp" />
+  <meta property="og:title" content="Module 8 Making maps | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 2 Setting up your computer | R Bootcamp" />
+  <meta name="twitter:title" content="Module 8 Making maps | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="first-code.html"/>
+<link rel="prev" href="exploring-sanitation.html"/>
+<link rel="next" href="making-choropleths.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -758,47 +758,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setting-up-your-computer" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Module 2</span> Setting up your computer<a href="setting-up-your-computer.html#setting-up-your-computer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>It’s time to set up your system. Ready? Let’s go.</p>
-<div id="install-r" class="section level2 unnumbered hasAnchor">
-<h2>Install R<a href="setting-up-your-computer.html#install-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First, let’s get the right programs installed on your computer. Then we will explain what they are and why you need them.</p>
-<p><strong>First, download and install <code>R</code>: </strong></p>
-<p>Go to the following website, click the <em>Download</em> button, and follow the website’s instructions from there.
-<a href="https://mirrors.nics.utk.edu/cran/" target="blank">https://mirrors.nics.utk.edu/cran/</a></p>
+<div id="making-maps" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Module 8</span> Making maps<a href="making-maps.html#making-maps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
+demographics of voting districts in different states. In addition to being efficient data visualizations,
+well-made maps are beautiful!</p>
+<p><strong>1.</strong> Open a new R script and name it <code>maps.R</code></p>
+<p><strong>2.</strong> Install the following libraries: <code>sf</code>, <code>rnaturalearth</code>, <code>rnaturalearthhires</code>, <code>rnaturalearthdata</code>, <code>tmap</code>, <code>osmdata</code>, and <code>tidycensus</code></p>
+<p><strong>3.</strong> Now that you’ve installed these libraries, write code to load them along with <code>dplyr</code>.</p>
+<p><strong>4.</strong> The first thing you have to do to make a map is to get the underlying geospatial data – we’ll use the <code>rnaturalearth</code> packages to streamline this step, which can sometimes be quite challenging! Since you met people from KEMRI this morning, let’s start by getting the data we need for a map of Kenya:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="making-maps.html#cb49-1" tabindex="-1"></a>kenya <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>( <span class="at">country =</span> <span class="st">&quot;Kenya&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span> )</span></code></pre></div>
+<p><strong>5.</strong> Look at the data in the <code>kenya</code> object to get a feel for what’s there. How many columns are there? What are their names?</p>
+<p><strong>6.</strong> For right now, the most important column is the one called <code>geometry</code>. Let’s look at it:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="making-maps.html#cb50-1" tabindex="-1"></a>kenya<span class="sc">$</span>geometry</span></code></pre></div>
+<p><strong>7.</strong> This tells us what kind of geospatial data we’ve got: a polygon. This also tells us how to make our map!</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="making-maps.html#cb51-1" tabindex="-1"></a><span class="fu">tm_shape</span>( kenya ) <span class="sc">+</span> </span>
+<span id="cb51-2"><a href="making-maps.html#cb51-2" tabindex="-1"></a>  <span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p><strong>8.</strong> Great! That’s Kenya. Not a very exciting map, though – let’s make it better and more interactive:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="making-maps.html#cb52-1" tabindex="-1"></a><span class="co"># get a good background :</span></span>
+<span id="cb52-2"><a href="making-maps.html#cb52-2" tabindex="-1"></a><span class="fu">tmap_options</span>( <span class="at">basemaps =</span> providers<span class="sc">$</span>OpenStreetMap ) </span>
+<span id="cb52-3"><a href="making-maps.html#cb52-3" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="making-maps.html#cb52-4" tabindex="-1"></a><span class="co"># make the map interactive :</span></span>
+<span id="cb52-5"><a href="making-maps.html#cb52-5" tabindex="-1"></a><span class="fu">tmap_mode</span>( <span class="st">&quot;view&quot;</span> )</span>
+<span id="cb52-6"><a href="making-maps.html#cb52-6" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="making-maps.html#cb52-7" tabindex="-1"></a><span class="co"># make a map of Kenya with a nice transparency setting :</span></span>
+<span id="cb52-8"><a href="making-maps.html#cb52-8" tabindex="-1"></a><span class="fu">tm_shape</span>( kenya ) <span class="sc">+</span> </span>
+<span id="cb52-9"><a href="making-maps.html#cb52-9" tabindex="-1"></a>  <span class="fu">tm_polygons</span>( <span class="at">alpha =</span> <span class="fl">0.5</span> )</span></code></pre></div>
+<p><strong>9.</strong> Time to try something new: with your partner, get the data you need and make a map of Mozambique.</p>
+<p><strong>10.</strong> Countries are not just monoliths – they have constituent states or districts. Let’s get a more detailed map of Kenya:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="making-maps.html#cb53-1" tabindex="-1"></a>kenya_states <span class="ot">&lt;-</span> <span class="fu">ne_states</span>( <span class="at">country =</span> <span class="st">&quot;Kenya&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span> )</span>
+<span id="cb53-2"><a href="making-maps.html#cb53-2" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="making-maps.html#cb53-3" tabindex="-1"></a><span class="fu">tm_shape</span>( kenya_states ) <span class="sc">+</span> </span>
+<span id="cb53-4"><a href="making-maps.html#cb53-4" tabindex="-1"></a>  <span class="fu">tm_polygons</span>( <span class="at">alpha =</span> <span class="fl">0.5</span> )</span></code></pre></div>
+<p><strong>11.</strong> Wouldn’t it be nice if we could see the names of the states easily? Great idea!</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="making-maps.html#cb54-1" tabindex="-1"></a><span class="fu">tm_shape</span>( kenya_states ) <span class="sc">+</span> </span>
+<span id="cb54-2"><a href="making-maps.html#cb54-2" tabindex="-1"></a>  <span class="fu">tm_polygons</span>( <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">id =</span> <span class="st">&quot;name&quot;</span> )</span></code></pre></div>
+<p><strong>12.</strong> Update your map of Mozambique to show its districts with their names.</p>
+<p><strong>13.</strong> What if you want to make a map of all of Africa? That’s easy, too, once you have the right geospatial data. Let’s start big:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="making-maps.html#cb55-1" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>( <span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span> )</span>
+<span id="cb55-2"><a href="making-maps.html#cb55-2" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="making-maps.html#cb55-3" tabindex="-1"></a><span class="fu">tm_shape</span>( world ) <span class="sc">+</span> </span>
+<span id="cb55-4"><a href="making-maps.html#cb55-4" tabindex="-1"></a>  <span class="fu">tm_polygons</span>( <span class="at">alpha =</span> <span class="fl">0.5</span> )</span></code></pre></div>
+<p><strong>14.</strong> Explore the names of the columns in <code>world</code>. How can we get the countries in Africa? Use your <code>dplyr</code> skills!</p>
+<p><strong>15.</strong> Make a map of South America, with country names shown when you mouse over them.</p>
+<p><strong>16.</strong> Now for a challenge: let’s make a map of South America showing all of the countries’ constituent states/districts.</p>
+<div id="exploring-features-with-osmdata" class="section level2 unnumbered hasAnchor">
+<h2>Exploring features with <code>osmdata</code><a href="making-maps.html#exploring-features-with-osmdata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="install-rstudio" class="section level2 unnumbered hasAnchor">
-<h2>Install RStudio<a href="setting-up-your-computer.html#install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Second, download and install <code>RStudio</code>:</strong></p>
-<p>Go to the following website and choose the free Desktop version:
-<a href="https://rstudio.com/products/rstudio/download/" target="blank">https://rstudio.com/products/rstudio/download/</a></p>
-<p><strong>Third, make sure <code>RStudio</code> opens successfully:</strong></p>
-<p>Open the <code>RStudio</code> app. A window should appear that looks like this:</p>
-<p><img src="img/rstudio_firstopen.png" /></p>
-<p><strong>Fourth, make sure <code>R</code> is running correctly in the background:</strong></p>
-<p>In <code>RStudio</code>, in the pane on the left (the “Console”), type 2+2 and hit Enter.<br />
-If <code>R</code> is working properly, the number “4” will be printed in the next line down.</p>
-<p><strong>Finally, some minor adjustments to make <code>RStudio</code> run smoother (and look cooler):</strong></p>
-<p>Go to <code>Tools &gt; Global Options</code> and make sure your <code>General</code> settings match these exactly:</p>
-<p><img src="img/rstudio_settings.png" /></p>
-<p>Specifically, <strong>uncheck</strong> the option under <em>Workspace</em> to ‘Restore .RData into workspace at startup.’</p>
-<p>Now go to the <code>Appearance</code> settings and choose a cool theme!</p>
-<p><img src="img/rstudio_theme.png" /></p>
-<p><strong>Boom!</strong> You’ve got R up and running. Now it’s time to install some packages.</p>
-</div>
-<div id="install-packages" class="section level2 unnumbered hasAnchor">
-<h2>Install packages<a href="setting-up-your-computer.html#install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Packages are what makes R so great. To install a package, open Rstudio and type the following code into the “Console” in the bottom left</p>
-<p>Did that work? Probably not, because “packagename” is not a real R package. The packages we’ll be using are the following:</p>
-<pre><code>tidyverse
-RColorBrewer
-leaflet
-ggthemes
-rmarkdown
-sp</code></pre>
-<p>To install all of these, you can run <code>install.packages</code> for each package:</p>
-<p>So, now you’ve got R, RStudio, and some cool packages. Good job. You’re ready for the next module.</p>
+<div id="exploring-census-tracts-with-tidycensus" class="section level2 unnumbered hasAnchor">
+<h2>Exploring census tracts with <code>tidycensus</code><a href="making-maps.html#exploring-census-tracts-with-tidycensus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -807,8 +815,8 @@ sp</code></pre>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="first-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exploring-sanitation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="making-choropleths.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -839,7 +847,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/02a-setting-up-your-computer.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04f-making-maps.Rmd",
 "text": "Edit"
 },
 "history": {

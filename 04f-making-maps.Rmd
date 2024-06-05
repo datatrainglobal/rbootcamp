@@ -1,4 +1,4 @@
-# Making some maps
+# Making maps
 
 Maps are great for exploring geographic data, like the prevalences of diseases in different countries or the
 demographics of voting districts in different states. In addition to being efficient data visualizations, 
@@ -13,10 +13,11 @@ well-made maps are beautiful!
 ```{r, echo = FALSE, eval = FALSE}
 library(dplyr)
 library(sf)
-library(tmap)
 library(rnaturalearth)
 library(rnaturalearthhires)
 library(rnaturalearthdata)
+library(tmap)
+library(osmdata)
 library(tidycensus)
 ```
 
@@ -110,18 +111,6 @@ tm_shape( world %>% filter( continent == "Africa") ) +
 **15.** Make a map of South America, with country names shown when you mouse over them.
 
 **16.** Now for a challenge: let's make a map of South America showing all of the countries' constituent states/districts.
-
-**17.** Usually, you want to add information to a map (populations, death rates, access to resources, etc.). Let's start with a U.S. map -- first, get the data:
-
-```{r, echo=TRUE, eval=FALSE}
-us_states <- spData::us_states
-```
-
-**18.** Now that you have the data, make a map of the U.S. 
-
-**19.** Explore the data a bit -- what other information could we show on our map? Let's do it!
-
-Maps like these, with regions colored according to some data, are called _choropleths_. Now you know a fancy new word you can use to impress your friends and teachers! 
 
 ## Exploring features with `osmdata` {.unnumbered}
 

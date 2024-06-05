@@ -1,0 +1,90 @@
+# Making choropleths
+
+Now that you know how to make some basic maps, let's learn how to add information to them. Open a new R script, name it `choropleths.R`, and save it to your DataLab folder.
+
+**1.** At the top of `choropleths.R`, load the libraries we used to make our first maps. Also, load the library `readr` so we can read CSVs as needed.
+
+```{r, echo = TRUE, eval = FALSE}
+library(dplyr)
+library(readr)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthhires)
+library(rnaturalearthdata)
+library(tmap)
+```
+
+**2.** For starters, let's use data from the `spData` package to make a U.S. map. First, get the data:
+
+```{r, echo=TRUE, eval=FALSE}
+us_states <- spData::us_states
+```
+
+**3.** Use `tmap` to make a map with this data. 
+
+```{r echo=FALSE, eval=FALSE}
+tm_shape( us_states ) + tm_polygons()
+```
+
+**4.** Explore the data a bit -- what other information could we show on our map? Let's do it!
+
+```{r echo=FALSE, eval=FALSE}
+
+# note the typo in one of the regions -- fix it and then redraw the map!
+tm_shape( us_states ) + tm_polygons( col = "REGION")
+
+# other options:
+tm_shape( us_states ) + tm_polygons( col = "AREA")
+tm_shape( us_states ) + tm_polygons( col = "total_pop_15")
+
+```
+
+***
+
+Maps like these, with regions colored according to some data, are called _choropleths_. Making one usually involves three steps: 
+
+- get the geospatial dataset you need,
+- get the dataset with the other data you want to show, and
+- add the other data to the geospatial dataset. 
+
+We'll go through these steps together once, then you and your partner will go through them with some new data to make your own choropleth.
+
+**5.** Create an object called `world` that has polygons for all of the world's countries. (Review what we did before!)
+
+```{r echo=FALSE, eval=FALSE}
+world <- ne_countries( scale = "medium", returnclass = "sf" )
+```
+
+**6.** Remove Antarctica from `world` -- this will make our map look nicer later.
+
+```{r echo=FALSE, eval=FALSE}
+world <- world %>% filter( name != "Antarctica")
+```
+
+**7.** Make a map of the world (excluding Antarctica).
+
+**8.** Using the `pop_est` variable in `world`, update your world map and color the countries according to their populations. If the legend is in the way, move it!
+
+**9.** Download data on [outdoor air pollution from Our World in Data](https://ourworldindata.org/outdoor-air-pollution). Save the data in the file `pollution.csv` in your DataLab folder.
+
+**10.** Use `readr::read_csv()` to load your pollution data.
+
+
+**11.** Use the `dplyr` function `rename()` to rename ONLY the last column in `pollution`. Let's make the new name "share_of_deaths".
+
+```{r echo=FALSE, eval=FALSE}
+pollution <- pollution %>% rename( share_of_deaths = `Share of total deaths that are from all causes attributed to ambient particulate matter pollution, in both sexes aged age-standardized`)
+```
+
+**12.** Compare the variables in `pollution` with the variables in `world` to figure out how to join them. We'll go through this together.
+
+```{r echo=FALSE, eval=FALSE}
+world <- left_join( world, pollution %>% filter( Year == 2019 ) %>% rename( iso_a3_eh = Code, ), by = "iso_a3_eh")
+```
+
+**13.** Make a new world map and color the countries according to their share of deaths attributed to pollution.
+
+```{r echo=FALSE, eval=FALSE}
+tm_shape( world ) + tm_polygons( col = "share_of_deaths", title = "Share of deaths due to pollution", id = "name" ) + tm_layout( legend.position = c("left", "bottom") )
+```
+
