@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 11 Working with text | R Bootcamp</title>
+  <meta name="description" content="A resource &amp; workbook for learning R" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 11 Working with text | R Bootcamp" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A resource &amp; workbook for learning R" />
+  <meta name="github-repo" content="datatrainglobal/rbootcamp" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 11 Working with text | R Bootcamp" />
+  
+  <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="working-with-dates-and-times.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">www.datatrain.cc</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-this-website"><i class="fa fa-check"></i>What is this website?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who are we?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html"><i class="fa fa-check"></i><b>2</b> Setting up your computer</a>
+<ul>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+<li class="chapter" data-level="" data-path="setting-up-your-computer.html"><a href="setting-up-your-computer.html#install-packages"><i class="fa fa-check"></i>Install packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="first-code.html"><a href="first-code.html"><i class="fa fa-check"></i><b>3</b> First code</a>
+<ul>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#file-paths"><i class="fa fa-check"></i>File paths</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#scripts-and-your-workspace"><i class="fa fa-check"></i>Scripts and your workspace</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-as-a-calculator"><i class="fa fa-check"></i>R as a calculator</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#re-running-code"><i class="fa fa-check"></i>Re-running code</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#incomplete-commands"><i class="fa fa-check"></i>Incomplete commands</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#getting-errors"><i class="fa fa-check"></i>Getting errors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#using-parentheses"><i class="fa fa-check"></i>Using parentheses</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#use-built-in-r-functions"><i class="fa fa-check"></i>Use built-in R functions</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#objects-and-vectors"><i class="fa fa-check"></i>Objects and vectors</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#r-and-rstudio-whats-the-difference"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code>: what’s the difference?</a></li>
+<li class="chapter" data-level="" data-path="first-code.html"><a href="first-code.html#two-minute-tour-of-rstudio"><i class="fa fa-check"></i>Two-minute tour of <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="in-class-survey.html"><a href="in-class-survey.html"><i class="fa fa-check"></i><b>4</b> In-class survey</a>
+<ul>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#exploring-data"><i class="fa fa-check"></i>Exploring data</a></li>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#r-as-a-calculator-1"><i class="fa fa-check"></i>R as a calculator</a></li>
+<li class="chapter" data-level="" data-path="in-class-survey.html"><a href="in-class-survey.html#dplyr"><i class="fa fa-check"></i><code>dplyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html"><i class="fa fa-check"></i><b>5</b> Exploring a dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#dplyr-1"><i class="fa fa-check"></i><code>dplyr</code></a></li>
+<li class="chapter" data-level="" data-path="exploring-a-dataset.html"><a href="exploring-a-dataset.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Visualizing data with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#introduction-to-ggplot2"><i class="fa fa-check"></i>Introduction to ggplot2</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#demography-exercises"><i class="fa fa-check"></i>Demography exercises</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#gapminder-exercises"><i class="fa fa-check"></i>Gapminder exercises</a></li>
+<li class="chapter" data-level="" data-path="visualizing-data-with-ggplot2.html"><a href="visualizing-data-with-ggplot2.html#exercises-with-world-health-data"><i class="fa fa-check"></i>Exercises with world health data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="exploring-sanitation.html"><a href="exploring-sanitation.html"><i class="fa fa-check"></i><b>7</b> Exploring sanitation</a></li>
+<li class="chapter" data-level="8" data-path="making-maps.html"><a href="making-maps.html"><i class="fa fa-check"></i><b>8</b> Making maps</a>
+<ul>
+<li class="chapter" data-level="" data-path="making-maps.html"><a href="making-maps.html#exploring-features-with-osmdata"><i class="fa fa-check"></i>Exploring features with <code>osmdata</code></a></li>
+<li class="chapter" data-level="" data-path="making-maps.html"><a href="making-maps.html#exploring-census-tracts-with-tidycensus"><i class="fa fa-check"></i>Exploring census tracts with <code>tidycensus</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="making-choropleths.html"><a href="making-choropleths.html"><i class="fa fa-check"></i><b>9</b> Making choropleths</a></li>
+<li class="chapter" data-level="10" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html"><i class="fa fa-check"></i><b>10</b> Working with dates and times</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#getting-to-work"><i class="fa fa-check"></i>Getting to work</a></li>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#getting-familar-with-dates"><i class="fa fa-check"></i>Getting familar with <code>dates</code></a></li>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#the-datetime-class"><i class="fa fa-check"></i>The <code>datetime</code> class</a></li>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#common-tasks"><i class="fa fa-check"></i>Common tasks</a></li>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#dates-times-and-malaria"><i class="fa fa-check"></i>Dates, Times, and Malaria</a></li>
+<li class="chapter" data-level="" data-path="working-with-dates-and-times.html"><a href="working-with-dates-and-times.html#coughs"><i class="fa fa-check"></i>Coughs</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-text.html"><a href="working-with-text.html"><i class="fa fa-check"></i><b>11</b> Working with text</a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-text.html"><a href="working-with-text.html#most-common-tools"><i class="fa fa-check"></i>Most common tools</a></li>
+<li class="chapter" data-level="" data-path="working-with-text.html"><a href="working-with-text.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="working-with-text.html"><a href="working-with-text.html#sentiment-analysis-with-harry-potter"><i class="fa fa-check"></i>Sentiment analysis with Harry Potter</a></li>
+<li class="chapter" data-level="" data-path="working-with-text.html"><a href="working-with-text.html#shakespeare-text-mining"><i class="fa fa-check"></i>Shakespeare text mining</a></li>
+<li class="chapter" data-level="" data-path="working-with-text.html"><a href="working-with-text.html#trump-tweets"><i class="fa fa-check"></i>Trump tweets</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Bootcamp</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-text" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Module 11</span> Working with text<a href="working-with-text.html#working-with-text" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-goal" class="section level3 unnumbered hasAnchor">
+<h3>Learning goal<a href="working-with-text.html#learning-goal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Time to learn how to apply the most common R tools for working with text: strings, words, sentences, and so on!</p>
+<p>If you don’t learn how to edit and transform text-based fields within datasets, you’ll quickly get stuck in <code>R</code>. Think of dates, GPS coordinates, user IDs, group names, plot labels, etc. All of these forms of data can contain non-numeric text. Becoming comfortable working with text in <code>R</code> is an absolutely essential part of your <code>R</code> toolkit.</p>
+<p>Here we will present the most common functions for working with text. Remember that R has a special object class for text, known as the <strong>character</strong> class, and that character objects are often referred to as <strong>strings</strong>.</p>
+<p>Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the <code>stringr</code> package. Go ahead an install <code>stringr</code> and load it using <code>library()</code>.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="working-with-text.html#cb91-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb91-2"><a href="working-with-text.html#cb91-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+</div>
+<div id="most-common-tools" class="section level2 unnumbered hasAnchor">
+<h2>Most common tools<a href="working-with-text.html#most-common-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong><code>paste()</code> &amp; <code>paste0()</code></strong>
+<code>paste()</code> and <code>paste0()</code> combine two or more strings together into a single object:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="working-with-text.html#cb92-1" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb92-2"><a href="working-with-text.html#cb92-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">96</span></span>
+<span id="cb92-3"><a href="working-with-text.html#cb92-3" tabindex="-1"></a>file_name <span class="ot">&lt;-</span> <span class="st">&quot;this_file.csv&quot;</span></span>
+<span id="cb92-4"><a href="working-with-text.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="working-with-text.html#cb92-5" tabindex="-1"></a><span class="fu">paste</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>)</span></code></pre></div>
+<p>Notice that <code>paste()</code> separates terms with a blank space; you’ll see in a moment that <code>paste0()</code> does <em>not</em> separate terms.
+Here’s the same input but with <code>paste0()</code> instead:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="working-with-text.html#cb93-1" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot;of&quot;</span>,n,<span class="st">&quot;: Processing&quot;</span>,file_name,<span class="st">&quot;. . . &quot;</span>)  </span></code></pre></div>
+<p>To replicate the original output with <code>paste()</code>, you manually add blank spaces like this:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="working-with-text.html#cb94-1" tabindex="-1"></a><span class="fu">paste0</span>(i,<span class="st">&quot; of &quot;</span>,n,<span class="st">&quot;: Processing &quot;</span>,file_name,<span class="st">&quot; . . . &quot;</span>)   </span></code></pre></div>
+<p>You can also use <code>paste()</code> to collapse multiple objects into a single string.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="working-with-text.html#cb95-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb95-2"><a href="working-with-text.html#cb95-2" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="at">collapse=</span><span class="st">&quot;;&quot;</span>) </span></code></pre></div>
+<p>Make an object called <code>ages</code> that has the ages of everyone in your group, then use <code>paste</code> and <code>collapse</code> to list these ages.</p>
+<p><strong><code>tolower()</code> &amp; <code>toupper()</code></strong>
+<code>tolower()</code> and <code>toupper()</code> force all text in a string to lower case or upper case, respectively. Run the following:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="working-with-text.html#cb96-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;That Tree Is Far Away.&quot;</span></span>
+<span id="cb96-2"><a href="working-with-text.html#cb96-2" tabindex="-1"></a><span class="fu">tolower</span>(x)</span>
+<span id="cb96-3"><a href="working-with-text.html#cb96-3" tabindex="-1"></a><span class="fu">toupper</span>(x)</span></code></pre></div>
+<p>What happens if you change x to <code>"That Tree Is 5 Meters Away."</code> Does it still work?</p>
+<p><strong><code>nchar()</code></strong>
+<code>nchar()</code> returns the number of characters within a string. How many characters are in x?</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="working-with-text.html#cb97-1" tabindex="-1"></a><span class="fu">nchar</span>(x)</span></code></pre></div>
+<p><strong><code>substr()</code></strong>
+<code>substr()</code> trims a string according to a start and end character position. Run the following:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="working-with-text.html#cb98-1" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,</span>
+<span id="cb98-2"><a href="working-with-text.html#cb98-2" tabindex="-1"></a>           <span class="st">&quot;2021-03-02&quot;</span>,</span>
+<span id="cb98-3"><a href="working-with-text.html#cb98-3" tabindex="-1"></a>           <span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb98-4"><a href="working-with-text.html#cb98-4" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">1</span>,<span class="dv">4</span>) <span class="co"># years</span></span>
+<span id="cb98-5"><a href="working-with-text.html#cb98-5" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">6</span>,<span class="dv">7</span>) <span class="co"># months</span></span>
+<span id="cb98-6"><a href="working-with-text.html#cb98-6" tabindex="-1"></a><span class="fu">substr</span>(dates,<span class="dv">9</span>,<span class="dv">10</span>) <span class="co"># days</span></span></code></pre></div>
+<p>What do the numbers in <code>substr</code> correspond to in the <code>dates</code> list?</p>
+<p><strong><code>grep()</code></strong>
+<code>grep()</code> returns the elements in a character vector that contain a given pattern. Run the following:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="working-with-text.html#cb99-1" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">1900</span><span class="sc">:</span><span class="dv">1999</span></span>
+<span id="cb99-2"><a href="working-with-text.html#cb99-2" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="working-with-text.html#cb99-3" tabindex="-1"></a><span class="co"># Which elements correspond to the 1980s?</span></span>
+<span id="cb99-4"><a href="working-with-text.html#cb99-4" tabindex="-1"></a>eighties <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;198&quot;</span>,years)</span>
+<span id="cb99-5"><a href="working-with-text.html#cb99-5" tabindex="-1"></a>eighties</span>
+<span id="cb99-6"><a href="working-with-text.html#cb99-6" tabindex="-1"></a></span>
+<span id="cb99-7"><a href="working-with-text.html#cb99-7" tabindex="-1"></a>years[eighties]</span></code></pre></div>
+<p><strong><code>grepl()</code></strong>
+<code>grepl()</code> tells you which elements in a character vector contain a given pattern. Run the following:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="working-with-text.html#cb100-1" tabindex="-1"></a>some_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Boba Fett&quot;</span>, <span class="st">&quot;Leia&quot;</span>, <span class="st">&quot;Robert&quot;</span>, <span class="st">&quot;Yoda&quot;</span>, <span class="st">&quot;Batman&quot;</span>, <span class="st">&quot;Not Bob&quot;</span>, <span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Catwoman&quot;</span>, <span class="st">&quot;Bobtown&quot;</span>, <span class="st">&quot;Zinnia&quot;</span>)</span>
+<span id="cb100-2"><a href="working-with-text.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="working-with-text.html#cb100-3" tabindex="-1"></a><span class="co"># Which names contain &quot;Bob&quot;?</span></span>
+<span id="cb100-4"><a href="working-with-text.html#cb100-4" tabindex="-1"></a>bobs <span class="ot">&lt;-</span> <span class="fu">grepl</span>( <span class="at">pattern =</span> <span class="st">&quot;Bob&quot;</span>, <span class="at">x=</span>some_names, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb100-5"><a href="working-with-text.html#cb100-5" tabindex="-1"></a>bobs</span>
+<span id="cb100-6"><a href="working-with-text.html#cb100-6" tabindex="-1"></a></span>
+<span id="cb100-7"><a href="working-with-text.html#cb100-7" tabindex="-1"></a>some_names[bobs]</span></code></pre></div>
+<p>Look for other patterns, like “ob”, “man”, etc. Be creative!</p>
+<p><strong>Baller move for future reference</strong>: use <code>grepl</code> inside <code>filter</code> to find what you want!</p>
+<p><strong><code>gsub()</code></strong>
+<code>gsub()</code> replaces a given pattern with another in a character vector. Run the following:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="working-with-text.html#cb101-1" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb101-2"><a href="working-with-text.html#cb101-2" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;-&quot;</span>,<span class="st">&quot;/&quot;</span>,dates)</span></code></pre></div>
+<p>Instead of <code>/</code>, put <code>.</code> between the year, month, day.</p>
+<p><strong><code>str_pad()</code></strong>
+<code>stringr::str_pad()</code>: standardize the lengths of strings by “padding” it (e.g., with zeroes). Run the following:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="working-with-text.html#cb102-1" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb102-2"><a href="working-with-text.html#cb102-2" tabindex="-1"></a>days</span>
+<span id="cb102-3"><a href="working-with-text.html#cb102-3" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_pad</span>(days,<span class="at">width=</span><span class="dv">2</span>,<span class="at">side=</span><span class="st">&quot;left&quot;</span>,<span class="at">pad=</span><span class="st">&quot;0&quot;</span>)</span></code></pre></div>
+<p>What happens if you change <code>side</code> to “right”?</p>
+<p><strong><code>str_split()</code></strong>
+<code>stringr::str_split()</code>: split a string into several strings at the occurrence of a specified character.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="working-with-text.html#cb103-1" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2021-03-01&quot;</span>,<span class="st">&quot;2021-03-02&quot;</span>,<span class="st">&quot;2021-03-03&quot;</span>)</span>
+<span id="cb103-2"><a href="working-with-text.html#cb103-2" tabindex="-1"></a>splits <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(dates,<span class="st">&quot;-&quot;</span>)</span>
+<span id="cb103-3"><a href="working-with-text.html#cb103-3" tabindex="-1"></a>splits</span></code></pre></div>
+<p>This function returns a <em>list</em> for every element in the original vector. A common need is to retrieve one item from each of the elements in this list. For example, let’s say you are trying to retrieve the months of each element in the <code>dates</code> vector. The list structure makes this tricky to retrieve.</p>
+<p>Here’s the way to do it by drawing upon the <code>apply()</code> family of functions:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="working-with-text.html#cb104-1" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">1</span>) <span class="co"># years</span></span>
+<span id="cb104-2"><a href="working-with-text.html#cb104-2" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="working-with-text.html#cb104-3" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">2</span>) <span class="co"># Months</span></span>
+<span id="cb104-4"><a href="working-with-text.html#cb104-4" tabindex="-1"></a></span>
+<span id="cb104-5"><a href="working-with-text.html#cb104-5" tabindex="-1"></a><span class="fu">sapply</span>(splits, <span class="st">&quot;[[&quot;</span>, <span class="dv">3</span>) <span class="co"># days</span></span></code></pre></div>
+<p><strong><code>as.character()</code></strong>
+<code>as.character()</code>: converts a non-character object into a character string.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="working-with-text.html#cb105-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb105-2"><a href="working-with-text.html#cb105-2" tabindex="-1"></a><span class="fu">as.character</span>(x)</span>
+<span id="cb105-3"><a href="working-with-text.html#cb105-3" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="working-with-text.html#cb105-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>))</span>
+<span id="cb105-5"><a href="working-with-text.html#cb105-5" tabindex="-1"></a><span class="fu">as.character</span>(x)</span></code></pre></div>
+<p>This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when <code>R</code> mistakes a set of numbers as a set of factors. Using <code>as.character()</code> can set things right:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="working-with-text.html#cb106-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>))</span>
+<span id="cb106-2"><a href="working-with-text.html#cb106-2" tabindex="-1"></a>x</span></code></pre></div>
+<p>If you try to convert straight to numeric, it does not work:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="working-with-text.html#cb107-1" tabindex="-1"></a><span class="fu">as.numeric</span>(x)</span></code></pre></div>
+<p>So convert to character first:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="working-with-text.html#cb108-1" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(x))</span></code></pre></div>
+</div>
+<div id="exercises-2" class="section level2 unnumbered hasAnchor">
+<h2>Exercises<a href="working-with-text.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To practice these tools, we will play with the results of a past DataLab survey.</p>
+<p>Read the survey into R as follows:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="working-with-text.html#cb109-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb109-2"><a href="working-with-text.html#cb109-2" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb109-3"><a href="working-with-text.html#cb109-3" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767&#39;</span>)</span></code></pre></div>
+<p>To make this spreadsheet easier to work with, let’s rename the columns. Currently, the columns are:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="working-with-text.html#cb110-1" tabindex="-1"></a><span class="fu">names</span>(survey)</span></code></pre></div>
+<p>Rename them like so:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="working-with-text.html#cb111-1" tabindex="-1"></a><span class="fu">names</span>(survey) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;time&#39;</span>, <span class="st">&#39;sex&#39;</span>, <span class="st">&#39;age&#39;</span>,<span class="st">&#39;sib&#39;</span>, <span class="st">&#39;dad_mus&#39;</span>, </span>
+<span id="cb111-2"><a href="working-with-text.html#cb111-2" tabindex="-1"></a>                   <span class="st">&#39;person_mus&#39;</span>, <span class="st">&#39;joe_mus_is&#39;</span>, <span class="st">&#39;eyesight&#39;</span>, </span>
+<span id="cb111-3"><a href="working-with-text.html#cb111-3" tabindex="-1"></a>                   <span class="st">&#39;height&#39;</span>, <span class="st">&#39;shoe_size&#39;</span>, <span class="st">&#39;bday&#39;</span>, <span class="st">&#39;money_or_love&#39;</span>, </span>
+<span id="cb111-4"><a href="working-with-text.html#cb111-4" tabindex="-1"></a>                   <span class="st">&#39;rps_skill&#39;</span>, <span class="st">&#39;num_pan&#39;</span>, <span class="st">&#39;cats_dogs&#39;</span>, </span>
+<span id="cb111-5"><a href="working-with-text.html#cb111-5" tabindex="-1"></a>                   <span class="st">&#39;first_name&#39;</span>, <span class="st">&#39;last_name&#39;</span>)</span></code></pre></div>
+<p><strong>1.</strong> Create a new column named <code>full_name</code> that combines the first and last name of each respondent.</p>
+<p><strong>2.</strong> Simplify the <code>sex</code> column so that <code>m</code> (lowercase) stands for males, <code>f</code> (lowercase) stands for females, and <code>p</code> (lowercase) stands for ‘Prefer not to say’.</p>
+<p><strong>3.</strong> Modify the column <code>money_or_love</code> such that the first letter is always capitalized.</p>
+<p><strong>4.</strong> How many characters is each response in the column <code>eyesight</code>?</p>
+<p><strong>5.</strong> How many responses in the column <code>eyesight</code> have 30 characters or more?</p>
+<p><strong>6.</strong> Modify the column <code>money_or_love</code> such that all responses are twenty characters or less.</p>
+<p><strong>7.</strong> Remove the ‘s’ from the responses in the column <code>cats_dogs</code>.</p>
+<p><strong>8.</strong> In the column <code>joe_mus_is</code>, replace ‘Deeply captivating’ with just ‘captivating.’</p>
+<p><strong>9.</strong> How many respondents have the last name ‘Brew’?</p>
+<p><strong>10.</strong> How many respondents were born in May?</p>
+<p><strong>11.</strong> Filter the survey only to respondents born in 2000.</p>
+<p><strong>12.</strong> Replace “both” in the <code>money_or_love</code> variable with “Money &amp; Love”.</p>
+<p><strong>13.</strong> Get only the first character <code>dad_mus</code> variable.</p>
+<p><strong>14.</strong> How many total characters are in the column <code>eyesight</code>?</p>
+<p><strong>15.</strong> How many characters did Joe Brew write for the <code>eyesight</code> question?</p>
+<p><strong>16.</strong> How many people in the data were born on the 4th day of the month?</p>
+<p><strong>17.</strong> Create a new variable called <code>month_born</code> that has only the month of from the bday variable.</p>
+<p><strong>18.</strong> Do the same thing for <code>year</code>.</p>
+<p><strong>19.</strong> Filter the data set by those born in 2001 and prefer money over love.</p>
+</div>
+<div id="sentiment-analysis-with-harry-potter" class="section level2 unnumbered hasAnchor">
+<h2>Sentiment analysis with Harry Potter<a href="working-with-text.html#sentiment-analysis-with-harry-potter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Start a new <code>R</code> file Name it <code>harry.R</code>.</p>
+<p><strong>2.</strong> Set up your work space by loading the <code>ggplot2</code>, <code>dplyr</code>, <code>tidytext</code>, <code>gsheet</code>, <code>wordcloud2</code>, <code>sentimentr</code>, and <code>lubridate</code> packages.</p>
+<p><strong>3.</strong> Read in your Harry Potter data by running the following:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="working-with-text.html#cb112-1" tabindex="-1"></a>hp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/harrypotter.csv&#39;</span>)</span></code></pre></div>
+<p><strong>4.</strong> Take a peek at the first few rows of the data. What is the unit of observation?</p>
+<p><strong>5.</strong> Make all of the <code>text</code> column be lower case.</p>
+<p><strong>6.</strong> Make all of the <code>text</code> column be upper case.</p>
+<p><strong>7.</strong> Use <code>unnest_tokens</code> to create a dataframe with one row per word.</p>
+<p><strong>8.</strong> Create a variable named <code>word_length</code> with the number of characters in each word.</p>
+<p><strong>9.</strong> Make a histogram of word length.</p>
+<p><strong>10.</strong> Make a density chart of word length.</p>
+<p><strong>11.</strong> Make the density chart of word length have a different <code>fill</code> for each chapter.</p>
+<p><strong>12.</strong> Get the average word length per chapter.</p>
+<p><strong>13.</strong> Plot the average word length per chapter.</p>
+<p><strong>14.</strong> What is the longest word used in Harry Potter?</p>
+<p><strong>15.</strong> What is the most frequent word used in Harry Potter?</p>
+<p><strong>16.</strong> Get the number of words per chapter.</p>
+<p><strong>17.</strong> Plot the number of words per chapter.</p>
+<p><strong>18.</strong> What’s the longest chapter in Harry Potter?</p>
+<p><strong>19.</strong> Run the below to create an object named <code>sw</code>.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="working-with-text.html#cb113-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<p><strong>20.</strong> Remove the stop words form your one-row-per-word dataframe.</p>
+<p><strong>21.</strong> What is the most frequently used (non-stop) word in Harry Potter?</p>
+<p><strong>22.</strong> Create an object called <code>sentiments</code> by running the following:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="working-with-text.html#cb114-1" tabindex="-1"></a>sentiments <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&#39;afinn&#39;</span>)</span></code></pre></div>
+<p><strong>23.</strong> Use <code>left_join</code> to bring a sentiment classification to each word.</p>
+<p><strong>24.</strong> Is Harry Potter more negative or positive?</p>
+<p><strong>25.</strong> Calculate the average sentimentality per chapter.</p>
+<p><strong>26.</strong> Plot the average sentimentality per chapter.</p>
+<p><strong>27.</strong> Create a variable called <code>cumulative_sentiment</code>. Use <code>cumsum</code> to get the cumulative sum sentimentality.</p>
+<p><strong>28.</strong> Plot cumulative sentiment.</p>
+<p><strong>29.</strong> Color your plot by chapter.</p>
+</div>
+<div id="shakespeare-text-mining" class="section level2 unnumbered hasAnchor">
+<h2>Shakespeare text mining<a href="working-with-text.html#shakespeare-text-mining" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-goals-2" class="section level3 unnumbered hasAnchor">
+<h3>Learning goals<a href="working-with-text.html#learning-goals-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a review exercise: apply the skills introduced in the previous modules by text mining the works of Shakespeare.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="working-with-text.html#cb115-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb115-2"><a href="working-with-text.html#cb115-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb115-3"><a href="working-with-text.html#cb115-3" tabindex="-1"></a>shake <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/Shakespeare_data.csv&#39;</span>)</span></code></pre></div>
+<p>All good? Great. Let’s go.</p>
+<p><strong>1.</strong> How may rows are in the data?</p>
+<p><strong>2.</strong> Create a dataframe named <code>spoken</code>. This should be those lines which are spoken by an actor/actress (figure it out).</p>
+<p><strong>3.</strong> How many lines are spoken?</p>
+<p><strong>4.</strong> Create a column called first_word. This should be the <code>first word</code> of each spoken line.</p>
+<p><strong>5.</strong> What is the most common first word spoken?</p>
+<p><strong>6.</strong> Create a boolean column named “King”. This should indicate whether or not the word “King” was spoken in any given line.</p>
+<p><strong>7.</strong> Improve the above by making sure that it includes both lower and uppercase variations of “king”.</p>
+<p><strong>8.</strong> Figure out which play has the word “king” mentioned most?</p>
+<p><strong>9.</strong> What percentage of lines in Hamlet mention the word “king?</p>
+<p><strong>10.</strong> How many times does the word “woman” appear in each play?</p>
+<p><strong>11.</strong> How many words are there in all Shakespeare plays?</p>
+<p><strong>12.</strong> How many letters are there in each Shakespeare play?</p>
+<p><strong>13.</strong> Which character says the most words?</p>
+<p><strong>14.</strong> Which character says the least words?</p>
+<p><strong>15.</strong> What is the lines(s) of the character who says the least words?</p>
+<p><strong>16.</strong> Make a table of plays with one row per play and variables being: (a) number of lines, (b) number of words, (c) number of characters, (d) number of letters, (e) number of mentions of “Brew”.</p>
+</div>
+</div>
+<div id="trump-tweets" class="section level2 unnumbered hasAnchor">
+<h2>Trump tweets<a href="working-with-text.html#trump-tweets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-goals-3" class="section level3 unnumbered hasAnchor">
+<h3>Learning goals<a href="working-with-text.html#learning-goals-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a review exercise: apply the dplyr and ggplot skills introduced in the previous modules and the Deep R modules on Working with Dates and Times and Working with Text to doing some text mining of former-President Trump’s tweets.</p>
+<p>Let’s run the below to get started.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="working-with-text.html#cb116-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb116-2"><a href="working-with-text.html#cb116-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb116-3"><a href="working-with-text.html#cb116-3" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb116-4"><a href="working-with-text.html#cb116-4" tabindex="-1"></a></span>
+<span id="cb116-5"><a href="working-with-text.html#cb116-5" tabindex="-1"></a>trump <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv&#39;</span>)</span>
+<span id="cb116-6"><a href="working-with-text.html#cb116-6" tabindex="-1"></a></span>
+<span id="cb116-7"><a href="working-with-text.html#cb116-7" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<p><strong>1.</strong> In the current format, one row of data is equal to one ?</p>
+<p><strong>2.</strong> Create a variable called <code>line</code>. This should be 1, 2, 3, 4, etc.</p>
+<p><strong>3.</strong> Create a variable called <code>text</code>. This should be an exact copy of <code>content</code>.</p>
+<p><strong>4.</strong> Use the <code>unnest_tokens</code> function to reshape the data for better text processing.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="working-with-text.html#cb117-1" tabindex="-1"></a>simple <span class="ot">&lt;-</span> trump <span class="sc">%&gt;%</span></span>
+<span id="cb117-2"><a href="working-with-text.html#cb117-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>mentions, <span class="sc">-</span>hashtags, <span class="sc">-</span>geo, <span class="sc">-</span>content, <span class="sc">-</span>link, <span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb117-3"><a href="working-with-text.html#cb117-3" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text)</span></code></pre></div>
+<p><strong>5.</strong> What format is the data in now (ie, one row is equal to )?</p>
+<p><strong>6.</strong> Take a minute to read about the <code>tidytext</code> package at <a href="https://www.tidytextmining.com/tidytext.html" class="uri">https://www.tidytextmining.com/tidytext.html</a>.</p>
+<p><strong>7.</strong> What is the most common word used by Trump?</p>
+<p><strong>8.</strong> Use <code>substr</code> to create a <code>year</code> variable.</p>
+<p><strong>9.</strong> What is the most common word used by Trump each year?</p>
+<p><strong>10.</strong> Create a variable named <code>month</code> using <code>substr</code>.</p>
+<p><strong>11.</strong> What is the most common word used by Trump each month?</p>
+<p><strong>12.</strong> Create a dataframe with one word per row, and a column called <code>freq</code> saying how many times that word was used.</p>
+<p><strong>13.</strong> Load up the wordcloud library.</p>
+<p><strong>14.</strong> Subset the dataframe created in number 12 to only include the top 100 words.</p>
+<p><strong>15.</strong> Create a <code>wordcloud</code> of Trump’s top 100 words.</p>
+<p><strong>16.</strong> Are you ready to do some sentiment analysis? Great.</p>
+<p><strong>17.</strong> Create a dataframe named sentiments by running the following:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="working-with-text.html#cb118-1" tabindex="-1"></a>sentiments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sentiments.csv&#39;</span>)</span></code></pre></div>
+<p><strong>18.</strong> What is the <code>sentiments</code> dataset?</p>
+<p><strong>19.</strong> Create another dataset named <code>polarity</code> by running the following: <code>polarity &lt;- get_sentiments("afinn")</code></p>
+<p><strong>20.</strong> Use <code>left_join</code> to combine polarity and sentiments into one dataset named <code>emotions</code>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="working-with-text.html#cb119-1" tabindex="-1"></a>emotions <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sentiments, polarity) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(word))</span></code></pre></div>
+<p><strong>21.</strong> Use <code>left_join</code> to combine the <code>trump</code> data and the <code>emotions</code> data.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="working-with-text.html#cb120-1" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">left_join</span>(simple, emotions)</span></code></pre></div>
+<p><strong>22.</strong> Have a look at the <code>simple</code> (Trump) data. What do you see?</p>
+<p><strong>23.</strong> Get an overall polarity score (using the <code>value</code> variable) for the entire dataset. Is it positive or negative?</p>
+<p><strong>24.</strong> How many words were emotionally associated with “anger” in 2015?</p>
+<p><strong>25.</strong> What percentage of words were associated with “fear” by year?</p>
+<p><strong>26.</strong> What is the average sentiment polarity by year?</p>
+<p><strong>27.</strong> What is Trump’s most positive tweet?</p>
+<p><strong>28.</strong> What month was Trump’s most negative month?</p>
+<p><strong>29.</strong> What percentage of Trump tweets have more sadness than joy by year/month?</p>
+<p><strong>30.</strong> Read in data on full moons by running the following:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="working-with-text.html#cb121-1" tabindex="-1"></a>moon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/full-moon.csv&#39;</span>)</span></code></pre></div>
+<p><strong>31.</strong> Create a <code>date</code> column with a correctly formatted date.</p>
+<p><strong>32.</strong> What day of the week has the most full moons?</p>
+<p><strong>33.</strong> Use <code>left_join</code> to bring the moon data into the Trump data.</p>
+<p><strong>34.</strong> Does Trump have more negative emotions on full moon days?</p>
+<p><strong>35</strong>. Read in “stop words” by running the following:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="working-with-text.html#cb122-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<p><strong>36.</strong> Join the <code>sw</code> data to the simple data, and remove the stop words.</p>
+<p><strong>37.</strong> Create a new word cloud.</p>
+<p><strong>38.</strong> Do a new analysis of sentimentality.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="working-with-dates-and-times.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04i-words-and-text.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rbootcamp.pdf", "rbootcamp.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

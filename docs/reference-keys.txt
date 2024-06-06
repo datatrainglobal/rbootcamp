@@ -8,4 +8,4 @@ exploring-sanitation
 making-maps
 making-choropleths
 working-with-dates-and-times
-working-iwth-text
+working-with-text

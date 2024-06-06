@@ -1,14 +1,14 @@
-# Working iwth text
+# Working with text
 
 ### Learning goal {.unnumbered}
 
-Learn to apply the most common R tools for working with text.
+Time to learn how to apply the most common R tools for working with text: strings, words, sentences, and so on!
  
-If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in `R`. Think of dates, GPS coordinates, user IDs, group names, plot labels, etc. All of these forms of data can contain non-numeric text. Becoming comfortable working with text in `R` is an essential part of your `R` toolkit.
+If you don't learn how to edit and transform text-based fields within datasets, you'll quickly get stuck in `R`. Think of dates, GPS coordinates, user IDs, group names, plot labels, etc. All of these forms of data can contain non-numeric text. Becoming comfortable working with text in `R` is an absolutely essential part of your `R` toolkit.
 
-Here we will present the most common functions for working with text. Remember that R has a special object class for text, known to as **character** class, and that character objects are often referred to as **strings**.
+Here we will present the most common functions for working with text. Remember that R has a special object class for text, known as the **character** class, and that character objects are often referred to as **strings**.
 
-Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the `stringr` **package**. Go ahead an install `stringr` and load it using `library()`.
+Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the `stringr` package. Go ahead an install `stringr` and load it using `library()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 install.packages("stringr")
@@ -18,7 +18,7 @@ library(stringr)
 ## Most common tools {.unnumbered}
 
 **`paste()` & `paste0()`**
-`paste()` and `paste0()` combines two or more strings together into a single object:
+`paste()` and `paste0()` combine two or more strings together into a single object:
 
 ```{r, echo = TRUE, eval = FALSE}
 i <- 10
@@ -28,7 +28,8 @@ file_name <- "this_file.csv"
 paste(i,"of",n,": Processing",file_name,". . . ")
 ```
 
-Notice that `paste()` assumes each object is separated by a blank space. " ". `paste0()` assumes no space between objects. Here’s the same input but with `paste0()` instead.
+Notice that `paste()` separates terms with a blank space; you'll see in a moment that `paste0()` does _not_ separate terms. 
+Here’s the same input but with `paste0()` instead:
 
 ```{r, echo = TRUE, eval = FALSE}
 paste0(i,"of",n,": Processing",file_name,". . . ")  
@@ -44,13 +45,13 @@ You can also use `paste()` to collapse multiple objects into a single string.
 
 ```{r, echo = TRUE, eval = FALSE}
 x <- 1:10
-paste(x,collapse="-") 
+paste(x,collapse=";") 
 ```
 
-Make an object called `ages` that has the age of everyone in your group and use `paste` and `collapse` to list these ages.
+Make an object called `ages` that has the ages of everyone in your group, then use `paste` and `collapse` to list these ages.
 
 **`tolower()` & `toupper()`**
-`tolower()` and `toupper()` forces all text in a string to lower case or upper case, respectively. Run the following:
+`tolower()` and `toupper()` force all text in a string to lower case or upper case, respectively. Run the following:
 
 ```{r, echo = TRUE, eval = FALSE}
 x <- "That Tree Is Far Away."
@@ -94,6 +95,23 @@ eighties
 years[eighties]
 ```
 
+**`grepl()`**
+`grepl()` tells you which elements in a character vector contain a given pattern. Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+some_names <- c("Bob", "Boba Fett", "Leia", "Robert", "Yoda", "Batman", "Not Bob", "Robin", "Catwoman", "Bobtown", "Zinnia")
+
+# Which names contain "Bob"?
+bobs <- grepl( pattern = "Bob", x=some_names, fixed = TRUE)
+bobs
+
+some_names[bobs]
+```
+
+Look for other patterns, like "ob", "man", etc. Be creative!
+
+**Baller move for future reference**: use `grepl` inside `filter` to find what you want!
+
 **`gsub()`**
 `gsub()` replaces a given pattern with another in a character vector. Run the following:
 
@@ -102,7 +120,7 @@ dates <- c("2021-03-01","2021-03-02","2021-03-03")
 gsub("-","/",dates)
 ```
 
-Instead of `/` replace put `.` between the year, month, day.
+Instead of `/`,  put `.` between the year, month, day.
 
 **`str_pad()`**
 `stringr::str_pad()`: standardize the lengths of strings by “padding” it (e.g., with zeroes). Run the following:
@@ -246,7 +264,7 @@ hp <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 
 **4.** Take a peek at the first few rows of the data. What is the unit of observation?
 
-5. Make all of the `text` column be lower case.
+**5.** Make all of the `text` column be lower case.
 
 **6.** Make all of the `text` column be upper case.
 
@@ -353,6 +371,7 @@ All good? Great. Let’s go.
 ## Trump tweets {.unnumbered}
 
 ### Learning goals {.unnumbered}
+
 This is a review exercise: apply the dplyr and ggplot skills introduced in the previous modules and the Deep R modules on Working with Dates and Times and Working with Text to doing some text mining of former-President Trump’s tweets.
  
 
