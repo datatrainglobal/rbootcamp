@@ -1,4 +1,4 @@
-# Working with dates and times {.unnumbered}
+# Working with dates and times 
 
 _"Today is a day. Tomorrow is another day. And right now is a moment in time that has changed to another moment in time, from one second to the next."_ - Anonymous
 
@@ -319,15 +319,15 @@ __Some common uses of `datetime`__
 
 **10.** How many seconds have occurred since the Armistice Day?
 
-## Dates, Times, and Malaria
+## Dates, Times, and Malaria {.unnumbered}
 
-### Learning goals
+### Learning goals {.unnumbered}
 
-* This is a review exercise. You'll be using the skills you've developed with the ´dplyr´, ´ggplot2´, and ´lubridate´ packages.
+* This is a review exercise. You'll be using the skills you've developed with the ´dplyr´, ´ggplot2´, and `lubridate` packages.
 
-**1.** Start a new script. Name it `malaria.R´. 
+**1.** Start a new script. Name it `malaria.R`. 
 
-**2.** Set up your work space by loading the ´readr´, ´ggplot2`, ´dplyr´, and ´lubridate´ packages.
+**2.** Set up your work space by loading the `readr`, `ggplot2`, `dplyr`, and `lubridate` packages.
 
 **3.** Read in some malaria data by running the following:
 
@@ -369,9 +369,9 @@ pms <- read_csv('https://github.com/databrew/intro-to-data-science/blob/main/dat
 
 **20.** Visualize the total number of malaria cases diagnoses by hour of day, but separated by day.
 
-## Coughs
+## Coughs {.unnumbered}
 
-As you can see there are so many ways in which you can work with dates and times. One final example which you may not have thought of in a million years is looking at cough data.
+As you can see there are so many ways in which you can work with dates and times. One final example which you may not have thought of is coughs.
 
 First, download the data:
 

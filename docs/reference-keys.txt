@@ -7,6 +7,4 @@ visualizing-data-with-ggplot2
 exploring-sanitation
 making-maps
 making-choropleths
-dates-times-and-malaria
-learning-goals-1
-coughs
+working-with-dates-and-times
