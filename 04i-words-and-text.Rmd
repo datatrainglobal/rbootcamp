@@ -8,7 +8,7 @@ If you don't learn how to edit and transform text-based fields within datasets, 
 
 Here we will present the most common functions for working with text. Remember that R has a special object class for text, known as the **character** class, and that character objects are often referred to as **strings**.
 
-Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the `stringr` package. Go ahead an install `stringr` and load it using `library()`.
+Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the `stringr` package. Go ahead and install `stringr` and load it using `library()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 install.packages("stringr")
