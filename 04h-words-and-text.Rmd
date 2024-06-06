@@ -1,0 +1,400 @@
+# Working with dates and times {.unnumbered}
+
+_"Today is a day. Tomorrow is another day. And right now is a moment in time that has changed to another moment in time, from one second to the next."_ - Anonymous
+
+### Learning goals {.unnumbered}
+* Be able to read dates, and convert objects to dates  
+* Be able to convert dates, extract useful information, and modify them  
+* Use date times  
+* Gain familiarity with the lubridate package 
+
+> Hadley Wickham’s [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html) starts with 3 simple questions:
+> 
+> * Does every year have 365 days?  
+> * Does every day have 24 hours?  
+> * Does every minute have 60 seconds? > 
+>
+> "I’m sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year? (It has three parts.)
+> 
+> You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.
+> 
+> You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth’s rotation is gradually slowing down.
+> 
+> Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.
+> 
+> This chapter won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."
+
+## Getting to work {.unnumbered}
+
+First, open an RScript, name it `dates and times.R` and set your working directory.
+
+Install the lubridate package and load the library.
+
+```{r, echo = TRUE, eval = FALSE}
+install.packages('lubridate')
+```
+
+```{r, echo = TRUE, eval = FALSE}
+library(lubridate)
+library(dplyr)
+```
+
+## Getting familar with `dates` {.unnumbered}
+
+Get today's date using: 
+
+```{r, echo = TRUE, eval = FALSE}
+today()
+```
+
+Then make today into an object called today.
+
+Even though `today` looks like a simple character string, it is not. There are all sorts of date-time calculations in the background. 
+
+To demonstrate this, let's bring in a simple string. Make a variable called `my_bday` and `my_partners_bday` using the following format:
+
+```{r, echo = TRUE, eval = FALSE}
+my_birthday <- '1967-06-09'
+```
+
+If you run `str(my_birthday)` and `str(today)`, do you see any major differences? (talk amongst your group)
+
+Note that class type of the variable impacts what you can do with the text. For instance, the following causes an error...
+
+```{r, echo = TRUE, eval = FALSE}
+today - my_birthday
+```
+
+Try re-running the calculation above after running the following line of code:
+
+```{r, echo = TRUE, eval = FALSE}
+my_birthday <- as_date(my_birthday)
+```
+
+Why did it work?
+
+## The `datetime` class {.unnumbered}
+
+When you are working with a `datetime` object, you can add and subtract time to it. 
+
+Let's make a variable that has the time as of right now and then look at it:
+
+```{r, echo = TRUE, eval = FALSE}
+n <- now()
+n
+```
+
+This is how you can add or subtract seconds to now:
+
+```{r, echo = TRUE, eval = FALSE}
+n + seconds(1)
+```
+
+Add or subtract hours:
+
+```{r, echo = TRUE, eval = FALSE}
+n - hours(5)
+```
+
+Want to only see the date of now? Try this:
+
+```{r, echo = TRUE, eval = FALSE}
+as_date(n)
+```
+
+Look at how time flies when you're having fun:
+
+```{r, echo = TRUE, eval = FALSE}
+later <- now()
+later
+```
+
+Calculate how long it took you from when you created now until you created the variable later.
+
+## Common tasks {.unnumbered}
+
+### Converting words (strings) to dates {.unnumbered}
+
+The `lubridate` package was built to handle dates of various input formats. The following functions convert a character with a particular format into a standard `datetime` object:
+
+```{r, echo = TRUE, eval = FALSE}
+ymd("2017-01-31")
+```
+
+This also works if the single-digit dates are not padded with a 0:
+
+```{r, echo = TRUE, eval = FALSE}
+ymd("2017-1-31")
+```
+
+Other formats can also be handled. Try to find a way to make the following into date formats:
+
+```{r, echo = TRUE, eval = FALSE}
+"2017-31-01"
+
+"January 31st, 2017"
+
+"31-Jan-2017"
+```
+
+Hint: try re-organising the letters from `ymd` which stands for year month day.
+
+### Extracting components from dates {.unnumbered}
+
+Let's practice extracting information from the following `datetime` object:
+
+```{r, echo = TRUE, eval = FALSE}
+datetime <- ymd_hms("2016-07-08 12:34:56")
+year(datetime)
+```
+
+Get the month:
+
+```{r, echo = TRUE, eval = FALSE}
+month(datetime)
+```
+
+Get the day of the month:
+
+```{r, echo = TRUE, eval = FALSE}
+mday(datetime)
+```
+
+Get the day of the year:
+
+```{r, echo = TRUE, eval = FALSE}
+yday(datetime)
+```
+
+Get the day of the week:
+
+```{r, echo = TRUE, eval = FALSE}
+wday(datetime)
+```
+
+Get the name of the day of the week:
+
+```{r, echo = TRUE, eval = FALSE}
+weekdays(datetime)
+```
+
+Get the hour of the day:
+
+```{r, echo = TRUE, eval = FALSE}
+hour(datetime)
+```
+
+Get the minute of the hour:
+
+```{r, echo = TRUE, eval = FALSE}
+minute(datetime)
+```
+
+Get the seconds of the minute:
+
+```{r, echo = TRUE, eval = FALSE}
+second(datetime)
+```
+
+### Dealing with time zones {.unnumbered}
+
+When working with dates and times in `R`, time zones can be a major pain, but the `lubridate` package tries to simplify this.
+
+Adjust timezones for dates:
+
+```{r, echo = TRUE, eval = FALSE}
+# Today's date where I am
+today()
+
+# Today's date in New Zealand
+today( tzone = 'NZ' )
+```
+
+Adjust time zones for date-times:
+
+```{r, echo = TRUE, eval = FALSE}
+# Time where I am
+now()
+
+# Time in UTC / GMT (which are synonymous)
+now('UTC')
+
+now('GMT')
+```
+
+Don't know what time zone your computer is working in? Use this function:
+
+```{r, echo = TRUE, eval = FALSE}
+Sys.timezone()
+```
+
+To get a list of time zones accepted in `R`, use the function `OlsonNames` (there are about 500 options):
+
+```{r, echo = TRUE, eval = FALSE}
+OlsonNames() %>% head(50)
+```
+
+If you ever need to force the timezone of a `datetime` object to change without actually changing the date or time, use the function `force_tz()`:
+
+```{r, echo = TRUE, eval = FALSE}
+# Get current time in UTC/GMT
+n <- now('UTC')
+n
+
+# Change timezone to Central Standard Time without changing time:
+force_tz(n, tzone='America/Chicago')
+```
+
+### Using timestamps instead {.unnumbered}
+
+One way to avoid timezone issues is to convert a `datetime` object to a numeric timestamp.
+
+Timestamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn't matter which timezone you are standing inñ the seconds that have passed since that moment will be the same:
+
+```{r, echo = TRUE, eval = FALSE}
+# Time where I am
+now() %>% as.numeric()
+```
+
+What is the difference between the line of code above and `now()`?
+
+Timestamps can simplify things when you are doing a lot of adding and subtracting with time. Timestamps are just seconds; they are just numbers. So they are much less of a black box than `datetime`objects.
+
+You can always convert from a timestamp back into a `datetime`object:
+
+```{r, echo = TRUE, eval = FALSE}
+# Convert to timestamp
+ts <- now() %>% as.numeric()
+ts
+
+# Convert back to datetime object
+ts %>%  as_datetime()
+```
+
+### Exercises {.unnumbered}
+
+__Create `datetime` objects__
+
+Use the appropriate `lubridate` function to parse each of the following dates (_aka make each of the following strings into dates_):
+
+**1.** `January 1, 2010`
+
+**2.** `2015-Mar-07`
+
+**3.** `06-Jun-2017`
+
+**4.** `c('August 19 (2015)', 'July 1 (2015)')`
+
+**5.** `12/30/14` 
+
+__Extracting `datetime` components__
+
+Work with this date:
+
+```{r, echo = TRUE, eval = FALSE}
+dt <- '2000-01-04 03:43:01'
+```
+
+**6.** Make a variable with the following name with the corresponding information using the date above:
+
+* `raw` (containing the original string)
+* `year`
+* `month`
+* `dom`(day of month)
+* `doy` (day of year)
+* `hour`  
+* `minutes`  
+* `seconds` 
+
+**7.** Now calculate two more variables:
+
+* `timestamp`  
+* `diff`(the difference, in days, between this time and midnight GMT on January 1, 1970)
+
+__Some common uses of `datetime`__
+
+**8.** Write code to say what time it is in the timezone that you were born in.
+
+**9.** Calculate your age using your birthday and today's date in years. In days! In seconds!!
+
+**10.** How many seconds have occurred since the Armistice Day?
+
+## Dates, Times, and Malaria
+
+### Learning goals
+
+* This is a review exercise. You'll be using the skills you've developed with the ´dplyr´, ´ggplot2´, and ´lubridate´ packages.
+
+**1.** Start a new script. Name it `malaria.R´. 
+
+**2.** Set up your work space by loading the ´readr´, ´ggplot2`, ´dplyr´, and ´lubridate´ packages.
+
+**3.** Read in some malaria data by running the following:
+
+```{r, echo = TRUE, eval = FALSE}
+pms <- read_csv('https://github.com/databrew/intro-to-data-science/blob/main/data/pms.csv?raw=true')
+```
+
+**4.** Take a look at the first few rows of the data. What is the unit of observation?
+
+**5.** Create a new column/variable in pms named dow (as in, “day of week”). This should be the day of the week of the date_visit.
+
+**6.** How many visits were there to Catale on May 1 2022?
+
+**7.** How many of those were for malaria?
+
+**8.** Which age group has had the most malaria?
+
+**9.** What day of the week has the most visits?
+
+**10.** Which month has had the most malaria visits?
+
+**11.** Which month has had the greatest percentage malaria visits?
+
+**12.** Make a variable called hour of day?
+
+**13.** Which hour of day has the most visits?
+
+**14.** What do you think the function mdy_hms is/does?
+
+**15.** Look up the documentation for mdy_hms.
+
+**16.** Use mdy_hms to create a new variable in pms named date_time based on the variable start_time.
+
+**17.** Use the hour function to create a variable named hour_of_day from the date_time variable. This should be the hour of the day.
+
+**18.** Get the total number of malaria cases diagnoses by hour of day.
+
+**19.** Visualize the total number of malaria cases diagnoses by hour of day.
+
+**20.** Visualize the total number of malaria cases diagnoses by hour of day, but separated by day.
+
+## Coughs
+
+As you can see there are so many ways in which you can work with dates and times. One final example which you may not have thought of in a million years is looking at cough data.
+
+First, download the data:
+
+```{r, echo = TRUE, eval = FALSE}
+coughs <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv')
+```
+
+**1.** Create a dow (day of week) column.
+
+**2.** Create a date (without time) column.
+
+**3.** How many coughs happened each day?
+
+**4.** Create a chart of coughs by day.
+
+**5.** Look up floor_date. Use it to get the number of coughs by date-hour.
+
+**6.** Create an hour variable.
+
+**7.** Use the hour variable to create a night_day column indicating whether the cough was occurring at night or day.
+
+**8.** Does this child cough more at night or day?
+
+Once you're done be sure to ask Matthew, 'what is [Hyfe](https://www.hyfe.ai/)?'
+
+
