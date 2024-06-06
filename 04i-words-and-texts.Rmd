@@ -1,0 +1,471 @@
+# Working iwth text
+
+### Learning goal {.unnumbered}
+
+Learn to apply the most common R tools for working with text.
+ 
+If you do not learn how to edit and transform text-based fields within datasets, you will quickly get stuck in `R`. Think of dates, GPS coordinates, user IDs, group names, plot labels, etc. All of these forms of data can contain non-numeric text. Becoming comfortable working with text in `R` is an essential part of your `R` toolkit.
+
+Here we will present the most common functions for working with text. Remember that R has a special object class for text, known to as **character** class, and that character objects are often referred to as **strings**.
+
+Most of these functions come pre-installed in R. However, several of the tools we will show here (as well as many other useful tools that we will not detail here) come from the `stringr` **package**. Go ahead an install `stringr` and load it using `library()`.
+
+```{r, echo = TRUE, eval = FALSE}
+install.packages("stringr")
+library(stringr)
+```
+
+## Most common tools {.unnumbered}
+
+**`paste()` & `paste0()`**
+`paste()` and `paste0()` combines two or more strings together into a single object:
+
+```{r, echo = TRUE, eval = FALSE}
+i <- 10
+n <- 96
+file_name <- "this_file.csv"
+
+paste(i,"of",n,": Processing",file_name,". . . ")
+```
+
+Notice that `paste()` assumes each object is separated by a blank space. " ". `paste0()` assumes no space between objects. Here’s the same input but with `paste0()` instead.
+
+```{r, echo = TRUE, eval = FALSE}
+paste0(i,"of",n,": Processing",file_name,". . . ")  
+```
+
+To replicate the original output with `paste()`, you manually add blank spaces like this:
+
+```{r, echo = TRUE, eval = FALSE}
+paste0(i," of ",n,": Processing ",file_name," . . . ")   
+```
+
+You can also use `paste()` to collapse multiple objects into a single string.
+
+```{r, echo = TRUE, eval = FALSE}
+x <- 1:10
+paste(x,collapse="-") 
+```
+
+Make an object called `ages` that has the age of everyone in your group and use `paste` and `collapse` to list these ages.
+
+**`tolower()` & `toupper()`**
+`tolower()` and `toupper()` forces all text in a string to lower case or upper case, respectively. Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+x <- "That Tree Is Far Away."
+tolower(x)
+toupper(x)
+```
+
+What happens if you change x to `"That Tree Is 5 Meters Away."` Does it still work?
+
+**`nchar()`**
+`nchar()` returns the number of characters within a string. How many characters are in x?
+
+```{r, echo = TRUE, eval = FALSE}
+nchar(x)
+```
+
+**`substr()`**
+`substr()` trims a string according to a start and end character position. Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+dates <- c("2021-03-01",
+           "2021-03-02",
+           "2021-03-03")
+substr(dates,1,4) # years
+substr(dates,6,7) # months
+substr(dates,9,10) # days
+```
+
+What do the numbers in `substr` correspond to in the `dates` list?
+
+**`grep()`**
+`grep()` returns the elements in a character vector that contain a given pattern. Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+years <- 1900:1999
+
+# Which elements correspond to the 1980s?
+eighties <- grep("198",years)
+eighties
+
+years[eighties]
+```
+
+**`gsub()`**
+`gsub()` replaces a given pattern with another in a character vector. Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+dates <- c("2021-03-01","2021-03-02","2021-03-03")
+gsub("-","/",dates)
+```
+
+Instead of `/` replace put `.` between the year, month, day.
+
+**`str_pad()`**
+`stringr::str_pad()`: standardize the lengths of strings by “padding” it (e.g., with zeroes). Run the following:
+
+```{r, echo = TRUE, eval = FALSE}
+days <- as.character(1:15)
+days
+stringr::str_pad(days,width=2,side="left",pad="0")
+```
+
+What happens if you change `side` to "right"?
+
+**`str_split()`**
+`stringr::str_split()`: split a string into several strings at the occurrence of a specified character.
+
+```{r, echo = TRUE, eval = FALSE}
+dates <- c("2021-03-01","2021-03-02","2021-03-03")
+splits <- stringr::str_split(dates,"-")
+splits
+```
+
+This function returns a _list_ for every element in the original vector. A common need is to retrieve one item from each of the elements in this list. For example, let’s say you are trying to retrieve the months of each element in the `dates` vector. The list structure makes this tricky to retrieve.
+
+Here’s the way to do it by drawing upon the `apply()` family of functions:
+
+```{r, echo = TRUE, eval = FALSE}
+sapply(splits, "[[", 1) # years
+
+sapply(splits, "[[", 2) # Months
+
+sapply(splits, "[[", 3) # days
+```
+
+**`as.character()`**
+`as.character()`: converts a non-character object into a character string.
+
+```{r, echo = TRUE, eval = FALSE}
+x <- c(1,2,3)
+as.character(x)
+
+x <- as.factor(c("group1","group2","group3"))
+as.character(x)
+```
+
+This can be particularly useful when trying to resolve problems caused by factors. One common issue occurs when `R` mistakes a set of numbers as a set of factors. Using `as.character()` can set things right:
+
+```{r, echo = TRUE, eval = FALSE}
+x <- as.factor(c(18,19,20))
+x
+```
+
+If you try to convert straight to numeric, it does not work:
+
+```{r, echo = TRUE, eval = FALSE}
+as.numeric(x)
+```
+
+So convert to character first:
+
+```{r, echo = TRUE, eval = FALSE}
+as.numeric(as.character(x))
+```
+
+## Exercises {.unnumbered}
+To practice these tools, we will play with the results of a past DataLab survey.
+
+Read the survey into R as follows:
+
+```{r, echo = TRUE, eval = FALSE}
+library(dplyr)
+library(gsheet)
+survey <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1iVt9FX9J2iv3QFKBM7Gzb9dgva70XrW1lxMV4hpekeo/edit?resourcekey#gid=204634767')
+```
+
+To make this spreadsheet easier to work with, let’s rename the columns. Currently, the columns are:
+
+```{r, echo = TRUE, eval = FALSE}
+names(survey)
+```
+
+Rename them like so:
+
+```{r, echo = TRUE, eval = FALSE}
+names(survey) <- c('time', 'sex', 'age','sib', 'dad_mus', 
+                   'person_mus', 'joe_mus_is', 'eyesight', 
+                   'height', 'shoe_size', 'bday', 'money_or_love', 
+                   'rps_skill', 'num_pan', 'cats_dogs', 
+                   'first_name', 'last_name')
+
+```
+
+**1.** Create a new column named `full_name` that combines the first and last name of each respondent.
+
+**2.** Simplify the `sex` column so that `m` (lowercase) stands for males, `f` (lowercase) stands for females, and `p` (lowercase) stands for ‘Prefer not to say’.
+
+**3.** Modify the column `money_or_love` such that the first letter is always capitalized.
+
+**4.** How many characters is each response in the column `eyesight`?
+
+**5.** How many responses in the column `eyesight` have 30 characters or more?
+
+**6.** Modify the column `money_or_love` such that all responses are twenty characters or less.
+
+**7.** Remove the ‘s’ from the responses in the column `cats_dogs`.
+
+**8.** In the column `joe_mus_is`, replace ‘Deeply captivating’ with just ‘captivating.’
+
+**9.** How many respondents have the last name ‘Brew’?
+
+**10.** How many respondents were born in May?
+
+**11.** Filter the survey only to respondents born in 2000.
+
+**12.** Replace “both” in the `money_or_love` variable with “Money & Love”.
+
+**13.** Get only the first character `dad_mus` variable.
+
+**14.** How many total characters are in the column `eyesight`?
+
+**15.** How many characters did Joe Brew write for the `eyesight` question?
+
+**16.** How many people in the data were born on the 4th day of the month?
+
+**17.** Create a new variable called `month_born` that has only the month of from the bday variable.
+
+**18.** Do the same thing for `year`.
+
+**19.** Filter the data set by those born in 2001 and prefer money over love.
+
+## Sentiment analysis with Harry Potter {.unnumbered}
+
+**1.** Start a new `R` file Name it `harry.R`.
+
+**2.** Set up your work space by loading the `ggplot2`, `dplyr`, `tidytext`, `gsheet`, `wordcloud2`, `sentimentr`, and `lubridate` packages.
+
+**3.** Read in your Harry Potter data by running the following:
+
+```{r, echo = TRUE, eval = FALSE}
+hp <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/harrypotter.csv')
+```
+
+**4.** Take a peek at the first few rows of the data. What is the unit of observation?
+
+5. Make all of the `text` column be lower case.
+
+**6.** Make all of the `text` column be upper case.
+
+**7.** Use `unnest_tokens` to create a dataframe with one row per word.
+
+**8.** Create a variable named `word_length` with the number of characters in each word.
+
+**9.** Make a histogram of word length.
+
+**10.** Make a density chart of word length.
+
+**11.** Make the density chart of word length have a different `fill` for each chapter.
+
+**12.** Get the average word length per chapter.
+
+**13.** Plot the average word length per chapter.
+
+**14.** What is the longest word used in Harry Potter?
+
+**15.** What is the most frequent word used in Harry Potter?
+
+**16.** Get the number of words per chapter.
+
+**17.** Plot the number of words per chapter.
+
+**18.** What’s the longest chapter in Harry Potter?
+
+**19.** Run the below to create an object named `sw`.
+
+```{r, echo = TRUE, eval = FALSE}
+sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
+```
+
+**20.** Remove the stop words form your one-row-per-word dataframe.
+
+**21.** What is the most frequently used (non-stop) word in Harry Potter?
+
+**22.** Create an object called `sentiments` by running the following:
+
+```{r, echo = TRUE, eval = FALSE}
+sentiments <- get_sentiments('afinn')
+```
+
+**23.** Use `left_join` to bring a sentiment classification to each word.
+
+**24.** Is Harry Potter more negative or positive?
+
+**25.** Calculate the average sentimentality per chapter.
+
+**26.** Plot the average sentimentality per chapter.
+
+**27.** Create a variable called `cumulative_sentiment`. Use `cumsum` to get the cumulative sum sentimentality.
+
+**28.** Plot cumulative sentiment.
+
+**29.** Color your plot by chapter.
+
+## Shakespeare text mining {.unnumbered}
+
+### Learning goals {.unnumbered}
+
+This is a review exercise: apply the skills introduced in the previous modules by text mining the works of Shakespeare.
+
+```{r, echo = TRUE, eval = FALSE}
+library(dplyr)
+library(readr)
+shake <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/Shakespeare_data.csv')
+```
+
+All good? Great. Let’s go.
+
+**1.** How may rows are in the data?
+
+**2.** Create a dataframe named `spoken`. This should be those lines which are spoken by an actor/actress (figure it out).
+
+**3.** How many lines are spoken?
+
+**4.** Create a column called first_word. This should be the `first word` of each spoken line.
+
+**5.** What is the most common first word spoken?
+
+**6.** Create a boolean column named “King”. This should indicate whether or not the word “King” was spoken in any given line.
+
+**7.** Improve the above by making sure that it includes both lower and uppercase variations of “king”.
+
+**8.** Figure out which play has the word “king” mentioned most?
+
+**9.** What percentage of lines in Hamlet mention the word "king?
+
+**10.** How many times does the word “woman” appear in each play?
+
+**11.** How many words are there in all Shakespeare plays?
+
+**12.** How many letters are there in each Shakespeare play?
+
+**13.** Which character says the most words?
+
+**14.** Which character says the least words?
+
+**15.** What is the lines(s) of the character who says the least words?
+
+**16.** Make a table of plays with one row per play and variables being: (a) number of lines, (b) number of words, (c) number of characters, (d) number of letters, (e) number of mentions of “Brew”.
+
+## Trump tweets {.unnumbered}
+
+### Learning goals {.unnumbered}
+This is a review exercise: apply the dplyr and ggplot skills introduced in the previous modules and the Deep R modules on Working with Dates and Times and Working with Text to doing some text mining of former-President Trump’s tweets.
+ 
+
+Let’s run the below to get started.
+
+```{r, echo = TRUE, eval = FALSE}
+library(dplyr)
+library(readr)
+library(tidytext)
+
+trump <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/trumptweets.csv')
+
+stop_words <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
+```
+
+**1.** In the current format, one row of data is equal to one ?
+
+**2.** Create a variable called `line`. This should be 1, 2, 3, 4, etc.
+
+**3.** Create a variable called `text`. This should be an exact copy of `content`.
+
+**4.** Use the `unnest_tokens` function to reshape the data for better text processing.
+
+```{r, echo = TRUE, eval = FALSE}
+simple <- trump %>%
+  select(-mentions, -hashtags, -geo, -content, -link, -id) %>%
+  unnest_tokens(word, text)
+```
+
+**5.** What format is the data in now (ie, one row is equal to )?
+
+**6.** Take a minute to read about the `tidytext` package at https://www.tidytextmining.com/tidytext.html.
+
+**7.** What is the most common word used by Trump?
+
+**8.** Use `substr` to create a `year` variable.
+
+**9.** What is the most common word used by Trump each year?
+
+**10.** Create a variable named `month` using `substr`.
+
+**11.** What is the most common word used by Trump each month?
+
+**12.** Create a dataframe with one word per row, and a column called `freq` saying how many times that word was used.
+
+**13.** Load up the wordcloud library.
+
+**14.** Subset the dataframe created in number 12 to only include the top 100 words.
+
+**15.** Create a `wordcloud` of Trump’s top 100 words.
+
+**16.** Are you ready to do some sentiment analysis? Great.
+
+**17.** Create a dataframe named sentiments by running the following:
+
+```{r, echo = TRUE, eval = FALSE}
+sentiments <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/sentiments.csv')
+```
+
+**18.** What is the `sentiments` dataset?
+
+**19.** Create another dataset named `polarity` by running the following: `polarity <- get_sentiments("afinn")`
+
+**20.** Use `left_join` to combine polarity and sentiments into one dataset named `emotions`.
+
+```{r, echo = TRUE, eval = FALSE}
+emotions <- left_join(sentiments, polarity) %>% filter(!duplicated(word))
+```
+
+**21.** Use `left_join` to combine the `trump` data and the `emotions` data.
+
+```{r, echo = TRUE, eval = FALSE}
+simple <- left_join(simple, emotions)
+```
+
+**22.** Have a look at the `simple` (Trump) data. What do you see?
+
+**23.** Get an overall polarity score (using the `value` variable) for the entire dataset. Is it positive or negative?
+
+**24.** How many words were emotionally associated with “anger” in 2015?
+
+**25.** What percentage of words were associated with “fear” by year?
+
+**26.** What is the average sentiment polarity by year?
+
+**27.** What is Trump’s most positive tweet?
+
+**28.** What month was Trump’s most negative month?
+
+**29.** What percentage of Trump tweets have more sadness than joy by year/month?
+
+**30.** Read in data on full moons by running the following: 
+
+```{r, echo = TRUE, eval = FALSE}
+moon <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/full-moon.csv')
+```
+
+**31.** Create a `date` column with a correctly formatted date.
+
+**32.** What day of the week has the most full moons?
+
+**33.** Use `left_join` to bring the moon data into the Trump data.
+
+**34.** Does Trump have more negative emotions on full moon days?
+
+**35**. Read in “stop words” by running the following: 
+
+```{r, echo = TRUE, eval = FALSE}
+sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
+```
+
+**36.** Join the `sw` data to the simple data, and remove the stop words.
+
+**37.** Create a new word cloud.
+
+**38.** Do a new analysis of sentimentality.
