@@ -8,21 +8,16 @@ _"Today is a day. Tomorrow is another day. And right now is a moment in time tha
 * Use date times  
 * Gain familiarity with the lubridate package 
 
-> Hadley Wickham’s [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html) starts with 3 simple questions:
-> 
+
+Hadley Wickham’s [tutorial on dates](https://r4ds.had.co.nz/dates-and-times.html) starts with 3 simple questions and some useful observations:
+
 > * Does every year have 365 days?  
 > * Does every day have 24 hours?  
-> * Does every minute have 60 seconds? > 
+> * Does every minute have 60 seconds? 
 >
-> "I’m sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year? (It has three parts.)
+> I’m sure you know that not every year has 365 days, but do you know the full rule for determining if a year is a leap year? (It has three parts.) You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25. You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth’s rotation is gradually slowing down.
 > 
-> You might have remembered that many parts of the world use daylight savings time (DST), so that some days have 23 hours, and others have 25.
-> 
-> You might not have known that some minutes have 61 seconds because every now and then leap seconds are added because the Earth’s rotation is gradually slowing down.
-> 
-> Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST.
-> 
-> This chapter won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges."
+> Dates and times are hard because they have to reconcile two physical phenomena (the rotation of the Earth and its orbit around the sun) with a whole raft of geopolitical phenomena including months, time zones, and DST. This chapter won’t teach you every last detail about dates and times, but it will give you a solid grounding of practical skills that will help you with common data analysis challenges.
 
 ## Getting to work {.unnumbered}
 
@@ -51,10 +46,11 @@ Then make today into an object called today.
 
 Even though `today` looks like a simple character string, it is not. There are all sorts of date-time calculations in the background. 
 
-To demonstrate this, let's bring in a simple string. Make a variable called `my_bday` and `my_partners_bday` using the following format:
+To demonstrate this, let's bring in a simple string. Make variables called `my_bday` and `my_partners_bday` using the following format (but adjust to match your actual birthdays!):
 
 ```{r, echo = TRUE, eval = FALSE}
-my_birthday <- '1967-06-09'
+my_birthday <- '2003-06-09'
+my_partners_bday <- '2004-02-18'
 ```
 
 If you run `str(my_birthday)` and `str(today)`, do you see any major differences? (talk amongst your group)
@@ -72,6 +68,8 @@ my_birthday <- as_date(my_birthday)
 ```
 
 Why did it work?
+
+Now convert `my_partners_bday` to the right class, then calculate the time between your birthdays. 
 
 ## The `datetime` class {.unnumbered}
 
@@ -109,7 +107,7 @@ later <- now()
 later
 ```
 
-Calculate how long it took you from when you created now until you created the variable later.
+Calculate how long it took you from when you created `now` until you created the variable `later`.
 
 ## Common tasks {.unnumbered}
 
@@ -137,7 +135,7 @@ Other formats can also be handled. Try to find a way to make the following into 
 "31-Jan-2017"
 ```
 
-Hint: try re-organising the letters from `ymd` which stands for year month day.
+_Hint_: try re-organising the letters from `ymd` which stands for "year month day".
 
 ### Extracting components from dates {.unnumbered}
 
@@ -249,7 +247,7 @@ force_tz(n, tzone='America/Chicago')
 
 One way to avoid timezone issues is to convert a `datetime` object to a numeric timestamp.
 
-Timestamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn't matter which timezone you are standing inñ the seconds that have passed since that moment will be the same:
+Timestamps record the number of seconds that have passed since midnight GMT on January 1, 1970. It doesn't matter which timezone you are standing in the seconds that have passed since that moment will be the same:
 
 ```{r, echo = TRUE, eval = FALSE}
 # Time where I am
@@ -371,27 +369,27 @@ pms <- read_csv('https://github.com/databrew/intro-to-data-science/blob/main/dat
 
 ## Coughs {.unnumbered}
 
-As you can see there are so many ways in which you can work with dates and times. One final example which you may not have thought of is coughs.
+As you can see there are SO many ways you can work with dates and times. One final example which you may not have thought of is... _coughs_!
 
-First, download the data:
+First, download some data:
 
 ```{r, echo = TRUE, eval = FALSE}
 coughs <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/coughs.csv')
 ```
 
-**1.** Create a dow (day of week) column.
+**1.** Create a `dow` (day of week) column.
 
-**2.** Create a date (without time) column.
+**2.** Create a `date` (without time) column.
 
 **3.** How many coughs happened each day?
 
 **4.** Create a chart of coughs by day.
 
-**5.** Look up floor_date. Use it to get the number of coughs by date-hour.
+**5.** Look up the function `floor_date`. Use it to get the number of coughs by date-hour.
 
-**6.** Create an hour variable.
+**6.** Create an `hour` variable.
 
-**7.** Use the hour variable to create a night_day column indicating whether the cough was occurring at night or day.
+**7.** Use the `hour` variable to create a `night_day` column indicating whether the cough was occurring at night or day.
 
 **8.** Does this child cough more at night or day?
 
