@@ -7,9 +7,11 @@
 This is a **meta-tutorial** for using `RMarkdown`, a “syntax” for writing *beautiful* reports with simple text files. This tutorial, which was written in `RMarkdown`, has been provided twice: first, as its formatted ‘book-ready’ form, and second as the raw text file used to write it.
 
 ## What is `RMarkdown`? {.unnumbered}
+
 `RMarkdown` lets you write documents formatted with fancy `HTML` (the main language used to create websites) without having to know how to write `HTML` code. Instead, you just need to know how to use a few common symbols.
 
 ## Why? {.unnumbered}
+
 `RMarkdown` was created because most data scientists used to document their code and data projects with simple text files (`.txt`). Text files are designed to be simple, so they have no special formatting: no nice fonts, no headings, no bold, no italics, no bullet lists. And, as a result of their simplicity, text files are (1) *boring* and (2) *difficult to organize*.
 
 `RMarkdown` is the perfect solution: it translates a simple text file into a beautifully formatted report.
@@ -39,11 +41,11 @@ Also, `RMarkdown` …
 
 * Lets you add [hyperlinks](https://tenor.com/es/view/werk-sassy-told-you-so-yas-honey-gif-18865873).
 
-* Lets you type `HTML` code directly into the same document, <font color='red'><b>**if you want to**</b></font>.</p></li>.
+* Lets you type `HTML` code directly into the same document, <font color='red'><b>**if you want to**</b></font>.
 
 * Lets you include images, like the one below.
 
-![alt text](https://datascience.pizza/img/markdown-dogs.jpeg)
+![](https://datascience.pizza/img/markdown-dogs.jpeg)
 
 ### Common `RMarkdown` mistakes {.unnumbered}
 
@@ -105,14 +107,6 @@ First of all, `Markdown` ...
 3. Lets you distinguish between normal text and `code` or `filenames`. 
 4. Lets you write large chunks of code, like the one below. 
 
-
-
-# This is a large chunk of code. 
-x <- 1:10
-y <- 15:20
-z <- x + y
-
-
 Also, `Markdown` ...  
 
 - Lets you weave together your documentation with `R` code that
@@ -133,8 +127,6 @@ world of open-source formatting templates available to you.
 <center>
 ![](img/markdown-dogs.jpeg){width=50%}
 </center>
-
-&nbsp;  
 
 #### Common `Markdown` mistakes {-}
 
@@ -161,7 +153,7 @@ Open a new, blank RMarkdown document:
 
 **3.** Save this file as `test.Rmd` in your datalab folder.
 
-The prefix, '.Rmd`, specifies that this text file should be interpreted as a `RMarkdown` file. Once you save the file, you should see some new options appear, one of which is preview.
+The prefix, `.Rmd`, specifies that this text file should be interpreted as a `RMarkdown` file. Once you save the file, you should see some new options appear, one of which is preview.
 
 **4.** At the top of your `test.Rmd` file, write: # Title
 
@@ -201,7 +193,7 @@ Use the *Knit* button to test if your entries are doing what you want them to.
 
 **19.** Make one of your list items act as a link to another website.
 
-## Make a Markdown CV
+## Make a Markdown CV {.unnumbered}
 
 It is increasingly common for data scientists to have a Markdown version of their CV posted as its own page. Check out these examples:
 
@@ -211,6 +203,6 @@ It is increasingly common for data scientists to have a Markdown version of thei
 
 Maintaining your *CV* this way can be very efficient. It is easy to format and easy to update. And, most importantly, rather than have various versions of your *CV* on your computer or in GoogleDrive, you can just share a *link* to your live, published *CV*. What better way to demonstrate your skillset in a reproducible, professional-quality research?
 
-Resources
-* https://www.markdownguide.org/basic-syntax/
+Resources  
+* https://www.markdownguide.org/basic-syntax/  
 * https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf

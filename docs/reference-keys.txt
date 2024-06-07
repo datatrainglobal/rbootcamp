@@ -10,4 +10,3 @@ making-choropleths
 working-with-dates-and-times
 working-with-text
 rmarkdown
-make-a-markdown-cv
