@@ -10,11 +10,4 @@ making-choropleths
 working-with-dates-and-times
 working-with-text
 rmarkdown
-learning-goals-4
-what-is-rmarkdown
-why
-what-can-you-do-with-rmarkdown
-common-rmarkdown-mistakes
-raw-rmarkdown-example
-exercises-3
 make-a-markdown-cv

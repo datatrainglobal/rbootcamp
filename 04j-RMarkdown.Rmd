@@ -1,22 +1,22 @@
 # RMarkdown
 
-### Learning goals
+### Learning goals {.unnumbered}
 
 * How to document your projects with `RMarkdown` and why doing so is so important.
 
 This is a **meta-tutorial** for using `RMarkdown`, a “syntax” for writing *beautiful* reports with simple text files. This tutorial, which was written in `RMarkdown`, has been provided twice: first, as its formatted ‘book-ready’ form, and second as the raw text file used to write it.
 
-## What is `RMarkdown`?
+## What is `RMarkdown`? {.unnumbered}
 `RMarkdown` lets you write documents formatted with fancy `HTML` (the main language used to create websites) without having to know how to write `HTML` code. Instead, you just need to know how to use a few common symbols.
 
-## Why?
+## Why? {.unnumbered}
 `RMarkdown` was created because most data scientists used to document their code and data projects with simple text files (`.txt`). Text files are designed to be simple, so they have no special formatting: no nice fonts, no headings, no bold, no italics, no bullet lists. And, as a result of their simplicity, text files are (1) *boring* and (2) *difficult to organize*.
 
 `RMarkdown` is the perfect solution: it translates a simple text file into a beautifully formatted report.
 
 Recall that, in order for your research to be truly reproducible, you have to **document your work thoroughly**. Doing so requires two things: First, that you provide a detailed description of your work in a simple text file, and second, that your documentation be *well-organized* and *enjoyably legible*. Think about it: if your documentation is incomplete, impossible to navigate, and difficult to read, can you really say that your project is reproducible?
 
-## What can you do with `RMarkdown`?
+## What can you do with `RMarkdown`? {.unnumbered}
 First of all, `RMarkdown`…
 
 1. Lets you organize your report into sections and subsections.  
@@ -45,7 +45,7 @@ Also, `RMarkdown` …
 
 ![alt text](https://datascience.pizza/img/markdown-dogs.jpeg)
 
-### Common `RMarkdown` mistakes
+### Common `RMarkdown` mistakes {.unnumbered}
 
 * When you try to make a section heading (e.g., `## New section`), you forget to put a space between the hashtags and the name of the section.
 
@@ -55,7 +55,7 @@ Also, `RMarkdown` …
 
 * When you try to begin a new paragraph, you don’t add an empty line between your paragraphs.
 
-## Raw `RMarkdown` example
+## Raw `RMarkdown` example {.unnumbered}
 Below we provide the raw textfile we used to write the section above.
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -152,7 +152,7 @@ at the end of each item, the items might not get placed on new lines.
 between your paragraphs.  
 ```
 
-## Exercises
+## Exercises {.unnumbered}
 Open a new, blank RMarkdown document:
 
 **1.** In RStudio, go to the top left dropbown menu for making a new file (look for the green plus sign.)

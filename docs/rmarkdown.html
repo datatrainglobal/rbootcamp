@@ -757,12 +757,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>12</b> RMarkdown</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>12.1</b> What is <code>RMarkdown</code>?</a></li>
-<li class="chapter" data-level="12.2" data-path="rmarkdown.html"><a href="rmarkdown.html#why"><i class="fa fa-check"></i><b>12.2</b> Why?</a></li>
-<li class="chapter" data-level="12.3" data-path="rmarkdown.html"><a href="rmarkdown.html#what-can-you-do-with-rmarkdown"><i class="fa fa-check"></i><b>12.3</b> What can you do with <code>RMarkdown</code>?</a></li>
-<li class="chapter" data-level="12.4" data-path="rmarkdown.html"><a href="rmarkdown.html#raw-rmarkdown-example"><i class="fa fa-check"></i><b>12.4</b> Raw <code>RMarkdown</code> example</a></li>
-<li class="chapter" data-level="12.5" data-path="rmarkdown.html"><a href="rmarkdown.html#exercises-3"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
-<li class="chapter" data-level="12.6" data-path="rmarkdown.html"><a href="rmarkdown.html#make-a-markdown-cv"><i class="fa fa-check"></i><b>12.6</b> Make a Markdown CV</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i>What is <code>RMarkdown</code>?</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#why"><i class="fa fa-check"></i>Why?</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#what-can-you-do-with-rmarkdown"><i class="fa fa-check"></i>What can you do with <code>RMarkdown</code>?</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#raw-rmarkdown-example"><i class="fa fa-check"></i>Raw <code>RMarkdown</code> example</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="12.1" data-path="rmarkdown.html"><a href="rmarkdown.html#make-a-markdown-cv"><i class="fa fa-check"></i><b>12.1</b> Make a Markdown CV</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
@@ -786,25 +786,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Module 12</span> RMarkdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-goals-4" class="section level3 hasAnchor" number="12.0.1">
-<h3><span class="header-section-number">12.0.1</span> Learning goals<a href="rmarkdown.html#learning-goals-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="learning-goals-4" class="section level3 unnumbered hasAnchor">
+<h3>Learning goals<a href="rmarkdown.html#learning-goals-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>How to document your projects with <code>RMarkdown</code> and why doing so is so important.</li>
 </ul>
 <p>This is a <strong>meta-tutorial</strong> for using <code>RMarkdown</code>, a “syntax” for writing <em>beautiful</em> reports with simple text files. This tutorial, which was written in <code>RMarkdown</code>, has been provided twice: first, as its formatted ‘book-ready’ form, and second as the raw text file used to write it.</p>
 </div>
-<div id="what-is-rmarkdown" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> What is <code>RMarkdown</code>?<a href="rmarkdown.html#what-is-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-rmarkdown" class="section level2 unnumbered hasAnchor">
+<h2>What is <code>RMarkdown</code>?<a href="rmarkdown.html#what-is-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>RMarkdown</code> lets you write documents formatted with fancy <code>HTML</code> (the main language used to create websites) without having to know how to write <code>HTML</code> code. Instead, you just need to know how to use a few common symbols.</p>
 </div>
-<div id="why" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Why?<a href="rmarkdown.html#why" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why" class="section level2 unnumbered hasAnchor">
+<h2>Why?<a href="rmarkdown.html#why" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>RMarkdown</code> was created because most data scientists used to document their code and data projects with simple text files (<code>.txt</code>). Text files are designed to be simple, so they have no special formatting: no nice fonts, no headings, no bold, no italics, no bullet lists. And, as a result of their simplicity, text files are (1) <em>boring</em> and (2) <em>difficult to organize</em>.</p>
 <p><code>RMarkdown</code> is the perfect solution: it translates a simple text file into a beautifully formatted report.</p>
 <p>Recall that, in order for your research to be truly reproducible, you have to <strong>document your work thoroughly</strong>. Doing so requires two things: First, that you provide a detailed description of your work in a simple text file, and second, that your documentation be <em>well-organized</em> and <em>enjoyably legible</em>. Think about it: if your documentation is incomplete, impossible to navigate, and difficult to read, can you really say that your project is reproducible?</p>
 </div>
-<div id="what-can-you-do-with-rmarkdown" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> What can you do with <code>RMarkdown</code>?<a href="rmarkdown.html#what-can-you-do-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-can-you-do-with-rmarkdown" class="section level2 unnumbered hasAnchor">
+<h2>What can you do with <code>RMarkdown</code>?<a href="rmarkdown.html#what-can-you-do-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First of all, <code>RMarkdown</code>…</p>
 <ol style="list-style-type: decimal">
 <li>Lets you organize your report into sections and subsections.<br />
@@ -834,8 +834,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://datascience.pizza/img/markdown-dogs.jpeg" alt="alt text" />
 <div class="figcaption">alt text</div>
 </div>
-<div id="common-rmarkdown-mistakes" class="section level3 hasAnchor" number="12.3.1">
-<h3><span class="header-section-number">12.3.1</span> Common <code>RMarkdown</code> mistakes<a href="rmarkdown.html#common-rmarkdown-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="common-rmarkdown-mistakes" class="section level3 unnumbered hasAnchor">
+<h3>Common <code>RMarkdown</code> mistakes<a href="rmarkdown.html#common-rmarkdown-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>When you try to make a section heading (e.g., <code>## New section</code>), you forget to put a space between the hashtags and the name of the section.</p></li>
 <li><p>When you try to begin a new paragraph, you don’t add two spaces at the end of your sentence. (Without those two spaces, <code>RMarkdown</code> will assume you are still working in the same paragraph.)</p></li>
@@ -844,8 +844,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="raw-rmarkdown-example" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> Raw <code>RMarkdown</code> example<a href="rmarkdown.html#raw-rmarkdown-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="raw-rmarkdown-example" class="section level2 unnumbered hasAnchor">
+<h2>Raw <code>RMarkdown</code> example<a href="rmarkdown.html#raw-rmarkdown-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below we provide the raw textfile we used to write the section above.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="rmarkdown.html#cb124-1" tabindex="-1"></a><span class="co"># `Markdown` documentation </span></span>
 <span id="cb124-2"><a href="rmarkdown.html#cb124-2" tabindex="-1"></a></span>
@@ -939,8 +939,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb124-90"><a href="rmarkdown.html#cb124-90" tabindex="-1"></a><span class="st">- When you try to begin a new paragraph, you don&#39;</span>t add an empty line</span>
 <span id="cb124-91"><a href="rmarkdown.html#cb124-91" tabindex="-1"></a>between your paragraphs.  </span></code></pre></div>
 </div>
-<div id="exercises-3" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Exercises<a href="rmarkdown.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises-3" class="section level2 unnumbered hasAnchor">
+<h2>Exercises<a href="rmarkdown.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Open a new, blank RMarkdown document:</p>
 <p><strong>1.</strong> In RStudio, go to the top left dropbown menu for making a new file (look for the green plus sign.)</p>
 <p><strong>2.</strong> Select “R Markdown…”</p>
@@ -966,8 +966,8 @@ Use the <code>RMarkdown</code> example above, which you can compare to the forma
 <p><strong>18.</strong> Create a bullet list of things you want to accomplish before you die.</p>
 <p><strong>19.</strong> Make one of your list items act as a link to another website.</p>
 </div>
-<div id="make-a-markdown-cv" class="section level2 hasAnchor" number="12.6">
-<h2><span class="header-section-number">12.6</span> Make a Markdown CV<a href="rmarkdown.html#make-a-markdown-cv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="make-a-markdown-cv" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Make a Markdown CV<a href="rmarkdown.html#make-a-markdown-cv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is increasingly common for data scientists to have a Markdown version of their CV posted as its own page. Check out these examples:</p>
 <ul>
 <li><a href="https://carolstran.github.io/cv/">Here</a><br />
