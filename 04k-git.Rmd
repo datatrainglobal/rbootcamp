@@ -1,0 +1,207 @@
+# `Git` + `GitHub`
+
+### Learning goals
+
+* The importance of keeping your code somewhere
+* How to install `Git`
+* How to install `GitHub`
+* How to use `Git` on your own
+* How to use `Git` as a team
+
+## Why
+
+Perhaps you are familiar with this...
+
+<center>
+<img src="img/version_control.png" style="width:30.0%" />
+</center>
+
+Or this...
+
+<center>
+<img src="img/version_control_2.png" style="width:50.0%" />
+</center>
+
+## What is there to `Git`?
+
+Think of `Git` like Google Drive...but better. 
+
+I assume that your Google Drive has tons of documents on it organised into folders. You most likely use Google Drive to save your documents, but sometimes you also edit those documents. If you wanted, you could go and look at a previous version of the document by tracking changes (a cool feature of Google). But what exactly am I `gitting` at? 
+
+`Git` is very similar to Google Drive. You can track changes to your documents, organize documents, share documents, and review changes. However, instead of putting your Word documents or your powerpoints on Git (which you can do), us coders use Git to store our code.
+
+Let's store the code that we have worked on so far on Git.
+
+## `GitHub` set up
+
+Go to [www.github.com](https://datascience.pizza/www.github.com) and create a user account. 
+
+## Create a new repository
+
+Once you’ve created an account and logged in to `GitHub`, let’s create a repository.
+
+**What is a repository?** Basically, it’s a coding project in the form of a folder.
+
+1. Having logged into git, click the “plus” icon in the upper right and then click “New repository” (or go directly [here](https://github.com/new)).
+
+2. You can fill in the “Repository name” field with whatever you’d like. For the following examples, we’ll use the word “testrepo”.
+
+3. Fill in the “Description” field with the word “My first git repository”.
+
+4. Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository”.
+
+Cool! You’ve now created your first git repository. It’s public url is `https://github.com/<YOUR USERNAME>/<repo-name>`. Others can see your code there, and you can too.
+
+## Clone a repository
+
+Your new repo exists on the internet, but does not yet exist on your local machine. In order to get “testrepo” on your computer, you’ll need to do something that you’ll only do once: “clone” the repo. “Cloning” in git-speak means creating a copy of the repository locally.
+
+To clone, you’ll first open `Rstudio`. Now, what we are going to do is put the folder that we made online on `GitHub`and put this same folder onto our machine.
+
+1. Click `File` in `RStudio` and click `New Project...`.
+
+2. Click the `Version Control` option. *Side note: the word `Version Control` comes from the term Version Control systems (VCS), which are software tools meant to help programmers, like you, collaborate, maintain original code, document changes, and keeping track of files. For example, `Git` is one of the most populatar version control systems.*
+
+3. Click the `Git` option. 
+
+There? Good.
+
+Now in this section, **Clone Git Repository**, `RStudio` is asking you for a few things: 
+
+  a. The first thing it is asking you for is the `Repository URL`. The `Repository URL` is the link to the repository you just created on `GitHub`. The link most likely looks like this: `https://github.com/<USERNAME>/<repo-name>`. An easier way than just editing this link I gave you is by going back to `GitHub` online and copying the URL at the top of the page, OR do you see the green button that says `<> Code`?  Click the button and you can copy the web URL or HTTPS link that is staring you in the face. Paste that link in the `Repository URL` space in `RStudio`.
+  b. Next, `RStudio` asks you for the `Project directory name`. This should be automatically filled when you paste the `Repository URL` link and will match the name of your repository on GitHub (e.g. testrepo).
+  c. Finally, `RStudio` needs to know where you want this project to be made or where you want this folder to be kept on your laptop. Since this is your first testrun and you are a part of DataLab, let's save this in your `name_datalab` folder on your laptop. So where it says `Create project as subdirectory of:` click `Browse` and find your `name_datalab` folder on your DeskTop and choose that location.
+  d. Click `Create Project` and watch the magic happen.
+  
+Now, you`ve got a folder on your machine named `testrepo`. You can confirm that by looking in your `name_datalab` folder and looking for `testrepo`.
+
+See testrepo there? Great!
+
+## Working in a repository
+
+### Change some code on your computer
+
+In your local `testrepo` folder, you have a “cloned” copy of the repository at https://github.com//testrepo.
+
+As of now, `testrepo` is a pretty uninteresting folder. The only thing in it is a file named `README.md`. A “README” file is generally an explanation of a repository’s content, purpose, etc. Like all files, a README can be tracked in git. By tracked I mean we can make edits to the file and save them in `GitHub` and look back at previous edits. Rather than me explaining, let's just do it.
+
+Let’s open the README file and make a change to it. We’ll add the below line of “code”:
+
+```{r, echo = TRUE, eval = FALSE}
+This is my first git repository.
+```
+
+Then save and close the README file.
+
+### Send the changes on your computer to `GitHub`
+
+Even though we have made edits to our `README.md` file on our laptop, GitHub has no idea that we made these changes. So how do we reflect the changes on our laptop online?
+
+If you look at the upper right corner of `RStudio` where your environment is, you will also see a `Git` button. Click it. This tab is where `RStudio` and `GitHub` can interact with each other.
+
+In this `Git` tab, you might notice that you have some items there. If you hover over the yellow question mark, you will see the message `Untracked`. This untracked message is the computer telling you that you have made changes on the computer that are not online. So, let's get the change we made on our laptop onto the internet.
+
+To get our new edits onto the internet there are two main things we have to do:
+1. add our changes
+2. commit our changes
+3. push our changes
+
+Again, let's learn by doing rather than by reading.
+
+#### Add your changes
+
+In the `Git` tab, click the white piece of paper with a check mark. In this pop-up you will see all of the documents that you edited today. You will see the `README.md` file which we just wrote on, the `testrepo.Rproj` that we created, and maybe a `.gitignore` file which for now we can just ignore like the title says. 
+
+Of the edits that we made, we want to choose which edits we *add* to `GitHub`. Let's add all of these edits that have been made today to `GitHub`. To do this you can click the empty square next to the document to make it blue OR you can click the button next to `stage` at the top of the pop-up. 
+
+#### Commit your changes
+
+Have you ever heard of the expression *commit something to memory*? Well, this is what we are going to do with these files we just chose or staged. On the right-hand side of the pop-up you will see a box which at the top says `Commit message`. In here, type:
+
+```{r, echo = TRUE, eval = FALSE}
+my first change
+```
+
+This tells `Git` that we are “committing” our change, it marking a checkpoint (to which we can revert later).
+
+Almost there. Now that we`ve added and committed, we need to "push" our change to `GitHub`. 
+
+#### Push the changes in your local repo to `GitHub`
+
+Click the green upper arrow that says Push.
+
+You did it! You did it! Go to https://github.com//testrepo and open the README.md file. You’ll notice that your most recent changes are there. Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.
+
+## Exercises
+
+**Create another repo:**
+
+Let’s face it: `testrepo` is a pretty lame name for a repository. How about we make a repo that’s actually real and useful? We’ll make one for storing all the code we’re writing in this course.
+
+**1)** Go to https://github.com/
+
+**2)** Click the “plus” icon in the upper right and then click “New repository” (or go directly [here](https://github.com/new)).
+
+**3)** Now, for “Repository name”, write “datalab_2024”.
+
+**4)** Fill in the “Description” field with the words “Code I wrote during my intro to data science course”.
+
+**5)** Set the repo as “Public” (unless you plan on putting any secrets here!), and then click the “Add a README file” checkbox. Finally, click “Create repository”.
+
+**6)** Clone the repo to your computer (name_datalab folder).
+
+**7)** Create a new R script in your `datalab_2024` repository called `babynames.R`.
+
+**8)** Load `library(babynames)` (don't forget to comment your RScript!).
+
+**9)** Make an object called bb_names by running `babynames <- bb_names`.
+
+**10)** Create a histogram of the name Marie in 1982.
+
+**11)** Create a line plot for proportion of the name Joe, colored by sex. Make the lines a bit thicker and more transparent.
+
+**12)** Add new x and y axis labels, as well as a chart title.
+
+**13)** Create a bar chart of all female names in 2002.
+
+**14)** Make the bars transparent and filled with the color blue.
+
+**15)** Create a new data set called `the_nineties` that only contains years from the 1990s.
+
+**16)** Save this dataset to your repository (use `write.csv()`).
+
+**17)** Add, commit, and push your files to `GitHub`.
+
+ 
+
+## Editing the .gitignore file
+
+If you look in your local datalab repo on your laptop, and you might see that there are a lot of documents there! You’re going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you don’t want to push.
+
+For example, maybe you want to push R code files (.R), but not data files (.csv). In this case, you can explicitly tell git that you don’t want it to pay any attention to .csv files by creating a .gitignore file. A .gitignore file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.
+
+Let’s do it.
+
+**18)** Open the .gitignore file in RStudio.
+
+**19)** Add the following line to it:
+
+```{r, echo = TRUE, eval = FALSE}
+*.csv
+```
+
+The star is a “wildcard”, meaning that it stands in place of anything (such as `ducks.csv` or `data.csv` or `xyz.csv`).
+
+With this in your repo, git now knows to ignore anything that ends with the extension `.csv`.
+
+Good? Great.
+
+**20)** Push everything to your repo (remember your 3 steps).
+
+Now you can share your code with others, and your future self.
+
+## Further resources
+
+[Using git from RStudio](https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html)
+
+[Hadley Wickham’s introduction to git + GitHub](https://r-pkgs.org/git.html)
