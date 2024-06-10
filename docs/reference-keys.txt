@@ -12,3 +12,4 @@ working-with-text
 getting-started-with-rmarkdown
 leveling-up-with-rmarkdown
 git-github
+kemri-datalab-summer-workbook
