@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 5 Exploring a dataset | R Bootcamp</title>
+  <title>Module 12 Getting started with RMarkdown | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 5 Exploring a dataset | R Bootcamp" />
+  <meta property="og:title" content="Module 12 Getting started with RMarkdown | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 5 Exploring a dataset | R Bootcamp" />
+  <meta name="twitter:title" content="Module 12 Getting started with RMarkdown | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="in-class-survey.html"/>
-<link rel="next" href="visualizing-data-with-ggplot2.html"/>
+<link rel="prev" href="working-with-text.html"/>
+<link rel="next" href="leveling-up-with-rmarkdown.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -801,84 +801,186 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exploring-a-dataset" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Module 5</span> Exploring a dataset<a href="exploring-a-dataset.html#exploring-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Let’s explore a dataset that consists of people who died and survived during a major event. Maybe you can even guess the event!</p>
-<ol style="list-style-type: decimal">
-<li><p>Open a new R script and name it <code>survival.R</code></p></li>
-<li><p>Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, and <code>ggplot2</code></p></li>
-<li><p>Read in the data by running the following:</p></li>
-</ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exploring-a-dataset.html#cb43-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/survival.csv&#39;</span>)</span></code></pre></div>
-<div id="dplyr-1" class="section level2 unnumbered hasAnchor">
-<h2><code>dplyr</code><a href="exploring-a-dataset.html#dplyr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol start="4" style="list-style-type: decimal">
-<li><p>How many columns are in the data?</p></li>
-<li><p>What are the names of the columns in the data?</p></li>
-<li><p>How many rows are in the data?</p></li>
-<li><p>Write code to look at just the first few rows of the data.</p></li>
-<li><p>Write code to look at just the last few rows of the data.</p></li>
-<li><p>What do you suppose the <code>survived</code> variable refers to?</p></li>
-<li><p>Re-order the dataset by age, from youngest to oldest.</p></li>
-<li><p>How old was the youngest person in the dataset?</p></li>
-<li><p>Re-order the dataset by age, from oldest to youngest.</p></li>
-<li><p>How old was the oldest person in the dataset?</p></li>
-<li><p>How many males are there in the dataset?</p></li>
-<li><p>How many females are there in the dataset?</p></li>
-<li><p>What percentage of the dataset is female?</p></li>
-<li><p>How many people survived?</p></li>
-<li><p>How many people died?</p></li>
-<li><p>What percentage of the people died?</p></li>
-<li><p>How many males survived?</p></li>
-<li><p>How many females died?</p></li>
-<li><p>What percentage of males died?</p></li>
-<li><p>What percentage of people who died were male?</p></li>
-<li><p>What percentage of people who survived were male?</p></li>
-<li><p>What percentage of people who died were female?</p></li>
-<li><p>How many people were in each <code>class</code>?</p></li>
-<li><p>How many people from each class survived and died?</p></li>
-<li><p>What percentage of people from each class died?</p></li>
-<li><p>What is the age of the youngest survivor?</p></li>
-<li><p>What is the age of the oldest survivor?</p></li>
-<li><p>What is the age of the youngest surviving male?</p></li>
-<li><p>What is the sex of the oldest person who died?</p></li>
-<li><p>What is the average of age of females who died?</p></li>
-<li><p>What is the average age of males who survived?</p></li>
-<li><p>Make a table showing the exact number of people that died and survived, grouping also by class and sex.</p></li>
-<li><p>Create a variable named <code>outcome</code>. Populate this variable with the characters “survived” or “died” depending on the <code>survived</code> variable.</p></li>
-<li><p>Make another variable called <code>age_group</code>. If the person is over 18, call them “adult”; otherwise, call them “child”.</p></li>
-<li><p>Make another variable called <code>person_type</code>. Use <code>paste0</code> to combine the <code>sex</code> and <code>age_group</code> variables, in that order.</p></li>
-<li><p>Make another variable called <code>initial</code>. This should be the first letter of each person’s last name. Hint, use <code>substr</code>.</p></li>
-<li><p>What is the most prevalent <code>initial</code> in the dataset?</p></li>
-<li><p>What is the least prevalent second letter in people’s last names?</p></li>
-<li><p>Use <code>nchar</code> to calculate the number of letters in each person’s name, and make a variable with that value named <code>name_length</code>.</p></li>
-<li><p>Who has the longest name in the dataset?</p></li>
-<li><p>Who has the shortest name in the dataset?</p></li>
-<li><p>Make a variable called <code>above_average_name_length</code>. This should be <code>TRUE</code> if the person’s name length is above average, and false if below or at average.</p></li>
-<li><p>Who is more likely to have survived: those with short names, or those with long names.</p></li>
-<li><p>What is the age of the female with the shortest name who survived?</p></li>
-<li><p>What is the sex of the oldest person to have died who had an above average name length?</p></li>
-<li><p>Who, on average, has shorter names: males or females?</p></li>
-<li><p>What is the total number of characters in all female names, and all male names?</p></li>
-</ol>
+<div id="getting-started-with-rmarkdown" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Module 12</span> Getting started with RMarkdown<a href="getting-started-with-rmarkdown.html#getting-started-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-goals-4" class="section level3 unnumbered hasAnchor">
+<h3>Learning goals<a href="getting-started-with-rmarkdown.html#learning-goals-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>How to document your projects with <code>RMarkdown</code> and why doing so is so important.</li>
+</ul>
+<p>This is a <strong>meta-tutorial</strong> for using <code>RMarkdown</code>, a “syntax” for writing <em>beautiful</em> reports with simple text files. This tutorial, which was written in <code>RMarkdown</code>, has been provided twice: first, as its formatted ‘book-ready’ form, and second as the raw text file used to write it.</p>
 </div>
-<div id="ggplot2" class="section level2 unnumbered hasAnchor">
-<h2><code>ggplot2</code><a href="exploring-a-dataset.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol start="51" style="list-style-type: decimal">
-<li><p>Make a histogram of the age of people.</p></li>
-<li><p>Make a barchart of the class of people.</p></li>
-<li><p>Make a barchart of the <code>outcome</code> variable.</p></li>
-<li><p>Make a scatterplot of the <code>name_length</code> and <code>age</code> variables.</p></li>
-<li><p>Make a chart showing the age of males and females separately.</p></li>
-<li><p>Make a chart showing survivorship by sex.</p></li>
-<li><p>Make a chart showing survivorship by age.</p></li>
-<li><p>Make a chart showing the age, sex, and survivor status of people.</p></li>
-<li><p>Make a chart showing the distribution of the lengh of people’s names.</p></li>
-<li><p>Assume that the average life expectancy is 80. How many years of life were lost due to this event?</p></li>
-<li><p>How many years of life lost were attributible to males? How many to females?</p></li>
-<li><p>Make three more charts.</p></li>
-<li><p>What caused this event?</p></li>
+<div id="what-is-rmarkdown" class="section level2 unnumbered hasAnchor">
+<h2>What is <code>RMarkdown</code>?<a href="getting-started-with-rmarkdown.html#what-is-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>RMarkdown</code> lets you write documents formatted with fancy <code>HTML</code> (the main language used to create websites) without having to know how to write <code>HTML</code> code. Instead, you just need to know how to use a few common symbols.</p>
+</div>
+<div id="why" class="section level2 unnumbered hasAnchor">
+<h2>Why?<a href="getting-started-with-rmarkdown.html#why" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>RMarkdown</code> was created because most data scientists used to document their code and data projects with simple text files (<code>.txt</code>). Text files are designed to be simple, so they have no special formatting: no nice fonts, no headings, no bold, no italics, no bullet lists. And, as a result of their simplicity, text files are (1) <em>boring</em> and (2) <em>difficult to organize</em>.</p>
+<p><code>RMarkdown</code> is the perfect solution: it translates a simple text file into a beautifully formatted report.</p>
+<p>Recall that, in order for your research to be truly reproducible, you have to <strong>document your work thoroughly</strong>. Doing so requires two things: First, that you provide a detailed description of your work in a simple text file, and second, that your documentation be <em>well-organized</em> and <em>enjoyably legible</em>. Think about it: if your documentation is incomplete, impossible to navigate, and difficult to read, can you really say that your project is reproducible?</p>
+</div>
+<div id="what-can-you-do-with-rmarkdown" class="section level2 unnumbered hasAnchor">
+<h2>What can you do with <code>RMarkdown</code>?<a href="getting-started-with-rmarkdown.html#what-can-you-do-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First of all, <code>RMarkdown</code>…</p>
+<ol style="list-style-type: decimal">
+<li>Lets you organize your report into sections and subsections.<br />
+</li>
+<li>Lets you italicize and emphasize certain sections of your work.<br />
+</li>
+<li>Lets you distinguish between normal text and code or filenames.<br />
+</li>
+<li>Lets you write large chunks of code, like the one below.</li>
 </ol>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="getting-started-with-rmarkdown.html#cb123-1" tabindex="-1"></a><span class="co"># This is a large chunk of code. </span></span>
+<span id="cb123-2"><a href="getting-started-with-rmarkdown.html#cb123-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb123-3"><a href="getting-started-with-rmarkdown.html#cb123-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb123-4"><a href="getting-started-with-rmarkdown.html#cb123-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span></code></pre></div>
+<p>Also, <code>RMarkdown</code> …</p>
+<ul>
+<li><p>Lets you weave together your documentation with <code>R</code> code that <em>actually runs</em> (this is called <code>RMarkdown</code>, which is covered in the next module), opening up possibilities for automatic reporting and truly reproducible research publications.</p></li>
+<li><p>Lets you produce publication-ready articles and books, since there is a world of open-source formatting templates available to you.</p></li>
+<li><p>Lets you add <a href="https://tenor.com/es/view/werk-sassy-told-you-so-yas-honey-gif-18865873">hyperlinks</a>.</p></li>
+<li><p>Lets you type <code>HTML</code> code directly into the same document, <font color='red'><b><strong>if you want to</strong></b></font>.</p></li>
+<li><p>Lets you include images, like the one below.</p></li>
+</ul>
+<p><img src="https://datascience.pizza/img/markdown-dogs.jpeg" /></p>
+<div id="common-rmarkdown-mistakes" class="section level3 unnumbered hasAnchor">
+<h3>Common <code>RMarkdown</code> mistakes<a href="getting-started-with-rmarkdown.html#common-rmarkdown-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>When you try to make a section heading (e.g., <code>## New section</code>), you forget to put a space between the hashtags and the name of the section.</p></li>
+<li><p>When you try to begin a new paragraph, you don’t add two spaces at the end of your sentence. (Without those two spaces, <code>RMarkdown</code> will assume you are still working in the same paragraph.)</p></li>
+<li><p>The same thing happens often when making a list. Without <em>two spaces</em> at the end of each item, the items might not get placed on new lines.</p></li>
+<li><p>When you try to begin a new paragraph, you don’t add an empty line between your paragraphs.</p></li>
+</ul>
+</div>
+</div>
+<div id="raw-rmarkdown-example" class="section level2 unnumbered hasAnchor">
+<h2>Raw <code>RMarkdown</code> example<a href="getting-started-with-rmarkdown.html#raw-rmarkdown-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Below we provide the raw textfile we used to write the section above.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="getting-started-with-rmarkdown.html#cb124-1" tabindex="-1"></a><span class="co"># `Markdown` documentation </span></span>
+<span id="cb124-2"><a href="getting-started-with-rmarkdown.html#cb124-2" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="getting-started-with-rmarkdown.html#cb124-3" tabindex="-1"></a><span class="do">#### Learning goals {-}</span></span>
+<span id="cb124-4"><a href="getting-started-with-rmarkdown.html#cb124-4" tabindex="-1"></a></span>
+<span id="cb124-5"><a href="getting-started-with-rmarkdown.html#cb124-5" tabindex="-1"></a><span class="sc">-</span> How to document your projects with <span class="st">`</span><span class="at">Markdown</span><span class="st">`</span>, and why doing so is so important.</span>
+<span id="cb124-6"><a href="getting-started-with-rmarkdown.html#cb124-6" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="getting-started-with-rmarkdown.html#cb124-7" tabindex="-1"></a><span class="sc">&amp;</span>nbsp;  </span>
+<span id="cb124-8"><a href="getting-started-with-rmarkdown.html#cb124-8" tabindex="-1"></a></span>
+<span id="cb124-9"><a href="getting-started-with-rmarkdown.html#cb124-9" tabindex="-1"></a>This is a <span class="sc">**</span>meta<span class="sc">-</span>tutorial<span class="sc">**</span> <span class="cf">for</span> using <span class="st">`</span><span class="at">Markdown</span><span class="st">`</span>, a <span class="st">&quot;syntax&quot;</span> <span class="cf">for</span> writing</span>
+<span id="cb124-10"><a href="getting-started-with-rmarkdown.html#cb124-10" tabindex="-1"></a><span class="sc">*</span>beautiful<span class="sc">*</span> reports with simple text files. This tutorial, which was written</span>
+<span id="cb124-11"><a href="getting-started-with-rmarkdown.html#cb124-11" tabindex="-1"></a><span class="cf">in</span> <span class="st">`</span><span class="at">Markdown</span><span class="st">`</span>, has been provided twice<span class="sc">:</span> first, as its formatted <span class="st">&#39;book-ready&#39;</span> </span>
+<span id="cb124-12"><a href="getting-started-with-rmarkdown.html#cb124-12" tabindex="-1"></a>form, and second as the raw text file used to write it.  </span>
+<span id="cb124-13"><a href="getting-started-with-rmarkdown.html#cb124-13" tabindex="-1"></a></span>
+<span id="cb124-14"><a href="getting-started-with-rmarkdown.html#cb124-14" tabindex="-1"></a><span class="do">## What is `Markdown`?  {-}  </span></span>
+<span id="cb124-15"><a href="getting-started-with-rmarkdown.html#cb124-15" tabindex="-1"></a></span>
+<span id="cb124-16"><a href="getting-started-with-rmarkdown.html#cb124-16" tabindex="-1"></a><span class="st">`</span><span class="at">Markdown</span><span class="st">`</span> lets you write documents formatted with fancy <span class="st">`</span><span class="at">HTML</span><span class="st">`</span> (the main</span>
+<span id="cb124-17"><a href="getting-started-with-rmarkdown.html#cb124-17" tabindex="-1"></a>language used to create websites) without having to know how to write <span class="st">`</span><span class="at">HTML</span><span class="st">`</span></span>
+<span id="cb124-18"><a href="getting-started-with-rmarkdown.html#cb124-18" tabindex="-1"></a>code. Instead, you just need to know how to use a few common symbols. </span>
+<span id="cb124-19"><a href="getting-started-with-rmarkdown.html#cb124-19" tabindex="-1"></a></span>
+<span id="cb124-20"><a href="getting-started-with-rmarkdown.html#cb124-20" tabindex="-1"></a><span class="do">### Why? {-} </span></span>
+<span id="cb124-21"><a href="getting-started-with-rmarkdown.html#cb124-21" tabindex="-1"></a></span>
+<span id="cb124-22"><a href="getting-started-with-rmarkdown.html#cb124-22" tabindex="-1"></a><span class="st">`</span><span class="at">Markdown</span><span class="st">`</span> was created because most data scientists used to document their</span>
+<span id="cb124-23"><a href="getting-started-with-rmarkdown.html#cb124-23" tabindex="-1"></a>code and data projects with simple text <span class="fu">files</span> (<span class="st">`</span><span class="at">.txt</span><span class="st">`</span>). Text files are designed</span>
+<span id="cb124-24"><a href="getting-started-with-rmarkdown.html#cb124-24" tabindex="-1"></a>to be simple, so they have no special formatting<span class="sc">:</span> no nice fonts, no headings,</span>
+<span id="cb124-25"><a href="getting-started-with-rmarkdown.html#cb124-25" tabindex="-1"></a>no bold, no italics, no bullet lists. And, as a result of their simplicity,</span>
+<span id="cb124-26"><a href="getting-started-with-rmarkdown.html#cb124-26" tabindex="-1"></a>text files <span class="fu">are</span> (<span class="dv">1</span>) <span class="sc">*</span>boring<span class="sc">*</span> <span class="fu">and</span> (<span class="dv">2</span>) <span class="sc">*</span>difficult to organize<span class="sc">*</span>.  </span>
+<span id="cb124-27"><a href="getting-started-with-rmarkdown.html#cb124-27" tabindex="-1"></a></span>
+<span id="cb124-28"><a href="getting-started-with-rmarkdown.html#cb124-28" tabindex="-1"></a><span class="st">`</span><span class="at">Markdown</span><span class="st">`</span> is the perfect solution<span class="sc">:</span> it translates a simple text file into a</span>
+<span id="cb124-29"><a href="getting-started-with-rmarkdown.html#cb124-29" tabindex="-1"></a>beautifully formatted report.  </span>
+<span id="cb124-30"><a href="getting-started-with-rmarkdown.html#cb124-30" tabindex="-1"></a></span>
+<span id="cb124-31"><a href="getting-started-with-rmarkdown.html#cb124-31" tabindex="-1"></a>Recall that, <span class="cf">in</span> order <span class="cf">for</span> your research to be truly reproducible, you have to</span>
+<span id="cb124-32"><a href="getting-started-with-rmarkdown.html#cb124-32" tabindex="-1"></a><span class="sc">**</span>document your work thoroughly<span class="sc">**</span>. Doing so requires two things<span class="sc">:</span> First, that</span>
+<span id="cb124-33"><a href="getting-started-with-rmarkdown.html#cb124-33" tabindex="-1"></a>you provide a detailed description of your work <span class="cf">in</span> a simple text file, and</span>
+<span id="cb124-34"><a href="getting-started-with-rmarkdown.html#cb124-34" tabindex="-1"></a>second, that your documentation be <span class="sc">*</span>well<span class="sc">-</span>organized<span class="sc">*</span> and <span class="sc">*</span>enjoyably legible<span class="sc">*</span>.</span>
+<span id="cb124-35"><a href="getting-started-with-rmarkdown.html#cb124-35" tabindex="-1"></a>Think about it<span class="sc">:</span> <span class="cf">if</span> your documentation is incomplete, impossible to navigate,</span>
+<span id="cb124-36"><a href="getting-started-with-rmarkdown.html#cb124-36" tabindex="-1"></a>and difficult to read, can you really say that your project is reproducible?</span>
+<span id="cb124-37"><a href="getting-started-with-rmarkdown.html#cb124-37" tabindex="-1"></a></span>
+<span id="cb124-38"><a href="getting-started-with-rmarkdown.html#cb124-38" tabindex="-1"></a><span class="do">### What can you do with `Markdown`? {-}  </span></span>
+<span id="cb124-39"><a href="getting-started-with-rmarkdown.html#cb124-39" tabindex="-1"></a></span>
+<span id="cb124-40"><a href="getting-started-with-rmarkdown.html#cb124-40" tabindex="-1"></a>First of all, <span class="st">`</span><span class="at">Markdown</span><span class="st">`</span> ...  </span>
+<span id="cb124-41"><a href="getting-started-with-rmarkdown.html#cb124-41" tabindex="-1"></a></span>
+<span id="cb124-42"><a href="getting-started-with-rmarkdown.html#cb124-42" tabindex="-1"></a><span class="fl">1.</span> Lets you organize your report into sections and subsections.  </span>
+<span id="cb124-43"><a href="getting-started-with-rmarkdown.html#cb124-43" tabindex="-1"></a><span class="fl">2.</span> Lets you <span class="sc">*</span>italicize<span class="sc">*</span> and <span class="sc">**</span>emphasize<span class="sc">**</span> certain sections of your work. </span>
+<span id="cb124-44"><a href="getting-started-with-rmarkdown.html#cb124-44" tabindex="-1"></a><span class="fl">3.</span> Lets you distinguish between normal text and <span class="st">`</span><span class="at">code</span><span class="st">`</span> or <span class="st">`</span><span class="at">filenames</span><span class="st">`</span>. </span>
+<span id="cb124-45"><a href="getting-started-with-rmarkdown.html#cb124-45" tabindex="-1"></a><span class="fl">4.</span> Lets you write large chunks of code, like the one below. </span>
+<span id="cb124-46"><a href="getting-started-with-rmarkdown.html#cb124-46" tabindex="-1"></a></span>
+<span id="cb124-47"><a href="getting-started-with-rmarkdown.html#cb124-47" tabindex="-1"></a>Also, <span class="st">`</span><span class="at">Markdown</span><span class="st">`</span> ...  </span>
+<span id="cb124-48"><a href="getting-started-with-rmarkdown.html#cb124-48" tabindex="-1"></a></span>
+<span id="cb124-49"><a href="getting-started-with-rmarkdown.html#cb124-49" tabindex="-1"></a><span class="sc">-</span> Lets you weave together your documentation with <span class="st">`</span><span class="at">R</span><span class="st">`</span> code that</span>
+<span id="cb124-50"><a href="getting-started-with-rmarkdown.html#cb124-50" tabindex="-1"></a><span class="sc">*</span>actually runs<span class="sc">*</span> (this is called <span class="st">`</span><span class="at">RMarkdown</span><span class="st">`</span>, which is covered</span>
+<span id="cb124-51"><a href="getting-started-with-rmarkdown.html#cb124-51" tabindex="-1"></a><span class="cf">in</span> the <span class="cf">next</span> module), opening up possibilities <span class="cf">for</span> automatic reporting</span>
+<span id="cb124-52"><a href="getting-started-with-rmarkdown.html#cb124-52" tabindex="-1"></a>and truly reproducible research publications.  </span>
+<span id="cb124-53"><a href="getting-started-with-rmarkdown.html#cb124-53" tabindex="-1"></a></span>
+<span id="cb124-54"><a href="getting-started-with-rmarkdown.html#cb124-54" tabindex="-1"></a><span class="sc">-</span> Lets you produce publication<span class="sc">-</span>ready articles and books, since there is a</span>
+<span id="cb124-55"><a href="getting-started-with-rmarkdown.html#cb124-55" tabindex="-1"></a>world of open<span class="sc">-</span>source formatting templates available to you.  </span>
+<span id="cb124-56"><a href="getting-started-with-rmarkdown.html#cb124-56" tabindex="-1"></a></span>
+<span id="cb124-57"><a href="getting-started-with-rmarkdown.html#cb124-57" tabindex="-1"></a><span class="sc">-</span> Lets you add [hyperlinks](https<span class="sc">:</span><span class="er">//</span>www.markdownguide.org<span class="sc">/</span>getting<span class="sc">-</span>started<span class="sc">/</span>).  </span>
+<span id="cb124-58"><a href="getting-started-with-rmarkdown.html#cb124-58" tabindex="-1"></a></span>
+<span id="cb124-59"><a href="getting-started-with-rmarkdown.html#cb124-59" tabindex="-1"></a><span class="sc">-</span> Lets you type <span class="st">`</span><span class="at">HTML</span><span class="st">`</span> code directly into the same document, </span>
+<span id="cb124-60"><a href="getting-started-with-rmarkdown.html#cb124-60" tabindex="-1"></a><span class="sc">&lt;</span>font color<span class="ot">=</span><span class="st">&#39;red&#39;</span><span class="sc">&gt;</span><span class="er">&lt;</span>b<span class="sc">&gt;</span><span class="cf">if</span> you want to<span class="sc">&lt;</span><span class="er">/</span>b<span class="sc">&gt;</span><span class="er">&lt;/</span>font<span class="sc">&gt;</span>. </span>
+<span id="cb124-61"><a href="getting-started-with-rmarkdown.html#cb124-61" tabindex="-1"></a></span>
+<span id="cb124-62"><a href="getting-started-with-rmarkdown.html#cb124-62" tabindex="-1"></a><span class="sc">-</span> Lets you include images, like the one below.  </span>
+<span id="cb124-63"><a href="getting-started-with-rmarkdown.html#cb124-63" tabindex="-1"></a></span>
+<span id="cb124-64"><a href="getting-started-with-rmarkdown.html#cb124-64" tabindex="-1"></a><span class="sc">&lt;</span>center<span class="sc">&gt;</span></span>
+<span id="cb124-65"><a href="getting-started-with-rmarkdown.html#cb124-65" tabindex="-1"></a><span class="sc">!</span>[](img<span class="sc">/</span>markdown<span class="sc">-</span>dogs.jpeg){width<span class="ot">=</span><span class="dv">50</span>%}</span>
+<span id="cb124-66"><a href="getting-started-with-rmarkdown.html#cb124-66" tabindex="-1"></a><span class="sc">&lt;</span><span class="er">/</span>center<span class="sc">&gt;</span></span>
+<span id="cb124-67"><a href="getting-started-with-rmarkdown.html#cb124-67" tabindex="-1"></a></span>
+<span id="cb124-68"><a href="getting-started-with-rmarkdown.html#cb124-68" tabindex="-1"></a><span class="do">#### Common `Markdown` mistakes {-}</span></span>
+<span id="cb124-69"><a href="getting-started-with-rmarkdown.html#cb124-69" tabindex="-1"></a></span>
+<span id="cb124-70"><a href="getting-started-with-rmarkdown.html#cb124-70" tabindex="-1"></a><span class="sc">-</span> When you try to make a section <span class="fu">heading</span> (e.g., <span class="st">`</span><span class="at">## New section</span><span class="st">`</span>),</span>
+<span id="cb124-71"><a href="getting-started-with-rmarkdown.html#cb124-71" tabindex="-1"></a>you forget to put a space between the hashtags and the name of the section.  </span>
+<span id="cb124-72"><a href="getting-started-with-rmarkdown.html#cb124-72" tabindex="-1"></a></span>
+<span id="cb124-73"><a href="getting-started-with-rmarkdown.html#cb124-73" tabindex="-1"></a><span class="sc">-</span> When you try to begin a new paragraph, you don<span class="st">&#39;t add *two spaces*</span></span>
+<span id="cb124-74"><a href="getting-started-with-rmarkdown.html#cb124-74" tabindex="-1"></a><span class="st">at the end of your sentence. (Without those two spaces, `Markdown`</span></span>
+<span id="cb124-75"><a href="getting-started-with-rmarkdown.html#cb124-75" tabindex="-1"></a><span class="st">will assume you are still working in the same paragraph.) </span></span>
+<span id="cb124-76"><a href="getting-started-with-rmarkdown.html#cb124-76" tabindex="-1"></a></span>
+<span id="cb124-77"><a href="getting-started-with-rmarkdown.html#cb124-77" tabindex="-1"></a><span class="st">- The same thing happens often when making a list. Without *two spaces*</span></span>
+<span id="cb124-78"><a href="getting-started-with-rmarkdown.html#cb124-78" tabindex="-1"></a><span class="st">at the end of each item, the items might not get placed on new lines.  </span></span>
+<span id="cb124-79"><a href="getting-started-with-rmarkdown.html#cb124-79" tabindex="-1"></a></span>
+<span id="cb124-80"><a href="getting-started-with-rmarkdown.html#cb124-80" tabindex="-1"></a><span class="st">- When you try to begin a new paragraph, you don&#39;</span>t add an empty line</span>
+<span id="cb124-81"><a href="getting-started-with-rmarkdown.html#cb124-81" tabindex="-1"></a>between your paragraphs.  </span></code></pre></div>
+</div>
+<div id="exercises-3" class="section level2 unnumbered hasAnchor">
+<h2>Exercises<a href="getting-started-with-rmarkdown.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Open a new, blank RMarkdown document:</p>
+<p><strong>1.</strong> In RStudio, go to the top left dropbown menu for making a new file (look for the green plus sign.)</p>
+<p><strong>2.</strong> Select “R Markdown…”</p>
+<p><strong>3.</strong> Save this file as <code>test.Rmd</code> in your datalab folder.</p>
+<p>The prefix, <code>.Rmd</code>, specifies that this text file should be interpreted as a <code>RMarkdown</code> file. Once you save the file, you should see some new options appear, one of which is preview.</p>
+<p><strong>4.</strong> At the top of your <code>test.Rmd</code> file, write: # Title</p>
+<p><strong>5.</strong> Click the Knit button and see if a <code>RMarkdown</code> file is produced.</p>
+<p><strong>Make your own <code>RMarkdown</code></strong>:
+Use the <code>RMarkdown</code> example above, which you can compare to the formatted version at the top of this module, to figure out how to add the following elements to your document.</p>
+<p>Use the <em>Knit</em> button to test if your entries are doing what you want them to.</p>
+<p><strong>6.</strong> Write a silly sentence.</p>
+<p><strong>7.</strong> Make a word in that sentence <em>italicized</em>.</p>
+<p><strong>8.</strong> Make a word in that sentence <strong>boldface</strong>.</p>
+<p><strong>9.</strong> Add the first section to your document. Name it whatever you want.</p>
+<p><strong>10.</strong> Add a sentence in this new section, formatting one of its words as a piece of <code>code</code>.</p>
+<p><strong>11.</strong> Start a new paragraph and add another sentence.</p>
+<p><strong>12.</strong> Start a third paragraph and add vertical space between it and the previous paragraph.</p>
+<p><strong>13.</strong> Add a multi-line chunk of code.</p>
+<p><strong>14.</strong> Download a silly meme from the internet and add it to your document. (Hint: you will have to place that image file in the same folder as your Markdown file.)</p>
+<p><strong>15.</strong> Add another subsection to the subsection you are working in. Name it “Grocery List”.</p>
+<p><strong>16.</strong> Type out an enumerated grocery list.</p>
+<p><strong>17.</strong> Add another subsection, this time at the same hierarchichal level as the one you created in step 9. Name it “Bucket List”.</p>
+<p><strong>18.</strong> Create a bullet list of things you want to accomplish before you die.</p>
+<p><strong>19.</strong> Make one of your list items act as a link to another website.</p>
+</div>
+<div id="make-a-markdown-cv" class="section level2 unnumbered hasAnchor">
+<h2>Make a Markdown CV<a href="getting-started-with-rmarkdown.html#make-a-markdown-cv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is increasingly common for data scientists to have a Markdown version of their CV posted as its own page. Check out these examples:</p>
+<ul>
+<li><a href="https://carolstran.github.io/cv/">Here</a><br />
+</li>
+<li>Also <a href="https://github.com/ViliamV/easy-markdown-cv">here</a><br />
+</li>
+<li>And <a href="http://wodenimoni.com/nimo-markdown-cv/">here</a>!</li>
+</ul>
+<p>Maintaining your <em>CV</em> this way can be very efficient. It is easy to format and easy to update. And, most importantly, rather than have various versions of your <em>CV</em> on your computer or in GoogleDrive, you can just share a <em>link</em> to your live, published <em>CV</em>. What better way to demonstrate your skillset in a reproducible, professional-quality research?</p>
+<p>Resources<br />
+* <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a><br />
+* <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf</a></p>
 
 </div>
 </div>
@@ -887,8 +989,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="in-class-survey.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-data-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="working-with-text.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="leveling-up-with-rmarkdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -919,7 +1021,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04c-exploring-a-dataset.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04j-start-RMarkdown.Rmd",
 "text": "Edit"
 },
 "history": {

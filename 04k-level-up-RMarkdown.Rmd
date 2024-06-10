@@ -1,0 +1,37 @@
+# Leveling up with RMarkdown
+
+It's time to sharpen your RMarkdown skills while reviewing what you've learned so far. Let's go!
+
+## OWID COVID-19 data, Part 1 {.unnumbered}
+
+**1.** We're going to work with the [Our World in Data COVID-19 dataset](https://github.com/owid/covid-19-data/tree/master/public/data), which is hosted on GitHub (more on that soon!). Go there and download the CSV to your DataLab folder. Also, download the [codebook](https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv) for convenient reference.
+
+**2.** Before doing anything else, visit [Our World in Data's COVID-19 Data Explorer](https://ourworldindata.org/explorers/coronavirus-data-explorer) and explore some of their visualizations. Together, we'll decide what to analyze and visualize -- at the very least, we'll create some summaries and a couple of maps. 
+
+**3.** Open a new RMarkdown file called `covid.Rmd` and save it in your DataLab folder. 
+
+**4.** Give your file a good title, add your name as author, and delete everything below the `setup` chunk that sets `knitr` options (i.e., everything after line 11).
+
+**5.** `knit` your file. The output should just consist of your title, your name, and today's date.
+
+**6.** In the `setup` R chunk, edit the `knitr` options and **turn off** `echo`, `message`, and `warning`. 
+
+**7.** In the `setup` R chunk, add code to load the libraries `tidyverse`, `sf`, and `tmap`. Depending on what we choose to do, we might need to load some additional libraries.
+
+**8.** In the `setup` chunk, add code to load both the dataset and the codebook that you downloaded in step **1.** above.
+
+**9.** `knit` your file again to make sure that everything is still working. Note how RStudio saves your RMarkdown file each time you `knit` it!
+
+**9.** Add a section called _Introduction_ where we will outline the analysis we're going to do. A few bullet points will probably be useful here!
+
+**10.** Let's do our analysis, organizing our results into sections and subsections as we go. 
+
+**11.** Once we're happy with the results (or we run out of time, whichever comes first), let's create an RMarkdown presentation of our findings.
+
+## OWID COVID-19 data, Part 2 {.unnumbered}
+
+With a partner, put together a new RMarkdown analysis using the Our World in Data COVID-19 dataset. Create both a report and a slide deck that you'll present together.
+
+
+
+

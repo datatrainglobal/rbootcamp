@@ -9,7 +9,8 @@ making-maps
 making-choropleths
 working-with-dates-and-times
 working-with-text
-rmarkdown
+getting-started-with-rmarkdown
+leveling-up-with-rmarkdown
 git-github
 learning-goals-5
 why-1

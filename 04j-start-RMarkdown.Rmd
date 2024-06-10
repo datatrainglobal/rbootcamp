@@ -1,4 +1,4 @@
-# RMarkdown
+# Getting started with RMarkdown
 
 ### Learning goals {.unnumbered}
 

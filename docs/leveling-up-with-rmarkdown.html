@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 5 Exploring a dataset | R Bootcamp</title>
+  <title>Module 13 Leveling up with RMarkdown | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 5 Exploring a dataset | R Bootcamp" />
+  <meta property="og:title" content="Module 13 Leveling up with RMarkdown | R Bootcamp" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A resource &amp; workbook for learning R" />
   <meta name="github-repo" content="datatrainglobal/rbootcamp" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 5 Exploring a dataset | R Bootcamp" />
+  <meta name="twitter:title" content="Module 13 Leveling up with RMarkdown | R Bootcamp" />
   
   <meta name="twitter:description" content="A resource &amp; workbook for learning R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="in-class-survey.html"/>
-<link rel="next" href="visualizing-data-with-ggplot2.html"/>
+<link rel="prev" href="getting-started-with-rmarkdown.html"/>
+<link rel="next" href="git-github.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -801,84 +801,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exploring-a-dataset" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Module 5</span> Exploring a dataset<a href="exploring-a-dataset.html#exploring-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Let’s explore a dataset that consists of people who died and survived during a major event. Maybe you can even guess the event!</p>
-<ol style="list-style-type: decimal">
-<li><p>Open a new R script and name it <code>survival.R</code></p></li>
-<li><p>Write code to load the following libraries: <code>dplyr</code>, <code>readr</code>, and <code>ggplot2</code></p></li>
-<li><p>Read in the data by running the following:</p></li>
-</ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exploring-a-dataset.html#cb43-1" tabindex="-1"></a>people <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://datatrain.cc/data/survival.csv&#39;</span>)</span></code></pre></div>
-<div id="dplyr-1" class="section level2 unnumbered hasAnchor">
-<h2><code>dplyr</code><a href="exploring-a-dataset.html#dplyr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol start="4" style="list-style-type: decimal">
-<li><p>How many columns are in the data?</p></li>
-<li><p>What are the names of the columns in the data?</p></li>
-<li><p>How many rows are in the data?</p></li>
-<li><p>Write code to look at just the first few rows of the data.</p></li>
-<li><p>Write code to look at just the last few rows of the data.</p></li>
-<li><p>What do you suppose the <code>survived</code> variable refers to?</p></li>
-<li><p>Re-order the dataset by age, from youngest to oldest.</p></li>
-<li><p>How old was the youngest person in the dataset?</p></li>
-<li><p>Re-order the dataset by age, from oldest to youngest.</p></li>
-<li><p>How old was the oldest person in the dataset?</p></li>
-<li><p>How many males are there in the dataset?</p></li>
-<li><p>How many females are there in the dataset?</p></li>
-<li><p>What percentage of the dataset is female?</p></li>
-<li><p>How many people survived?</p></li>
-<li><p>How many people died?</p></li>
-<li><p>What percentage of the people died?</p></li>
-<li><p>How many males survived?</p></li>
-<li><p>How many females died?</p></li>
-<li><p>What percentage of males died?</p></li>
-<li><p>What percentage of people who died were male?</p></li>
-<li><p>What percentage of people who survived were male?</p></li>
-<li><p>What percentage of people who died were female?</p></li>
-<li><p>How many people were in each <code>class</code>?</p></li>
-<li><p>How many people from each class survived and died?</p></li>
-<li><p>What percentage of people from each class died?</p></li>
-<li><p>What is the age of the youngest survivor?</p></li>
-<li><p>What is the age of the oldest survivor?</p></li>
-<li><p>What is the age of the youngest surviving male?</p></li>
-<li><p>What is the sex of the oldest person who died?</p></li>
-<li><p>What is the average of age of females who died?</p></li>
-<li><p>What is the average age of males who survived?</p></li>
-<li><p>Make a table showing the exact number of people that died and survived, grouping also by class and sex.</p></li>
-<li><p>Create a variable named <code>outcome</code>. Populate this variable with the characters “survived” or “died” depending on the <code>survived</code> variable.</p></li>
-<li><p>Make another variable called <code>age_group</code>. If the person is over 18, call them “adult”; otherwise, call them “child”.</p></li>
-<li><p>Make another variable called <code>person_type</code>. Use <code>paste0</code> to combine the <code>sex</code> and <code>age_group</code> variables, in that order.</p></li>
-<li><p>Make another variable called <code>initial</code>. This should be the first letter of each person’s last name. Hint, use <code>substr</code>.</p></li>
-<li><p>What is the most prevalent <code>initial</code> in the dataset?</p></li>
-<li><p>What is the least prevalent second letter in people’s last names?</p></li>
-<li><p>Use <code>nchar</code> to calculate the number of letters in each person’s name, and make a variable with that value named <code>name_length</code>.</p></li>
-<li><p>Who has the longest name in the dataset?</p></li>
-<li><p>Who has the shortest name in the dataset?</p></li>
-<li><p>Make a variable called <code>above_average_name_length</code>. This should be <code>TRUE</code> if the person’s name length is above average, and false if below or at average.</p></li>
-<li><p>Who is more likely to have survived: those with short names, or those with long names.</p></li>
-<li><p>What is the age of the female with the shortest name who survived?</p></li>
-<li><p>What is the sex of the oldest person to have died who had an above average name length?</p></li>
-<li><p>Who, on average, has shorter names: males or females?</p></li>
-<li><p>What is the total number of characters in all female names, and all male names?</p></li>
-</ol>
+<div id="leveling-up-with-rmarkdown" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Module 13</span> Leveling up with RMarkdown<a href="leveling-up-with-rmarkdown.html#leveling-up-with-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>It’s time to sharpen your RMarkdown skills while reviewing what you’ve learned so far. Let’s go!</p>
+<div id="owid-covid-19-data-part-1" class="section level2 unnumbered hasAnchor">
+<h2>OWID COVID-19 data, Part 1<a href="leveling-up-with-rmarkdown.html#owid-covid-19-data-part-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> We’re going to work with the <a href="https://github.com/owid/covid-19-data/tree/master/public/data">Our World in Data COVID-19 dataset</a>, which is hosted on GitHub (more on that soon!). Go there and download the CSV to your DataLab folder. Also, download the <a href="https://github.com/owid/covid-19-data/tree/master/public/data/owid-covid-codebook.csv">codebook</a> for convenient reference.</p>
+<p><strong>2.</strong> Before doing anything else, visit <a href="https://ourworldindata.org/explorers/coronavirus-data-explorer">Our World in Data’s COVID-19 Data Explorer</a> and explore some of their visualizations. Together, we’ll decide what to analyze and visualize – at the very least, we’ll create some summaries and a couple of maps.</p>
+<p><strong>3.</strong> Open a new RMarkdown file called <code>covid.Rmd</code> and save it in your DataLab folder.</p>
+<p><strong>4.</strong> Give your file a good title, add your name as author, and delete everything below the <code>setup</code> chunk that sets <code>knitr</code> options (i.e., everything after line 11).</p>
+<p><strong>5.</strong> <code>knit</code> your file. The output should just consist of your title, your name, and today’s date.</p>
+<p><strong>6.</strong> In the <code>setup</code> R chunk, edit the <code>knitr</code> options and <strong>turn off</strong> <code>echo</code>, <code>message</code>, and <code>warning</code>.</p>
+<p><strong>7.</strong> In the <code>setup</code> R chunk, add code to load the libraries <code>tidyverse</code>, <code>sf</code>, and <code>tmap</code>. Depending on what we choose to do, we might need to load some additional libraries.</p>
+<p><strong>8.</strong> In the <code>setup</code> chunk, add code to load both the dataset and the codebook that you downloaded in step <strong>1.</strong> above.</p>
+<p><strong>9.</strong> <code>knit</code> your file again to make sure that everything is still working. Note how RStudio saves your RMarkdown file each time you <code>knit</code> it!</p>
+<p><strong>9.</strong> Add a section called <em>Introduction</em> where we will outline the analysis we’re going to do. A few bullet points will probably be useful here!</p>
+<p><strong>10.</strong> Let’s do our analysis, organizing our results into sections and subsections as we go.</p>
+<p><strong>11.</strong> Once we’re happy with the results (or we run out of time, whichever comes first), let’s create an RMarkdown presentation of our findings.</p>
 </div>
-<div id="ggplot2" class="section level2 unnumbered hasAnchor">
-<h2><code>ggplot2</code><a href="exploring-a-dataset.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol start="51" style="list-style-type: decimal">
-<li><p>Make a histogram of the age of people.</p></li>
-<li><p>Make a barchart of the class of people.</p></li>
-<li><p>Make a barchart of the <code>outcome</code> variable.</p></li>
-<li><p>Make a scatterplot of the <code>name_length</code> and <code>age</code> variables.</p></li>
-<li><p>Make a chart showing the age of males and females separately.</p></li>
-<li><p>Make a chart showing survivorship by sex.</p></li>
-<li><p>Make a chart showing survivorship by age.</p></li>
-<li><p>Make a chart showing the age, sex, and survivor status of people.</p></li>
-<li><p>Make a chart showing the distribution of the lengh of people’s names.</p></li>
-<li><p>Assume that the average life expectancy is 80. How many years of life were lost due to this event?</p></li>
-<li><p>How many years of life lost were attributible to males? How many to females?</p></li>
-<li><p>Make three more charts.</p></li>
-<li><p>What caused this event?</p></li>
-</ol>
+<div id="owid-covid-19-data-part-2" class="section level2 unnumbered hasAnchor">
+<h2>OWID COVID-19 data, Part 2<a href="leveling-up-with-rmarkdown.html#owid-covid-19-data-part-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With a partner, put together a new RMarkdown analysis using the Our World in Data COVID-19 dataset. Create both a report and a slide deck that you’ll present together.</p>
 
 </div>
 </div>
@@ -887,8 +830,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="in-class-survey.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-data-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="getting-started-with-rmarkdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="git-github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -919,7 +862,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04c-exploring-a-dataset.Rmd",
+"link": "https://github.com/datatrainglobal/rbootcamp/edit/master/04k-level-up-RMarkdown.Rmd",
 "text": "Edit"
 },
 "history": {
