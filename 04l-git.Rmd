@@ -1,6 +1,6 @@
 # `Git` + `GitHub`
 
-### Learning goals
+### Learning goals {.unnumbered}
 
 * The importance of keeping your code somewhere
 * How to install `Git`
@@ -8,7 +8,7 @@
 * How to use `Git` on your own
 * How to use `Git` as a team
 
-## Why
+## Why {.unnumbered}
 
 Perhaps you are familiar with this...
 
@@ -22,21 +22,21 @@ Or this...
 <img src="img/version_control_2.png" style="width:50.0%" />
 </center>
 
-## What is there to `Git`?
+## What is there to `Git`? {.unnumbered}
 
 Think of `Git` like Google Drive...but better. 
 
 I assume that your Google Drive has tons of documents on it organised into folders. You most likely use Google Drive to save your documents, but sometimes you also edit those documents. If you wanted, you could go and look at a previous version of the document by tracking changes (a cool feature of Google). But what exactly am I `gitting` at? 
 
-`Git` is very similar to Google Drive. You can track changes to your documents, organize documents, share documents, and review changes. However, instead of putting your Word documents or your powerpoints on Git (which you can do), us coders use Git to store our code.
+`Git` is very similar to Google Drive. You can track changes to your documents, organize documents, share documents, and review changes. However, instead of putting your Word documents or your powerpoints on `Git` (which you can do), us coders use `Git` to store our code.
 
 Let's store the code that we have worked on so far on Git.
 
-## `GitHub` set up
+## `GitHub` set up {.unnumbered}
 
 Go to [www.github.com](https://datascience.pizza/www.github.com) and create a user account. 
 
-## Create a new repository
+## Create a new repository {.unnumbered}
 
 Once you’ve created an account and logged in to `GitHub`, let’s create a repository.
 
@@ -52,7 +52,7 @@ Once you’ve created an account and logged in to `GitHub`, let’s create a rep
 
 Cool! You’ve now created your first git repository. It’s public url is `https://github.com/<YOUR USERNAME>/<repo-name>`. Others can see your code there, and you can too.
 
-## Clone a repository
+## Clone a repository {.unnumbered}
 
 Your new repo exists on the internet, but does not yet exist on your local machine. In order to get “testrepo” on your computer, you’ll need to do something that you’ll only do once: “clone” the repo. “Cloning” in git-speak means creating a copy of the repository locally.
 
@@ -77,9 +77,9 @@ Now, you`ve got a folder on your machine named `testrepo`. You can confirm that 
 
 See testrepo there? Great!
 
-## Working in a repository
+## Working in a repository {.unnumbered}
 
-### Change some code on your computer
+### Change some code on your computer {.unnumbered}
 
 In your local `testrepo` folder, you have a “cloned” copy of the repository at https://github.com//testrepo.
 
@@ -93,7 +93,7 @@ This is my first git repository.
 
 Then save and close the README file.
 
-### Send the changes on your computer to `GitHub`
+### Send the changes on your computer to `GitHub` {.unnumbered}
 
 Even though we have made edits to our `README.md` file on our laptop, GitHub has no idea that we made these changes. So how do we reflect the changes on our laptop online?
 
@@ -108,13 +108,13 @@ To get our new edits onto the internet there are two main things we have to do:
 
 Again, let's learn by doing rather than by reading.
 
-#### Add your changes
+#### Add your changes {.unnumbered}
 
 In the `Git` tab, click the white piece of paper with a check mark. In this pop-up you will see all of the documents that you edited today. You will see the `README.md` file which we just wrote on, the `testrepo.Rproj` that we created, and maybe a `.gitignore` file which for now we can just ignore like the title says. 
 
 Of the edits that we made, we want to choose which edits we *add* to `GitHub`. Let's add all of these edits that have been made today to `GitHub`. To do this you can click the empty square next to the document to make it blue OR you can click the button next to `stage` at the top of the pop-up. 
 
-#### Commit your changes
+#### Commit your changes {.unnumbered}
 
 Have you ever heard of the expression *commit something to memory*? Well, this is what we are going to do with these files we just chose or staged. On the right-hand side of the pop-up you will see a box which at the top says `Commit message`. In here, type:
 
@@ -126,13 +126,13 @@ This tells `Git` that we are “committing” our change, it marking a checkpoin
 
 Almost there. Now that we`ve added and committed, we need to "push" our change to `GitHub`. 
 
-#### Push the changes in your local repo to `GitHub`
+#### Push the changes in your local repo to `GitHub` {.unnumbered}
 
 Click the green upper arrow that says Push.
 
 You did it! You did it! Go to https://github.com//testrepo and open the README.md file. You’ll notice that your most recent changes are there. Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.
 
-## Exercises
+## Exercises {.unnumbered}
 
 **Create another repo:**
 
@@ -174,7 +174,7 @@ Let’s face it: `testrepo` is a pretty lame name for a repository. How about we
 
  
 
-## Editing the .gitignore file
+## Editing the .gitignore file {.unnumbered}
 
 If you look in your local datalab repo on your laptop, and you might see that there are a lot of documents there! You’re going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you don’t want to push.
 
@@ -200,7 +200,7 @@ Good? Great.
 
 Now you can share your code with others, and your future self.
 
-## Further resources
+## Further resources {.unnumbered}
 
 [Using git from RStudio](https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html)
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 14 Git + GitHub | R Bootcamp</title>
   <meta name="description" content="A resource &amp; workbook for learning R" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 14 Git + GitHub | R Bootcamp" />
   <meta property="og:type" content="book" />
@@ -603,7 +603,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -771,15 +771,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-github.html"><a href="git-github.html"><i class="fa fa-check"></i><b>14</b> <code>Git</code> + <code>GitHub</code></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="git-github.html"><a href="git-github.html#why-1"><i class="fa fa-check"></i><b>14.1</b> Why</a></li>
-<li class="chapter" data-level="14.2" data-path="git-github.html"><a href="git-github.html#what-is-there-to-git"><i class="fa fa-check"></i><b>14.2</b> What is there to <code>Git</code>?</a></li>
-<li class="chapter" data-level="14.3" data-path="git-github.html"><a href="git-github.html#github-set-up"><i class="fa fa-check"></i><b>14.3</b> <code>GitHub</code> set up</a></li>
-<li class="chapter" data-level="14.4" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i><b>14.4</b> Create a new repository</a></li>
-<li class="chapter" data-level="14.5" data-path="git-github.html"><a href="git-github.html#clone-a-repository"><i class="fa fa-check"></i><b>14.5</b> Clone a repository</a></li>
-<li class="chapter" data-level="14.6" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i><b>14.6</b> Working in a repository</a></li>
-<li class="chapter" data-level="14.7" data-path="git-github.html"><a href="git-github.html#exercises-4"><i class="fa fa-check"></i><b>14.7</b> Exercises</a></li>
-<li class="chapter" data-level="14.8" data-path="git-github.html"><a href="git-github.html#editing-the-.gitignore-file"><i class="fa fa-check"></i><b>14.8</b> Editing the .gitignore file</a></li>
-<li class="chapter" data-level="14.9" data-path="git-github.html"><a href="git-github.html#further-resources"><i class="fa fa-check"></i><b>14.9</b> Further resources</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#why-1"><i class="fa fa-check"></i>Why</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#what-is-there-to-git"><i class="fa fa-check"></i>What is there to <code>Git</code>?</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#github-set-up"><i class="fa fa-check"></i><code>GitHub</code> set up</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#create-a-new-repository"><i class="fa fa-check"></i>Create a new repository</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#clone-a-repository"><i class="fa fa-check"></i>Clone a repository</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#working-in-a-repository"><i class="fa fa-check"></i>Working in a repository</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#editing-the-.gitignore-file"><i class="fa fa-check"></i>Editing the .gitignore file</a></li>
+<li class="chapter" data-level="" data-path="git-github.html"><a href="git-github.html#further-resources"><i class="fa fa-check"></i>Further resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/datatrainglobal/rbootcamp" target="blank">Datatrain's R Bootcamp</a></li>
@@ -803,8 +803,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="git-github" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">Module 14</span> <code>Git</code> + <code>GitHub</code><a href="git-github.html#git-github" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-goals-5" class="section level3 hasAnchor" number="14.0.1">
-<h3><span class="header-section-number">14.0.1</span> Learning goals<a href="git-github.html#learning-goals-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="learning-goals-5" class="section level3 unnumbered hasAnchor">
+<h3>Learning goals<a href="git-github.html#learning-goals-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>The importance of keeping your code somewhere</li>
 <li>How to install <code>Git</code></li>
@@ -813,8 +813,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How to use <code>Git</code> as a team</li>
 </ul>
 </div>
-<div id="why-1" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Why<a href="git-github.html#why-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-1" class="section level2 unnumbered hasAnchor">
+<h2>Why<a href="git-github.html#why-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Perhaps you are familiar with this…</p>
 <center>
 <img src="img/version_control.png" style="width:30.0%" />
@@ -824,19 +824,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="img/version_control_2.png" style="width:50.0%" />
 </center>
 </div>
-<div id="what-is-there-to-git" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> What is there to <code>Git</code>?<a href="git-github.html#what-is-there-to-git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-there-to-git" class="section level2 unnumbered hasAnchor">
+<h2>What is there to <code>Git</code>?<a href="git-github.html#what-is-there-to-git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Think of <code>Git</code> like Google Drive…but better.</p>
 <p>I assume that your Google Drive has tons of documents on it organised into folders. You most likely use Google Drive to save your documents, but sometimes you also edit those documents. If you wanted, you could go and look at a previous version of the document by tracking changes (a cool feature of Google). But what exactly am I <code>gitting</code> at?</p>
-<p><code>Git</code> is very similar to Google Drive. You can track changes to your documents, organize documents, share documents, and review changes. However, instead of putting your Word documents or your powerpoints on Git (which you can do), us coders use Git to store our code.</p>
+<p><code>Git</code> is very similar to Google Drive. You can track changes to your documents, organize documents, share documents, and review changes. However, instead of putting your Word documents or your powerpoints on <code>Git</code> (which you can do), us coders use <code>Git</code> to store our code.</p>
 <p>Let’s store the code that we have worked on so far on Git.</p>
 </div>
-<div id="github-set-up" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> <code>GitHub</code> set up<a href="git-github.html#github-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="github-set-up" class="section level2 unnumbered hasAnchor">
+<h2><code>GitHub</code> set up<a href="git-github.html#github-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Go to <a href="https://datascience.pizza/www.github.com">www.github.com</a> and create a user account.</p>
 </div>
-<div id="create-a-new-repository" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> Create a new repository<a href="git-github.html#create-a-new-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="create-a-new-repository" class="section level2 unnumbered hasAnchor">
+<h2>Create a new repository<a href="git-github.html#create-a-new-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once you’ve created an account and logged in to <code>GitHub</code>, let’s create a repository.</p>
 <p><strong>What is a repository?</strong> Basically, it’s a coding project in the form of a folder.</p>
 <ol style="list-style-type: decimal">
@@ -847,8 +847,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Cool! You’ve now created your first git repository. It’s public url is <code>https://github.com/&lt;YOUR USERNAME&gt;/&lt;repo-name&gt;</code>. Others can see your code there, and you can too.</p>
 </div>
-<div id="clone-a-repository" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> Clone a repository<a href="git-github.html#clone-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="clone-a-repository" class="section level2 unnumbered hasAnchor">
+<h2>Clone a repository<a href="git-github.html#clone-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Your new repo exists on the internet, but does not yet exist on your local machine. In order to get “testrepo” on your computer, you’ll need to do something that you’ll only do once: “clone” the repo. “Cloning” in git-speak means creating a copy of the repository locally.</p>
 <p>To clone, you’ll first open <code>Rstudio</code>. Now, what we are going to do is put the folder that we made online on <code>GitHub</code>and put this same folder onto our machine.</p>
 <ol style="list-style-type: decimal">
@@ -867,18 +867,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, you<code>ve got a folder on your machine named</code>testrepo<code>. You can confirm that by looking in your</code>name_datalab<code>folder and looking for</code>testrepo`.</p>
 <p>See testrepo there? Great!</p>
 </div>
-<div id="working-in-a-repository" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> Working in a repository<a href="git-github.html#working-in-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="change-some-code-on-your-computer" class="section level3 hasAnchor" number="14.6.1">
-<h3><span class="header-section-number">14.6.1</span> Change some code on your computer<a href="git-github.html#change-some-code-on-your-computer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="working-in-a-repository" class="section level2 unnumbered hasAnchor">
+<h2>Working in a repository<a href="git-github.html#working-in-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="change-some-code-on-your-computer" class="section level3 unnumbered hasAnchor">
+<h3>Change some code on your computer<a href="git-github.html#change-some-code-on-your-computer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In your local <code>testrepo</code> folder, you have a “cloned” copy of the repository at <a href="https://github.com//testrepo" class="uri">https://github.com//testrepo</a>.</p>
 <p>As of now, <code>testrepo</code> is a pretty uninteresting folder. The only thing in it is a file named <code>README.md</code>. A “README” file is generally an explanation of a repository’s content, purpose, etc. Like all files, a README can be tracked in git. By tracked I mean we can make edits to the file and save them in <code>GitHub</code> and look back at previous edits. Rather than me explaining, let’s just do it.</p>
 <p>Let’s open the README file and make a change to it. We’ll add the below line of “code”:</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="git-github.html#cb125-1" tabindex="-1"></a>This is my first git repository.</span></code></pre></div>
 <p>Then save and close the README file.</p>
 </div>
-<div id="send-the-changes-on-your-computer-to-github" class="section level3 hasAnchor" number="14.6.2">
-<h3><span class="header-section-number">14.6.2</span> Send the changes on your computer to <code>GitHub</code><a href="git-github.html#send-the-changes-on-your-computer-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="send-the-changes-on-your-computer-to-github" class="section level3 unnumbered hasAnchor">
+<h3>Send the changes on your computer to <code>GitHub</code><a href="git-github.html#send-the-changes-on-your-computer-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Even though we have made edits to our <code>README.md</code> file on our laptop, GitHub has no idea that we made these changes. So how do we reflect the changes on our laptop online?</p>
 <p>If you look at the upper right corner of <code>RStudio</code> where your environment is, you will also see a <code>Git</code> button. Click it. This tab is where <code>RStudio</code> and <code>GitHub</code> can interact with each other.</p>
 <p>In this <code>Git</code> tab, you might notice that you have some items there. If you hover over the yellow question mark, you will see the message <code>Untracked</code>. This untracked message is the computer telling you that you have made changes on the computer that are not online. So, let’s get the change we made on our laptop onto the internet.</p>
@@ -887,27 +887,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2. commit our changes
 3. push our changes</p>
 <p>Again, let’s learn by doing rather than by reading.</p>
-<div id="add-your-changes" class="section level4 hasAnchor" number="14.6.2.1">
-<h4><span class="header-section-number">14.6.2.1</span> Add your changes<a href="git-github.html#add-your-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="add-your-changes" class="section level4 unnumbered hasAnchor">
+<h4>Add your changes<a href="git-github.html#add-your-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In the <code>Git</code> tab, click the white piece of paper with a check mark. In this pop-up you will see all of the documents that you edited today. You will see the <code>README.md</code> file which we just wrote on, the <code>testrepo.Rproj</code> that we created, and maybe a <code>.gitignore</code> file which for now we can just ignore like the title says.</p>
 <p>Of the edits that we made, we want to choose which edits we <em>add</em> to <code>GitHub</code>. Let’s add all of these edits that have been made today to <code>GitHub</code>. To do this you can click the empty square next to the document to make it blue OR you can click the button next to <code>stage</code> at the top of the pop-up.</p>
 </div>
-<div id="commit-your-changes" class="section level4 hasAnchor" number="14.6.2.2">
-<h4><span class="header-section-number">14.6.2.2</span> Commit your changes<a href="git-github.html#commit-your-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="commit-your-changes" class="section level4 unnumbered hasAnchor">
+<h4>Commit your changes<a href="git-github.html#commit-your-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Have you ever heard of the expression <em>commit something to memory</em>? Well, this is what we are going to do with these files we just chose or staged. On the right-hand side of the pop-up you will see a box which at the top says <code>Commit message</code>. In here, type:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="git-github.html#cb126-1" tabindex="-1"></a>my first change</span></code></pre></div>
 <p>This tells <code>Git</code> that we are “committing” our change, it marking a checkpoint (to which we can revert later).</p>
 <p>Almost there. Now that we<code>ve added and committed, we need to "push" our change to</code>GitHub`.</p>
 </div>
-<div id="push-the-changes-in-your-local-repo-to-github" class="section level4 hasAnchor" number="14.6.2.3">
-<h4><span class="header-section-number">14.6.2.3</span> Push the changes in your local repo to <code>GitHub</code><a href="git-github.html#push-the-changes-in-your-local-repo-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="push-the-changes-in-your-local-repo-to-github" class="section level4 unnumbered hasAnchor">
+<h4>Push the changes in your local repo to <code>GitHub</code><a href="git-github.html#push-the-changes-in-your-local-repo-to-github" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Click the green upper arrow that says Push.</p>
 <p>You did it! You did it! Go to <a href="https://github.com//testrepo" class="uri">https://github.com//testrepo</a> and open the README.md file. You’ll notice that your most recent changes are there. Now, if someone else wants to get your code, they can “clone” your repository, and they’ll have the code you’ve “pushed” there.</p>
 </div>
 </div>
 </div>
-<div id="exercises-4" class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> Exercises<a href="git-github.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises-4" class="section level2 unnumbered hasAnchor">
+<h2>Exercises<a href="git-github.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Create another repo:</strong></p>
 <p>Let’s face it: <code>testrepo</code> is a pretty lame name for a repository. How about we make a repo that’s actually real and useful? We’ll make one for storing all the code we’re writing in this course.</p>
 <p><strong>1)</strong> Go to <a href="https://github.com/" class="uri">https://github.com/</a></p>
@@ -928,8 +928,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>16)</strong> Save this dataset to your repository (use <code>write.csv()</code>).</p>
 <p><strong>17)</strong> Add, commit, and push your files to <code>GitHub</code>.</p>
 </div>
-<div id="editing-the-.gitignore-file" class="section level2 hasAnchor" number="14.8">
-<h2><span class="header-section-number">14.8</span> Editing the .gitignore file<a href="git-github.html#editing-the-.gitignore-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="editing-the-.gitignore-file" class="section level2 unnumbered hasAnchor">
+<h2>Editing the .gitignore file<a href="git-github.html#editing-the-.gitignore-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you look in your local datalab repo on your laptop, and you might see that there are a lot of documents there! You’re going to want to (i) add, (ii) commit, and (iii) push these documents, but perhaps there are some kinds of documents you don’t want to push.</p>
 <p>For example, maybe you want to push R code files (.R), but not data files (.csv). In this case, you can explicitly tell git that you don’t want it to pay any attention to .csv files by creating a .gitignore file. A .gitignore file is simply a text file in a git repository that indicates to git that the contents of that file should be ignored.</p>
 <p>Let’s do it.</p>
@@ -942,8 +942,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>20)</strong> Push everything to your repo (remember your 3 steps).</p>
 <p>Now you can share your code with others, and your future self.</p>
 </div>
-<div id="further-resources" class="section level2 hasAnchor" number="14.9">
-<h2><span class="header-section-number">14.9</span> Further resources<a href="git-github.html#further-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="further-resources" class="section level2 unnumbered hasAnchor">
+<h2>Further resources<a href="git-github.html#further-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html">Using git from RStudio</a></p>
 <p><a href="https://r-pkgs.org/git.html">Hadley Wickham’s introduction to git + GitHub</a></p>
 
