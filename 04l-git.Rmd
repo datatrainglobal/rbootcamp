@@ -168,7 +168,7 @@ Let’s face it: `testrepo` is a pretty lame name for a repository. How about we
 
 **15)** Create a new data set called `the_nineties` that only contains years from the 1990s.
 
-**16)** Save this dataset to your repository (use `write.csv()`).
+**16)** Save this dataset to your repository (use `write_csv()`).
 
 **17)** Add, commit, and push your files to `GitHub`.
 
