@@ -156,13 +156,13 @@ Let’s face it: `testrepo` is a pretty lame name for a repository. How about we
 
 **9)** Make an object called `bb_names` by running `bb_names <- babynames`.
 
-**10)** Create a histogram for the name Marie since 1982. Notice anything weird?
+**10)** Create a line plot showing the popularity of the name Marie over time. 
 
-**11)** Create a line plot for proportion of the name Joe, colored by sex. Make the lines a bit thicker and more transparent.
+**11)** Create a line plot for _proportion_ of the name Joe, colored by sex. Make the lines a bit thicker and more transparent.
 
 **12)** Add new x and y axis labels, as well as a chart title.
 
-**13)** Create a bar chart of all female names in 2002.
+**13)** Create a bar chart of the 10 most popular female names in 2002.
 
 **14)** Make the bars transparent and filled with the color blue.
 
