@@ -2,29 +2,33 @@
 
 ## Day 1 {.unnumbered}
 
-This summer you all are going to work as a team and learn to code and also get to know one another. So what is a better way to get to know someone than by learning about their hometown. Today, in your groups you are going to put pins on a map that represent every person's hometown from your group. 
+This summer you all are going to work as a team and learn to code and also get to know one another. So what is a better way to get to know someone than by learning about their hometown? Today, in your groups you are going to put dots on a map that represent every person's hometown from your group. 
 
-Follow along this document as a team to make this map:
+Follow this document together as a team to make this map:
 
 ### Make your dataset {.unnumbered}
 
-**1.** Make one google sheet and title it: `team_lat_lng` with columns `first_name`, `lat`, `lng`. *Note: make sure these columns are in this exact order and spelled exactly the same.*
+**1.** Make one Google sheet and title it: `team_lat_lng` with columns `first_name`, `organization`, `LAT`, and `LNG`. *Note: make sure these columns are in this exact order, spelled exactly like this, with `LAT` and `LNG` in all caps!*
 
 **2.** Click 'Share' in the top right of the google sheet and in 'General access' click 'Anyone with the link'. *Note: this is important because in order to read data into R, it must be available to be accessed by everyone.*
 
-**3.** Input everyone's name and hometown latitude and longitude in the associated columns. To find your latitude and longitude, go to Google Maps and right click your hometown and input the latitude (first number) and longitude (second number) from google maps into your google sheet. Here is an example of Sewanee's latitude and longitude:
+**3.** Input everyone's name, organization (either DataLab or KEMRI), hometown latitude and longitude in the associated columns. To find your latitude and longitude, go to Google Maps, right click your hometown, then input the latitude (the first number) and longitude (the second number) from Google Maps into your Google sheet. As an example, we can tell from the following that Sewanee's latitude is 35.20318 and Sewanee's longitude is -85.92203 :
 
 </center>
 <img src="img/sewanee_lat_lng.png"/>
 </center>
 
-There? Woohoo! You have your dataset!
+<br>
+
+***Watch out!*** **Just enter numbers for latitudes and longitudes, don't include any letters indicating north, south, east, or west**. Sewanee's longitude is negative, since Sewanee is west of the prime meridian; Sewanee's latitude is positive, since Sewanee is north of the equator.
+
+All done? Woohoo! You have your dataset!
 
 ### Load in your data {.unnumbered}
 
 **4.** For the KEMRI team, make a folder called `name_datalab` on your desktop (make sure to put your name where I wrote name). Everyone, in your `name_datalab` folder make another folder called `team_map`.
 
-**5.** Everyone open up `RStudio` and make an `RScript` and name it `our_map.R` and save it into your `team_map` folder.
+**5.** Everyone open up `RStudio`, make an `RScript` called `our_map.R`, and save it into your `team_map` folder.
 
 **6.** Starting now, make sure you comment every line of your script. So make a comment that says `# set working directory` and set your working directory to your `team_map` folder.
 
@@ -32,29 +36,45 @@ There? Woohoo! You have your dataset!
 
 ```{r, echo = TRUE, eval = FALSE}
 library(sf)
-library(rnaturalearth)
-library(rnaturalearthhires)
-library(rnaturalearthdata)
 library(tmap)
-library(osmdata)
-library(tidycensus)
 library(tidyverse)
-library(dplyr)
-library(spData)
-library(readr)
-library(ggplot2)
 library(gsheet)
 ```
 
 **8.** Now, there are two ways to load in your data:
 
-  a. Download the google sheet as a csv file and and save it into your `team_map` folder. Then in your RScript load in the data and assign it to an object: `locations <- read_csv('team_lat_lng.csv')`. In your environment do you have locations? If so, great!
+  a. Download the Google sheet as a csv file and and save it into your `team_map` folder. Then in your RScript load in the data and assign it to an object: 
   
-  b. Another simpler way to download the data is by using the following: `locations <- gsheet::gsheet2tbl('insert link')`. Still have locations after this? Wonderful!
+  ```{r echo=TRUE, eval = FALSE} 
+  locations <- read_csv('team_lat_lng.csv')
+  ```
+  
+  In your environment do you have `locations`? If so, great!
+  
+  b. Another simpler way to download the data is by using the following: 
+  ```{r echo=TRUE, eval = FALSE}
+  # be sure to put the correct link inside the quotes below!
+  locations <- gsheet::gsheet2tbl('insert link')
+  ``` 
+  
+  Still have `locations` after this? Wonderful!
   
 ### Make your map {.unnumbered}
 
-**9.** 
+**9.** Now that you have your `locations` object, we have to tell R what to do with it. First, format things correctly:
+
+```{r echo=TRUE, eval=FALSE}
+# convert latitude and longitude into a geometry column:
+locations <- st_as_sf( locations, coords = c("LNG", "LAT"), crs = "WGS84" )
+```
+
+**10.** Now look at your `locations` object -- you should see that you have `POINT`s in the `geometry` column. Since we have points instead of polygons, we need to use `tmap`'s `tm_dots` function instead of the `tm_polygons` function we've used to make our other maps. Here's the code to make an interactive map with color-coded points:
+
+```{r echo=TRUE, eval=FALSE}
+tmap_mode( "view" )
+tmap_options( basemaps = providers$OpenStreetMap )
+tm_shape( df ) + tm_dots( col="organization", palette = "Dark2" )
+```
 
 ### Share your work
 
