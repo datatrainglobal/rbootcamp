@@ -13,4 +13,3 @@ getting-started-with-rmarkdown
 leveling-up-with-rmarkdown
 git-github
 kemri-datalab-summer-workbook
-share-your-work

@@ -73,10 +73,10 @@ locations <- st_as_sf( locations, coords = c("LNG", "LAT"), crs = "WGS84" )
 ```{r echo=TRUE, eval=FALSE}
 tmap_mode( "view" )
 tmap_options( basemaps = providers$OpenStreetMap )
-tm_shape( df ) + tm_dots( col="organization", palette = "Dark2" )
+tm_shape( locations ) + tm_dots( col="organization", palette = "Dark2" )
 ```
 
-### Share your work
+### Share your work {.unnumbered}
 
 Congratulations you did it! Save your image, share it in slack, and make sure everyone on your team has an RScript that works. Once you've done this you're all set. Have a great day or night wherever you are in the world!
 
