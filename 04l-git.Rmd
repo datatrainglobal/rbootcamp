@@ -154,7 +154,7 @@ Let’s face it: `testrepo` is a pretty lame name for a repository. How about we
 
 **8)** Load `library(babynames)` (don't forget to comment your RScript!).
 
-**9)** Make an object called bb_names by running `babynames <- bb_names`.
+**9)** Make an object called bb_names by running `bb_names <- babynames`.
 
 **10)** Create a histogram of the name Marie in 1982.
 
