@@ -154,9 +154,9 @@ Let’s face it: `testrepo` is a pretty lame name for a repository. How about we
 
 **8)** Load `library(babynames)` (don't forget to comment your RScript!).
 
-**9)** Make an object called bb_names by running `bb_names <- babynames`.
+**9)** Make an object called `bb_names` by running `bb_names <- babynames`.
 
-**10)** Create a histogram of the name Marie in 1982.
+**10)** Create a histogram for the name Marie since 1982. Notice anything weird?
 
 **11)** Create a line plot for proportion of the name Joe, colored by sex. Make the lines a bit thicker and more transparent.
 
