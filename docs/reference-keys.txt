@@ -13,3 +13,6 @@ getting-started-with-rmarkdown
 leveling-up-with-rmarkdown
 git-github
 kemri-datalab-summer-workbook
+cleaning-messy-data
+learning-goals-6
+your-mission
