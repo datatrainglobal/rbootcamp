@@ -14,3 +14,4 @@ leveling-up-with-rmarkdown
 git-github
 kemri-datalab-summer-workbook
 cleaning-messy-data
+sentiment-analysis-with-survey-data
