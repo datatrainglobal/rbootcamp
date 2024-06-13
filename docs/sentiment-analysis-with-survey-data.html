@@ -816,17 +816,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>1.</strong> Start a new script. Name it “sentiment.R”.</p>
 <p><strong>2.</strong> Set up your work space by loading the <code>ggplot2</code>, <code>dplyr</code>, <code>tidytext</code>, <code>gsheet</code>, <code>wordcloud2</code>, <code>sentimentr</code>, and <code>lubridate</code> packages.</p>
 <p><strong>3.</strong> Read in your survey data by running the following:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="sentiment-analysis-with-survey-data.html#cb136-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1W9eGIihIHppys3LZe5FNbUuaIi_tfdscIq521lidRBU/edit?usp=sharing&#39;</span>)</span></code></pre></div>
 <p><strong>4.</strong> Take a look at the first few rows of the data. What is the unit of observation?</p>
 <p><strong>5.</strong> Create a variable named <code>date_time</code> in your <code>survey</code> data. This should be based on the <code>Timestamp</code> variable. Use the <code>mdy_hms</code> variable to created a “date-time” object.</p>
 <p><strong>6.</strong> Create a visualization of the <code>date_time</code> variable.</p>
 <p><strong>7.</strong> Create an object called <code>sentiments</code> by running the following:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="sentiment-analysis-with-survey-data.html#cb137-1" tabindex="-1"></a>sentiments <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&#39;bing&#39;</span>)</span></code></pre></div>
 <p><strong>8.</strong> Explore the <code>sentiments</code> object. How many rows? How many columns? What is the unit of observation.</p>
 <p><strong>9.</strong> Create an object named <code>words</code> by running the following:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="sentiment-analysis-with-survey-data.html#cb138-1" tabindex="-1"></a>words <span class="ot">&lt;-</span> survey <span class="sc">%&gt;%</span></span>
+<span id="cb138-2"><a href="sentiment-analysis-with-survey-data.html#cb138-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(first_name,</span>
+<span id="cb138-3"><a href="sentiment-analysis-with-survey-data.html#cb138-3" tabindex="-1"></a>                feeling_num,</span>
+<span id="cb138-4"><a href="sentiment-analysis-with-survey-data.html#cb138-4" tabindex="-1"></a>                feeling) <span class="sc">%&gt;%</span></span>
+<span id="cb138-5"><a href="sentiment-analysis-with-survey-data.html#cb138-5" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, feeling)</span></code></pre></div>
 <p><strong>10.</strong> Explore <code>words</code>. What is the unit of observation.</p>
 <p><strong>11.</strong> Look up the help documentation for the function <code>wordcloud2</code>. What does it expect as the first argument of the function?</p>
 <p><strong>12.</strong> Create a dataframe named <code>word_freq</code>. This should be a dataframe which is conformant with the expectation of <code>wordcloud2</code>, showing how frequently each word appeared in our <code>feeling</code>s.</p>
 <p><strong>13.</strong> Make a word cloud.</p>
 <p><strong>14.</strong> Run the below to create an object named <code>sw</code>.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sentiment-analysis-with-survey-data.html#cb139-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
 <p><strong>15.</strong> What is the <code>sw</code> object all about? Explore it a bit.</p>
 <p><strong>16.</strong> Remove from <code>word_freq</code> any rows in which the word appears in <code>sw</code>.</p>
 <p><strong>17.</strong> Make a new word cloud.</p>

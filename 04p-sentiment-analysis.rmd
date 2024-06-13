@@ -9,7 +9,7 @@
 
 **3.** Read in your survey data by running the following:
 
-```{r, eval = FALSE}
+```{r echo=TRUE, eval = FALSE}
 survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1W9eGIihIHppys3LZe5FNbUuaIi_tfdscIq521lidRBU/edit?usp=sharing')
 ```
 
@@ -21,7 +21,7 @@ survey <- gsheet::gsheet2tbl('https://docs.google.com/spreadsheets/d/1W9eGIihIHp
 
 **7.** Create an object called `sentiments` by running the following:
 
-```{r, eval = FALSE}
+```{r echo=TRUE, eval = FALSE}
 sentiments <- get_sentiments('bing')
 ```
 
@@ -29,7 +29,7 @@ sentiments <- get_sentiments('bing')
 
 **9.** Create an object named `words` by running the following:
 
-```{r, eval = FALSE}
+```{r echo = TRUE, eval = FALSE}
 words <- survey %>%
   dplyr::select(first_name,
                 feeling_num,
@@ -47,7 +47,7 @@ words <- survey %>%
 
 **14.** Run the below to create an object named `sw`.
 
-```{r, eval = FALSE}
+```{r echo=TRUE, eval = FALSE}
 sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv')
 ```
 
@@ -63,7 +63,7 @@ sw <- read_csv('https://raw.githubusercontent.com/databrew/intro-to-data-science
 
 **20.** Run the below to join `word_freq` with `sentiments`.
 
-```{r, eval = FALSE}
+```{r eccho=TRUE, eval = FALSE}
 joined <- left_join(word_freq, sentiments)
 ```
 
@@ -94,3 +94,4 @@ joined <- left_join(word_freq, sentiments)
 **33.** How many people mentioned Ryan Gosling in their description of Joe?
 
 **34.** Is there a correlation between the sentimentality of people's `feeling` and their `feeling_num`?
+
