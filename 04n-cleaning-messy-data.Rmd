@@ -1,10 +1,10 @@
 # Cleaning Messy Data
 
-### Learning goals
+### Learning goals {.unnumbered}
 
 * This is a review exercise: learn the skills introduced in the previous modules by applying them to a universal data science scenario: cleaning up messy data.
 
-## Your mission
+## Your mission {.unnumbered}
 
 Look at the following dataset: 
 
