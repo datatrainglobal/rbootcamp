@@ -115,9 +115,9 @@ Your super cool and suave boss
 
 ### Prepping yourself and your team {.unnumbered}
 
-The first thing to do is to make sure you all know each other. Make sure you know everyone's names, how much R experience they have, maybe even throw a fun fact in there.
+The **first thing** to do is to make sure you all know each other. Make sure you know everyone's names, how much R experience they have, maybe even throw a fun fact in there.
 
-The second thing to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? **As a team** create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.
+The **second thing** to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? **As a team** create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.
 
 **WAIT! Do not move forward until everyone is on the same page.**
 
@@ -133,7 +133,7 @@ Do you feel like you and your team now understand the different pieces of this p
 
 In the same `RMarkdown` download your data:
 
-```{r}
+```{r echo=TRUE, eval=FALSE}
 # load libraries
 library(dplyr)
 library(readr)
@@ -173,7 +173,11 @@ After your discussion as a team come up with a game plan of how you want to expl
 
 Now, do you feel like your dataset is somewhat clean to the best of your abilities? We don't expect you to perfectly clean this dataset and remove all NAs. We just want you to have a dataset that you feel comfortable with and that you can work with to make graphs, tables, and do some general analysis. 
 
+### Ending the day {.unnumbered}
+
 If you feel that you are comfortable with the data and done some general cleaning, then great! That's what we wanted you to accomplish today. Next steps will be to create some summary statistics of the columns we are interested in exploring, then to create some plots and visualisations, and THEN to write this up as a report that you can give to the client. If you would like to keep moving forward without any guidance on these next steps, go for it! However, if you have a nice clean dataset that you are excited to work on next week, then you have completed what this session was all about. Good work!
+
+Share your RMarkdown in slack and have a great rest of the day!
 
 
 

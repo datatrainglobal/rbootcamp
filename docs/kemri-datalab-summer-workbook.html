@@ -896,8 +896,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="prepping-yourself-and-your-team" class="section level3 unnumbered hasAnchor">
 <h3>Prepping yourself and your team<a href="kemri-datalab-summer-workbook.html#prepping-yourself-and-your-team" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first thing to do is to make sure you all know each other. Make sure you know everyone’s names, how much R experience they have, maybe even throw a fun fact in there.</p>
-<p>The second thing to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? <strong>As a team</strong> create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.</p>
+<p>The <strong>first thing</strong> to do is to make sure you all know each other. Make sure you know everyone’s names, how much R experience they have, maybe even throw a fun fact in there.</p>
+<p>The <strong>second thing</strong> to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? <strong>As a team</strong> create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.</p>
 <p><strong>WAIT! Do not move forward until everyone is on the same page.</strong></p>
 <p>Do you know where the Democratic Republic of the Congo is? This could be a good starting point of this research paper. Open up <code>RStudio</code> and create an <code>RMarkdown</code> file. Make a folder in the <code>name_datalab</code> folder for this project and save your <code>RMarkdown</code> file here. Make sure you all decide on the names of folders and files together.</p>
 <p>Now, make a map that shows you where the Democratic Republic of the Congo is in the world, then in Africa. Stuck? Try looking back at <a href="https://datatrain.cc/making-maps.html">Module 8: Making Maps</a>.</p>
@@ -907,6 +907,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="download-your-data-and-get-to-know-it" class="section level3 unnumbered hasAnchor">
 <h3>Download your data and get to know it<a href="kemri-datalab-summer-workbook.html#download-your-data-and-get-to-know-it" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the same <code>RMarkdown</code> download your data:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="kemri-datalab-summer-workbook.html#cb134-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb134-2"><a href="kemri-datalab-summer-workbook.html#cb134-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb134-3"><a href="kemri-datalab-summer-workbook.html#cb134-3" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb134-4"><a href="kemri-datalab-summer-workbook.html#cb134-4" tabindex="-1"></a></span>
+<span id="cb134-5"><a href="kemri-datalab-summer-workbook.html#cb134-5" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb134-6"><a href="kemri-datalab-summer-workbook.html#cb134-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data.csv&#39;</span>)</span></code></pre></div>
 <p>For your reference the data came from <a href="https://mbrudd.com/drc_data/DRC_data.csv">here</a>, and you can access the data dictionary <a href="https://mbrudd.com/drc_data/DICCIONARIO%20DE%20BASE%20DE%20DATOS%20PALUDISMO%20Y%20MUJER%20EMBARAZADA.pdf">here</a>.</p>
 <p>As a team look at the data dictionary and your dataset and get to know what you are looking at. <em>You might need to use google translate…</em> What do the column names mean? What is in this dataset? Do you have any other questions that this data dictionary can answer? What other questions could you ask?</p>
 <p><strong>WAIT! Do not move forward until everyone is on the same page.</strong></p>
@@ -930,7 +936,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Are there any rows with all NAs?</li>
 </ul>
 <p>Now, do you feel like your dataset is somewhat clean to the best of your abilities? We don’t expect you to perfectly clean this dataset and remove all NAs. We just want you to have a dataset that you feel comfortable with and that you can work with to make graphs, tables, and do some general analysis.</p>
+</div>
+<div id="ending-the-day" class="section level3 unnumbered hasAnchor">
+<h3>Ending the day<a href="kemri-datalab-summer-workbook.html#ending-the-day" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you feel that you are comfortable with the data and done some general cleaning, then great! That’s what we wanted you to accomplish today. Next steps will be to create some summary statistics of the columns we are interested in exploring, then to create some plots and visualisations, and THEN to write this up as a report that you can give to the client. If you would like to keep moving forward without any guidance on these next steps, go for it! However, if you have a nice clean dataset that you are excited to work on next week, then you have completed what this session was all about. Good work!</p>
+<p>Share your RMarkdown in slack and have a great rest of the day!</p>
 
 </div>
 </div>
