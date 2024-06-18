@@ -177,15 +177,5 @@ Now, do you feel like your dataset is somewhat clean to the best of your abiliti
 
 If you feel that you are comfortable with the data and done some general cleaning, then great! That's what we wanted you to accomplish today. Next steps will be to create some summary statistics of the columns we are interested in exploring, then to create some plots and visualisations, and THEN to write this up as a report that you can give to the client. If you would like to keep moving forward without any guidance on these next steps, go for it! However, if you have a nice clean dataset that you are excited to work on next week, then you have completed what this session was all about. Good work!
 
-Share your RMarkdown in slack and have a great rest of the day!
-
-
-
-
-
-
-
-
-
-
+Share your RMarkdown in slack, write a summary about what you learned and identified, and then have a great rest of the day!
 
