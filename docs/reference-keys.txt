@@ -13,5 +13,8 @@ getting-started-with-rmarkdown
 leveling-up-with-rmarkdown
 git-github
 kemri-datalab-summer-workbook
+prepping-yourself-and-your-team
+download-your-data-and-get-to-know-it
+cleaning-your-data
 cleaning-messy-data
 sentiment-analysis-with-survey-data

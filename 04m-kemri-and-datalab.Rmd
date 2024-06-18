@@ -81,3 +81,107 @@ tm_shape( locations ) + tm_dots( col="organization", palette = "Dark2" )
 Congratulations you did it! Save your image, share it in slack, and make sure everyone on your team has an RScript that works. Once you've done this you're all set. Have a great day or night wherever you are in the world!
 
 
+## Day 2 {.unnumbered}
+
+The purpose of these sessions is for you all to get to know each other but also to practice your R skills. What a better way to do that than to work with a real dataset that is new to all of you and is most importantly...messy. 
+
+Over the next 4 weeks, you and a group of others will be working together to analyse data from the Democratic Republic of the Congo. There will be some instructions for you to follow to get you thinking, but you should think of this as your very own data consulting project. This is real data that comes from a real request and the best reports will be shared with the client at the end of the 4 weeks. So have fun, learn lots, and most importantly make sure that your entire team is on the same page throughout the project and that you work together.
+
+### The request {.unnumbered}
+
+You wake up this early Tuesday morning (or you are getting ready to end the work day this Tuesday afternoon) when you receive this email:
+
+```{r echo=TRUE, eval=FALSE}
+Dear team,
+
+Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:
+  - outcome of delivery (baby is okay and if baby was admitted to nenotolagy)
+  - malaria during pregnancy
+  - weight, height and apgar
+  - completeness of variables
+  - numbers of variables
+  - the mean age of women
+  - number of kids submitted to icu/neonatology
+  - who went to clinic and who did not go to clinic
+  - how many had a single or double or triple delivery
+  - mean birth weight and height and range & mean apgar and range
+  - difference time of when delivery was made (day vs. night)
+
+Overall, the client has requested a neonatology descriptive paper. Please send me an update once a week so that I can see how you are progressing, but I am excited to see the final product in 4 weeks time. 
+
+Many thanks,
+Your super cool and suave boss
+```
+
+### Prepping yourself and your team
+
+The first thing to do is to make sure you all know each other. Make sure you know everyone's names, how much R experience they have, maybe even throw a fun fact in there.
+
+The second thing to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? **As a team** create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.
+
+**WAIT! Do not move forward until everyone is on the same page.**
+
+Do you know where the Democratic Republic of the Congo is? This could be a good starting point of this research paper. Open up `RStudio` and create an `RMarkdown` file. Make a folder in the `name_datalab` folder for this project and save your `RMarkdown` file here. Make sure you all decide on the names of folders and files together.
+
+Now, make a map that shows you where the Democratic Republic of the Congo is in the world, then in Africa. Stuck? Try looking back at [Module 8 Making Maps](https://datatrain.cc/making-maps.html).
+
+**WAIT! Do not move forward until everyone is on the same page.**
+
+Do you feel like you and your team now understand the different pieces of this project? If you said no, go back to the top of this section and keep working. If you said yes, move forward to begin working on the next piece of this project!
+
+### Download your data and get to know it
+
+In the same `RMarkdown` download your data:
+
+```{r}
+# load libraries
+library(dplyr)
+library(readr)
+
+# download data
+df <- read_csv('https://mbrudd.com/drc_data/DRC_data.csv')
+```
+
+For your reference the data came from [here](https://mbrudd.com/drc_data/DRC_data.csv), and you can access the data dictionary [here](https://mbrudd.com/drc_data/DICCIONARIO%20DE%20BASE%20DE%20DATOS%20PALUDISMO%20Y%20MUJER%20EMBARAZADA.pdf).
+
+As a team look at the data dictionary and your dataset and get to know what you are looking at. *You might need to use google translate...* What do the column names mean? What is in this dataset? Do you have any other questions that this data dictionary can answer?
+
+**WAIT! Do not move forward until everyone is on the same page.**
+
+### Cleaning your data
+
+Now comes the fun part. 
+
+Talk about what it means to clean messy data. Over-do this part and try to define messy data and define data cleaning. Then move forward.
+
+DataLabbers, can you please tell the KEMRI/BOHEMIA team about your experience of [cleaning messy data](https://datatrain.cc/cleaning-messy-data.html) in one of your previous sessions? What did you learn? What was hard? What was easy? ETC.
+
+KEMRI/BOHEMIA team, can you please tell the DataLabbers about your experience of cleaning messy data in your work? What are some recent examples you have had to deal with? How do you solve them?
+
+***
+
+After your discussion as a team come up with a game plan of how you want to explore this data or a list of questions that you could try to answer to "clean" the data. Try this on your own first, but if you get stuck look below. **REMEMBER: if you downloaded your dataset and named it `df` once you start working with the data you will want to make a new object so that you don't overwrite your original data.**
+
+* Are the column names easy to work with?
+* How does the capitalisation of the responses of different columns look?
+* Are there any columns with all NAs? If so, what do you do with them?
+* Are the columns that have numbers in them actually numeric? How do you make them numeric?
+* Are the columns that have words in them actually characters?
+* What about the date columns?
+* Are there any duplicate IDs?
+* Are there any rows with all NAs?
+
+Now, do you feel like your dataset is somewhat clean to the best of your abilities? We don't expect you to perfectly clean this dataset and remove all NAs. We just want you to have a dataset that you feel comfortable with and that you can work with to make graphs, tables, and do some general analysis. 
+
+If you feel that you are comfortable with the data and done some general cleaning, then great! That's what we wanted you to accomplish today. Next steps will be to create some summary statistics of the columns we are interested in exploring, then to create some plots and visualisations, and THEN to write this up as a report that you can give to the client. If you would like to keep moving forward without any guidance on these next steps, go for it! However, if you have a nice clean dataset that you are excited to work on next week, then you have completed what this session was all about. Good work!
+
+
+
+
+
+
+
+
+
+
+
