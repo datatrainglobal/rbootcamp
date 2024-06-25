@@ -135,7 +135,6 @@ Here is a list of words/acronyms I was unfamiliar with and their definitions acc
 One important question I have is "What are the expected values of the APGAR score?"
 
 > There are 5 parts to an Apgar score. Each category is weighted evenly and assigned a 0, 1, or 2 value. The components are then added to give a score recorded 1 and 5 minutes after birth. A score of 7 to 10 is considered reassuring, a score of 4 to 6 is moderately abnormal, and a score of 0 to 3 is deemed low in full-term and late preterm infants, at 5 minutes, when an infant has a score of <7, Neonatal Resuscitation Program guidelines recommend continued recording at 5-minute intervals up to 20 minutes. Scoring during resuscitation is not equivalent to an infant not undergoing resuscitation because resuscitative efforts alter several score elements.
-> `r tufte::quote_footer('Simon LV, Shah M, Bragg BN. APGAR Score. [Updated 2024 Mar 19]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from: https://www.ncbi.nlm.nih.gov/books/NBK470569/')`
 
 Given this information, we should expect the APGAR scores to fall withing 0 and 10, which matches the data dictionary. If any scores are outside of that range, it is clearly an error.
 

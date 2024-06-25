@@ -50,6 +50,14 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -785,6 +793,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-1-june-11th"><i class="fa fa-check"></i>Day 1: June 11th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-2-june-18th"><i class="fa fa-check"></i>Day 2: June 18th</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#the-request-from-the-client"><i class="fa fa-check"></i>The request from the client</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#understanding-the-request-and-the-data-dictionary"><i class="fa fa-check"></i>Understanding the request and the data dictionary</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#loading-libraries-and-the-democratic-republic-of-the-congo-neonatology-data"><i class="fa fa-check"></i>Loading libraries and the Democratic Republic of the Congo neonatology data</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-3-june-25th"><i class="fa fa-check"></i>Day 3: June 25th</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>16</b> Cleaning Messy Data</a>
 <ul>
@@ -817,25 +831,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>1.</strong> Start a new script. Name it “sentiment.R”.</p>
 <p><strong>2.</strong> Set up your work space by loading the <code>ggplot2</code>, <code>dplyr</code>, <code>tidytext</code>, <code>gsheet</code>, <code>wordcloud2</code>, <code>sentimentr</code>, and <code>lubridate</code> packages.</p>
 <p><strong>3.</strong> Read in your survey data by running the following:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="sentiment-analysis-with-survey-data.html#cb138-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1W9eGIihIHppys3LZe5FNbUuaIi_tfdscIq521lidRBU/edit?usp=sharing&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="sentiment-analysis-with-survey-data.html#cb145-1" tabindex="-1"></a>survey <span class="ot">&lt;-</span> gsheet<span class="sc">::</span><span class="fu">gsheet2tbl</span>(<span class="st">&#39;https://docs.google.com/spreadsheets/d/1W9eGIihIHppys3LZe5FNbUuaIi_tfdscIq521lidRBU/edit?usp=sharing&#39;</span>)</span></code></pre></div>
 <p><strong>4.</strong> Take a look at the first few rows of the data. What is the unit of observation?</p>
 <p><strong>5.</strong> Create a variable named <code>date_time</code> in your <code>survey</code> data. This should be based on the <code>Timestamp</code> variable. Use the <code>mdy_hms</code> variable to created a “date-time” object.</p>
 <p><strong>6.</strong> Create a visualization of the <code>date_time</code> variable.</p>
 <p><strong>7.</strong> Create an object called <code>sentiments</code> by running the following:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sentiment-analysis-with-survey-data.html#cb139-1" tabindex="-1"></a>sentiments <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&#39;bing&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="sentiment-analysis-with-survey-data.html#cb146-1" tabindex="-1"></a>sentiments <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&#39;bing&#39;</span>)</span></code></pre></div>
 <p><strong>8.</strong> Explore the <code>sentiments</code> object. How many rows? How many columns? What is the unit of observation.</p>
 <p><strong>9.</strong> Create an object named <code>words</code> by running the following:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="sentiment-analysis-with-survey-data.html#cb140-1" tabindex="-1"></a>words <span class="ot">&lt;-</span> survey <span class="sc">%&gt;%</span></span>
-<span id="cb140-2"><a href="sentiment-analysis-with-survey-data.html#cb140-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(first_name,</span>
-<span id="cb140-3"><a href="sentiment-analysis-with-survey-data.html#cb140-3" tabindex="-1"></a>                feeling_num,</span>
-<span id="cb140-4"><a href="sentiment-analysis-with-survey-data.html#cb140-4" tabindex="-1"></a>                feeling) <span class="sc">%&gt;%</span></span>
-<span id="cb140-5"><a href="sentiment-analysis-with-survey-data.html#cb140-5" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, feeling)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sentiment-analysis-with-survey-data.html#cb147-1" tabindex="-1"></a>words <span class="ot">&lt;-</span> survey <span class="sc">%&gt;%</span></span>
+<span id="cb147-2"><a href="sentiment-analysis-with-survey-data.html#cb147-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(first_name,</span>
+<span id="cb147-3"><a href="sentiment-analysis-with-survey-data.html#cb147-3" tabindex="-1"></a>                feeling_num,</span>
+<span id="cb147-4"><a href="sentiment-analysis-with-survey-data.html#cb147-4" tabindex="-1"></a>                feeling) <span class="sc">%&gt;%</span></span>
+<span id="cb147-5"><a href="sentiment-analysis-with-survey-data.html#cb147-5" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, feeling)</span></code></pre></div>
 <p><strong>10.</strong> Explore <code>words</code>. What is the unit of observation.</p>
 <p><strong>11.</strong> Look up the help documentation for the function <code>wordcloud2</code>. What does it expect as the first argument of the function?</p>
 <p><strong>12.</strong> Create a dataframe named <code>word_freq</code>. This should be a dataframe which is conformant with the expectation of <code>wordcloud2</code>, showing how frequently each word appeared in our <code>feeling</code>s.</p>
 <p><strong>13.</strong> Make a word cloud.</p>
 <p><strong>14.</strong> Run the below to create an object named <code>sw</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="sentiment-analysis-with-survey-data.html#cb141-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="sentiment-analysis-with-survey-data.html#cb148-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/stopwords.csv&#39;</span>)</span></code></pre></div>
 <p><strong>15.</strong> What is the <code>sw</code> object all about? Explore it a bit.</p>
 <p><strong>16.</strong> Remove from <code>word_freq</code> any rows in which the word appears in <code>sw</code>.</p>
 <p><strong>17.</strong> Make a new word cloud.</p>
