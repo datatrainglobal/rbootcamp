@@ -495,9 +495,7 @@ As a team work together to answer the following questions to make a mini-report 
 
 **2.** Click knit. What do you see? As a team discuss what you want to delete and keep and make sure everyone knows what an RMarkdown file is before moving forward.
 
-**3.** Make sure when you knit your document you have a title that says `Neonatal mortality in DRC Congo` (hint: use one hashtag to make a title).
-
-**4.** Make another section called `Introduction`. In the introduction include the following information and replace the `_` with information you find in the appropriate links:
+**3.** Make another section called `Introduction` (hint: use one hashtag to make a title). In the introduction include the following information and replace the `_` with information you find in the appropriate links:
 
 >Globally _ million children died in the first 20 days of life in 2022. There are
 approximately _ newborn deaths every day, amounting to _% of all child deaths
@@ -514,11 +512,29 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 >DRC is one of the poorest countries in the world (source)[https://www.cia.gov/the-world-factbook/countries/congo-democratic-republic-of-the/]. The health care system in DRC is highly dependent of private actors. Care-seeking and treatment for malaria in the private sector (including non-profit and faith-based facilities, for-profit clinics, pharmacies, and drug shops) is widespread. According to the 2013-2014 Demographic and Health Survey
 (DHS), among children with fever, _ percent report seeking care in the public sector and _ percent in the private sector (source)[https://www.severemalaria.org/countries/democratic-republic-of-congo/drc-health-system].
 
-**5.** Make another section called `Aims/Objective` and insert the following:
+**4.** Make another section called `Aims/Objective` and insert the following:
 
 > We will work together to generate hypothesis around delivery outcomes and interrogate this dataset in search for answers.
 
-**6.** Make a section called `Preliminary Research` and under this section title create a code chunk.
+**5.** Make a section called `Preliminary Research` and under this section title create a code chunk.
+
+**6.** Paste the following in a code chunk to hide messages and your code when you knit your document:
+
+```{r}
+
+{r, echo=FALSE, message=FALSE}
+# this chunk will hide the code when you run code chunks
+knitr::opts_chunk$set(
+  comment = '', 
+  echo = FALSE,
+  message = FALSE,
+  cache=FALSE,
+  warning=FALSE
+)
+
+
+```
+
 
 **7.** Paste the following inside your code chunk to load your libraries and load your data:
 
@@ -593,6 +609,22 @@ df_research %>%
 
 # once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology
 ```
+
+**NOTE: the code above will not get you the answer, you will have to edit it.**
+
+**16.** How many women had malaria during pregnancy?
+
+**17.** How many single and double deliveries were there?
+
+**18.** Find mean birth weight and height and the range.
+
+**19.** Find mean apgar and range. Does this make sense according to APGAR scores? Google what a normal APGAR score is.
+
+**20.** How many people were born in the day and the night? There is a time of delivery column so you might need to make a new column called `day_or_night`. 
+
+**21.** What is the outcome of delivery?
+
+**22.** Make a histogram of your choosing.
 
 Good work! You made a lot of progress today. We will pick up next week to keep working on your report.
 
