@@ -84,7 +84,7 @@ Congratulations you did it! Save your image, share it in slack, and make sure ev
 
 ## Day 2: June 18th {.unnumbered}
 
-## The request from the client {.unnumbered}
+### The request from the client {.unnumbered}
 
 > Dear team,
 > Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:
@@ -107,7 +107,7 @@ Congratulations you did it! Save your image, share it in slack, and make sure ev
 > 
 > Your super cool and suave boss
 
-## Understanding the request and the data dictionary {.unnumbered}
+### Understanding the request and the data dictionary {.unnumbered}
 
 The first thing I do before diving into programming is look over the request and the data dictionary. Reading and understanding the request gives us an idea of what variables will be most important to us when reading the data dictionary. It is also important to define words and/or acronyms that you aren't familiar with. **It is vital to understand the data before using it, otherwise you might get unexpected results or unintentionally misuse or misrepresent the data.**
 
@@ -138,7 +138,7 @@ One important question I have is "What are the expected values of the APGAR scor
 
 Given this information, we should expect the APGAR scores to fall withing 0 and 10, which matches the data dictionary. If any scores are outside of that range, it is clearly an error.
 
-## Loading libraries and the Democratic Republic of the Congo neonatology data {.unnumbered}
+### Loading libraries and the Democratic Republic of the Congo neonatology data {.unnumbered}
 
 ```{r message=FALSE}
 # load libraries
@@ -149,9 +149,9 @@ library(DT)
 df <- read_csv('https://mbrudd.com/drc_data/DRC_data_v2.csv')
 ```
 
-## Exploring the data {.unnumbered}
+### Exploring the data {.unnumbered}
 
-### Seeing what columns we have {.unnumbered}
+#### Seeing what columns we have {.unnumbered}
 
 ```{r}
 colnames(df) %>% sort()
@@ -247,7 +247,7 @@ for(column in colnames(df)) {
 
 These all look good to me! As far as I can tell, the only columns missing that are in the data dictionary are mother's first name, mother's last name, mother's phone number 1, mother's phone number 2, baby 1's first name, baby 1's last name, baby 2's first name, and baby 2's last name. These columns have been intentionally removed from the data beforehand to keep the data as anonymous as possible while still being useful.
 
-### Removing an obvious error {.unnumbered}
+#### Removing an obvious error {.unnumbered}
 ```{r}
 # remove the entry that seems to be just the column names
 df_cleaning <- df %>% 
@@ -258,7 +258,7 @@ Notice that I've made a separate data frame for cleaning. This makes it easier t
 
 **NOTE: Never remove or modify the original data from the source, even if it is obviously incorrect! Always work on a copy of the data!** If you modify the original data and your changes end up being incorrect, then you've tampered with the data and potentially ruined the entire data set. Another advantage of working on a copy of the data and cleaning it with code is that it documents everything we do, making what we've done clear and reproducible. Fortunately in this case, our source data isn't something we can modify directly; however, there are cases in which you might be given the source data in an unprotected way that would allow you to overwrite it. An example of this would be using the `googlesheets4` library, which allows you to read and write directly to a Google sheet. This can dangerous if you aren't careful!
 
-### Checking that the marital statuses are valid {.unnumbered}
+#### Checking that the marital statuses are valid {.unnumbered}
 
 According to the data dictionary, acceptable values are 'M' for married, 'C' for single, and 'non reporté' for not reported. I'll also treat NA values as if they were 'non reporté' since both mean that the value is missing for that row.
 
@@ -282,7 +282,7 @@ df_cleaning <- df_cleaning %>%
 
 Also, notice that I've used the `tolower()` function. The values in the column may be capitalized in inconsistent ways. Forcing them all to be lowercase in the filter function allows us to ignore the inconsistent capitalization without changing the actual data to all lowercase. You can permanently change the data to lowercase using the `mutate()` function; however, in some scenarios, the capitalization might be important, especially when it comes to acronyms and abbreviations.
 
-### Checking that the malaria diagnosis during pregnancy values are valid {.unnumbered}
+#### Checking that the malaria diagnosis during pregnancy values are valid {.unnumbered}
 
 The data dictionary defines this variable as having a value of 'non' for no, 'oui' for yes, and 'non reporté' for not reported. Once again, I'll treat NA values as if they were 'non reporté' and ignore them.
 
@@ -304,7 +304,7 @@ df_cleaning <- df_cleaning %>%
   filter(!tolower(malaria_diagnosis) %in% c(NA, 'non reporté', 'non', 'oui'))
 ```
 
-### Checking the delivery complication values {.unnumbered}
+#### Checking the delivery complication values {.unnumbered}
 
 ```{r}
 # Getting the unique values for the delivery complications variable
@@ -321,7 +321,7 @@ The data dictionary doesn't define all of the possible values for this column, s
 
 We can also see that some of the values appear to be the same but are written in different ways.
 
-### Checking the time of delivery values {.unnumbered}
+#### Checking the time of delivery values {.unnumbered}
 
 ```{r}
 # Checking the unique values of the time of delivery variables
@@ -359,7 +359,7 @@ df_cleaning <- df_cleaning %>%
   )
 ```
 
-### Checking the weight at birth values {.unnumbered}
+#### Checking the weight at birth values {.unnumbered}
 
 The data dictionary defines these columns as the baby's weight in grams at birth, so let's check for values that aren't numeric, NA, or 'non reporté'.
 
@@ -447,7 +447,7 @@ range(numeric_birth_weights_all$weight_at_birth)
 
 Some of these baby weights make no sense! The maximum baby weight in the data is 41,000 grams, which is a whopping 90.389527 pounds! The minimum baby weight in the data is 9 grams, which is only 0.0198416 pounds! This is definitely something to discuss with the client.
 
-### Checking the neonatology admittance variable {.unnumbered}
+#### Checking the neonatology admittance variable {.unnumbered}
 
 The expected values of the neonatology admittance columns are 'Oui' and 'Non'. Let's find all of the unique values of these columns to check if they match our expectations.
 
@@ -475,7 +475,7 @@ datatable(unique_neonatology_admission_baby_2, caption = "Unique Baby 2 Neonatol
 
 Once again, capitalization matters! It also appears that there are some typos and unexpected values!
 
-## Summary {.unnumbered}
+### Summary {.unnumbered}
 
 **This is NOT a comprehensive cleaning script for this data. There is a lot more work to be done; however, this is a good starting point.**
 
