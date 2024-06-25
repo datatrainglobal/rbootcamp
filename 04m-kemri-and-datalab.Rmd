@@ -80,102 +80,523 @@ tm_shape( locations ) + tm_dots( col="organization", palette = "Dark2" )
 
 Congratulations you did it! Save your image, share it in slack, and make sure everyone on your team has an RScript that works. Once you've done this you're all set. Have a great day or night wherever you are in the world!
 
+***
 
 ## Day 2: June 18th {.unnumbered}
 
-The purpose of these sessions is for you all to get to know each other but also to practice your R skills. What a better way to do that than to work with a real dataset that is new to all of you and is most importantly...messy. 
+## The request from the client {.unnumbered}
 
-Over the next 4 weeks, you and a group of others will be working together to analyse data from the Democratic Republic of the Congo. There will be some instructions for you to follow to get you thinking, but you should think of this as your very own data consulting project. This is real data that comes from a real request and the best reports will be shared with the client at the end of the 4 weeks. So have fun, learn lots, and most importantly make sure that your entire team is on the same page throughout the project and that you work together.
+> Dear team,
+> Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:
+>
+>   - outcome of delivery (baby is okay and if baby was admitted to nenotolagy)
+>   - malaria during pregnancy
+>   - weight, height and apgar
+>   - completeness of variables
+>   - numbers of variables
+>   - the mean age of women
+>   - number of kids submitted to icu/neonatology
+>   - who went to clinic and who did not go to clinic
+>   - how many had a single or double or triple delivery
+>   - mean birth weight and height and range & mean apgar and range
+>   - difference time of when delivery was made (day vs. night)
+> 
+> Overall, the client has requested a neonatology descriptive paper. Please send me an update once a week so that I can see how you are progressing, but I am excited to see the final product in 4 weeks time. 
+> 
+> Many thanks,
+> 
+> Your super cool and suave boss
 
-### The request {.unnumbered}
+## Understanding the request and the data dictionary {.unnumbered}
 
-You wake up this early Tuesday morning (or you are getting ready to end the work day this Tuesday afternoon) when you receive this email:
+The first thing I do before diving into programming is look over the request and the data dictionary. Reading and understanding the request gives us an idea of what variables will be most important to us when reading the data dictionary. It is also important to define words and/or acronyms that you aren't familiar with. **It is vital to understand the data before using it, otherwise you might get unexpected results or unintentionally misuse or misrepresent the data.**
 
-```{r echo=TRUE, eval=FALSE}
-Dear team,
+The data dictionary can be found [here](https://mbrudd.com/drc_data/DICCIONARIO%20DE%20BASE%20DE%20DATOS%20PALUDISMO%20Y%20MUJER%20EMBARAZADA.pdf). Unfortunately, it is in another language that I can not speak or read. Fortunately, [Google Translate](https://translate.google.com/) allows you to upload a PDF to translate in full. Here is the result of Google's translation:
 
-Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:
-  - outcome of delivery (baby is okay and if baby was admitted to nenotolagy)
-  - malaria during pregnancy
-  - weight, height and apgar
-  - completeness of variables
-  - numbers of variables
-  - the mean age of women
-  - number of kids submitted to icu/neonatology
-  - who went to clinic and who did not go to clinic
-  - how many had a single or double or triple delivery
-  - mean birth weight and height and range & mean apgar and range
-  - difference time of when delivery was made (day vs. night)
-
-Overall, the client has requested a neonatology descriptive paper. Please send me an update once a week so that I can see how you are progressing, but I am excited to see the final product in 4 weeks time. 
-
-Many thanks,
-Your super cool and suave boss
+```{r out.width="100%", out.height="750", echo=FALSE}
+knitr::include_graphics('docs/figures/translated-DRC-Neonatology-Data-Dictionary.pdf')
 ```
+<br>
+It is important to note that not all translations are accurate. If something is unclear or doesn't make sense, investigate it. **Once again, it is vital to understand the data before using it, otherwise you might get unexpected results or unintentionally misuse or misrepresent the data.**
 
-### Prepping yourself and your team {.unnumbered}
+Here is a list of words/acronyms I was unfamiliar with and their definitions according to Google:
 
-The **first thing** to do is to make sure you all know each other. Make sure you know everyone's names, how much R experience they have, maybe even throw a fun fact in there.
+* Neonatology - "the branch of medicine concerned with the treatment and care of newborn babies"
+* Eutocic - "a normal birth, which happens without complications from the beginning to the end"
+* APGAR - "The Apgar score is a quick way for health professionals to evaluate the health of all newborns at 1 and 5 minutes after birth and in response to resuscitation."
+* ANC - "Antenatal care (ANC) coverage is an indicator of access and use of health care during pregnancy."
+* IPTp - "Intermittent preventive therapy or intermittent preventive treatment is a public health intervention aimed at treating and preventing malaria episodes in infants, children, schoolchildren and pregnant women."
+* Hematocrit - "the ratio of the volume of red blood cells to the total volume of blood"
+* Neonate - "a newborn child"
+* Neutrophils - "Neutrophils are a type of white blood cell (leukocytes) that act as your immune system's first line of defense."
+* Leukocytes - "a type of blood cell that is made in the bone marrow and found in the blood and lymph tissue"
+* Eosinophils - "Eosinophils, sometimes called eosinophiles or, less commonly, acidophils, are a variety of white blood cells and one of the immune system components responsible for combating multicellular parasites and certain infections in vertebrates."
 
-The **second thing** to do is to fully understand the request. Do you know what an APGAR is? Or why neonatology is important? **As a team** create a list of the words that you do not know. Then look them up! All of you need to be on the same page of understanding these basic definitions before moving on to the next piece. You are building the base of your project now, and you want/need this to be strong.
+One important question I have is "What are the expected values of the APGAR score?"
 
-**WAIT! Do not move forward until everyone is on the same page.**
+> There are 5 parts to an Apgar score. Each category is weighted evenly and assigned a 0, 1, or 2 value. The components are then added to give a score recorded 1 and 5 minutes after birth. A score of 7 to 10 is considered reassuring, a score of 4 to 6 is moderately abnormal, and a score of 0 to 3 is deemed low in full-term and late preterm infants, at 5 minutes, when an infant has a score of <7, Neonatal Resuscitation Program guidelines recommend continued recording at 5-minute intervals up to 20 minutes. Scoring during resuscitation is not equivalent to an infant not undergoing resuscitation because resuscitative efforts alter several score elements.
+> `r tufte::quote_footer('Simon LV, Shah M, Bragg BN. APGAR Score. [Updated 2024 Mar 19]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from: https://www.ncbi.nlm.nih.gov/books/NBK470569/')`
 
-Do you know where the Democratic Republic of the Congo is? This could be a good starting point of this research paper. Open up `RStudio` and create an `RMarkdown` file. Make a folder in the `name_datalab` folder for this project and save your `RMarkdown` file here. Make sure you all decide on the names of folders and files together.
+Given this information, we should expect the APGAR scores to fall withing 0 and 10, which matches the data dictionary. If any scores are outside of that range, it is clearly an error.
 
-Now, make a map that shows you where the Democratic Republic of the Congo is in the world, then in Africa. Stuck? Try looking back at [Module 8: Making Maps](https://datatrain.cc/making-maps.html).
+## Loading libraries and the Democratic Republic of the Congo neonatology data {.unnumbered}
 
-**WAIT! Do not move forward until everyone is on the same page.**
-
-Do you feel like you and your team now understand the different pieces of this project? If you said no, go back to the top of this section and keep working. If you said yes, move forward to begin working on the next piece of this project!
-
-### Download your data and get to know it {.unnumbered}
-
-In the same `RMarkdown` download your data:
-
-```{r echo=TRUE, eval=FALSE}
+```{r message=FALSE}
 # load libraries
-library(dplyr)
-library(readr)
+library(tidyverse)
+library(DT)
 
 # download data
-df <- read_csv('https://mbrudd.com/drc_data/DRC_data.csv')
+df <- read_csv('https://mbrudd.com/drc_data/DRC_data_v2.csv')
 ```
 
-For your reference the data came from [here](https://mbrudd.com/drc_data/DRC_data.csv), and you can access the data dictionary [here](https://mbrudd.com/drc_data/DICCIONARIO%20DE%20BASE%20DE%20DATOS%20PALUDISMO%20Y%20MUJER%20EMBARAZADA.pdf).
+## Exploring the data {.unnumbered}
 
-As a team look at the data dictionary and your dataset and get to know what you are looking at. *You might need to use google translate...* What do the column names mean? What is in this dataset? Do you have any other questions that this data dictionary can answer? What other questions could you ask?
+### Seeing what columns we have {.unnumbered}
 
-**WAIT! Do not move forward until everyone is on the same page.**
+```{r}
+colnames(df) %>% sort()
+```
 
-### Cleaning your data {.unnumbered}
+Wow, that's a lot of columns!
 
-Now comes the fun part. 
+Do note that a lot, if not all, of the 'anc_vx_...' columns, where x is a number, are detailed in the data dictionary in the variables that have 'V1' in the name. The highest value of x that I've seen is 11, meaning that for each of those variables, there may be up to 11 columns representing different visits. Let's check to make sure.
 
-Talk about what it means to clean messy data. Over-do this part and try to define messy data and define data cleaning. Then move forward.
+We should expect 11 instances of these 27 columns corresponding to each potential visit, which is a total of 297 columns. The code below checks if the expected 'anc_v1_...' through 'anc_v11_...' columns are in the data frame and prints out the ones that are missing.
 
-DataLabbers, can you please tell the KEMRI/BOHEMIA team about your experience of [cleaning messy data](https://datatrain.cc/cleaning-messy-data.html) in one of your previous sessions? What did you learn? What was hard? What was easy? ETC.
+```{r}
+# The expected columns for the ANC visits without the leading 'anc_vx' where x is a number 1 to 11
+expected_anc_vx_cols <- c(
+  "date",
+  "gestational_age",
+  "weight",
+  "malaria_test_a",
+  "malaria_test_results_a",
+  "malaria_test_detail_a",
+  "malaria_test_b",
+  "malaria_test_results_b",
+  "malaria_test_detail_b",
+  "hb",
+  "hto%",
+  "wbc",
+  "neu%",
+  "l%",
+  "eo%",
+  "plt",
+  "crp",
+  "urine",
+  "urine_detail",
+  "malaria_treatment_a",
+  "malaria_treatment_detail_a",
+  "malaria_treatment_b",
+  "malaria_treatment_detail_b",
+  "malaria_treatment_c",
+  "malaria_treatment_detail_c",
+  "treatment_other",
+  "treatment_other_detail"
+)
 
-KEMRI/BOHEMIA team, can you please tell the DataLabbers about your experience of cleaning messy data in your work? What are some recent examples you have had to deal with? How do you solve them?
+# Validating that the columns exist in our data so that we don't have to manually check that each
+# 'anc_vx' variable exists
+for(col_name in expected_anc_vx_cols) {
+  # If it is the first column in the list, make two empty lists, one to add missing cols to and the
+  # other to add columns that are in it
+  if(col_name == expected_anc_vx_cols[1]) {
+    cols_not_in_df <- c()
+    checked_cols_in_df <- c()
+  }
+  # Looping through "anc_v1_..." to "anc_v11_..." to check if they exist
+  for(n in 1:11) {
+    # Adding the column prefix
+    full_col_name <- paste0("anc_v", n, "_", col_name)
+    # If the column isn't in the df, add it to the list of missing columns
+    if(!full_col_name %in% colnames(df)) {
+      cols_not_in_df <- cols_not_in_df %>% append(full_col_name)
+      # Otherwise if it is in the df, add it to the list of columns in the df
+    } else {
+      checked_cols_in_df <- checked_cols_in_df %>% append(full_col_name)
+    }
+  }
+  # If it is the last column in the list, print out the list of missing columns
+  if(col_name == expected_anc_vx_cols[length(expected_anc_vx_cols)]) {
+    print(cols_not_in_df %>% sort())
+  }
+}
+```
+
+It appears that we are missing the above 16 "anc_vx" columns.
+
+Let's continue to look through the remaining columns to make sure that they are in the data dictionary and make sense.
+
+```{r}
+# Creating a list of remaining columns to sort through
+for(column in colnames(df)) {
+  # If it's the iteration in the loop, make an empty list to hold the remaining column names
+  if(column == colnames(df)[1]) {
+    remaining_cols <- c()
+  }
+  # If the column isn't in the list of checked columns, add it to the remaining columns list
+  if(!column %in% checked_cols_in_df) {
+    remaining_cols <- remaining_cols %>% append(column)
+  }
+  # If it is the last iteration of the loop, print out the remaining columns list
+  if(column == colnames(df)[ncol(df)]) {
+    print(remaining_cols %>% sort())
+  }
+}
+```
+
+These all look good to me! As far as I can tell, the only columns missing that are in the data dictionary are mother's first name, mother's last name, mother's phone number 1, mother's phone number 2, baby 1's first name, baby 1's last name, baby 2's first name, and baby 2's last name. These columns have been intentionally removed from the data beforehand to keep the data as anonymous as possible while still being useful.
+
+### Removing an obvious error {.unnumbered}
+```{r}
+# remove the entry that seems to be just the column names
+df_cleaning <- df %>% 
+  filter(mother_chart_number != 'mother_chart_number')
+```
+
+Notice that I've made a separate data frame for cleaning. This makes it easier to rerun code without having to completely reload the data from the source. It also makes it easy to compare the original data with the modified data.
+
+**NOTE: Never remove or modify the original data from the source, even if it is obviously incorrect! Always work on a copy of the data!** If you modify the original data and your changes end up being incorrect, then you've tampered with the data and potentially ruined the entire data set. Another advantage of working on a copy of the data and cleaning it with code is that it documents everything we do, making what we've done clear and reproducible. Fortunately in this case, our source data isn't something we can modify directly; however, there are cases in which you might be given the source data in an unprotected way that would allow you to overwrite it. An example of this would be using the `googlesheets4` library, which allows you to read and write directly to a Google sheet. This can dangerous if you aren't careful!
+
+### Checking that the marital statuses are valid {.unnumbered}
+
+According to the data dictionary, acceptable values are 'M' for married, 'C' for single, and 'non reporté' for not reported. I'll also treat NA values as if they were 'non reporté' since both mean that the value is missing for that row.
+
+```{r}
+# Checking for erroneous marital statuses
+erroneous_marital_statuses <- df_cleaning %>%
+  select(marital_status) %>% 
+  filter(!tolower(marital_status) %in% c('non reporté', 'm', 'c', NA))
+
+# Displaying the data frame of erroneous marital status values
+datatable(erroneous_marital_statuses, caption = "Erroneous Marital Status Values")
+```
+
+There are values of 'D' for marital_status, which is not in the data dictionary. It might mean divorced; however, it's best to talk to the client before assuming anything. It could also be an error inputting the value 'C', since the two letters look similar. For now, I'll keep those values in the data. To remove them though, I'd use the code below. Once again, I've set the chunk's `eval` flag to `FALSE` to prevent it from running. To run it, change the flag back to `eval = TRUE`.
+
+```{r eval = FALSE}
+# Filtering for valid marital status values
+df_cleaning <- df_cleaning %>%
+  filter(tolower(marital_status) %in% c('non reporté', 'm', 'c', NA))
+```
+
+Also, notice that I've used the `tolower()` function. The values in the column may be capitalized in inconsistent ways. Forcing them all to be lowercase in the filter function allows us to ignore the inconsistent capitalization without changing the actual data to all lowercase. You can permanently change the data to lowercase using the `mutate()` function; however, in some scenarios, the capitalization might be important, especially when it comes to acronyms and abbreviations.
+
+### Checking that the malaria diagnosis during pregnancy values are valid {.unnumbered}
+
+The data dictionary defines this variable as having a value of 'non' for no, 'oui' for yes, and 'non reporté' for not reported. Once again, I'll treat NA values as if they were 'non reporté' and ignore them.
+
+```{r}
+# Checking for erroneous malaria diagnosis values
+erroneous_malaria_diagnosis <- df_cleaning %>% 
+  select(malaria_diagnosis) %>%
+  filter(!tolower(malaria_diagnosis) %in% c(NA, 'non reporté', 'non', 'oui'))
+
+# Displaying the table
+datatable(erroneous_malaria_diagnosis, caption = "Erroneous Malaria Diagnosis During Pregnancy Values")
+```
+
+To remove these erroneous values, I'd use the code below. Once again, I've set the chunk's `eval` flag to `FALSE` to prevent it from running. To run it, change the flag back to `eval = TRUE`.
+
+```{r eval = FALSE}
+# Filtering for valid malaria diagnosis values
+df_cleaning <- df_cleaning %>% 
+  filter(!tolower(malaria_diagnosis) %in% c(NA, 'non reporté', 'non', 'oui'))
+```
+
+### Checking the delivery complication values {.unnumbered}
+
+```{r}
+# Getting the unique values for the delivery complications variable
+unique_delivery_complications <- df_cleaning %>% 
+  select(delivery_complications) %>% 
+  group_by(delivery_complications) %>% 
+  count(name = 'occurences')
+
+# Displaying the table
+datatable(unique_delivery_complications, caption = "Unique Delivery Complication Values")
+```
+
+The data dictionary doesn't define all of the possible values for this column, so I've decided to explore all of the unique values in our data. It would be a great idea to look at these closer on an individual level to understand what each value means and whether or not it is appropriate for this column.
+
+We can also see that some of the values appear to be the same but are written in different ways.
+
+### Checking the time of delivery values {.unnumbered}
+
+```{r}
+# Checking the unique values of the time of delivery variables
+baby_1_times_of_delivery <- df_cleaning %>% 
+  select(time_of_delivery_baby_1) %>% 
+  group_by(time_of_delivery_baby_1) %>% 
+  count(name = 'occurences')
+
+# Displaying the table
+datatable(baby_1_times_of_delivery, caption = "Unique Baby 1 Time of Delivery Values")
+
+baby_2_times_of_delivery <- df_cleaning %>% 
+  select(time_of_delivery_baby_2) %>% 
+  group_by(time_of_delivery_baby_2) %>% 
+  count(name = 'occurences')
+
+# Displaying the table
+datatable(baby_2_times_of_delivery, caption = "Unique Baby 2 Time of Delivery Values")
+```
+
+The time of delivery values vary in format. It may be best to remove delivery times not in the format of 'HH:MM', 'H:MM', NA, or 'non reporté'. The following code does so, but I've set the `eval` flag to `FALSE` to prevent it from running.
+
+```{r eval = FALSE}
+# Filtering out invalid times of delivery
+df_cleaning <- df_cleaning %>% 
+  filter(
+    # Baby 1's time of delivery is 'non reporté', NA, HH:MM, or H:MM
+    (tolower(time_of_delivery_baby_1) %in% c('non reporté', NA) |
+    grepl('[0-2][0-9]:[0-9][0-9]', time_of_delivery_baby_1) |
+    grepl('[0-9]:[0-9][0-9]', time_of_delivery_baby_1)) &
+    # AND baby 2's time of delivery is 'non reporté', NA, HH:MM, or H:MM
+    (tolower(time_of_delivery_baby_2) %in% c('non reporté', NA) |
+    grepl('[0-2][0-9]:[0-9][0-9]', time_of_delivery_baby_2) |
+    grepl('[0-9]:[0-9][0-9]', time_of_delivery_baby_2))
+  )
+```
+
+### Checking the weight at birth values {.unnumbered}
+
+The data dictionary defines these columns as the baby's weight in grams at birth, so let's check for values that aren't numeric, NA, or 'non reporté'.
+
+```{r}
+# Finding erroneous birth weight values
+erroneous_birth_weights_baby_1 <- df_cleaning %>% 
+  select(weight_at_birth_baby_1) %>% 
+  filter(
+    # Filtering for non-numeric values
+    grepl("[A-Za-z]", weight_at_birth_baby_1) &
+    # AND filtering out NA and 'non reporté' values
+    !weight_at_birth_baby_1 %in% c('non reporté', NA)
+  )
+
+# Displaying the table
+datatable(erroneous_birth_weights_baby_1, caption = "Erroneous Baby 1 Weight at Birth Values")
+
+erroneous_birth_weights_baby_2 <- df_cleaning %>% 
+  select(weight_at_birth_baby_2) %>% 
+  filter(
+    # Filtering for non-numeric values
+    grepl("[A-Za-z]", weight_at_birth_baby_2) &
+    # AND filtering out NA and 'non reporté' values
+    !weight_at_birth_baby_2 %in% c('non reporté', NA)
+  )
+
+# Displaying the table
+datatable(erroneous_birth_weights_baby_2, caption = "Erroneous Baby 2 Weight at Birth Values")
+```
+
+There are two instances of the second baby's weight being 'M'. That doesn't make sense!
+
+Here's how to keep only the numeric, NA, or 'non reporté' values and filter out the rest. Once again, I've set the chunk's `eval` flag to `FALSE` to prevent it from running. To run it, change the flag back to `eval = TRUE`.
+
+```{r eval = FALSE}
+# Filtering out erroneous baby weight at birth data
+df_cleaning <- df_cleaning %>% 
+  filter(
+    # Baby 1's weight is numeric, NA, or 'non reporté'
+    (!grepl("[A-Za-z]",weight_at_birth_baby_1) | weight_at_birth_baby_2 %in% c('non reporté',NA)) &
+    # AND baby 2's weight is numeric, NA, or 'non reporté'
+    (!grepl("[A-Za-z]",weight_at_birth_baby_2) | weight_at_birth_baby_2 %in% c('non reporté',NA))
+  )
+```
+
+Another thing to ask is, "Do the reported weights actually make sense?" Remember, the units should be in grams!
+
+```{r}
+# Finding the unique numeric baby 1 weights at birth
+numeric_birth_weights_baby_1 <- df_cleaning %>% 
+  select(weight_at_birth_baby_1) %>% 
+  # Renaming the column so we can combine the baby weights of baby 1 and baby 2 to find the overall
+  # max and min
+  rename(weight_at_birth = weight_at_birth_baby_1) %>%
+  # Removing values that contain text and that are NA
+  filter(!grepl("[A-Za-z]", weight_at_birth) & !is.na(weight_at_birth)) %>% 
+  # Converting the values to numeric so that we can take the max and min later
+  mutate(weight_at_birth = as.numeric(weight_at_birth))
+
+# Finding the unique numeric baby 2 weights at birth
+numeric_birth_weights_baby_2 <- df_cleaning %>% 
+  select(weight_at_birth_baby_2) %>%
+  # Renaming the column so we can combine the baby weights of baby 1 and baby 2 to find the overall
+  # max and min
+  rename(weight_at_birth = weight_at_birth_baby_2) %>% 
+  # Removing values that contain text and that are NA
+  filter(!grepl("[A-Za-z]", weight_at_birth) & !is.na(weight_at_birth)) %>% 
+  # Converting the values to numeric so that we can take the max and min later
+  mutate(weight_at_birth = as.numeric(weight_at_birth))
+
+# Merging the unique numeric baby weights at birth
+numeric_birth_weights_all <- numeric_birth_weights_baby_1 %>%
+  bind_rows(numeric_birth_weights_baby_2) %>% 
+  # Keeping only distinct values so there are no repeats
+  distinct() %>% 
+  # Sorting them in descending order
+  arrange(desc(weight_at_birth))
+
+# Displaying the table
+datatable(numeric_birth_weights_all, caption = "Unique Numeric Baby Weight at Birth Values")
+
+# Finding the range of the unique numeric baby weights at birth
+range(numeric_birth_weights_all$weight_at_birth)
+```
+
+Some of these baby weights make no sense! The maximum baby weight in the data is 41,000 grams, which is a whopping 90.389527 pounds! The minimum baby weight in the data is 9 grams, which is only 0.0198416 pounds! This is definitely something to discuss with the client.
+
+### Checking the neonatology admittance variable {.unnumbered}
+
+The expected values of the neonatology admittance columns are 'Oui' and 'Non'. Let's find all of the unique values of these columns to check if they match our expectations.
+
+```{r}
+# Getting the unique baby 1 neonatology admittance values
+unique_neonatology_admission_baby_1 <- df_cleaning %>% 
+  select(neonatology_admission_baby_1) %>% 
+  group_by(neonatology_admission_baby_1) %>% 
+  count()
+
+# Displaying the table
+datatable(unique_neonatology_admission_baby_1, caption = "Unique Baby 1 Neonatology Admittance Values")
+```
+
+```{r}
+# Getting the unique baby 2 neonatology admittance values
+unique_neonatology_admission_baby_2 <- df_cleaning %>% 
+  select(neonatology_admission_baby_2) %>% 
+  group_by(neonatology_admission_baby_2) %>% 
+  count()
+
+# Displaying the table
+datatable(unique_neonatology_admission_baby_2, caption = "Unique Baby 2 Neonatology Admittance Values")
+```
+
+Once again, capitalization matters! It also appears that there are some typos and unexpected values!
+
+## Summary {.unnumbered}
+
+**This is NOT a comprehensive cleaning script for this data. There is a lot more work to be done; however, this is a good starting point.**
+
+The purpose of this document is to show you my thought process and the techniques I use to clean data. As you use the data, you will inevitably find more issues and realize that there's more cleaning to be done. Sometimes it isn't obvious that there is a mistake in the data even after you've generated visualizations and run tests on it, so it is vital to do your due diligence and get to know your data BEFORE using it.
+
+This process can be disheartening, but remember, the work we are doing matters and it is worth every second to go back and add to or modify our cleaning scripts. Not only is it the responsible and moral thing to do, it's also what we are paid to do!
+
+I cannot stress enough the importance of looking deeper into the data to find out what we are working with and why we get the results that we get. The accuracy and reliability of our findings, as well as the reputation of ourselves, our organization, and any other affiliations are on the line!
 
 ***
 
-After your discussion as a team come up with a game plan of how you want to explore this data or a list of questions that you could try to answer to "clean" the data. Try this on your own first, but if you get stuck look below. **REMEMBER: if you downloaded your dataset and named it `df` once you start working with the data you will want to make a new object so that you don't overwrite your original data. For instance, you could name it `df_cleaning`. Give it a name that means something to you.**
+## Day 3: June 25th {.unnumbered}
 
-* Are the column names easy to work with?
-* How does the capitalisation of the responses of different columns look?
-* Are there any columns with all NAs? If so, what do you do with them?
-* Are the columns that have numbers in them actually numeric? How do you make them numeric?
-* Are the columns that have words in them actually characters?
-* What about the date columns?
-* Are there any duplicate IDs?
-* Are there any rows with all NAs?
+As a team work together to answer the following questions to make a mini-report on the DRC dataset:
 
-Now, do you feel like your dataset is somewhat clean to the best of your abilities? We don't expect you to perfectly clean this dataset and remove all NAs. We just want you to have a dataset that you feel comfortable with and that you can work with to make graphs, tables, and do some general analysis. 
+**1.** Open up an RMarkdown file and save it in your name_datalab folder and call it `descriptive_DRC_analysis.Rmd` and title the document `Neonatal mortality in DRC Congo`.
 
-### Ending the day {.unnumbered}
+**2.** Click knit. What do you see? As a team discuss what you want to delete and keep and make sure everyone knows what an RMarkdown file is before moving forward.
 
-If you feel that you are comfortable with the data and done some general cleaning, then great! That's what we wanted you to accomplish today. Next steps will be to create some summary statistics of the columns we are interested in exploring, then to create some plots and visualisations, and THEN to write this up as a report that you can give to the client. If you would like to keep moving forward without any guidance on these next steps, go for it! However, if you have a nice clean dataset that you are excited to work on next week, then you have completed what this session was all about. Good work!
+**3.** Make sure when you knit your document you have a title that says `Neonatal mortality in DRC Congo` (hint: use one hashtag to make a title).
 
-Share your RMarkdown in slack, write a summary about what you learned and identified, and then have a great rest of the day!
+**4.** Make another section called `Introduction`. In the introduction include the following information and replace the `_` with information you find in the appropriate links:
+
+>Globally _ million children died in the first 20 days of life in 2022. There are
+approximately _ newborn deaths every day, amounting to _% of all child deaths
+under the age of 5 years (WHO, 2024)[https://www.who.int/news-room/fact-sheets/detail/newborn-mortality].
+>
+>Up to _ of newborn deaths can be prevented if known and if effective health measures
+are provided at birth and during the first week of life. The vast majority of newborn deaths take place in developing countries where access to health care is low. Most of these newborns die at home, without skilled care that could greatly increase their chances for survival (WHO)[https://www.afro.who.int/health-topics/newborn].
+>
+>Malaria is common during pregnancy and can have serious consequences for neonatal health. Neonatal morbidity and mortality can be significantly reduced by proper
+implementation of insecticide-treated nets and intermittent preventive treatment (source)[https://pubmed.ncbi.nlm.nih.gov/21118620/].
+>
+>The WHO African Region carries a disproportionately high share of the global malaria burden. In 2022, the Region was home to 94% of malaria cases (233 million) and 95% (580,000) of malaria deaths. DRC Congo accounted for 12% of all malaria in the world in 2022.
+>
+>DRC is one of the poorest countries in the world (source)[https://www.cia.gov/the-world-factbook/countries/congo-democratic-republic-of-the/]. The health care system in DRC is highly dependent of private actors. Care-seeking and treatment for malaria in the private sector (including non-profit and faith-based facilities, for-profit clinics, pharmacies, and drug shops) is widespread. According to the 2013-2014 Demographic and Health Survey
+(DHS), among children with fever, _ percent report seeking care in the public sector and _ percent in the private sector (source)[https://www.severemalaria.org/countries/democratic-republic-of-congo/drc-health-system].
+
+**5.** Make another section called `Aims/Objective` and insert the following:
+
+> We will work together to generate hypothesis around delivery outcomes and interrogate this dataset in search for answers.
+
+**6.** Make a section called `Preliminary Research` and under this section title create a code chunk.
+
+**7.** Paste the following inside your code chunk to load your libraries and load your data:
+
+```{r, echo = TRUE, eval = FALSE}
+# load libraries
+library(readr)
+library(lubridate)
+library(dplyr)
+
+# download data
+df <- read_csv('https://mbrudd.com/drc_data/DRC_data_clean_v1.csv')
+```
+
+**8.** How many columns are in this dataset? (Hint: `ncol()`)
+
+**9** Create an object that contains the number of columns in the dataset. See below for a hint:
+
+```{r, echo = TRUE, eval = FALSE}
+# create an object that has the number of columns from the dataset
+df_col_num <- ncol(df)
+```
+
+**10.** Now the first sentence in your `Preliminary Research` should be: `This dataset contains 380 columns.` You know how to write words on your `RMarkdown`, but to insert a number that is stored as an object in your environment try the following:
+
+```{r, echo = TRUE, eval = FALSE}
+This dataset contains `r df_col_num` columns.
+```
+
+**11.** Now add `and 2072 variables.` **but use code to write the number...**
+
+**12.** What is the unit of observation for this dataset? Does each row have a mom and her kids in it? I don't know you tell me. Write a sentence about the unit of observation after the sentence you wrote above.
+
+**13.** Find the mean age of women submitted to the unit. To do this convert `mother_dob` and your reference date (`delivery_date`) to a date. Create a column called `mother_age`. Then find the mean age of women submitted to the unit.
+
+```{r, echo = TRUE, eval = FALSE}
+# convert mother_dob and delivery_date to a date
+df_research <- df %>% 
+  mutate(mother_dob = as.Date(mother_dob, format = "%m/%d/%y"),
+         delivery_date = as.Date(delivery_date, format = "%m/%d/%y"))
+
+# create a column called mother_age
+df_research <- df_research %>% 
+  mutate(mother_age = as.numeric(difftime(delivery_date, mother_dob, units = "weeks")) / 52.25)
+
+# create an object called mean_mother_age
+mean_mother_age <- mean(df_research$mother_age, na.rm = TRUE)
+```
+
+**14.** Add a sentence to your Preliminary Research that says what the mean age of women is.
+
+**15.** How many kids were submitted to neonatology? This information is in 2 columns: `neonatology_admission_baby_1` and `neonatology_admission_baby_2`. **A.** lower all the words in the column (hint: `tolower()`). **B.** run `table(df_research$neonatology_admission_baby_1)`, if there are values that you think are errors remove them using `filter()` OR if there are values that you think you can edit use `mutate()` and `ifelse` / `case_when` to fix these instances. **C.** count how many kids were and were not submitted to neonatology in each column. **D.** Add these values to your paragraph. _Use the following code to answer this question:_
+
+```{r, echo = TRUE, eval = FALSE}
+# calculate how many kids were submitted to neonatology
+
+df_research <- df_research %>% 
+  # lower all the words in the column
+  mutate(neonatology_admission_baby_1 = tolower(neonatology_admission_baby_1)) %>% 
+  # filter out entries that are wrong
+  filter(neonatology_admission_baby_1 != 'bb lusamba mukeba') %>% 
+  # edit the cases that seem fixable
+  mutate(neonatology_admission_baby_1 = case_when(
+    neonatology_admission_baby_1 == 'oiui' ~ 'oui',
+    TRUE ~ neonatology_admission_baby_1
+  ))
+
+# calculate who was and was not submitted to neonatology (this table should only have oui and non)
+
+df_research %>% 
+  group_by(neonatology_admission_baby_1) %>% 
+  tally()
+
+# once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology
+```
+
+Good work! You made a lot of progress today. We will pick up next week to keep working on your report.
+
+
+
 
