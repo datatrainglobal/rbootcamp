@@ -794,6 +794,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-1-june-11th"><i class="fa fa-check"></i>Day 1: June 11th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-2-june-18th"><i class="fa fa-check"></i>Day 2: June 18th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-3-june-25th"><i class="fa fa-check"></i>Day 3: June 25th</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-4-july-2nd"><i class="fa fa-check"></i>Day 4: July 2nd</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>16</b> Cleaning Messy Data</a>
 <ul>
@@ -831,11 +832,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="your-mission" class="section level2 unnumbered hasAnchor">
 <h2>Your mission<a href="cleaning-messy-data.html#your-mission" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use the following code to load and peek at the following dataset:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="cleaning-messy-data.html#cb143-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb143-2"><a href="cleaning-messy-data.html#cb143-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb143-3"><a href="cleaning-messy-data.html#cb143-3" tabindex="-1"></a>dives <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/whales-dives.csv&#39;</span>)</span>
-<span id="cb143-4"><a href="cleaning-messy-data.html#cb143-4" tabindex="-1"></a></span>
-<span id="cb143-5"><a href="cleaning-messy-data.html#cb143-5" tabindex="-1"></a><span class="fu">head</span>(dives)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="cleaning-messy-data.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb147-2"><a href="cleaning-messy-data.html#cb147-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb147-3"><a href="cleaning-messy-data.html#cb147-3" tabindex="-1"></a>dives <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/whales-dives.csv&#39;</span>)</span>
+<span id="cb147-4"><a href="cleaning-messy-data.html#cb147-4" tabindex="-1"></a></span>
+<span id="cb147-5"><a href="cleaning-messy-data.html#cb147-5" tabindex="-1"></a><span class="fu">head</span>(dives)</span></code></pre></div>
 <p>This dataframe is nice and tidy. Here are a few of its many tidy features:</p>
 <ul>
 <li><p>Each row is a single observation.</p></li>
@@ -844,12 +845,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Categorical columns have standardized formatting. In the <code>species</code> column, there are two levels: <code>HW</code> (humpback whale) and FW (fin whale). In the <code>behavior</code> column, there are also two levels: <code>FEED</code> and<code>OTHER</code>.</p></li>
 </ul>
 <p>But this dataset was not always so pretty. Here is the <strong>original</strong> data file:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="cleaning-messy-data.html#cb144-1" tabindex="-1"></a>messy_dives <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/whales-dives-messy.csv&#39;</span>)</span>
-<span id="cb144-2"><a href="cleaning-messy-data.html#cb144-2" tabindex="-1"></a></span>
-<span id="cb144-3"><a href="cleaning-messy-data.html#cb144-3" tabindex="-1"></a><span class="fu">head</span>(messy_dives)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="cleaning-messy-data.html#cb148-1" tabindex="-1"></a>messy_dives <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/databrew/intro-to-data-science/main/data/whales-dives-messy.csv&#39;</span>)</span>
+<span id="cb148-2"><a href="cleaning-messy-data.html#cb148-2" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="cleaning-messy-data.html#cb148-3" tabindex="-1"></a><span class="fu">head</span>(messy_dives)</span></code></pre></div>
 <p><strong>Your task in this review exercise is to write a script that carries out the necessary data cleaning steps to get this dataset from its original form to its tidy form.</strong></p>
 <p>Test your work along the way, then demonstrate its completion, using the <code>identical()</code> function. If your <code>my_dives</code> version of the dataset is identical to the <code>dives</code> data above, the following logical test will be <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="cleaning-messy-data.html#cb145-1" tabindex="-1"></a><span class="fu">identical</span>(dives,my_dives)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="cleaning-messy-data.html#cb149-1" tabindex="-1"></a><span class="fu">identical</span>(dives,my_dives)</span></code></pre></div>
 <p>Enjoy!</p>
 
 </div>

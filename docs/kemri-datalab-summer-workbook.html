@@ -794,6 +794,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-1-june-11th"><i class="fa fa-check"></i>Day 1: June 11th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-2-june-18th"><i class="fa fa-check"></i>Day 2: June 18th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-3-june-25th"><i class="fa fa-check"></i>Day 3: June 25th</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-4-july-2nd"><i class="fa fa-check"></i>Day 4: July 2nd</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>16</b> Cleaning Messy Data</a>
 <ul>
@@ -930,323 +931,383 @@ It is important to note that not all translations are accurate. If something is 
 </div>
 <div id="loading-libraries-and-the-democratic-republic-of-the-congo-neonatology-data" class="section level3 unnumbered hasAnchor">
 <h3>Loading libraries and the Democratic Republic of the Congo neonatology data<a href="kemri-datalab-summer-workbook.html#loading-libraries-and-the-democratic-republic-of-the-congo-neonatology-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>Error in open.connection(structure(5L, class = c(&quot;curl&quot;, &quot;connection&quot;), conn_id = &lt;pointer: 0x00000000000006fa&gt;), : HTTP error 404.</code></pre>
 </div>
 <div id="exploring-the-data" class="section level3 unnumbered hasAnchor">
 <h3>Exploring the data<a href="kemri-datalab-summer-workbook.html#exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="seeing-what-columns-we-have" class="section level4 unnumbered hasAnchor">
 <h4>Seeing what columns we have<a href="kemri-datalab-summer-workbook.html#seeing-what-columns-we-have" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>  [1] &quot;anc_first_trimester_eco&quot;                        &quot;anc_first_trimester_eco_gestational_age&quot;       
-  [3] &quot;anc_first_trimester_eco_results&quot;                &quot;anc_first_trimester_eco_results_details&quot;       
-  [5] &quot;anc_second_trimester_eco&quot;                       &quot;anc_second_trimester_eco_gestational_age&quot;      
-  [7] &quot;anc_second_trimester_eco_results&quot;               &quot;anc_second_trimester_eco_results_details&quot;      
-  [9] &quot;anc_third_trimester_eco&quot;                        &quot;anc_third_trimester_eco_gestational_age&quot;       
- [11] &quot;anc_third_trimester_eco_results&quot;                &quot;anc_third_trimester_eco_results_details&quot;       
- [13] &quot;anc_v1_crp&quot;                                     &quot;anc_v1_date&quot;                                   
- [15] &quot;anc_v1_eo%&quot;                                     &quot;anc_v1_gestational_age&quot;                        
- [17] &quot;anc_v1_hb&quot;                                      &quot;anc_v1_hto%&quot;                                   
- [19] &quot;anc_v1_l%&quot;                                      &quot;anc_v1_malaria_test_a&quot;                         
- [21] &quot;anc_v1_malaria_test_b&quot;                          &quot;anc_v1_malaria_test_detail_a&quot;                  
- [23] &quot;anc_v1_malaria_test_detail_b&quot;                   &quot;anc_v1_malaria_test_results_a&quot;                 
- [25] &quot;anc_v1_malaria_test_results_b&quot;                  &quot;anc_v1_malaria_treatment_a&quot;                    
- [27] &quot;anc_v1_malaria_treatment_b&quot;                     &quot;anc_v1_malaria_treatment_c&quot;                    
- [29] &quot;anc_v1_malaria_treatment_detail_a&quot;              &quot;anc_v1_malaria_treatment_detail_b&quot;             
- [31] &quot;anc_v1_malaria_treatment_detail_c&quot;              &quot;anc_v1_neu%&quot;                                   
- [33] &quot;anc_v1_plt&quot;                                     &quot;anc_v1_treatment_other&quot;                        
- [35] &quot;anc_v1_treatment_other_detail&quot;                  &quot;anc_v1_urine&quot;                                  
- [37] &quot;anc_v1_urine_detail&quot;                            &quot;anc_v1_wbc&quot;                                    
- [39] &quot;anc_v1_weight&quot;                                  &quot;anc_v10_crp&quot;                                   
- [41] &quot;anc_v10_date&quot;                                   &quot;anc_v10_eo%&quot;                                   
- [43] &quot;anc_v10_gestational_age&quot;                        &quot;anc_v10_hb&quot;                                    
- [45] &quot;anc_v10_hto%&quot;                                   &quot;anc_v10_l%&quot;                                    
- [47] &quot;anc_v10_malaria_test_a&quot;                         &quot;anc_v10_malaria_test_b&quot;                        
- [49] &quot;anc_v10_malaria_test_detail_a&quot;                  &quot;anc_v10_malaria_test_detail_b&quot;                 
- [51] &quot;anc_v10_malaria_test_results_a&quot;                 &quot;anc_v10_malaria_test_results_b&quot;                
- [53] &quot;anc_v10_malaria_treatment_a&quot;                    &quot;anc_v10_malaria_treatment_b&quot;                   
- [55] &quot;anc_v10_malaria_treatment_detail_a&quot;             &quot;anc_v10_malaria_treatment_detail_b&quot;            
- [57] &quot;anc_v10_neu%&quot;                                   &quot;anc_v10_plt&quot;                                   
- [59] &quot;anc_v10_treatment_other&quot;                        &quot;anc_v10_treatment_other_detail&quot;                
- [61] &quot;anc_v10_urine&quot;                                  &quot;anc_v10_urine_detail&quot;                          
- [63] &quot;anc_v10_wbc&quot;                                    &quot;anc_v10_weight&quot;                                
- [65] &quot;anc_v11_crp&quot;                                    &quot;anc_v11_date&quot;                                  
- [67] &quot;anc_v11_eo%&quot;                                    &quot;anc_v11_gestational_age&quot;                       
- [69] &quot;anc_v11_hb&quot;                                     &quot;anc_v11_hto%&quot;                                  
- [71] &quot;anc_v11_l%&quot;                                     &quot;anc_v11_malaria_test_a&quot;                        
- [73] &quot;anc_v11_malaria_test_b&quot;                         &quot;anc_v11_malaria_test_detail_a&quot;                 
- [75] &quot;anc_v11_malaria_test_detail_b&quot;                  &quot;anc_v11_malaria_test_results_a&quot;                
- [77] &quot;anc_v11_malaria_test_results_b&quot;                 &quot;anc_v11_malaria_treatment_a&quot;                   
- [79] &quot;anc_v11_malaria_treatment_b&quot;                    &quot;anc_v11_malaria_treatment_detail_a&quot;            
- [81] &quot;anc_v11_malaria_treatment_detail_b&quot;             &quot;anc_v11_neu%&quot;                                  
- [83] &quot;anc_v11_plt&quot;                                    &quot;anc_v11_treatment_other&quot;                       
- [85] &quot;anc_v11_treatment_other_detail&quot;                 &quot;anc_v11_urine&quot;                                 
- [87] &quot;anc_v11_urine_detail&quot;                           &quot;anc_v11_wbc&quot;                                   
- [89] &quot;anc_v11_weight&quot;                                 &quot;anc_v2_crp&quot;                                    
- [91] &quot;anc_v2_date&quot;                                    &quot;anc_v2_eo%&quot;                                    
- [93] &quot;anc_v2_gestational_age&quot;                         &quot;anc_v2_hb&quot;                                     
- [95] &quot;anc_v2_hto%&quot;                                    &quot;anc_v2_l%&quot;                                     
- [97] &quot;anc_v2_malaria_test_a&quot;                          &quot;anc_v2_malaria_test_b&quot;                         
- [99] &quot;anc_v2_malaria_test_detail_a&quot;                   &quot;anc_v2_malaria_test_detail_b&quot;                  
-[101] &quot;anc_v2_malaria_test_results_a&quot;                  &quot;anc_v2_malaria_test_results_b&quot;                 
-[103] &quot;anc_v2_malaria_treatment_a&quot;                     &quot;anc_v2_malaria_treatment_b&quot;                    
-[105] &quot;anc_v2_malaria_treatment_detail_a&quot;              &quot;anc_v2_malaria_treatment_detail_b&quot;             
-[107] &quot;anc_v2_neu%&quot;                                    &quot;anc_v2_plt&quot;                                    
-[109] &quot;anc_v2_treatment_other&quot;                         &quot;anc_v2_treatment_other_detail&quot;                 
-[111] &quot;anc_v2_urine&quot;                                   &quot;anc_v2_urine_detail&quot;                           
-[113] &quot;anc_v2_wbc&quot;                                     &quot;anc_v2_weight&quot;                                 
-[115] &quot;anc_v3_crp&quot;                                     &quot;anc_v3_date&quot;                                   
-[117] &quot;anc_v3_eo%&quot;                                     &quot;anc_v3_gestational_age&quot;                        
-[119] &quot;anc_v3_hb&quot;                                      &quot;anc_v3_hto%&quot;                                   
-[121] &quot;anc_v3_l%&quot;                                      &quot;anc_v3_malaria_test_a&quot;                         
-[123] &quot;anc_v3_malaria_test_b&quot;                          &quot;anc_v3_malaria_test_detail_a&quot;                  
-[125] &quot;anc_v3_malaria_test_detail_b&quot;                   &quot;anc_v3_malaria_test_results_a&quot;                 
-[127] &quot;anc_v3_malaria_test_results_b&quot;                  &quot;anc_v3_malaria_treatment_a&quot;                    
-[129] &quot;anc_v3_malaria_treatment_b&quot;                     &quot;anc_v3_malaria_treatment_c&quot;                    
-[131] &quot;anc_v3_malaria_treatment_detail_a&quot;              &quot;anc_v3_malaria_treatment_detail_b&quot;             
-[133] &quot;anc_v3_malaria_treatment_detail_c&quot;              &quot;anc_v3_neu%&quot;                                   
-[135] &quot;anc_v3_plt&quot;                                     &quot;anc_v3_treatment_other&quot;                        
-[137] &quot;anc_v3_treatment_other_detail&quot;                  &quot;anc_v3_urine&quot;                                  
-[139] &quot;anc_v3_urine_detail&quot;                            &quot;anc_v3_wbc&quot;                                    
-[141] &quot;anc_v3_weight&quot;                                  &quot;anc_v4_crp&quot;                                    
-[143] &quot;anc_v4_date&quot;                                    &quot;anc_v4_eo%&quot;                                    
-[145] &quot;anc_v4_gestational_age&quot;                         &quot;anc_v4_hb&quot;                                     
-[147] &quot;anc_v4_hto%&quot;                                    &quot;anc_v4_l%&quot;                                     
-[149] &quot;anc_v4_malaria_test_a&quot;                          &quot;anc_v4_malaria_test_b&quot;                         
-[151] &quot;anc_v4_malaria_test_detail_a&quot;                   &quot;anc_v4_malaria_test_detail_b&quot;                  
-[153] &quot;anc_v4_malaria_test_results_a&quot;                  &quot;anc_v4_malaria_test_results_b&quot;                 
-[155] &quot;anc_v4_malaria_treatment_a&quot;                     &quot;anc_v4_malaria_treatment_b&quot;                    
-[157] &quot;anc_v4_malaria_treatment_detail_a&quot;              &quot;anc_v4_malaria_treatment_detail_b&quot;             
-[159] &quot;anc_v4_neu%&quot;                                    &quot;anc_v4_plt&quot;                                    
-[161] &quot;anc_v4_treatment_other&quot;                         &quot;anc_v4_treatment_other_detail&quot;                 
-[163] &quot;anc_v4_urine&quot;                                   &quot;anc_v4_urine_detail&quot;                           
-[165] &quot;anc_v4_wbc&quot;                                     &quot;anc_v4_weight&quot;                                 
-[167] &quot;anc_v5_crp&quot;                                     &quot;anc_v5_date&quot;                                   
-[169] &quot;anc_v5_eo%&quot;                                     &quot;anc_v5_gestational_age&quot;                        
-[171] &quot;anc_v5_hb&quot;                                      &quot;anc_v5_hto%&quot;                                   
-[173] &quot;anc_v5_l%&quot;                                      &quot;anc_v5_malaria_test_a&quot;                         
-[175] &quot;anc_v5_malaria_test_b&quot;                          &quot;anc_v5_malaria_test_detail_a&quot;                  
-[177] &quot;anc_v5_malaria_test_detail_b&quot;                   &quot;anc_v5_malaria_test_results_a&quot;                 
-[179] &quot;anc_v5_malaria_test_results_b&quot;                  &quot;anc_v5_malaria_treatment_a&quot;                    
-[181] &quot;anc_v5_malaria_treatment_b&quot;                     &quot;anc_v5_malaria_treatment_detail_a&quot;             
-[183] &quot;anc_v5_malaria_treatment_detail_b&quot;              &quot;anc_v5_neu%&quot;                                   
-[185] &quot;anc_v5_plt&quot;                                     &quot;anc_v5_treatment_other&quot;                        
-[187] &quot;anc_v5_treatment_other_detail&quot;                  &quot;anc_v5_urine&quot;                                  
-[189] &quot;anc_v5_urine_detail&quot;                            &quot;anc_v5_wbc&quot;                                    
-[191] &quot;anc_v5_weight&quot;                                  &quot;anc_v6_crp&quot;                                    
-[193] &quot;anc_v6_date&quot;                                    &quot;anc_v6_eo%&quot;                                    
-[195] &quot;anc_v6_gestational_age&quot;                         &quot;anc_v6_hb&quot;                                     
-[197] &quot;anc_v6_hto%&quot;                                    &quot;anc_v6_l%&quot;                                     
-[199] &quot;anc_v6_malaria_test_a&quot;                          &quot;anc_v6_malaria_test_b&quot;                         
-[201] &quot;anc_v6_malaria_test_detail_a&quot;                   &quot;anc_v6_malaria_test_detail_b&quot;                  
-[203] &quot;anc_v6_malaria_test_results_a&quot;                  &quot;anc_v6_malaria_test_results_b&quot;                 
-[205] &quot;anc_v6_malaria_treatment_a&quot;                     &quot;anc_v6_malaria_treatment_b&quot;                    
-[207] &quot;anc_v6_malaria_treatment_detail_a&quot;              &quot;anc_v6_malaria_treatment_detail_b&quot;             
-[209] &quot;anc_v6_neu%&quot;                                    &quot;anc_v6_plt&quot;                                    
-[211] &quot;anc_v6_treatment_other&quot;                         &quot;anc_v6_treatment_other_detail&quot;                 
-[213] &quot;anc_v6_urine&quot;                                   &quot;anc_v6_urine_detail&quot;                           
-[215] &quot;anc_v6_wbc&quot;                                     &quot;anc_v6_weight&quot;                                 
-[217] &quot;anc_v7_crp&quot;                                     &quot;anc_v7_date&quot;                                   
-[219] &quot;anc_v7_eo%&quot;                                     &quot;anc_v7_gestational_age&quot;                        
-[221] &quot;anc_v7_hb&quot;                                      &quot;anc_v7_hto%&quot;                                   
-[223] &quot;anc_v7_l%&quot;                                      &quot;anc_v7_malaria_test_a&quot;                         
-[225] &quot;anc_v7_malaria_test_b&quot;                          &quot;anc_v7_malaria_test_detail_a&quot;                  
-[227] &quot;anc_v7_malaria_test_detail_b&quot;                   &quot;anc_v7_malaria_test_results_a&quot;                 
-[229] &quot;anc_v7_malaria_test_results_b&quot;                  &quot;anc_v7_malaria_treatment_a&quot;                    
-[231] &quot;anc_v7_malaria_treatment_b&quot;                     &quot;anc_v7_malaria_treatment_detail_a&quot;             
-[233] &quot;anc_v7_malaria_treatment_detail_b&quot;              &quot;anc_v7_neu%&quot;                                   
-[235] &quot;anc_v7_plt&quot;                                     &quot;anc_v7_treatment_other&quot;                        
-[237] &quot;anc_v7_treatment_other_detail&quot;                  &quot;anc_v7_urine&quot;                                  
-[239] &quot;anc_v7_urine_detail&quot;                            &quot;anc_v7_wbc&quot;                                    
-[241] &quot;anc_v7_weight&quot;                                  &quot;anc_v8_crp&quot;                                    
-[243] &quot;anc_v8_date&quot;                                    &quot;anc_v8_eo%&quot;                                    
-[245] &quot;anc_v8_gestational_age&quot;                         &quot;anc_v8_hb&quot;                                     
-[247] &quot;anc_v8_hto%&quot;                                    &quot;anc_v8_l%&quot;                                     
-[249] &quot;anc_v8_malaria_test_a&quot;                          &quot;anc_v8_malaria_test_b&quot;                         
-[251] &quot;anc_v8_malaria_test_detail_a&quot;                   &quot;anc_v8_malaria_test_detail_b&quot;                  
-[253] &quot;anc_v8_malaria_test_results_a&quot;                  &quot;anc_v8_malaria_test_results_b&quot;                 
-[255] &quot;anc_v8_malaria_treatment_a&quot;                     &quot;anc_v8_malaria_treatment_b&quot;                    
-[257] &quot;anc_v8_malaria_treatment_c&quot;                     &quot;anc_v8_malaria_treatment_detail_a&quot;             
-[259] &quot;anc_v8_malaria_treatment_detail_b&quot;              &quot;anc_v8_malaria_treatment_detail_c&quot;             
-[261] &quot;anc_v8_neu%&quot;                                    &quot;anc_v8_plt&quot;                                    
-[263] &quot;anc_v8_treatment_other&quot;                         &quot;anc_v8_treatment_other_detail&quot;                 
-[265] &quot;anc_v8_urine&quot;                                   &quot;anc_v8_urine_detail&quot;                           
-[267] &quot;anc_v8_wbc&quot;                                     &quot;anc_v8_weight&quot;                                 
-[269] &quot;anc_v9_crp&quot;                                     &quot;anc_v9_date&quot;                                   
-[271] &quot;anc_v9_eo%&quot;                                     &quot;anc_v9_gestational_age&quot;                        
-[273] &quot;anc_v9_hb&quot;                                      &quot;anc_v9_hto%&quot;                                   
-[275] &quot;anc_v9_l%&quot;                                      &quot;anc_v9_malaria_test_a&quot;                         
-[277] &quot;anc_v9_malaria_test_b&quot;                          &quot;anc_v9_malaria_test_detail_a&quot;                  
-[279] &quot;anc_v9_malaria_test_detail_b&quot;                   &quot;anc_v9_malaria_test_results_a&quot;                 
-[281] &quot;anc_v9_malaria_test_results_b&quot;                  &quot;anc_v9_malaria_treatment_a&quot;                    
-[283] &quot;anc_v9_malaria_treatment_b&quot;                     &quot;anc_v9_malaria_treatment_detail_a&quot;             
-[285] &quot;anc_v9_malaria_treatment_detail_b&quot;              &quot;anc_v9_neu%&quot;                                   
-[287] &quot;anc_v9_plt&quot;                                     &quot;anc_v9_treatment_other&quot;                        
-[289] &quot;anc_v9_treatment_other_detail&quot;                  &quot;anc_v9_urine&quot;                                  
-[291] &quot;anc_v9_urine_detail&quot;                            &quot;anc_v9_wbc&quot;                                    
-[293] &quot;anc_v9_weight&quot;                                  &quot;antène_cpn&quot;                                    
-[295] &quot;apgar_1_baby_1&quot;                                 &quot;apgar_1_baby_2&quot;                                
-[297] &quot;apgar_10_baby_1&quot;                                &quot;apgar_10_baby_2&quot;                               
-[299] &quot;apgar_5_baby_1&quot;                                 &quot;apgar_5_baby_2&quot;                                
-[301] &quot;attending_baby_1&quot;                               &quot;attending_baby_2&quot;                              
-[303] &quot;baby_1_chart_number_(if_different_from_mother)&quot; &quot;baby_1_crp_at_admission&quot;                       
-[305] &quot;baby_1_eo%_at_admission&quot;                        &quot;baby_1_hb_at_admission&quot;                        
-[307] &quot;baby_1_hto%_at_admission&quot;                       &quot;baby_1_l%_at_admission&quot;                        
-[309] &quot;baby_1_malaria_test&quot;                            &quot;baby_1_malaria_test_detail_a&quot;                  
-[311] &quot;baby_1_malaria_test_detail_b&quot;                   &quot;baby_1_malaria_test_results_a&quot;                 
-[313] &quot;baby_1_malaria_test_results_b&quot;                  &quot;baby_1_neu%_at_admission&quot;                      
-[315] &quot;baby_1_outcome&quot;                                 &quot;baby_1_plt_at_admission&quot;                       
-[317] &quot;baby_1_sex&quot;                                     &quot;baby_1_wbc_at_admission&quot;                       
-[319] &quot;baby_2_chart_number_(if_different_from_mother)&quot; &quot;baby_2_crp_at_admission&quot;                       
-[321] &quot;baby_2_eo%_at_admission&quot;                        &quot;baby_2_hb_at_admission&quot;                        
-[323] &quot;baby_2_hto%_at_admission&quot;                       &quot;baby_2_l%_at_admission&quot;                        
-[325] &quot;baby_2_malaria_test&quot;                            &quot;baby_2_malaria_test_detail_a&quot;                  
-[327] &quot;baby_2_malaria_test_detail_b&quot;                   &quot;baby_2_malaria_test_results_a&quot;                 
-[329] &quot;baby_2_malaria_test_results_b&quot;                  &quot;baby_2_neu%_at_admission&quot;                      
-[331] &quot;baby_2_outcome&quot;                                 &quot;baby_2_plt_at_admission&quot;                       
-[333] &quot;baby_2_sex&quot;                                     &quot;baby_2_wbc_at_admission&quot;                       
-[335] &quot;cpn&quot;                                            &quot;date_of_admission_baby_1&quot;                      
-[337] &quot;date_of_admission_baby_2&quot;                       &quot;date_of_release_baby_1&quot;                        
-[339] &quot;date_of_release_baby_2&quot;                         &quot;delivery_complications&quot;                        
-[341] &quot;delivery_date&quot;                                  &quot;delivery_details_baby_1&quot;                       
-[343] &quot;delivery_details_baby_2&quot;                        &quot;diagnosis_at_admission_baby_1&quot;                 
-[345] &quot;diagnosis_at_admission_baby_2&quot;                  &quot;gestacional_age&quot;                               
-[347] &quot;head_circumference_baby_1&quot;                      &quot;head_circumference_baby_2&quot;                     
-[349] &quot;iptp_how_many&quot;                                  &quot;lenght_at_birth_baby_1&quot;                        
-[351] &quot;lenght_at_birth_baby_2&quot;                         &quot;lst_menstrual_period&quot;                          
-[353] &quot;malaria_diagnosis&quot;                              &quot;marital_status&quot;                                
-[355] &quot;médicament_iptp&quot;                                &quot;mother_chart_number&quot;                           
-[357] &quot;mother_commune&quot;                                 &quot;mother_dob&quot;                                    
-[359] &quot;mother_nationality&quot;                             &quot;mother_study_level&quot;                            
-[361] &quot;neonatology_admission_baby_1&quot;                   &quot;neonatology_admission_baby_2&quot;                  
-[363] &quot;nº_cpn&quot;                                         &quot;number_malaria_diagnosis&quot;                      
-[365] &quot;other_diagnosis&quot;                                &quot;previous_abortions&quot;                            
-[367] &quot;previous_deliveries&quot;                            &quot;previous_other&quot;                                
-[369] &quot;previous_pregnancies&quot;                           &quot;previous_still_births&quot;                         
-[371] &quot;received_iptp&quot;                                  &quot;time_of_delivery_baby_1&quot;                       
-[373] &quot;time_of_delivery_baby_2&quot;                        &quot;type_malaria_diagnosis&quot;                        
-[375] &quot;weight_at_admission_baby_1&quot;                     &quot;weight_at_admission_baby_2&quot;                    
-[377] &quot;weight_at_birth_baby_1&quot;                         &quot;weight_at_birth_baby_2&quot;                        
-[379] &quot;weight_at_release_baby_1&quot;                       &quot;weight_at_release_baby_2&quot;                      </code></pre>
+<pre><code>[1] &quot;...1&quot;            &quot;country&quot;         &quot;indicator_name&quot; 
+[4] &quot;ISO3&quot;            &quot;region_name&quot;     &quot;unit_of_measure&quot;
+[7] &quot;value&quot;           &quot;year&quot;           </code></pre>
 <p>Wow, that’s a lot of columns!</p>
 <p>Do note that a lot, if not all, of the ‘anc_vx_…’ columns, where x is a number, are detailed in the data dictionary in the variables that have ‘V1’ in the name. The highest value of x that I’ve seen is 11, meaning that for each of those variables, there may be up to 11 columns representing different visits. Let’s check to make sure.</p>
 <p>We should expect 11 instances of these 27 columns corresponding to each potential visit, which is a total of 297 columns. The code below checks if the expected ‘anc_v1_…’ through ‘anc_v11_…’ columns are in the data frame and prints out the ones that are missing.</p>
-<pre><code> [1] &quot;anc_v10_malaria_treatment_c&quot;        &quot;anc_v10_malaria_treatment_detail_c&quot;
- [3] &quot;anc_v11_malaria_treatment_c&quot;        &quot;anc_v11_malaria_treatment_detail_c&quot;
- [5] &quot;anc_v2_malaria_treatment_c&quot;         &quot;anc_v2_malaria_treatment_detail_c&quot; 
- [7] &quot;anc_v4_malaria_treatment_c&quot;         &quot;anc_v4_malaria_treatment_detail_c&quot; 
- [9] &quot;anc_v5_malaria_treatment_c&quot;         &quot;anc_v5_malaria_treatment_detail_c&quot; 
-[11] &quot;anc_v6_malaria_treatment_c&quot;         &quot;anc_v6_malaria_treatment_detail_c&quot; 
-[13] &quot;anc_v7_malaria_treatment_c&quot;         &quot;anc_v7_malaria_treatment_detail_c&quot; 
-[15] &quot;anc_v9_malaria_treatment_c&quot;         &quot;anc_v9_malaria_treatment_detail_c&quot; </code></pre>
+<pre><code>  [1] &quot;anc_v1_crp&quot;                        
+  [2] &quot;anc_v1_date&quot;                       
+  [3] &quot;anc_v1_eo%&quot;                        
+  [4] &quot;anc_v1_gestational_age&quot;            
+  [5] &quot;anc_v1_hb&quot;                         
+  [6] &quot;anc_v1_hto%&quot;                       
+  [7] &quot;anc_v1_l%&quot;                         
+  [8] &quot;anc_v1_malaria_test_a&quot;             
+  [9] &quot;anc_v1_malaria_test_b&quot;             
+ [10] &quot;anc_v1_malaria_test_detail_a&quot;      
+ [11] &quot;anc_v1_malaria_test_detail_b&quot;      
+ [12] &quot;anc_v1_malaria_test_results_a&quot;     
+ [13] &quot;anc_v1_malaria_test_results_b&quot;     
+ [14] &quot;anc_v1_malaria_treatment_a&quot;        
+ [15] &quot;anc_v1_malaria_treatment_b&quot;        
+ [16] &quot;anc_v1_malaria_treatment_c&quot;        
+ [17] &quot;anc_v1_malaria_treatment_detail_a&quot; 
+ [18] &quot;anc_v1_malaria_treatment_detail_b&quot; 
+ [19] &quot;anc_v1_malaria_treatment_detail_c&quot; 
+ [20] &quot;anc_v1_neu%&quot;                       
+ [21] &quot;anc_v1_plt&quot;                        
+ [22] &quot;anc_v1_treatment_other&quot;            
+ [23] &quot;anc_v1_treatment_other_detail&quot;     
+ [24] &quot;anc_v1_urine&quot;                      
+ [25] &quot;anc_v1_urine_detail&quot;               
+ [26] &quot;anc_v1_wbc&quot;                        
+ [27] &quot;anc_v1_weight&quot;                     
+ [28] &quot;anc_v10_crp&quot;                       
+ [29] &quot;anc_v10_date&quot;                      
+ [30] &quot;anc_v10_eo%&quot;                       
+ [31] &quot;anc_v10_gestational_age&quot;           
+ [32] &quot;anc_v10_hb&quot;                        
+ [33] &quot;anc_v10_hto%&quot;                      
+ [34] &quot;anc_v10_l%&quot;                        
+ [35] &quot;anc_v10_malaria_test_a&quot;            
+ [36] &quot;anc_v10_malaria_test_b&quot;            
+ [37] &quot;anc_v10_malaria_test_detail_a&quot;     
+ [38] &quot;anc_v10_malaria_test_detail_b&quot;     
+ [39] &quot;anc_v10_malaria_test_results_a&quot;    
+ [40] &quot;anc_v10_malaria_test_results_b&quot;    
+ [41] &quot;anc_v10_malaria_treatment_a&quot;       
+ [42] &quot;anc_v10_malaria_treatment_b&quot;       
+ [43] &quot;anc_v10_malaria_treatment_c&quot;       
+ [44] &quot;anc_v10_malaria_treatment_detail_a&quot;
+ [45] &quot;anc_v10_malaria_treatment_detail_b&quot;
+ [46] &quot;anc_v10_malaria_treatment_detail_c&quot;
+ [47] &quot;anc_v10_neu%&quot;                      
+ [48] &quot;anc_v10_plt&quot;                       
+ [49] &quot;anc_v10_treatment_other&quot;           
+ [50] &quot;anc_v10_treatment_other_detail&quot;    
+ [51] &quot;anc_v10_urine&quot;                     
+ [52] &quot;anc_v10_urine_detail&quot;              
+ [53] &quot;anc_v10_wbc&quot;                       
+ [54] &quot;anc_v10_weight&quot;                    
+ [55] &quot;anc_v11_crp&quot;                       
+ [56] &quot;anc_v11_date&quot;                      
+ [57] &quot;anc_v11_eo%&quot;                       
+ [58] &quot;anc_v11_gestational_age&quot;           
+ [59] &quot;anc_v11_hb&quot;                        
+ [60] &quot;anc_v11_hto%&quot;                      
+ [61] &quot;anc_v11_l%&quot;                        
+ [62] &quot;anc_v11_malaria_test_a&quot;            
+ [63] &quot;anc_v11_malaria_test_b&quot;            
+ [64] &quot;anc_v11_malaria_test_detail_a&quot;     
+ [65] &quot;anc_v11_malaria_test_detail_b&quot;     
+ [66] &quot;anc_v11_malaria_test_results_a&quot;    
+ [67] &quot;anc_v11_malaria_test_results_b&quot;    
+ [68] &quot;anc_v11_malaria_treatment_a&quot;       
+ [69] &quot;anc_v11_malaria_treatment_b&quot;       
+ [70] &quot;anc_v11_malaria_treatment_c&quot;       
+ [71] &quot;anc_v11_malaria_treatment_detail_a&quot;
+ [72] &quot;anc_v11_malaria_treatment_detail_b&quot;
+ [73] &quot;anc_v11_malaria_treatment_detail_c&quot;
+ [74] &quot;anc_v11_neu%&quot;                      
+ [75] &quot;anc_v11_plt&quot;                       
+ [76] &quot;anc_v11_treatment_other&quot;           
+ [77] &quot;anc_v11_treatment_other_detail&quot;    
+ [78] &quot;anc_v11_urine&quot;                     
+ [79] &quot;anc_v11_urine_detail&quot;              
+ [80] &quot;anc_v11_wbc&quot;                       
+ [81] &quot;anc_v11_weight&quot;                    
+ [82] &quot;anc_v2_crp&quot;                        
+ [83] &quot;anc_v2_date&quot;                       
+ [84] &quot;anc_v2_eo%&quot;                        
+ [85] &quot;anc_v2_gestational_age&quot;            
+ [86] &quot;anc_v2_hb&quot;                         
+ [87] &quot;anc_v2_hto%&quot;                       
+ [88] &quot;anc_v2_l%&quot;                         
+ [89] &quot;anc_v2_malaria_test_a&quot;             
+ [90] &quot;anc_v2_malaria_test_b&quot;             
+ [91] &quot;anc_v2_malaria_test_detail_a&quot;      
+ [92] &quot;anc_v2_malaria_test_detail_b&quot;      
+ [93] &quot;anc_v2_malaria_test_results_a&quot;     
+ [94] &quot;anc_v2_malaria_test_results_b&quot;     
+ [95] &quot;anc_v2_malaria_treatment_a&quot;        
+ [96] &quot;anc_v2_malaria_treatment_b&quot;        
+ [97] &quot;anc_v2_malaria_treatment_c&quot;        
+ [98] &quot;anc_v2_malaria_treatment_detail_a&quot; 
+ [99] &quot;anc_v2_malaria_treatment_detail_b&quot; 
+[100] &quot;anc_v2_malaria_treatment_detail_c&quot; 
+[101] &quot;anc_v2_neu%&quot;                       
+[102] &quot;anc_v2_plt&quot;                        
+[103] &quot;anc_v2_treatment_other&quot;            
+[104] &quot;anc_v2_treatment_other_detail&quot;     
+[105] &quot;anc_v2_urine&quot;                      
+[106] &quot;anc_v2_urine_detail&quot;               
+[107] &quot;anc_v2_wbc&quot;                        
+[108] &quot;anc_v2_weight&quot;                     
+[109] &quot;anc_v3_crp&quot;                        
+[110] &quot;anc_v3_date&quot;                       
+[111] &quot;anc_v3_eo%&quot;                        
+[112] &quot;anc_v3_gestational_age&quot;            
+[113] &quot;anc_v3_hb&quot;                         
+[114] &quot;anc_v3_hto%&quot;                       
+[115] &quot;anc_v3_l%&quot;                         
+[116] &quot;anc_v3_malaria_test_a&quot;             
+[117] &quot;anc_v3_malaria_test_b&quot;             
+[118] &quot;anc_v3_malaria_test_detail_a&quot;      
+[119] &quot;anc_v3_malaria_test_detail_b&quot;      
+[120] &quot;anc_v3_malaria_test_results_a&quot;     
+[121] &quot;anc_v3_malaria_test_results_b&quot;     
+[122] &quot;anc_v3_malaria_treatment_a&quot;        
+[123] &quot;anc_v3_malaria_treatment_b&quot;        
+[124] &quot;anc_v3_malaria_treatment_c&quot;        
+[125] &quot;anc_v3_malaria_treatment_detail_a&quot; 
+[126] &quot;anc_v3_malaria_treatment_detail_b&quot; 
+[127] &quot;anc_v3_malaria_treatment_detail_c&quot; 
+[128] &quot;anc_v3_neu%&quot;                       
+[129] &quot;anc_v3_plt&quot;                        
+[130] &quot;anc_v3_treatment_other&quot;            
+[131] &quot;anc_v3_treatment_other_detail&quot;     
+[132] &quot;anc_v3_urine&quot;                      
+[133] &quot;anc_v3_urine_detail&quot;               
+[134] &quot;anc_v3_wbc&quot;                        
+[135] &quot;anc_v3_weight&quot;                     
+[136] &quot;anc_v4_crp&quot;                        
+[137] &quot;anc_v4_date&quot;                       
+[138] &quot;anc_v4_eo%&quot;                        
+[139] &quot;anc_v4_gestational_age&quot;            
+[140] &quot;anc_v4_hb&quot;                         
+[141] &quot;anc_v4_hto%&quot;                       
+[142] &quot;anc_v4_l%&quot;                         
+[143] &quot;anc_v4_malaria_test_a&quot;             
+[144] &quot;anc_v4_malaria_test_b&quot;             
+[145] &quot;anc_v4_malaria_test_detail_a&quot;      
+[146] &quot;anc_v4_malaria_test_detail_b&quot;      
+[147] &quot;anc_v4_malaria_test_results_a&quot;     
+[148] &quot;anc_v4_malaria_test_results_b&quot;     
+[149] &quot;anc_v4_malaria_treatment_a&quot;        
+[150] &quot;anc_v4_malaria_treatment_b&quot;        
+[151] &quot;anc_v4_malaria_treatment_c&quot;        
+[152] &quot;anc_v4_malaria_treatment_detail_a&quot; 
+[153] &quot;anc_v4_malaria_treatment_detail_b&quot; 
+[154] &quot;anc_v4_malaria_treatment_detail_c&quot; 
+[155] &quot;anc_v4_neu%&quot;                       
+[156] &quot;anc_v4_plt&quot;                        
+[157] &quot;anc_v4_treatment_other&quot;            
+[158] &quot;anc_v4_treatment_other_detail&quot;     
+[159] &quot;anc_v4_urine&quot;                      
+[160] &quot;anc_v4_urine_detail&quot;               
+[161] &quot;anc_v4_wbc&quot;                        
+[162] &quot;anc_v4_weight&quot;                     
+[163] &quot;anc_v5_crp&quot;                        
+[164] &quot;anc_v5_date&quot;                       
+[165] &quot;anc_v5_eo%&quot;                        
+[166] &quot;anc_v5_gestational_age&quot;            
+[167] &quot;anc_v5_hb&quot;                         
+[168] &quot;anc_v5_hto%&quot;                       
+[169] &quot;anc_v5_l%&quot;                         
+[170] &quot;anc_v5_malaria_test_a&quot;             
+[171] &quot;anc_v5_malaria_test_b&quot;             
+[172] &quot;anc_v5_malaria_test_detail_a&quot;      
+[173] &quot;anc_v5_malaria_test_detail_b&quot;      
+[174] &quot;anc_v5_malaria_test_results_a&quot;     
+[175] &quot;anc_v5_malaria_test_results_b&quot;     
+[176] &quot;anc_v5_malaria_treatment_a&quot;        
+[177] &quot;anc_v5_malaria_treatment_b&quot;        
+[178] &quot;anc_v5_malaria_treatment_c&quot;        
+[179] &quot;anc_v5_malaria_treatment_detail_a&quot; 
+[180] &quot;anc_v5_malaria_treatment_detail_b&quot; 
+[181] &quot;anc_v5_malaria_treatment_detail_c&quot; 
+[182] &quot;anc_v5_neu%&quot;                       
+[183] &quot;anc_v5_plt&quot;                        
+[184] &quot;anc_v5_treatment_other&quot;            
+[185] &quot;anc_v5_treatment_other_detail&quot;     
+[186] &quot;anc_v5_urine&quot;                      
+[187] &quot;anc_v5_urine_detail&quot;               
+[188] &quot;anc_v5_wbc&quot;                        
+[189] &quot;anc_v5_weight&quot;                     
+[190] &quot;anc_v6_crp&quot;                        
+[191] &quot;anc_v6_date&quot;                       
+[192] &quot;anc_v6_eo%&quot;                        
+[193] &quot;anc_v6_gestational_age&quot;            
+[194] &quot;anc_v6_hb&quot;                         
+[195] &quot;anc_v6_hto%&quot;                       
+[196] &quot;anc_v6_l%&quot;                         
+[197] &quot;anc_v6_malaria_test_a&quot;             
+[198] &quot;anc_v6_malaria_test_b&quot;             
+[199] &quot;anc_v6_malaria_test_detail_a&quot;      
+[200] &quot;anc_v6_malaria_test_detail_b&quot;      
+[201] &quot;anc_v6_malaria_test_results_a&quot;     
+[202] &quot;anc_v6_malaria_test_results_b&quot;     
+[203] &quot;anc_v6_malaria_treatment_a&quot;        
+[204] &quot;anc_v6_malaria_treatment_b&quot;        
+[205] &quot;anc_v6_malaria_treatment_c&quot;        
+[206] &quot;anc_v6_malaria_treatment_detail_a&quot; 
+[207] &quot;anc_v6_malaria_treatment_detail_b&quot; 
+[208] &quot;anc_v6_malaria_treatment_detail_c&quot; 
+[209] &quot;anc_v6_neu%&quot;                       
+[210] &quot;anc_v6_plt&quot;                        
+[211] &quot;anc_v6_treatment_other&quot;            
+[212] &quot;anc_v6_treatment_other_detail&quot;     
+[213] &quot;anc_v6_urine&quot;                      
+[214] &quot;anc_v6_urine_detail&quot;               
+[215] &quot;anc_v6_wbc&quot;                        
+[216] &quot;anc_v6_weight&quot;                     
+[217] &quot;anc_v7_crp&quot;                        
+[218] &quot;anc_v7_date&quot;                       
+[219] &quot;anc_v7_eo%&quot;                        
+[220] &quot;anc_v7_gestational_age&quot;            
+[221] &quot;anc_v7_hb&quot;                         
+[222] &quot;anc_v7_hto%&quot;                       
+[223] &quot;anc_v7_l%&quot;                         
+[224] &quot;anc_v7_malaria_test_a&quot;             
+[225] &quot;anc_v7_malaria_test_b&quot;             
+[226] &quot;anc_v7_malaria_test_detail_a&quot;      
+[227] &quot;anc_v7_malaria_test_detail_b&quot;      
+[228] &quot;anc_v7_malaria_test_results_a&quot;     
+[229] &quot;anc_v7_malaria_test_results_b&quot;     
+[230] &quot;anc_v7_malaria_treatment_a&quot;        
+[231] &quot;anc_v7_malaria_treatment_b&quot;        
+[232] &quot;anc_v7_malaria_treatment_c&quot;        
+[233] &quot;anc_v7_malaria_treatment_detail_a&quot; 
+[234] &quot;anc_v7_malaria_treatment_detail_b&quot; 
+[235] &quot;anc_v7_malaria_treatment_detail_c&quot; 
+[236] &quot;anc_v7_neu%&quot;                       
+[237] &quot;anc_v7_plt&quot;                        
+[238] &quot;anc_v7_treatment_other&quot;            
+[239] &quot;anc_v7_treatment_other_detail&quot;     
+[240] &quot;anc_v7_urine&quot;                      
+[241] &quot;anc_v7_urine_detail&quot;               
+[242] &quot;anc_v7_wbc&quot;                        
+[243] &quot;anc_v7_weight&quot;                     
+[244] &quot;anc_v8_crp&quot;                        
+[245] &quot;anc_v8_date&quot;                       
+[246] &quot;anc_v8_eo%&quot;                        
+[247] &quot;anc_v8_gestational_age&quot;            
+[248] &quot;anc_v8_hb&quot;                         
+[249] &quot;anc_v8_hto%&quot;                       
+[250] &quot;anc_v8_l%&quot;                         
+[251] &quot;anc_v8_malaria_test_a&quot;             
+[252] &quot;anc_v8_malaria_test_b&quot;             
+[253] &quot;anc_v8_malaria_test_detail_a&quot;      
+[254] &quot;anc_v8_malaria_test_detail_b&quot;      
+[255] &quot;anc_v8_malaria_test_results_a&quot;     
+[256] &quot;anc_v8_malaria_test_results_b&quot;     
+[257] &quot;anc_v8_malaria_treatment_a&quot;        
+[258] &quot;anc_v8_malaria_treatment_b&quot;        
+[259] &quot;anc_v8_malaria_treatment_c&quot;        
+[260] &quot;anc_v8_malaria_treatment_detail_a&quot; 
+[261] &quot;anc_v8_malaria_treatment_detail_b&quot; 
+[262] &quot;anc_v8_malaria_treatment_detail_c&quot; 
+[263] &quot;anc_v8_neu%&quot;                       
+[264] &quot;anc_v8_plt&quot;                        
+[265] &quot;anc_v8_treatment_other&quot;            
+[266] &quot;anc_v8_treatment_other_detail&quot;     
+[267] &quot;anc_v8_urine&quot;                      
+[268] &quot;anc_v8_urine_detail&quot;               
+[269] &quot;anc_v8_wbc&quot;                        
+[270] &quot;anc_v8_weight&quot;                     
+[271] &quot;anc_v9_crp&quot;                        
+[272] &quot;anc_v9_date&quot;                       
+[273] &quot;anc_v9_eo%&quot;                        
+[274] &quot;anc_v9_gestational_age&quot;            
+[275] &quot;anc_v9_hb&quot;                         
+[276] &quot;anc_v9_hto%&quot;                       
+[277] &quot;anc_v9_l%&quot;                         
+[278] &quot;anc_v9_malaria_test_a&quot;             
+[279] &quot;anc_v9_malaria_test_b&quot;             
+[280] &quot;anc_v9_malaria_test_detail_a&quot;      
+[281] &quot;anc_v9_malaria_test_detail_b&quot;      
+[282] &quot;anc_v9_malaria_test_results_a&quot;     
+[283] &quot;anc_v9_malaria_test_results_b&quot;     
+[284] &quot;anc_v9_malaria_treatment_a&quot;        
+[285] &quot;anc_v9_malaria_treatment_b&quot;        
+[286] &quot;anc_v9_malaria_treatment_c&quot;        
+[287] &quot;anc_v9_malaria_treatment_detail_a&quot; 
+[288] &quot;anc_v9_malaria_treatment_detail_b&quot; 
+[289] &quot;anc_v9_malaria_treatment_detail_c&quot; 
+[290] &quot;anc_v9_neu%&quot;                       
+[291] &quot;anc_v9_plt&quot;                        
+[292] &quot;anc_v9_treatment_other&quot;            
+[293] &quot;anc_v9_treatment_other_detail&quot;     
+[294] &quot;anc_v9_urine&quot;                      
+[295] &quot;anc_v9_urine_detail&quot;               
+[296] &quot;anc_v9_wbc&quot;                        
+[297] &quot;anc_v9_weight&quot;                     </code></pre>
 <p>It appears that we are missing the above 16 “anc_vx” columns.</p>
 <p>Let’s continue to look through the remaining columns to make sure that they are in the data dictionary and make sense.</p>
-<pre><code> [1] &quot;anc_first_trimester_eco&quot;                        &quot;anc_first_trimester_eco_gestational_age&quot;       
- [3] &quot;anc_first_trimester_eco_results&quot;                &quot;anc_first_trimester_eco_results_details&quot;       
- [5] &quot;anc_second_trimester_eco&quot;                       &quot;anc_second_trimester_eco_gestational_age&quot;      
- [7] &quot;anc_second_trimester_eco_results&quot;               &quot;anc_second_trimester_eco_results_details&quot;      
- [9] &quot;anc_third_trimester_eco&quot;                        &quot;anc_third_trimester_eco_gestational_age&quot;       
-[11] &quot;anc_third_trimester_eco_results&quot;                &quot;anc_third_trimester_eco_results_details&quot;       
-[13] &quot;antène_cpn&quot;                                     &quot;apgar_1_baby_1&quot;                                
-[15] &quot;apgar_1_baby_2&quot;                                 &quot;apgar_10_baby_1&quot;                               
-[17] &quot;apgar_10_baby_2&quot;                                &quot;apgar_5_baby_1&quot;                                
-[19] &quot;apgar_5_baby_2&quot;                                 &quot;attending_baby_1&quot;                              
-[21] &quot;attending_baby_2&quot;                               &quot;baby_1_chart_number_(if_different_from_mother)&quot;
-[23] &quot;baby_1_crp_at_admission&quot;                        &quot;baby_1_eo%_at_admission&quot;                       
-[25] &quot;baby_1_hb_at_admission&quot;                         &quot;baby_1_hto%_at_admission&quot;                      
-[27] &quot;baby_1_l%_at_admission&quot;                         &quot;baby_1_malaria_test&quot;                           
-[29] &quot;baby_1_malaria_test_detail_a&quot;                   &quot;baby_1_malaria_test_detail_b&quot;                  
-[31] &quot;baby_1_malaria_test_results_a&quot;                  &quot;baby_1_malaria_test_results_b&quot;                 
-[33] &quot;baby_1_neu%_at_admission&quot;                       &quot;baby_1_outcome&quot;                                
-[35] &quot;baby_1_plt_at_admission&quot;                        &quot;baby_1_sex&quot;                                    
-[37] &quot;baby_1_wbc_at_admission&quot;                        &quot;baby_2_chart_number_(if_different_from_mother)&quot;
-[39] &quot;baby_2_crp_at_admission&quot;                        &quot;baby_2_eo%_at_admission&quot;                       
-[41] &quot;baby_2_hb_at_admission&quot;                         &quot;baby_2_hto%_at_admission&quot;                      
-[43] &quot;baby_2_l%_at_admission&quot;                         &quot;baby_2_malaria_test&quot;                           
-[45] &quot;baby_2_malaria_test_detail_a&quot;                   &quot;baby_2_malaria_test_detail_b&quot;                  
-[47] &quot;baby_2_malaria_test_results_a&quot;                  &quot;baby_2_malaria_test_results_b&quot;                 
-[49] &quot;baby_2_neu%_at_admission&quot;                       &quot;baby_2_outcome&quot;                                
-[51] &quot;baby_2_plt_at_admission&quot;                        &quot;baby_2_sex&quot;                                    
-[53] &quot;baby_2_wbc_at_admission&quot;                        &quot;cpn&quot;                                           
-[55] &quot;date_of_admission_baby_1&quot;                       &quot;date_of_admission_baby_2&quot;                      
-[57] &quot;date_of_release_baby_1&quot;                         &quot;date_of_release_baby_2&quot;                        
-[59] &quot;delivery_complications&quot;                         &quot;delivery_date&quot;                                 
-[61] &quot;delivery_details_baby_1&quot;                        &quot;delivery_details_baby_2&quot;                       
-[63] &quot;diagnosis_at_admission_baby_1&quot;                  &quot;diagnosis_at_admission_baby_2&quot;                 
-[65] &quot;gestacional_age&quot;                                &quot;head_circumference_baby_1&quot;                     
-[67] &quot;head_circumference_baby_2&quot;                      &quot;iptp_how_many&quot;                                 
-[69] &quot;lenght_at_birth_baby_1&quot;                         &quot;lenght_at_birth_baby_2&quot;                        
-[71] &quot;lst_menstrual_period&quot;                           &quot;malaria_diagnosis&quot;                             
-[73] &quot;marital_status&quot;                                 &quot;médicament_iptp&quot;                               
-[75] &quot;mother_chart_number&quot;                            &quot;mother_commune&quot;                                
-[77] &quot;mother_dob&quot;                                     &quot;mother_nationality&quot;                            
-[79] &quot;mother_study_level&quot;                             &quot;neonatology_admission_baby_1&quot;                  
-[81] &quot;neonatology_admission_baby_2&quot;                   &quot;nº_cpn&quot;                                        
-[83] &quot;number_malaria_diagnosis&quot;                       &quot;other_diagnosis&quot;                               
-[85] &quot;previous_abortions&quot;                             &quot;previous_deliveries&quot;                           
-[87] &quot;previous_other&quot;                                 &quot;previous_pregnancies&quot;                          
-[89] &quot;previous_still_births&quot;                          &quot;received_iptp&quot;                                 
-[91] &quot;time_of_delivery_baby_1&quot;                        &quot;time_of_delivery_baby_2&quot;                       
-[93] &quot;type_malaria_diagnosis&quot;                         &quot;weight_at_admission_baby_1&quot;                    
-[95] &quot;weight_at_admission_baby_2&quot;                     &quot;weight_at_birth_baby_1&quot;                        
-[97] &quot;weight_at_birth_baby_2&quot;                         &quot;weight_at_release_baby_1&quot;                      
-[99] &quot;weight_at_release_baby_2&quot;                      </code></pre>
+<pre><code>[1] &quot;...1&quot;            &quot;country&quot;         &quot;indicator_name&quot; 
+[4] &quot;ISO3&quot;            &quot;region_name&quot;     &quot;unit_of_measure&quot;
+[7] &quot;value&quot;           &quot;year&quot;           </code></pre>
 <p>These all look good to me! As far as I can tell, the only columns missing that are in the data dictionary are mother’s first name, mother’s last name, mother’s phone number 1, mother’s phone number 2, baby 1’s first name, baby 1’s last name, baby 2’s first name, and baby 2’s last name. These columns have been intentionally removed from the data beforehand to keep the data as anonymous as possible while still being useful.</p>
 </div>
 <div id="removing-an-obvious-error" class="section level4 unnumbered hasAnchor">
 <h4>Removing an obvious error<a href="kemri-datalab-summer-workbook.html#removing-an-obvious-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>Error in `filter()`:
+ℹ In argument: `mother_chart_number != &quot;mother_chart_number&quot;`.
+Caused by error:
+! object &#39;mother_chart_number&#39; not found</code></pre>
 <p>Notice that I’ve made a separate data frame for cleaning. This makes it easier to rerun code without having to completely reload the data from the source. It also makes it easy to compare the original data with the modified data.</p>
 <p><strong>NOTE: Never remove or modify the original data from the source, even if it is obviously incorrect! Always work on a copy of the data!</strong> If you modify the original data and your changes end up being incorrect, then you’ve tampered with the data and potentially ruined the entire data set. Another advantage of working on a copy of the data and cleaning it with code is that it documents everything we do, making what we’ve done clear and reproducible. Fortunately in this case, our source data isn’t something we can modify directly; however, there are cases in which you might be given the source data in an unprotected way that would allow you to overwrite it. An example of this would be using the <code>googlesheets4</code> library, which allows you to read and write directly to a Google sheet. This can dangerous if you aren’t careful!</p>
 </div>
 <div id="checking-that-the-marital-statuses-are-valid" class="section level4 unnumbered hasAnchor">
 <h4>Checking that the marital statuses are valid<a href="kemri-datalab-summer-workbook.html#checking-that-the-marital-statuses-are-valid" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>According to the data dictionary, acceptable values are ‘M’ for married, ‘C’ for single, and ‘non reporté’ for not reported. I’ll also treat NA values as if they were ‘non reporté’ since both mean that the value is missing for that row.</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-953b3a35d101624c7c96" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-953b3a35d101624c7c96">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Marital Status Values<\/caption>","data":[["1","2"],["D","Mariée\nCelibataire"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>marital_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"marital_status","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-695b342e9149a9e191dd" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-695b342e9149a9e191dd">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Marital Status Values<\/caption>","data":[["1","2","3","4"],["D","Mariée\nCelibataire","D","Mariée\nCelibataire"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>marital_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"marital_status","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>There are values of ‘D’ for marital_status, which is not in the data dictionary. It might mean divorced; however, it’s best to talk to the client before assuming anything. It could also be an error inputting the value ‘C’, since the two letters look similar. For now, I’ll keep those values in the data. To remove them though, I’d use the code below. Once again, I’ve set the chunk’s <code>eval</code> flag to <code>FALSE</code> to prevent it from running. To run it, change the flag back to <code>eval = TRUE</code>.</p>
 <p>Also, notice that I’ve used the <code>tolower()</code> function. The values in the column may be capitalized in inconsistent ways. Forcing them all to be lowercase in the filter function allows us to ignore the inconsistent capitalization without changing the actual data to all lowercase. You can permanently change the data to lowercase using the <code>mutate()</code> function; however, in some scenarios, the capitalization might be important, especially when it comes to acronyms and abbreviations.</p>
 </div>
 <div id="checking-that-the-malaria-diagnosis-during-pregnancy-values-are-valid" class="section level4 unnumbered hasAnchor">
 <h4>Checking that the malaria diagnosis during pregnancy values are valid<a href="kemri-datalab-summer-workbook.html#checking-that-the-malaria-diagnosis-during-pregnancy-values-are-valid" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The data dictionary defines this variable as having a value of ‘non’ for no, ‘oui’ for yes, and ‘non reporté’ for not reported. Once again, I’ll treat NA values as if they were ‘non reporté’ and ignore them.</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-f9c356e4edbda5056440" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f9c356e4edbda5056440">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Malaria Diagnosis During Pregnancy Values<\/caption>","data":[["1"],["oui\nnon"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>malaria_diagnosis<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"malaria_diagnosis","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8d470951894a6bfc2117" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8d470951894a6bfc2117">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Malaria Diagnosis During Pregnancy Values<\/caption>","data":[["1","2"],["oui\nnon","oui\nnon"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>malaria_diagnosis<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"malaria_diagnosis","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>To remove these erroneous values, I’d use the code below. Once again, I’ve set the chunk’s <code>eval</code> flag to <code>FALSE</code> to prevent it from running. To run it, change the flag back to <code>eval = TRUE</code>.</p>
 </div>
 <div id="checking-the-delivery-complication-values" class="section level4 unnumbered hasAnchor">
 <h4>Checking the delivery complication values<a href="kemri-datalab-summer-workbook.html#checking-the-delivery-complication-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-e63c0182ddc99f542f1c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e63c0182ddc99f542f1c">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Delivery Complication Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"],["Avortemant","DECES","DFP compliquée de SFA","Deces","HPP","Hemorragie du post partum","Hemorragie du post partum avec Retention des parties molles","Hemorragie du post-partum sur dechirure des parties molles","Hemorragie du post-partum,","MAV compliquée d'un oligoamnois sévère","MIU","Macrocephalie","Mort né","PEM","PES","Pre eclampsie","RPM","SFA","SFA\nPES","SFA\nhématome retro-palcentaire","SFA circulaire sérré du cordon","SFA sur disproportion fœto-pelvienne\nMIU","SFC","SFC sévère","coagulopathie","dechirure de D1","hemorragie","hémorragie","hémorragie\nabondante","hémorragie\nhystérectomie","hémorragie ante-partum\nmort-né","hémorragie génital","hémorragie post partum","no\nPre-eclampsia\nBleedig\n…","non","placenta praevia","placenta praevia hemorragique","preciosité et RPM","preeclampsie","preeclampsie\nSFA","prodrome éclampsie","prodrome éclampsie\nMIU","préeclampsie","prééclampsie","rétention placentaire","saignement minime",null],[2,2,1,3,2,1,1,1,1,1,27,1,4,3,2,16,3,19,1,1,1,1,4,3,1,1,1,1,1,1,1,1,1,1,1895,1,1,1,1,1,1,1,1,7,1,1,49]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>delivery_complications<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"delivery_complications","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d0ede5ac49922dfe2fb1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d0ede5ac49922dfe2fb1">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Delivery Complication Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79"],["Avortemant","DBT (MIU)","DECES","DFP compliquée de SFA","DPPNI","Deces","HPP","HRP (MIU)","HTA","HTA (MIU)","HTA gravidique","Hemorragie du post partum","Hemorragie du post partum avec Retention des parties molles","Hemorragie du post-partum sur dechirure des parties molles","Hemorragie du post-partum,","MAV compliquée d'un oligoamnois sévère","MFIU","MI du F1 et F2","MIU","MIU du F2","MIU du J2 (deuxieme jumeau)","MIUF du F1","MIUF du F2","Macrocephalie","Mort né","N","Non","PEM","PES","Pre eclampsie","Preeclampsie","RPM","SFA","SFA\nPES","SFA\nhématome retro-palcentaire","SFA circulaire sérré du cordon","SFA sur disproportion fœto-pelvienne\nMIU","SFC","SFC sévère","coagulopathie","dechirure de D1","eclampsie","hemorragie","hemorragie du post partum","hémorragie","hémorragie\nabondante","hémorragie\nhystérectomie","hémorragie ante-partum\nmort-né","hémorragie génital","hémorragie post partum","no\nPre-eclampsia\nBleedig\n…","non","non (dead)","oui","placenta praevia","placenta praevia hemorragique","precclamsie(MIU)","preciosité et RPM","preeclamapsie","preeclampsie","preeclampsie\n(MIU)","preeclampsie\nHPP","preeclampsie\nSFA","preeclampsie\natonie utérine","preeclampsie (MIU du F4)","preeclampsie (MIU)","preeclampsie(MIU","preeclampsie(MIU)","preeclamspie (MIU)","preeclmapsie","preedlampsie (MIU)","prodrome éclampsie","prodrome éclampsie\nMIU","prreclampsie","préeclampsie","prééclampsie","rétention placentaire","saignement minime",null],[2,1,2,1,2,3,5,2,4,1,1,1,1,1,1,1,6,1,45,1,1,1,1,1,4,1,128,3,2,16,10,3,19,1,1,1,1,4,3,1,1,2,1,2,1,1,1,1,1,1,2,3286,1,2,1,1,1,1,1,153,3,1,1,1,1,8,2,1,1,5,1,1,1,1,1,7,1,1,480]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>delivery_complications<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"delivery_complications","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>The data dictionary doesn’t define all of the possible values for this column, so I’ve decided to explore all of the unique values in our data. It would be a great idea to look at these closer on an individual level to understand what each value means and whether or not it is appropriate for this column.</p>
 <p>We can also see that some of the values appear to be the same but are written in different ways.</p>
 </div>
 <div id="checking-the-time-of-delivery-values" class="section level4 unnumbered hasAnchor">
 <h4>Checking the time of delivery values<a href="kemri-datalab-summer-workbook.html#checking-the-time-of-delivery-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-88f1b8f3e5aa10cbae87" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-88f1b8f3e5aa10cbae87">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 1 Time of Delivery Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550","551","552","553","554","555","556","557","558","559","560","561","562","563","564","565","566","567","568","569","570","571","572","573","574","575","576","577","578","579","580","581","582","583","584","585","586","587","588","589","590","591","592","593","594","595","596","597","598","599","600","601","602","603","604","605","606","607","608","609","610","611","612","613","614","615","616","617","618","619","620","621","622","623","624","625","626","627","628","629","630","631","632","633","634","635","636","637","638","639","640","641","642","643","644","645","646","647","648","649","650","651","652","653","654","655","656","657","658","659","660","661","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","684","685","686","687","688","689","690","691","692","693","694","695","696","697","698","699","700","701","702","703","704","705","706","707","708","709","710","711","712","713","714","715","716","717","718","719","720","721","722","723","724","725","726","727","728","729","730","731","732","733","734","735","736","737","738","739","740","741","742","743","744","745","746","747","748","749","750","751","752","753","754","755","756","757","758","759","760","761","762","763","764","765","766","767","768","769","770","771","772","773","774","775","776","777","778","779","780","781","782","783"],["00:00","00:01","00:02","00:03","00:05","00:10","00:14","00:15","00:20","00:22","00:26","00:27","00:30","00:34","00:35","00:37","00:40","00:43","00:44","00:45","00:46","00:48","00:50","00:52","00:53","00:55","00:57","01:00","01:01","01:02","01:04","01:05","01:09","01:10","01:11","01:15","01:20","01:25","01:30","01:33","01:34","01:35","01:37","01:40","01:43","01:45","01:46","01:48","01:50","01:55","01:56","01:57","01:58","02:00","02:01","02:02","02:03","02:04","02:05","02:08","02:10","02:11","02:14","02:20","02:21","02:25","02:26","02:27","02:29","02:30","02:35","02:42","02:43","02:45","02:46","02:48","02:50","02:52","02:53","02:57","02:58","02:59","03:00","03:03","03:04","03:05","03:06","03:08","03:13","03:15","03:16","03:18","03:20","03:25","03:26","03:27","03:29","03:30","03:33","03:35","03:36","03:38","03:40","03:45","03:57","04:00","04:02","04:05","04:08","04:10","04:11","04:12","04:13","04:14","04:15","04:18","04:19","04:20","04:22","04:25","04:30","04:32","04:34","04:36","04:38","04:39","04:41","04:44","04:45","04:46","04:47","04:48","04:50","04:55","04:57","04;00","04;05","05:00","05:01","05:05","05:06","05:10","05:15","05:18","05:20","05:23","05:25","05:26","05:30","05:33","05:34","05:35","05:38","05:40","05:44","05:45","05:51","05:55","05:58","06:00","06:03","06:10","06:14","06:20","06:22","06:25","06:29","06:30","06:34","06:35","06:36","06:39","06:42","06:43","06:45","06:47","06:48","06:50","06:55","06:56","06:59","07:00","07:01","07:02","07:04","07:07","07:12","07:13","07:14","07:15","07:16","07:17","07:20","07:22","07:23","07:25","07:27","07:28","07:29","07:30","07:33","07:37","07:38","07:39","07:40","07:42","07:45","07:46","07:49","07:50","07:55","08:00","08:02","08:04","08:05","08:07","08:10","08:12","08:13","08:15","08:17","08:23","08:25","08:27","08:28","08:29","08:30","08:32","08:35","08:40","08:42","08:43","08:45","08:46","08:50","08:52","08:55","09.05","09:00","09:03","09:05","09:08","09:10","09:11","09:12","09:13","09:15","09:17","09:20","09:25","09:26","09:29","09:30","09:34","09:40","09:45","09:48","09:50","09:54","09:55","09:58","09:59","10:00","10:04","10:05","10:08","10:10","10:12","10:15","10:16","10:17","10:18","10:19","10:20","10:22","10:23","10:24","10:25","10:26","10:27","10:29","10:31","10:33","10:35","10:36","10:37","10:39","10:40","10:45","10:47","10:49","10:50","10:52","10:53","10:55","10:56","10:58","10;30","10;42","11.00","11:00","11:02","11:03","11:05","11:06","11:07","11:08","11:09","11:10","11:12","11:13","11:14","11:15","11:18","11:20","11:22","11:23","11:25","11:27","11:28","11:29","11:30","11:32","11:33","11:35","11:36","11:38","11:40","11:41","11:42","11:43","11:44","11:45","11:47","11:48","11:49","11:50","11:51","11:52","11:53","11:54","11:55","11:56","11:57","11;00","11;20","12:00","12:02","12:03","12:04","12:05","12:06","12:09","12:10","12:11","12:12","12:13","12:14","12:15","12:20","12:21","12:22","12:23","12:25","12:29","12:30","12:32","12:35","12:36","12:38","12:40","12:41","12:42","12:44","12:45","12:50","12:51","12:52","12:55","12:56","12:57","12:58","12;11","13:00","13:03","13:04","13:05","13:06","13:07","13:09","13:10","13:13","13:14","13:15","13:19","13:20","13:21","13:22","13:23","13:24","13:25","13:26","13:27","13:29","13:30","13:31","13:32","13:33","13:34","13:35","13:36","13:37","13:38","13:40","13:41","13:43","13:44","13:45","13:46","13:47","13:49","13:50","13:52","13:53","13:55","13:57","13:59","13;26","14:00","14:02","14:04","14:05","14:07","14:08","14:10","14:12","14:13","14:14","14:15","14:16","14:17","14:19","14:20","14:21","14:22","14:23","14:24","14:25","14:29","14:30","14:31","14:32","14:33","14:35","14:36","14:37","14:40","14:42","14:43","14:44","14:45","14:48","14:50","14:51","14:52","14:53","14:54","14:55","14:57","14:58","14;00","15:00","15:01","15:02","15:04","15:05","15:06","15:07","15:09","15:10","15:11","15:12","15:14","15:16","15:18","15:20","15:21","15:22","15:23","15:24","15:25","15:26","15:29","15:30","15:33","15:35","15:36","15:37","15:38","15:39","15:40","15:41","15:42","15:43","15:44","15:45","15:47","15:48","15:50","15:52","15:53","15:54","15:55","15:57","15:58","16:00","16:03","16:05","16:09","16:10","16:11","16:12","16:14","16:15","16:18","16:20","16:24","16:25","16:26","16:27","16:29","16:30","16:32","16:34","16:35","16:37","16:38","16:40","16:41","16:44","16:45","16:47","16:48","16:50","16:51","16:53","16:55","16:57","16:58","17:00","17:01","17:04","17:05","17:06","17:07","17:09","17:10","17:11","17:15","17:17","17:18","17:20","17:22","17:24","17:25","17:27","17:28","17:30","17:31","17:35","17:36","17:40","17:42","17:43","17:44","17:45","17:48","17:49","17:50","17:51","17:53","17:55","17:57","17:58","18:00","18:02","18:03","18:04","18:06","18:07","18:08","18:09","18:10","18:11","18:12","18:14","18:15","18:16","18:18","18:20","18:21","18:22","18:23","18:24","18:25","18:27","18:29","18:30","18:36","18:38","18:44","18:45","18:46","18:48","18:49","18:50","18:51","18:52","18:53","18:57","18:58","19:00","19:03","19:05","19:08","19:10","19:12","19:18","19:20","19:22","19:23","19:24","19:25","19:28","19:30","19:31","19:35","19:40","19:43","19:45","19:46","19:48","19:49","19:50","19:53","19:55","19:59","1:15","1:16","20:00","20:02","20:05","20:07","20:10","20:14","20:18","20:20","20:21","20:23","20:28","20:30","20:33","20:34","20:35","20:36","20:37","20:40","20:41","20:43","20:44","20:45","20:47","20:49","20:50","20:52","20:53","20:55","20:56","20:57","21:00","21:01","21:03","21:05","21:06","21:09","21:10","21:11","21:12","21:14","21:15","21:16","21:17","21:20","21:21","21:22","21:24","21:25","21:28","21:30","21:31","21:32","21:37","21:38","21:39","21:40","21:43","21:44","21:45","21:48","21:49","21:50","21:51","21:52","21:58","21;13","22:00","22:02","22:05","22:06","22:07","22:10","22:12","22:13","22:14","22:15","22:17","22:18","22:23","22:24","22:25","22:26","22:27","22:30","22:35","22:36","22:37","22:39","22:40","22:45","22:48","22:55","22:56","22:59","23:00","23:03","23:05","23:07","23:10","23:11","23:12","23:15","23:18","23:19","23:20","23:24","23:25","23:30","23:32","23:35","23:39","23:42","23:43","23:44","23:45","23:46","23:48","23:50","23:54","23:55","3:16","3:26","5:44","6:32","6:45","7:34","7:35","8:00","8:47","9:35","9:36",":","non reporté",null],[9,3,2,2,1,3,1,1,4,8,2,3,1,1,2,2,1,1,3,3,3,1,4,1,2,2,1,4,1,1,1,3,3,1,1,2,6,3,1,3,1,1,2,3,2,2,1,1,1,1,1,2,1,2,2,3,1,2,1,1,3,1,1,9,1,3,1,2,1,3,1,1,1,3,1,1,1,2,1,1,1,1,5,2,1,4,1,1,2,5,2,1,3,1,1,1,1,2,1,2,1,1,2,1,1,2,2,4,1,2,1,3,1,1,3,1,2,5,1,1,4,1,1,3,1,3,1,2,3,1,1,1,1,1,1,2,2,6,1,1,2,2,2,1,5,1,1,8,2,2,1,1,1,3,2,2,1,3,4,3,2,1,1,1,1,5,1,3,1,6,1,3,2,1,5,1,1,6,3,1,1,5,1,5,1,2,3,2,1,4,1,2,4,2,1,3,4,4,2,3,2,1,1,1,3,2,6,1,1,5,1,10,3,1,4,3,1,1,1,4,1,1,1,3,1,1,4,1,1,2,2,2,3,1,5,1,2,1,4,3,3,1,1,1,1,5,1,3,5,4,1,2,6,1,2,10,2,7,2,7,1,2,14,1,5,1,4,3,5,1,1,1,1,7,2,2,1,3,2,1,2,1,4,4,2,2,1,3,2,1,3,4,1,2,3,1,2,1,1,1,34,3,1,4,1,1,2,1,2,2,2,1,4,1,8,1,3,3,1,2,3,25,2,2,5,5,1,5,2,1,3,1,5,2,3,1,2,1,1,1,2,4,1,1,1,1,26,1,1,3,3,2,1,4,2,2,2,1,2,14,2,2,2,5,5,10,1,2,2,1,7,2,1,1,2,5,4,1,4,4,3,1,1,33,3,4,2,1,1,1,1,1,1,5,1,14,3,1,4,3,4,4,2,3,9,2,3,1,3,2,7,1,1,3,1,2,3,5,1,2,1,2,1,4,5,1,1,1,41,2,1,2,2,1,4,1,1,1,3,2,3,1,6,3,3,1,2,4,3,6,1,1,2,7,3,1,2,1,2,2,3,2,6,2,3,2,1,4,1,4,2,34,1,1,1,1,2,1,2,3,1,2,1,3,1,14,1,4,2,2,3,1,1,14,2,5,2,3,1,1,5,2,1,3,2,4,1,4,3,1,3,2,5,3,1,25,1,2,1,1,1,1,1,2,1,10,1,2,1,1,2,7,1,1,2,1,3,1,1,1,9,1,1,4,1,1,5,2,2,17,2,2,1,2,1,2,1,3,3,5,1,10,1,1,5,2,1,8,4,2,2,3,4,1,2,4,2,1,5,1,1,2,2,2,21,1,1,1,1,1,2,1,2,1,1,1,5,1,1,7,1,1,1,1,1,1,4,6,2,2,1,4,1,1,1,4,1,2,1,1,2,8,1,3,1,1,1,3,1,2,1,3,1,2,4,1,2,1,1,5,2,1,1,4,2,1,1,1,1,3,1,1,3,2,1,1,1,1,1,1,8,1,1,1,2,1,5,1,3,1,10,1,1,3,1,1,2,1,1,14,1,1,1,2,2,3,5,3,5,1,1,1,2,1,2,1,2,1,3,1,1,1,1,1,4,2,1,2,2,4,3,2,1,1,1,5,1,1,1,1,1,3,5,1,11,1,2,1,4,1,3,2,8,1,2,2,3,5,5,1,2,1,2,5,2,1,1,4,1,1,4,1,2,2,3,2,4,1,1,2,1,2,1,7,3,3,1,1,4,1,2,1,1,1,1,1,1,1,1,1,2,9,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time_of_delivery_baby_1<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time_of_delivery_baby_1","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-9b85d2428ee51f47027b" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9b85d2428ee51f47027b">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 2 Time of Delivery Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44"],["10:59","1100","1300","1480","14:08","1525","15:06","1675","16:15","16:45","1745","17:40","17:45","1850","19:41","1:36","2000","2070","20:46","21:10","21:35","2200","2300","2400","2500","2540","2600","2605","2700","2758","2800","2900","2:30","3000","3160","4","760","7:35","9:17","9:31","9:58","M","non reporté",null],[1,2,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,5,2,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,2,2017]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time_of_delivery_baby_2<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time_of_delivery_baby_2","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2c1b9afefd5e38a3fece" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2c1b9afefd5e38a3fece">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 1 Time of Delivery Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550","551","552","553","554","555","556","557","558","559","560","561","562","563","564","565","566","567","568","569","570","571","572","573","574","575","576","577","578","579","580","581","582","583","584","585","586","587","588","589","590","591","592","593","594","595","596","597","598","599","600","601","602","603","604","605","606","607","608","609","610","611","612","613","614","615","616","617","618","619","620","621","622","623","624","625","626","627","628","629","630","631","632","633","634","635","636","637","638","639","640","641","642","643","644","645","646","647","648","649","650","651","652","653","654","655","656","657","658","659","660","661","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","684","685","686","687","688","689","690","691","692","693","694","695","696","697","698","699","700","701","702","703","704","705","706","707","708","709","710","711","712","713","714","715","716","717","718","719","720","721","722","723","724","725","726","727","728","729","730","731","732","733","734","735","736","737","738","739","740","741","742","743","744","745","746","747","748","749","750","751","752","753","754","755","756","757","758","759","760","761","762","763","764","765","766","767","768","769","770","771","772","773","774","775","776","777","778","779","780","781","782","783","784","785","786","787","788","789","790","791","792","793","794","795","796","797","798","799","800","801","802","803","804","805","806","807","808","809","810","811","812","813","814","815","816","817","818","819","820","821","822","823","824","825","826","827","828","829","830","831","832","833","834","835","836","837","838","839","840","841","842","843","844","845","846","847","848","849","850","851","852","853","854","855","856","857","858","859","860","861","862","863","864","865","866","867","868","869","870","871","872","873","874","875","876","877","878","879","880","881","882","883","884","885","886","887","888","889","890","891","892","893","894","895","896","897","898","899","900","901","902","903","904","905","906","907","908","909","910","911","912","913","914","915","916","917","918","919","920","921","922","923","924","925","926","927","928","929","930","931","932","933","934","935","936","937","938","939","940","941","942","943","944","945","946","947","948","949","950","951","952","953","954","955","956","957","958","959","960","961","962","963","964","965","966","967","968","969","970","971","972","973","974","975","976","977","978","979","980","981","982","983","984","985","986","987","988","989","990","991","992","993","994","995","996","997","998","999","1000","1001","1002","1003","1004","1005","1006","1007","1008","1009","1010","1011","1012","1013","1014","1015","1016","1017","1018","1019","1020","1021","1022","1023","1024","1025","1026","1027","1028","1029","1030","1031","1032","1033","1034","1035","1036","1037","1038","1039","1040","1041","1042","1043","1044","1045","1046","1047","1048","1049","1050","1051","1052","1053","1054","1055","1056","1057","1058","1059","1060","1061","1062","1063","1064","1065","1066","1067","1068","1069","1070","1071","1072","1073","1074","1075","1076","1077","1078","1079","1080","1081","1082","1083","1084","1085","1086","1087","1088","1089","1090","1091","1092","1093","1094","1095","1096","1097","1098","1099","1100","1101","1102","1103","1104","1105","1106","1107","1108"],["00:00","00:01","00:02","00:03","00:05","00:10","00:13","00:14","00:15","00:17","00:18","00:19","00:20","00:22","00:23","00:25","00:26","00:27","00:29","00:30","00:31","00:32","00:33","00:34","00:35","00:37","00:40","00:43","00:44","00:45","00:46","00:48","00:50","00:52","00:53","00:55","00:57","01:00","01:01","01:02","01:04","01:05","01:06","01:09","01:10","01:11","01:12","01:14","01:15","01:16","01:20","01:21","01:23","01:24","01:25","01:26","01:29","01:30","01:33","01:34","01:35","01:37","01:38","01:40","01:43","01:44","01:45","01:46","01:47","01:48","01:50","01:52","01:53","01:55","01:56","01:57","01:58","02:00","02:01","02:02","02:03","02:04","02:05","02:08","02:10","02:11","02:13","02:14","02:15","02:16","02:19","02:20","02:21","02:23","02:25","02:26","02:27","02:28","02:29","02:30","02:31","02:32","02:33","02:34","02:35","02:36","02:38","02:40","02:41","02:42","02:43","02:44","02:45","02:46","02:48","02:50","02:52","02:53","02:55","02:57","02:58","02:59","03:00","03:01","03:03","03:04","03:05","03:06","03:07","03:08","03:10","03:12","03:13","03:14","03:15","03:16","03:18","03:20","03:22","03:23","03:24","03:25","03:26","03:27","03:29","03:30","03:33","03:35","03:36","03:38","03:39","03:40","03:41","03:45","03:46","03:47","03:51","03:57","03:58","04:00","04:01","04:02","04:05","04:08","04:10","04:11","04:12","04:13","04:14","04:15","04:18","04:19","04:20","04:22","04:25","04:26","04:27","04:28","04:29","04:30","04:31","04:32","04:33","04:34","04:35","04:36","04:37","04:38","04:39","04:40","04:41","04:42","04:44","04:45","04:46","04:47","04:48","04:49","04:50","04:52","04:55","04:56","04:57","04;00","04;05","05:00","05:01","05:02","05:03","05:05","05:06","05:07","05:09","05:10","05:15","05:16","05:18","05:20","05:23","05:24","05:25","05:26","05:27","05:30","05:31","05:33","05:34","05:35","05:36","05:38","05:39","05:40","05:43","05:44","05:45","05:46","05:50","05:51","05:55","05:56","05:58","06:00","06:03","06:05","06:06","06:08","06:10","06:11","06:12","06:14","06:15","06:16","06:17","06:18","06:20","06:22","06:23","06:24","06:25","06:28","06:29","06:30","06:32","06:33","06:34","06:35","06:36","06:39","06:40","06:41","06:42","06:43","06:45","06:47","06:48","06:49","06:50","06:52","06:55","06:56","06:58","06:59","07:00","07:01","07:02","07:03","07:04","07:05","07:07","07:10","07:12","07:13","07:14","07:15","07:16","07:17","07:18","07:19","07:20","07:21","07:22","07:23","07:25","07:27","07:28","07:29","07:30","07:31","07:33","07:35","07:36","07:37","07:38","07:39","07:40","07:42","07:45","07:46","07:49","07:50","07:53","07:54","07:55","07:56","07:58","08:00","08:02","08:03","08:04","08:05","08:06","08:07","08:10","08:12","08:13","08:14","08:15","08:17","08:22","08:23","08:25","08:27","08:28","08:29","08:30","08:32","08:33","08:35","08:37","08:40","08:42","08:43","08:44","08:45","08:46","08:49","08:50","08:51","08:52","08:53","08:55","08:58","09.05","09:00","09:02","09:03","09:04","09:05","09:06","09:07","09:08","09:09","09:10","09:11","09:12","09:13","09:15","09:17","09:20","09:25","09:26","09:27","09:28","09:29","09:30","09:34","09:35","09:36","09:38","09:39","09:40","09:43","09:45","09:47","09:48","09:50","09:52","09:54","09:55","09:58","09:59","0:00","0:13","0:16","0:29","0:56","10:00","10:03","10:04","10:05","10:07","10:08","10:10","10:12","10:15","10:16","10:17","10:18","10:19","10:20","10:21","10:22","10:23","10:24","10:25","10:26","10:27","10:28","10:29","10:30","10:31","10:33","10:35","10:36","10:37","10:38","10:39","10:40","10:44","10:45","10:46","10:47","10:48","10:49","10:50","10:51","10:52","10:53","10:54","10:55","10:56","10:58","10:59","10;30","10;42","11.00","11:00","11:02","11:03","11:05","11:06","11:07","11:08","11:09","11:10","11:11","11:12","11:13","11:14","11:15","11:16","11:18","11:20","11:21","11:22","11:23","11:24","11:25","11:26","11:27","11:28","11:29","11:30","11:31","11:32","11:33","11:34","11:35","11:36","11:37","11:38","11:40","11:41","11:42","11:43","11:44","11:45","11:46","11:47","11:48","11:49","11:50","11:51","11:52","11:53","11:54","11:55","11:56","11:57","11:59","11;00","11;20","12:00","12:02","12:03","12:04","12:05","12:06","12:07","12:09","12:10","12:11","12:12","12:13","12:14","12:15","12:16","12:18","12:20","12:21","12:22","12:23","12:25","12:26","12:27","12:28","12:29","12:30","12:31","12:32","12:33","12:34","12:35","12:36","12:38","12:39","12:40","12:41","12:42","12:43","12:44","12:45","12:47","12:50","12:51","12:52","12:53","12:55","12:56","12:57","12:58","12:59","12;11","13+24","13+26","13/40","13:00","13:02","13:03","13:04","13:05","13:06","13:07","13:08","13:09","13:10","13:11","13:12","13:13","13:14","13:15","13:17","13:18","13:19","13:20","13:21","13:22","13:23","13:24","13:25","13:26","13:27","13:28","13:29","13:30","13:31","13:32","13:33","13:34","13:35","13:36","13:37","13:38","13:39","13:40","13:41","13:42","13:43","13:44","13:45","13:46","13:47","13:49","13:50","13:52","13:53","13:54","13:55","13:56","13:57","13:59","13;26","14:00","14:01","14:02","14:03","14:04","14:05","14:06","14:07","14:08","14:09","14:10","14:12","14:13","14:14","14:15","14:16","14:17","14:18","14:19","14:20","14:21","14:22","14:23","14:24","14:25","14:26","14:27","14:28","14:29","14:30","14:31","14:32","14:33","14:34","14:35","14:36","14:37","14:40","14:42","14:43","14:44","14:45","14:46","14:48","14:50","14:51","14:52","14:53","14:54","14:55","14:57","14:58","14:59","14;00","15+41","15:00","15:01","15:02","15:04","15:05","15:06","15:07","15:08","15:09","15:10","15:11","15:12","15:13","15:14","15:15","15:16","15:17","15:18","15:20","15:21","15:22","15:23","15:24","15:25","15:26","15:29","15:30","15:31","15:32","15:33","15:35","15:36","15:37","15:38","15:39","15:40","15:41","15:42","15:43","15:44","15:45","15:46","15:47","15:48","15:49","15:50","15:51","15:52","15:53","15:54","15:55","15:56","15:57","15:58","16:00","16:03","16:04","16:05","16:08","16:09","16:10","16:11","16:12","16:13","16:14","16:15","16:16","16:18","16:19","16:20","16:21","16:24","16:25","16:26","16:27","16:28","16:29","16:30","16:31","16:32","16:33","16:34","16:35","16:37","16:38","16:40","16:41","16:42","16:44","16:45","16:47","16:48","16:50","16:51","16:53","16:55","16:57","16:58","17.35","17:00","17:01","17:02","17:03","17:04","17:05","17:06","17:07","17:09","17:10","17:11","17:14","17:15","17:17","17:18","17:20","17:22","17:24","17:25","17:27","17:28","17:30","17:31","17:33","17:35","17:36","17:40","17:42","17:43","17:44","17:45","17:46","17:47","17:48","17:49","17:50","17:51","17:52","17:53","17:55","17:57","17:58","18:00","18:02","18:03","18:04","18:05","18:06","18:07","18:08","18:09","18:10","18:11","18:12","18:13","18:14","18:15","18:16","18:18","18:20","18:21","18:22","18:23","18:24","18:25","18:26","18:27","18:28","18:29","18:30","18:32","18:35","18:36","18:38","18:39","18:41","18:42","18:44","18:45","18:46","18:48","18:49","18:50","18:51","18:52","18:53","18:55","18:57","18:58","19:00","19:02","19:03","19:05","19:07","19:08","19:09","19:10","19:12","19:14","19:15","19:18","19:20","19:22","19:23","19:24","19:25","19:26","19:28","19:29","19:30","19:31","19:33","19:35","19:36","19:40","19:42","19:43","19:45","19:46","19:47","19:48","19:49","19:50","19:52","19:53","19:54","19:55","19:58","19:59","1:06","1:15","1:16","1:30","20:00","20:02","20:04","20:05","20:07","20:08","20:10","20:11","20:14","20:15","20:17","20:18","20:20","20:21","20:22","20:23","20:25","20:28","20:29","20:30","20:32","20:33","20:34","20:35","20:36","20:37","20:40","20:41","20:43","20:44","20:45","20:47","20:49","20:50","20:51","20:52","20:53","20:55","20:56","20:57","21:00","21:01","21:02","21:03","21:05","21:06","21:07","21:08","21:09","21:10","21:11","21:12","21:14","21:15","21:16","21:17","21:20","21:21","21:22","21:24","21:25","21:27","21:28","21:29","21:30","21:31","21:32","21:35","21:37","21:38","21:39","21:40","21:41","21:42","21:43","21:44","21:45","21:47","21:48","21:49","21:50","21:51","21:52","21:54","21:55","21:56","21:57","21:58","21:59","21;13","22:00","22:01","22:02","22:05","22:06","22:07","22:10","22:12","22:13","22:14","22:15","22:16","22:17","22:18","22:20","22:21","22:23","22:24","22:25","22:26","22:27","22:29","22:30","22:31","22:33","22:35","22:36","22:37","22:38","22:39","22:40","22:44","22:45","22:48","22:50","22:51","22:52","22:54","22:55","22:56","22:59","23+30","23:00","23:03","23:04","23:05","23:07","23:10","23:11","23:12","23:15","23:17","23:18","23:19","23:20","23:21","23:22","23:24","23:25","23:26","23:30","23:32","23:35","23:37","23:39","23:40","23:42","23:43","23:44","23:45","23:46","23:48","23:49","23:50","23:52","23:54","23:55","23:57","23:58","23:59","2:00","2:02","2:16","2:58","3:14","3:16","3:26","4:30","5:44","6:07","6:32","6:36","6:45","7:34","7:35","7:50","8:00","8:10","8:25","8:40","8:45","8:47","9:08","9:19","9:35","9:36",":","non reporté",null],[12,4,3,3,5,3,3,1,4,1,2,1,6,10,1,1,2,3,1,4,1,1,1,1,3,2,3,1,3,8,3,1,6,2,2,3,1,8,1,3,1,6,1,5,1,1,1,2,4,1,6,1,1,1,5,2,1,5,4,1,3,2,2,8,2,2,4,1,1,1,3,1,1,4,1,2,1,8,3,5,2,2,2,1,5,1,1,1,4,1,1,10,1,1,6,1,2,2,1,7,1,1,1,1,3,1,1,1,1,4,4,2,4,1,1,3,4,1,3,2,1,1,6,1,2,3,6,2,1,1,3,2,3,2,6,2,3,5,2,1,1,1,2,1,2,7,1,3,3,2,1,7,1,4,1,1,1,1,1,6,1,4,6,2,10,1,3,2,3,6,2,2,7,1,2,1,1,1,2,6,1,1,1,1,1,3,1,2,3,2,1,1,2,6,1,1,1,1,4,1,4,1,1,2,2,10,1,1,1,2,2,1,1,2,2,1,2,6,2,1,2,9,2,3,1,2,1,2,1,1,2,5,1,2,6,2,2,1,3,1,5,6,2,1,1,1,2,1,1,1,4,4,1,2,2,1,1,1,6,1,1,10,1,2,2,7,1,3,2,1,2,1,8,1,2,1,10,1,6,1,2,1,9,1,6,1,1,1,5,3,3,2,1,7,1,2,1,3,5,1,3,3,3,4,5,2,10,2,2,1,1,1,3,1,5,4,10,1,1,9,2,2,3,1,1,13,5,2,2,8,1,5,6,1,1,1,5,2,1,1,4,3,2,1,8,1,1,3,2,6,2,2,1,7,2,1,6,1,1,1,2,1,1,9,1,3,1,5,1,2,2,1,5,1,3,6,6,5,9,6,3,1,1,3,12,1,2,1,1,2,3,1,15,1,3,9,2,3,7,2,2,1,1,1,1,1,24,2,1,8,3,2,8,3,13,2,2,3,1,14,2,2,3,3,5,2,2,1,3,6,2,5,7,2,2,1,4,7,1,8,1,1,1,3,7,4,2,4,2,6,1,3,1,1,1,1,43,3,3,7,2,4,6,2,12,2,3,3,3,8,3,4,15,1,3,4,1,8,2,1,4,7,33,1,4,4,2,9,7,1,3,10,4,3,4,3,10,2,4,3,6,5,2,2,1,4,6,4,1,1,1,1,36,1,2,3,5,3,1,5,7,2,4,2,3,7,2,1,16,4,4,5,5,1,1,2,9,14,1,3,1,1,9,2,1,1,9,3,2,2,2,3,1,9,4,1,1,6,5,4,3,1,1,1,1,1,37,2,6,4,5,2,4,2,2,6,3,2,2,3,7,2,2,1,18,4,1,5,4,7,5,2,1,3,16,5,3,2,6,5,9,3,2,1,5,2,1,3,5,9,3,3,2,5,3,6,2,7,2,3,2,1,49,1,2,1,1,6,4,3,1,1,5,1,5,5,9,2,3,1,2,8,4,4,2,3,7,2,1,2,5,7,2,2,3,2,8,6,3,5,2,2,4,7,1,3,11,2,6,2,3,7,3,5,2,2,1,41,1,1,1,8,4,4,1,2,7,2,3,1,2,4,6,1,2,20,1,4,3,2,4,1,2,18,2,1,3,10,3,3,1,1,8,4,2,4,3,11,1,1,5,1,6,1,1,4,3,7,1,4,2,35,2,1,2,2,1,5,2,2,1,1,5,1,1,1,14,1,3,3,2,1,2,2,9,1,2,1,1,7,1,3,4,2,1,2,16,3,2,8,1,2,8,2,3,1,22,3,1,1,4,3,2,2,2,4,4,1,5,5,3,12,2,1,9,2,1,13,7,1,6,3,7,5,2,3,8,1,2,2,1,7,1,1,1,5,3,4,27,2,3,1,1,1,2,3,1,4,1,2,1,1,10,3,1,13,2,1,1,1,1,1,1,1,4,8,1,4,3,3,1,1,1,1,5,1,1,1,5,1,3,2,3,2,2,12,1,4,3,2,1,2,3,1,1,3,3,3,2,2,4,3,1,2,3,7,2,1,6,1,3,1,1,7,3,3,2,2,4,1,2,1,3,2,1,1,1,1,1,6,2,1,3,5,1,3,1,2,3,1,2,2,1,1,1,2,1,1,13,1,1,2,2,4,1,5,1,6,2,14,2,1,8,1,1,1,3,2,1,17,2,3,1,5,3,2,1,2,5,5,5,6,4,1,3,3,1,2,2,6,1,2,2,9,2,1,2,3,2,1,5,1,1,3,2,4,1,2,5,6,2,1,2,1,1,1,1,1,1,7,1,2,3,3,1,1,4,5,2,14,1,2,2,3,2,1,5,5,3,3,2,12,1,1,6,3,2,1,3,8,1,6,3,3,1,2,1,3,2,2,1,9,2,1,1,1,10,1,1,6,2,1,2,3,1,1,4,4,1,5,2,3,1,2,1,1,2,2,7,4,3,1,8,1,1,5,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,10,570]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time_of_delivery_baby_1<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time_of_delivery_baby_1","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-cce5bc302e378744d11f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cce5bc302e378744d11f">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 2 Time of Delivery Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82"],["0:35","0:50","10:26","10:55","10:59","1100","11:05","11:31","11:35","11:38","12:03","12:10","12:15","1300","13:10","13:33","13:36","13:48","13:59","1480","14:08","14:51","1525","15:06","15:40","1675","16:15","16:45","1745","17:40","17:45","1850","18:01","18:10","18:15","18:53","19:09","19:14","19:40","19:41","1:36","1:45","1:55","2000","2070","20:17","20:46","21:05","21:10","21:29","21:35","21:52","2200","22:18","22:27","2300","2400","2500","2540","2600","2605","2700","2758","2800","2900","2:27","2:30","3000","3160","4","4:03","4:12","5:23","760","7:35","9:17","9:31","9:50","9:58","M","non reporté",null],[1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,5,2,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,4166]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>time_of_delivery_baby_2<\/th>\n      <th>occurences<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"time_of_delivery_baby_2","targets":1},{"name":"occurences","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>The time of delivery values vary in format. It may be best to remove delivery times not in the format of ‘HH:MM’, ‘H:MM’, NA, or ‘non reporté’. The following code does so, but I’ve set the <code>eval</code> flag to <code>FALSE</code> to prevent it from running.</p>
 </div>
 <div id="checking-the-weight-at-birth-values" class="section level4 unnumbered hasAnchor">
 <h4>Checking the weight at birth values<a href="kemri-datalab-summer-workbook.html#checking-the-weight-at-birth-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The data dictionary defines these columns as the baby’s weight in grams at birth, so let’s check for values that aren’t numeric, NA, or ‘non reporté’.</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b6dc7276402d6b746851" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b6dc7276402d6b746851">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Baby 1 Weight at Birth Values<\/caption>","data":[["1"],["gramos"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth_baby_1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth_baby_1","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-029bb7a4885dfe7c881a" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-029bb7a4885dfe7c881a">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Baby 2 Weight at Birth Values<\/caption>","data":[["1"],["gramos"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth_baby_2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth_baby_2","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b57e32595030c1a20fa2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b57e32595030c1a20fa2">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Baby 1 Weight at Birth Values<\/caption>","data":[["1","2"],["gramos","gramos"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth_baby_1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth_baby_1","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-910b576f4f232b3c8787" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-910b576f4f232b3c8787">{"x":{"filter":"none","vertical":false,"caption":"<caption>Erroneous Baby 2 Weight at Birth Values<\/caption>","data":[["1","2","3","4"],["M","M","gramos","gramos"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth_baby_2<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth_baby_2","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>There are two instances of the second baby’s weight being ‘M’. That doesn’t make sense!</p>
 <p>Here’s how to keep only the numeric, NA, or ‘non reporté’ values and filter out the rest. Once again, I’ve set the chunk’s <code>eval</code> flag to <code>FALSE</code> to prevent it from running. To run it, change the flag back to <code>eval = TRUE</code>.</p>
 <p>Another thing to ask is, “Do the reported weights actually make sense?” Remember, the units should be in grams!</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-3ee289b0586dc0bc9a17" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3ee289b0586dc0bc9a17">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Numeric Baby Weight at Birth Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266"],[41000,40560,33000,32000,29000,28000,23000,14000,5500,4900,4800,4700,4600,4500,4400,4350,4300,4250,4200,4150,4140,4100,4050,4020,4000,3990,3970,3950,3900,3880,3850,3820,3815,3810,3800,3775,3770,3750,3745,3730,3700,3660,3650,3635,3620,3610,3600,3580,3560,3550,3530,3520,3500,3490,3485,3480,3470,3465,3460,3450,3445,3440,3430,3420,3400,3390,3375,3360,3350,3340,3335,3325,3305,3300,3285,3280,3270,3265,3260,3250,3240,3235,3230,3225,3220,3210,3200,3185,3180,3170,3161,3150,3140,3135,3130,3105,3100,3095,3090,3080,3075,3070,3055,3050,3045,3035,3020,3000,2990,2980,2975,2965,2960,2955,2950,2940,2919,2900,2880,2860,2850,2845,2840,2805,2800,2790,2780,2760,2755,2750,2740,2715,2710,2700,2695,2680,2675,2670,2660,2655,2650,2640,2635,2625,2620,2610,2605,2600,2590,2580,2560,2550,2545,2540,2520,2500,2485,2480,2475,2455,2440,2435,2425,2400,2390,2380,2375,2350,2335,2330,2310,2300,2280,2255,2250,2245,2230,2210,2200,2150,2130,2100,2075,2065,2030,2020,2000,1985,1940,1935,1930,1900,1890,1885,1875,1870,1840,1825,1805,1800,1795,1780,1775,1750,1725,1720,1710,1700,1675,1670,1660,1605,1600,1570,1553,1550,1540,1530,1520,1500,1490,1470,1455,1450,1400,1380,1350,1340,1300,1255,1250,1200,1160,1150,1130,1115,1100,1070,1050,1035,1025,1000,980,970,960,950,940,900,880,860,850,815,800,750,700,500,350,300,35,34,33.5,33,32,30,27,9]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-88bb98223e9542288646" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-88bb98223e9542288646">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Numeric Baby Weight at Birth Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406"],[41000,40560,33000,32000,29000,28000,23000,22935,22800,22000,21000,14000,11870,6000,5500,5100,5040,4900,4800,4700,4600,4500,4400,4350,4300,4250,4200,4190,4150,4140,4130,4115,4100,4070,4060,4050,4040,4020,4015,4000,3990,3970,3950,3945,3925,3915,3900,3885,3880,3860,3850,3840,3825,3820,3815,3810,3800,3780,3775,3770,3765,3760,3750,3745,3730,3710,3700,3660,3650,3635,3625,3620,3615,3610,3600,3580,3575,3560,3550,3535,3530,3520,3510,3500,3490,3485,3480,3470,3465,3460,3450,3445,3440,3430,3425,3420,3405,3400,3395,3390,3385,3375,3360,3355,3350,3340,3335,3330,3325,3320,3315,3305,3300,3295,3285,3280,3270,3265,3260,3250,3245,3240,3235,3230,3225,3220,3210,3200,3190,3185,3180,3175,3170,3161,3160,3150,3146,3140,3135,3130,3125,3110,3105,3100,3095,3090,3085,3080,3075,3070,3060,3055,3050,3045,3040,3035,3030,3020,3019,3000,2990,2980,2975,2965,2960,2955,2950,2940,2920,2919,2910,2905,2900,2895,2890,2885,2880,2875,2860,2850,2845,2840,2820,2815,2805,2800,2795,2790,2780,2760,2755,2750,2745,2740,2725,2715,2710,2705,2700,2695,2690,2680,2675,2670,2660,2655,2650,2640,2635,2630,2625,2620,2610,2605,2600,2590,2580,2565,2560,2555,2550,2545,2540,2535,2530,2520,2510,2500,2485,2480,2475,2455,2440,2435,2430,2425,2400,2390,2380,2375,2370,2350,2335,2330,2310,2300,2285,2280,2270,2255,2250,2245,2240,2235,2230,2210,2200,2170,2165,2160,2150,2140,2135,2130,2112,2110,2100,2095,2080,2075,2070,2065,2050,2045,2042,2040,2030,2020,2010,2000,1990,1985,1970,1940,1935,1930,1920,1900,1895,1890,1885,1880,1875,1870,1865,1860,1850,1840,1830,1825,1820,1805,1800,1795,1780,1775,1760,1750,1730,1725,1720,1710,1700,1675,1670,1660,1655,1650,1635,1630,1610,1605,1600,1585,1580,1575,1570,1553,1550,1545,1540,1535,1530,1520,1510,1500,1490,1470,1455,1450,1410,1400,1385,1380,1375,1355,1350,1340,1305,1300,1280,1260,1255,1250,1245,1220,1200,1195,1180,1160,1150,1130,1115,1100,1095,1075,1070,1060,1050,1040,1035,1030,1025,1000,980,970,965,960,950,940,920,900,880,865,860,850,815,800,750,745,700,620,600,500,400,350,300,100,35,34,33.5,33,32,30,27,9]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>weight_at_birth<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"weight_at_birth","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <pre><code>[1]     9 41000</code></pre>
 <p>Some of these baby weights make no sense! The maximum baby weight in the data is 41,000 grams, which is a whopping 90.389527 pounds! The minimum baby weight in the data is 9 grams, which is only 0.0198416 pounds! This is definitely something to discuss with the client.</p>
 </div>
 <div id="checking-the-neonatology-admittance-variable" class="section level4 unnumbered hasAnchor">
 <h4>Checking the neonatology admittance variable<a href="kemri-datalab-summer-workbook.html#checking-the-neonatology-admittance-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The expected values of the neonatology admittance columns are ‘Oui’ and ‘Non’. Let’s find all of the unique values of these columns to check if they match our expectations.</p>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-40cf0ecc95fcd8113b10" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-40cf0ecc95fcd8113b10">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 1 Neonatology Admittance Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9"],["BB Lusamba mukeba","OIUI","OUI","OUI\nnon","non","oui","oui\nOUI","yes\nno",null],[1,1,85,1,1601,313,1,1,68]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>neonatology_admission_baby_1<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"neonatology_admission_baby_1","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-964e336b908dd18e088b" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-964e336b908dd18e088b">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 2 Neonatology Admittance Values<\/caption>","data":[["1","2","3","4","5"],["OUI","non","oui","yes\nno",null],[11,16,19,1,2025]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>neonatology_admission_baby_2<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"neonatology_admission_baby_2","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-eac1bb6eb4180004d4aa" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-eac1bb6eb4180004d4aa">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 1 Neonatology Admittance Values<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11"],["BB Lusamba mukeba","MIU","OIUI","OUI","OUI\nnon","non","noo","oui","oui\nOUI","yes\nno",null],[1,3,1,85,1,2855,1,748,1,2,565]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>neonatology_admission_baby_1<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"neonatology_admission_baby_1","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e9e993c7f8fc1d89c0f2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e9e993c7f8fc1d89c0f2">{"x":{"filter":"none","vertical":false,"caption":"<caption>Unique Baby 2 Neonatology Admittance Values<\/caption>","data":[["1","2","3","4","5"],["OUI","non","oui","yes\nno",null],[11,36,55,2,4159]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>neonatology_admission_baby_2<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"neonatology_admission_baby_2","targets":1},{"name":"n","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>Once again, capitalization matters! It also appears that there are some typos and unexpected values!</p>
 </div>
 </div>
@@ -1288,64 +1349,81 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 2: {r,
      ^</code></pre>
 <p><strong>7.</strong> Paste the following inside your code chunk to load your libraries and load your data:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="kemri-datalab-summer-workbook.html#cb138-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
-<span id="cb138-2"><a href="kemri-datalab-summer-workbook.html#cb138-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb138-3"><a href="kemri-datalab-summer-workbook.html#cb138-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb138-4"><a href="kemri-datalab-summer-workbook.html#cb138-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb138-5"><a href="kemri-datalab-summer-workbook.html#cb138-5" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="kemri-datalab-summer-workbook.html#cb138-6" tabindex="-1"></a><span class="co"># download data</span></span>
-<span id="cb138-7"><a href="kemri-datalab-summer-workbook.html#cb138-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_clean_v1.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="kemri-datalab-summer-workbook.html#cb140-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb140-2"><a href="kemri-datalab-summer-workbook.html#cb140-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb140-3"><a href="kemri-datalab-summer-workbook.html#cb140-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb140-4"><a href="kemri-datalab-summer-workbook.html#cb140-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb140-5"><a href="kemri-datalab-summer-workbook.html#cb140-5" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="kemri-datalab-summer-workbook.html#cb140-6" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb140-7"><a href="kemri-datalab-summer-workbook.html#cb140-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_clean_v1.csv&#39;</span>)</span></code></pre></div>
 <p><strong>8.</strong> How many columns are in this dataset? (Hint: <code>ncol()</code>)</p>
 <p><strong>9</strong> Create an object that contains the number of columns in the dataset. See below for a hint:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="kemri-datalab-summer-workbook.html#cb139-1" tabindex="-1"></a><span class="co"># create an object that has the number of columns from the dataset</span></span>
-<span id="cb139-2"><a href="kemri-datalab-summer-workbook.html#cb139-2" tabindex="-1"></a>df_col_num <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="kemri-datalab-summer-workbook.html#cb141-1" tabindex="-1"></a><span class="co"># create an object that has the number of columns from the dataset</span></span>
+<span id="cb141-2"><a href="kemri-datalab-summer-workbook.html#cb141-2" tabindex="-1"></a>df_col_num <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df)</span></code></pre></div>
 <p><strong>10.</strong> Now the first sentence in your <code>Preliminary Research</code> should be: <code>This dataset contains 380 columns.</code> You know how to write words on your <code>RMarkdown</code>, but to insert a number that is stored as an object in your environment try the following:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="kemri-datalab-summer-workbook.html#cb140-1" tabindex="-1"></a>This dataset contains <span class="st">`</span><span class="at">r df_col_num</span><span class="st">`</span> columns.</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="kemri-datalab-summer-workbook.html#cb142-1" tabindex="-1"></a>This dataset contains <span class="st">`</span><span class="at">r df_col_num</span><span class="st">`</span> columns.</span></code></pre></div>
 <p><strong>11.</strong> Now add <code>and 2072 variables.</code> <strong>but use code to write the number…</strong></p>
 <p><strong>12.</strong> What is the unit of observation for this dataset? Does each row have a mom and her kids in it? I don’t know you tell me. Write a sentence about the unit of observation after the sentence you wrote above.</p>
 <p><strong>13.</strong> Find the mean age of women submitted to the unit. To do this convert <code>mother_dob</code> and your reference date (<code>delivery_date</code>) to a date. Create a column called <code>mother_age</code>. Then find the mean age of women submitted to the unit.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="kemri-datalab-summer-workbook.html#cb141-1" tabindex="-1"></a><span class="co"># convert mother_dob and delivery_date to a date</span></span>
-<span id="cb141-2"><a href="kemri-datalab-summer-workbook.html#cb141-2" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb141-3"><a href="kemri-datalab-summer-workbook.html#cb141-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_dob =</span> <span class="fu">as.Date</span>(mother_dob, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>),</span>
-<span id="cb141-4"><a href="kemri-datalab-summer-workbook.html#cb141-4" tabindex="-1"></a>         <span class="at">delivery_date =</span> <span class="fu">as.Date</span>(delivery_date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>))</span>
-<span id="cb141-5"><a href="kemri-datalab-summer-workbook.html#cb141-5" tabindex="-1"></a></span>
-<span id="cb141-6"><a href="kemri-datalab-summer-workbook.html#cb141-6" tabindex="-1"></a><span class="co"># create a column called mother_age</span></span>
-<span id="cb141-7"><a href="kemri-datalab-summer-workbook.html#cb141-7" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb141-8"><a href="kemri-datalab-summer-workbook.html#cb141-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_age =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(delivery_date, mother_dob, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)) <span class="sc">/</span> <span class="fl">52.25</span>)</span>
-<span id="cb141-9"><a href="kemri-datalab-summer-workbook.html#cb141-9" tabindex="-1"></a></span>
-<span id="cb141-10"><a href="kemri-datalab-summer-workbook.html#cb141-10" tabindex="-1"></a><span class="co"># create an object called mean_mother_age</span></span>
-<span id="cb141-11"><a href="kemri-datalab-summer-workbook.html#cb141-11" tabindex="-1"></a>mean_mother_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_research<span class="sc">$</span>mother_age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="kemri-datalab-summer-workbook.html#cb143-1" tabindex="-1"></a><span class="co"># convert mother_dob and delivery_date to a date</span></span>
+<span id="cb143-2"><a href="kemri-datalab-summer-workbook.html#cb143-2" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb143-3"><a href="kemri-datalab-summer-workbook.html#cb143-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_dob =</span> <span class="fu">as.Date</span>(mother_dob, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>),</span>
+<span id="cb143-4"><a href="kemri-datalab-summer-workbook.html#cb143-4" tabindex="-1"></a>         <span class="at">delivery_date =</span> <span class="fu">as.Date</span>(delivery_date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>))</span>
+<span id="cb143-5"><a href="kemri-datalab-summer-workbook.html#cb143-5" tabindex="-1"></a></span>
+<span id="cb143-6"><a href="kemri-datalab-summer-workbook.html#cb143-6" tabindex="-1"></a><span class="co"># create a column called mother_age</span></span>
+<span id="cb143-7"><a href="kemri-datalab-summer-workbook.html#cb143-7" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb143-8"><a href="kemri-datalab-summer-workbook.html#cb143-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_age =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(delivery_date, mother_dob, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)) <span class="sc">/</span> <span class="fl">52.25</span>)</span>
+<span id="cb143-9"><a href="kemri-datalab-summer-workbook.html#cb143-9" tabindex="-1"></a></span>
+<span id="cb143-10"><a href="kemri-datalab-summer-workbook.html#cb143-10" tabindex="-1"></a><span class="co"># create an object called mean_mother_age</span></span>
+<span id="cb143-11"><a href="kemri-datalab-summer-workbook.html#cb143-11" tabindex="-1"></a>mean_mother_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_research<span class="sc">$</span>mother_age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><strong>14.</strong> Add a sentence to your Preliminary Research that says what the mean age of women is.</p>
 <p><strong>15.</strong> How many kids were submitted to neonatology? This information is in 2 columns: <code>neonatology_admission_baby_1</code> and <code>neonatology_admission_baby_2</code>. <strong>A.</strong> lower all the words in the column (hint: <code>tolower()</code>). <strong>B.</strong> run <code>table(df_research$neonatology_admission_baby_1)</code>, if there are values that you think are errors remove them using <code>filter()</code> OR if there are values that you think you can edit use <code>mutate()</code> and <code>ifelse</code> / <code>case_when</code> to fix these instances. <strong>C.</strong> count how many kids were and were not submitted to neonatology in each column. <strong>D.</strong> Add these values to your paragraph. <em>Use the following code to answer this question:</em></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="kemri-datalab-summer-workbook.html#cb142-1" tabindex="-1"></a><span class="co"># calculate how many kids were submitted to neonatology</span></span>
-<span id="cb142-2"><a href="kemri-datalab-summer-workbook.html#cb142-2" tabindex="-1"></a></span>
-<span id="cb142-3"><a href="kemri-datalab-summer-workbook.html#cb142-3" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb142-4"><a href="kemri-datalab-summer-workbook.html#cb142-4" tabindex="-1"></a>  <span class="co"># lower all the words in the column</span></span>
-<span id="cb142-5"><a href="kemri-datalab-summer-workbook.html#cb142-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">tolower</span>(neonatology_admission_baby_1)) <span class="sc">%&gt;%</span> </span>
-<span id="cb142-6"><a href="kemri-datalab-summer-workbook.html#cb142-6" tabindex="-1"></a>  <span class="co"># filter out entries that are wrong</span></span>
-<span id="cb142-7"><a href="kemri-datalab-summer-workbook.html#cb142-7" tabindex="-1"></a>  <span class="fu">filter</span>(neonatology_admission_baby_1 <span class="sc">!=</span> <span class="st">&#39;bb lusamba mukeba&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb142-8"><a href="kemri-datalab-summer-workbook.html#cb142-8" tabindex="-1"></a>  <span class="co"># edit the cases that seem fixable</span></span>
-<span id="cb142-9"><a href="kemri-datalab-summer-workbook.html#cb142-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb142-10"><a href="kemri-datalab-summer-workbook.html#cb142-10" tabindex="-1"></a>    neonatology_admission_baby_1 <span class="sc">==</span> <span class="st">&#39;oiui&#39;</span> <span class="sc">~</span> <span class="st">&#39;oui&#39;</span>,</span>
-<span id="cb142-11"><a href="kemri-datalab-summer-workbook.html#cb142-11" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> neonatology_admission_baby_1</span>
-<span id="cb142-12"><a href="kemri-datalab-summer-workbook.html#cb142-12" tabindex="-1"></a>  ))</span>
-<span id="cb142-13"><a href="kemri-datalab-summer-workbook.html#cb142-13" tabindex="-1"></a></span>
-<span id="cb142-14"><a href="kemri-datalab-summer-workbook.html#cb142-14" tabindex="-1"></a><span class="co"># calculate who was and was not submitted to neonatology (this table should only have oui and non)</span></span>
-<span id="cb142-15"><a href="kemri-datalab-summer-workbook.html#cb142-15" tabindex="-1"></a></span>
-<span id="cb142-16"><a href="kemri-datalab-summer-workbook.html#cb142-16" tabindex="-1"></a>df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb142-17"><a href="kemri-datalab-summer-workbook.html#cb142-17" tabindex="-1"></a>  <span class="fu">group_by</span>(neonatology_admission_baby_1) <span class="sc">%&gt;%</span> </span>
-<span id="cb142-18"><a href="kemri-datalab-summer-workbook.html#cb142-18" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
-<span id="cb142-19"><a href="kemri-datalab-summer-workbook.html#cb142-19" tabindex="-1"></a></span>
-<span id="cb142-20"><a href="kemri-datalab-summer-workbook.html#cb142-20" tabindex="-1"></a><span class="co"># once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology</span></span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="kemri-datalab-summer-workbook.html#cb144-1" tabindex="-1"></a><span class="co"># calculate how many kids were submitted to neonatology</span></span>
+<span id="cb144-2"><a href="kemri-datalab-summer-workbook.html#cb144-2" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="kemri-datalab-summer-workbook.html#cb144-3" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb144-4"><a href="kemri-datalab-summer-workbook.html#cb144-4" tabindex="-1"></a>  <span class="co"># lower all the words in the column</span></span>
+<span id="cb144-5"><a href="kemri-datalab-summer-workbook.html#cb144-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">tolower</span>(neonatology_admission_baby_1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-6"><a href="kemri-datalab-summer-workbook.html#cb144-6" tabindex="-1"></a>  <span class="co"># filter out entries that are wrong</span></span>
+<span id="cb144-7"><a href="kemri-datalab-summer-workbook.html#cb144-7" tabindex="-1"></a>  <span class="fu">filter</span>(neonatology_admission_baby_1 <span class="sc">!=</span> <span class="st">&#39;bb lusamba mukeba&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-8"><a href="kemri-datalab-summer-workbook.html#cb144-8" tabindex="-1"></a>  <span class="co"># edit the cases that seem fixable</span></span>
+<span id="cb144-9"><a href="kemri-datalab-summer-workbook.html#cb144-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb144-10"><a href="kemri-datalab-summer-workbook.html#cb144-10" tabindex="-1"></a>    neonatology_admission_baby_1 <span class="sc">==</span> <span class="st">&#39;oiui&#39;</span> <span class="sc">~</span> <span class="st">&#39;oui&#39;</span>,</span>
+<span id="cb144-11"><a href="kemri-datalab-summer-workbook.html#cb144-11" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> neonatology_admission_baby_1</span>
+<span id="cb144-12"><a href="kemri-datalab-summer-workbook.html#cb144-12" tabindex="-1"></a>  ))</span>
+<span id="cb144-13"><a href="kemri-datalab-summer-workbook.html#cb144-13" tabindex="-1"></a></span>
+<span id="cb144-14"><a href="kemri-datalab-summer-workbook.html#cb144-14" tabindex="-1"></a><span class="co"># calculate who was and was not submitted to neonatology (this table should only have oui and non)</span></span>
+<span id="cb144-15"><a href="kemri-datalab-summer-workbook.html#cb144-15" tabindex="-1"></a></span>
+<span id="cb144-16"><a href="kemri-datalab-summer-workbook.html#cb144-16" tabindex="-1"></a>df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb144-17"><a href="kemri-datalab-summer-workbook.html#cb144-17" tabindex="-1"></a>  <span class="fu">group_by</span>(neonatology_admission_baby_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-18"><a href="kemri-datalab-summer-workbook.html#cb144-18" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
+<span id="cb144-19"><a href="kemri-datalab-summer-workbook.html#cb144-19" tabindex="-1"></a></span>
+<span id="cb144-20"><a href="kemri-datalab-summer-workbook.html#cb144-20" tabindex="-1"></a><span class="co"># once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology</span></span></code></pre></div>
 <p><strong>NOTE: the code above will not get you the answer, you will have to edit it.</strong></p>
-<p><strong>16.</strong> How many women had malaria during pregnancy?</p>
-<p><strong>17.</strong> How many single and double deliveries were there?</p>
-<p><strong>18.</strong> Find mean birth weight and height and the range.</p>
-<p><strong>19.</strong> Find mean apgar and range. Does this make sense according to APGAR scores? Google what a normal APGAR score is.</p>
-<p><strong>20.</strong> How many people were born in the day and the night? There is a time of delivery column so you might need to make a new column called <code>day_or_night</code>.</p>
-<p><strong>21.</strong> What is the outcome of delivery?</p>
-<p><strong>22.</strong> Make a histogram of your choosing.</p>
 <p>Good work! You made a lot of progress today. We will pick up next week to keep working on your report.</p>
+</div>
+<div id="day-4-july-2nd" class="section level2 unnumbered hasAnchor">
+<h2>Day 4: July 2nd<a href="kemri-datalab-summer-workbook.html#day-4-july-2nd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Last week you began working on descriptives of the DRC data. This week you will continue on the descriptives for the DRC data in order to make a report. First, let’s finish the descriptives.</p>
+<p><strong>1.</strong> Open up your RMarkdown file from last week. The client has shared even more data with us so we need to load in the most up to date data. Run the following line of code where you originally load in the data:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="kemri-datalab-summer-workbook.html#cb145-1" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb145-2"><a href="kemri-datalab-summer-workbook.html#cb145-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_v3.csv&#39;</span>)</span></code></pre></div>
+<p><strong>2.</strong> Re-run your code from last week. Does it work? If not, edit the sections of code that you need to in order to make your RMarkdown work and is correct.</p>
+<p><strong>3.</strong> Now that your RScript works your goal is to finish the descriptive tables for the DRC data. Finish questions 1 through 15 from last week.</p>
+<p>Finished the questions from last week? Great! Time to move onto the final descriptive pieces. Some of the following questions you may have done last week so move forward until you are at a question that you have not completed yet.</p>
+<p><strong>4.</strong> How many women had malaria during pregnancy? To do this let’s find the variable. Look at the <a href="https://datatrain.cc/kemri-datalab-summer-workbook.html#understanding-the-request-and-the-data-dictionary">code book</a> pasted above. Does the variable malaria_diagnosis look like the right variable? How does the variable look? Is it clean or do we need to edit some of the responses in order to calculate how many women had malaria during pregnancy? Be sure to add this number to your report as a sentence.</p>
+<p><strong>5.</strong> On average of the women who have had malaria during pregnancy how many times have they had malaria? <em>Hint: number_malaria_diagnosis is the variable to use and you can follow the instructions from the question above.</em></p>
+<p><strong>6.</strong> Of the babies born, how many males and females are there? <em>Hint: baby_1_sex, baby_2_sex</em></p>
+<p><strong>7.</strong> Find mean birth weight and height and the range of all babies. For this try creating an object called baby_1 that only has the columns that you need and another object called baby_2 with the columns that you need. How do the responses inside those columns look? Do they need to be edited? Once the columns look good, rename the columns of each dataset so that they match and then use the following code to merge the objects together and perform the calculations from there. <em>Hint: weight_at_birth_baby_1, weight_at_birth_baby_2</em></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="kemri-datalab-summer-workbook.html#cb146-1" tabindex="-1"></a><span class="co"># merge the datasets that you make in order to find mean birth weight and height and range</span></span>
+<span id="cb146-2"><a href="kemri-datalab-summer-workbook.html#cb146-2" tabindex="-1"></a>baby_1_2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(baby_1, baby_2)</span></code></pre></div>
+<p><strong>8.</strong> Find mean apgar and range. To do this add the necessary columns to your <code>baby_1_2</code> datasets (<code>apgar_1_baby_1</code>, <code>apgar_5_baby_1</code>, <code>apgar_10_baby_1</code>, <code>apgar_1_baby_2</code>, <code>apgar_5_baby_2</code>, <code>apgar_10_baby_2</code>) then calculate. Do these answers make sense according to general APGAR scores? Google what a normal APGAR score is. Make a note of how many abnormal APGAR scores are are in each column. Then create a new dataset called <code>apgar_df</code> and filter out any abnormal APGAR scores and re-calculate the mean apgar and range.</p>
+<p><strong>9.</strong> How many people were born in the day and the night? Again, for this question add the necessary columns to the <code>data_1_2</code> dataset (<code>time_of_delivery_baby_1</code>, <code>time_of_delivery_baby_2</code>). Be sure to make this column into a date time type and then make a new column called <code>day_or_night</code>. From there determine how many babies were born in the day and in the night. Add this information to your report.</p>
+<p><strong>10.</strong> How many single and double deliveries were there? Talk as a team and come up with a way to determine this. Maybe think about how there are columns specifically for baby_1 and for baby_2…</p>
+<p><strong>11.</strong> In relation to the question above, is there a baby_3? Does that mean there could be a triple delivery? If so, tell me how many triple deliveries there were.</p>
+<p><strong>12.</strong> Make a table of all the outcomes of delivery. Don’t edit the information in the data. Make this table print in your report. <em>Hint: baby_1_outcome, etc.</em></p>
+<p><strong>13.</strong> Knit your report. Do you have any errors? If so, fix’em. If not, how does your report read? Does it make sense? Edit the report so that if you gave it to your client today, they would understand what you did and why you did it.</p>
+<p><strong>14</strong>. How does your code look? Could someone who had never seen your RScript before be able to understand what you are doing and why? Go back and comment your code and make sure your code is reproducible!</p>
+<p><strong>15.</strong> Good work today! Next week you will do some exploration on your own, but these descriptives serve as a good base to move forward. Have 1 person from your team send their RMarkdown in the DataLab slack. Once your done talk with your team about what you would like to look into next week and maybe ask about each other’s lives outside of coding…</p>
 
 </div>
 </div>

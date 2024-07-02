@@ -146,7 +146,7 @@ library(tidyverse)
 library(DT)
 
 # download data
-df <- read_csv('https://mbrudd.com/drc_data/DRC_data_v2.csv')
+df <- read_csv('https://mbrudd.com/drc_data/DRC_data_v3.csv')
 ```
 
 ### Exploring the data {.unnumbered}
@@ -251,7 +251,8 @@ These all look good to me! As far as I can tell, the only columns missing that a
 ```{r}
 # remove the entry that seems to be just the column names
 df_cleaning <- df %>% 
-  filter(mother_chart_number != 'mother_chart_number')
+  filter(mother_chart_number != 'mother_chart_number',
+         mother_DOB != 'mother_DOB')
 ```
 
 Notice that I've made a separate data frame for cleaning. This makes it easier to rerun code without having to completely reload the data from the source. It also makes it easy to compare the original data with the modified data.
@@ -612,22 +613,52 @@ df_research %>%
 
 **NOTE: the code above will not get you the answer, you will have to edit it.**
 
-**16.** How many women had malaria during pregnancy?
-
-**17.** How many single and double deliveries were there?
-
-**18.** Find mean birth weight and height and the range.
-
-**19.** Find mean apgar and range. Does this make sense according to APGAR scores? Google what a normal APGAR score is.
-
-**20.** How many people were born in the day and the night? There is a time of delivery column so you might need to make a new column called `day_or_night`. 
-
-**21.** What is the outcome of delivery?
-
-**22.** Make a histogram of your choosing.
-
 Good work! You made a lot of progress today. We will pick up next week to keep working on your report.
 
 
+## Day 4: July 2nd {.unnumbered}
 
+Last week you began working on descriptives of the DRC data. This week you will continue on the descriptives for the DRC data in order to make a report. First, let's finish the descriptives. 
+
+**1.** Open up your RMarkdown file from last week. The client has shared even more data with us so we need to load in the most up to date data. Run the following line of code where you originally load in the data:
+
+```{r, echo = TRUE, eval = FALSE}
+# download data
+df <- read_csv('https://mbrudd.com/drc_data/DRC_data_v3.csv')
+```
+
+**2.** Re-run your code from last week. Does it work? If not, edit the sections of code that you need to in order to make your RMarkdown work and is correct.
+
+**3.** Now that your RScript works your goal is to finish the descriptive tables for the DRC data. Finish questions 1 through 15 from last week. 
+
+Finished the questions from last week? Great! Time to move onto the final descriptive pieces. Some of the following questions you may have done last week so move forward until you are at a question that you have not completed yet.
+
+**4.** How many women had malaria during pregnancy? To do this let's find the variable. Look at the [code book](https://datatrain.cc/kemri-datalab-summer-workbook.html#understanding-the-request-and-the-data-dictionary) pasted above. Does the variable malaria_diagnosis look like the right variable? How does the variable look? Is it clean or do we need to edit some of the responses in order to calculate how many women had malaria during pregnancy? Be sure to add this number to your report as a sentence.
+
+**5.** On average of the women who have had malaria during pregnancy how many times have they had malaria? _Hint: number_malaria_diagnosis is the variable to use and you can follow the instructions from the question above._
+
+**6.** Of the babies born, how many males and females are there? *Hint: baby_1_sex, baby_2_sex*
+
+**7.** Find mean birth weight and height and the range of all babies. For this try creating an object called baby_1 that only has the columns that you need and another object called baby_2 with the columns that you need. How do the responses inside those columns look? Do they need to be edited? Once the columns look good, rename the columns of each dataset so that they match and then use the following code to merge the objects together and perform the calculations from there. *Hint: weight_at_birth_baby_1, weight_at_birth_baby_2*
+
+```{r, echo = TRUE, eval = FALSE}
+# merge the datasets that you make in order to find mean birth weight and height and range
+baby_1_2 <- bind_rows(baby_1, baby_2)
+```
+
+**8.** Find mean apgar and range. To do this add the necessary columns to your `baby_1_2` datasets (`apgar_1_baby_1`, `apgar_5_baby_1`, `apgar_10_baby_1`, `apgar_1_baby_2`, `apgar_5_baby_2`, `apgar_10_baby_2`) then calculate. Do these answers make sense according to general APGAR scores? Google what a normal APGAR score is. Make a note of how many abnormal APGAR scores are are in each column. Then create a new dataset called `apgar_df` and filter out any abnormal APGAR scores and re-calculate the mean apgar and range. 
+
+**9.** How many people were born in the day and the night? Again, for this question add the necessary columns to the `data_1_2` dataset (`time_of_delivery_baby_1`, `time_of_delivery_baby_2`). Be sure to make this column into a date time type and then make a new column called `day_or_night`. From there determine how many babies were born in the day and in the night. Add this information to your report. 
+
+**10.** How many single and double deliveries were there? Talk as a team and come up with a way to determine this. Maybe think about how there are columns specifically for baby_1 and for baby_2... 
+
+**11.** In relation to the question above, is there a baby_3? Does that mean there could be a triple delivery? If so, tell me how many triple deliveries there were.
+
+**12.** Make a table of all the outcomes of delivery. Don't edit the information in the data. Make this table print in your report. *Hint: baby_1_outcome, etc.*
+
+**13.** Knit your report. Do you have any errors? If so, fix'em. If not, how does your report read? Does it make sense? Edit the report so that if you gave it to your client today, they would understand what you did and why you did it. 
+
+**14**. How does your code look? Could someone who had never seen your RScript before be able to understand what you are doing and why? Go back and comment your code and make sure your code is reproducible!
+
+**15.** Good work today! Next week you will do some exploration on your own, but these descriptives serve as a good base to move forward. Have 1 person from your team send their RMarkdown in the DataLab slack. Once your done talk with your team about what you would like to look into next week and maybe ask about each other's lives outside of coding... 
 
