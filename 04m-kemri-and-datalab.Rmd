@@ -521,7 +521,7 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 
 **6.** Paste the following in a code chunk to hide messages and your code when you knit your document:
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 
 {r, echo=FALSE, message=FALSE}
 # this chunk will hide the code when you run code chunks
