@@ -662,3 +662,43 @@ baby_1_2 <- bind_rows(baby_1, baby_2)
 
 **15.** Good work today! Next week you will do some exploration on your own, but these descriptives serve as a good base to move forward. Have 1 person from your team send their RMarkdown in the DataLab slack. Once your done talk with your team about what you would like to look into next week and maybe ask about each other's lives outside of coding... 
 
+
+## Day 5: July 8th {.unnumbered}
+
+In the next hour and fifteen minutes you will have finished a report for your client. So check off the boxes on the list below and then share your RMarkdown in slack as well as your report as a pdf.
+
+**1.** Choose the best RMarkdown script and share it with everyone on your team and make sure it runs.
+
+**2.** Knit your report. Do you like the way it looks? Does it answer the questions that your client originally asked for? (**Hint: look at the email below**). Edit your RMarkdown to make your descriptives section have the information that you want and need. 
+
+> Dear team,
+> Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:
+>
+>   - outcome of delivery (baby is okay and if baby was admitted to nenotolagy)
+>   - malaria during pregnancy
+>   - weight, height and apgar
+>   - completeness of variables
+>   - numbers of variables
+>   - the mean age of women
+>   - number of kids submitted to icu/neonatology
+>   - who went to clinic and who did not go to clinic
+>   - how many had a single or double or triple delivery
+>   - mean birth weight and height and range & mean apgar and range
+>   - difference time of when delivery was made (day vs. night)
+> 
+> Overall, the client has requested a neonatology descriptive paper. Please send me an update once a week so that I can see how you are progressing, but I am excited to see the final product in 4 weeks time. 
+> 
+> Many thanks,
+> 
+> Your super cool and suave boss
+
+**3.** Make 2-3 visuals of any of the following topics and include it in your paper: Age, Status marital, Level study, Previous pregnacy, Previous deliveries, Others diagnosis, Self reported malaria diagnosis, Malaria treatment, or ANC how many.
+
+**4.** Write a short summary of what you would like the client to know about your analysis or any other extra information. 
+
+**5.** Are all of your names on the report?
+
+**6.** Is your code fully commented?
+
+**5.** Once you are happy with the report you created, share one RMarkdown per group and one Report per group in slack and you are officially done with the DRC data! Come back into the classroom for a goodbye to the KEMRI & DataLab sesssions. 
+

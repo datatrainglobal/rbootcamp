@@ -787,6 +787,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-2-june-18th"><i class="fa fa-check"></i>Day 2: June 18th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-3-june-25th"><i class="fa fa-check"></i>Day 3: June 25th</a></li>
 <li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-4-july-2nd"><i class="fa fa-check"></i>Day 4: July 2nd</a></li>
+<li class="chapter" data-level="" data-path="kemri-datalab-summer-workbook.html"><a href="kemri-datalab-summer-workbook.html#day-5-july-8th"><i class="fa fa-check"></i>Day 5: July 8th</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="cleaning-messy-data.html"><a href="cleaning-messy-data.html"><i class="fa fa-check"></i><b>16</b> Cleaning Messy Data</a>
 <ul>
@@ -923,565 +924,328 @@ It is important to note that not all translations are accurate. If something is 
 </div>
 <div id="loading-libraries-and-the-democratic-republic-of-the-congo-neonatology-data" class="section level3 unnumbered hasAnchor">
 <h3>Loading libraries and the Democratic Republic of the Congo neonatology data<a href="kemri-datalab-summer-workbook.html#loading-libraries-and-the-democratic-republic-of-the-congo-neonatology-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>Error in open.connection(structure(4L, class = c(&quot;curl&quot;, &quot;connection&quot;), conn_id = &lt;pointer: 0x0000000000000391&gt;), : Timeout was reached: [mbrudd.com] Failed to connect to mbrudd.com port 443 after 10011 ms: Timeout was reached</code></pre>
 </div>
 <div id="exploring-the-data" class="section level3 unnumbered hasAnchor">
 <h3>Exploring the data<a href="kemri-datalab-summer-workbook.html#exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="seeing-what-columns-we-have" class="section level4 unnumbered hasAnchor">
 <h4>Seeing what columns we have<a href="kemri-datalab-summer-workbook.html#seeing-what-columns-we-have" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>  [1] &quot;anc_first_trimester_eco&quot;                       
-  [2] &quot;anc_first_trimester_eco_gestational_age&quot;       
-  [3] &quot;anc_first_trimester_eco_results&quot;               
-  [4] &quot;anc_first_trimester_eco_results_details&quot;       
-  [5] &quot;anc_second_trimester_eco&quot;                      
-  [6] &quot;anc_second_trimester_eco_gestational_age&quot;      
-  [7] &quot;anc_second_trimester_eco_results&quot;              
-  [8] &quot;anc_second_trimester_eco_results_details&quot;      
-  [9] &quot;anc_third_trimester_eco&quot;                       
- [10] &quot;anc_third_trimester_eco_gestational_age&quot;       
- [11] &quot;anc_third_trimester_eco_results&quot;               
- [12] &quot;anc_third_trimester_eco_results_details&quot;       
- [13] &quot;anc_v1_crp&quot;                                    
- [14] &quot;anc_v1_date&quot;                                   
- [15] &quot;anc_v1_eo%&quot;                                    
- [16] &quot;anc_v1_gestational_age&quot;                        
- [17] &quot;anc_v1_hb&quot;                                     
- [18] &quot;anc_v1_hto%&quot;                                   
- [19] &quot;anc_v1_l%&quot;                                     
- [20] &quot;anc_v1_malaria_test_a&quot;                         
- [21] &quot;anc_v1_malaria_test_b&quot;                         
- [22] &quot;anc_v1_malaria_test_detail_a&quot;                  
- [23] &quot;anc_v1_malaria_test_detail_b&quot;                  
- [24] &quot;anc_v1_malaria_test_results_a&quot;                 
- [25] &quot;anc_v1_malaria_test_results_b&quot;                 
- [26] &quot;anc_v1_malaria_treatment_a&quot;                    
- [27] &quot;anc_v1_malaria_treatment_b&quot;                    
- [28] &quot;anc_v1_malaria_treatment_c&quot;                    
- [29] &quot;anc_v1_malaria_treatment_detail_a&quot;             
- [30] &quot;anc_v1_malaria_treatment_detail_b&quot;             
- [31] &quot;anc_v1_malaria_treatment_detail_c&quot;             
- [32] &quot;anc_v1_neu%&quot;                                   
- [33] &quot;anc_v1_plt&quot;                                    
- [34] &quot;anc_v1_treatment_other&quot;                        
- [35] &quot;anc_v1_treatment_other_detail&quot;                 
- [36] &quot;anc_v1_urine&quot;                                  
- [37] &quot;anc_v1_urine_detail&quot;                           
- [38] &quot;anc_v1_wbc&quot;                                    
- [39] &quot;anc_v1_weight&quot;                                 
- [40] &quot;anc_v10_crp&quot;                                   
- [41] &quot;anc_v10_date&quot;                                  
- [42] &quot;anc_v10_eo%&quot;                                   
- [43] &quot;anc_v10_gestational_age&quot;                       
- [44] &quot;anc_v10_hb&quot;                                    
- [45] &quot;anc_v10_hto%&quot;                                  
- [46] &quot;anc_v10_l%&quot;                                    
- [47] &quot;anc_v10_malaria_test_a&quot;                        
- [48] &quot;anc_v10_malaria_test_b&quot;                        
- [49] &quot;anc_v10_malaria_test_detail_a&quot;                 
- [50] &quot;anc_v10_malaria_test_detail_b&quot;                 
- [51] &quot;anc_v10_malaria_test_results_a&quot;                
- [52] &quot;anc_v10_malaria_test_results_b&quot;                
- [53] &quot;anc_v10_malaria_treatment_a&quot;                   
- [54] &quot;anc_v10_malaria_treatment_b&quot;                   
- [55] &quot;anc_v10_malaria_treatment_detail_a&quot;            
- [56] &quot;anc_v10_malaria_treatment_detail_b&quot;            
- [57] &quot;anc_v10_neu%&quot;                                  
- [58] &quot;anc_v10_plt&quot;                                   
- [59] &quot;anc_v10_treatment_other&quot;                       
- [60] &quot;anc_v10_treatment_other_detail&quot;                
- [61] &quot;anc_v10_urine&quot;                                 
- [62] &quot;anc_v10_urine_detail&quot;                          
- [63] &quot;anc_v10_wbc&quot;                                   
- [64] &quot;anc_v10_weight&quot;                                
- [65] &quot;anc_v11_crp&quot;                                   
- [66] &quot;anc_v11_date&quot;                                  
- [67] &quot;anc_v11_eo%&quot;                                   
- [68] &quot;anc_v11_gestational_age&quot;                       
- [69] &quot;anc_v11_hb&quot;                                    
- [70] &quot;anc_v11_hto%&quot;                                  
- [71] &quot;anc_v11_l%&quot;                                    
- [72] &quot;anc_v11_malaria_test_a&quot;                        
- [73] &quot;anc_v11_malaria_test_b&quot;                        
- [74] &quot;anc_v11_malaria_test_detail_a&quot;                 
- [75] &quot;anc_v11_malaria_test_detail_b&quot;                 
- [76] &quot;anc_v11_malaria_test_results_a&quot;                
- [77] &quot;anc_v11_malaria_test_results_b&quot;                
- [78] &quot;anc_v11_malaria_treatment_a&quot;                   
- [79] &quot;anc_v11_malaria_treatment_b&quot;                   
- [80] &quot;anc_v11_malaria_treatment_detail_a&quot;            
- [81] &quot;anc_v11_malaria_treatment_detail_b&quot;            
- [82] &quot;anc_v11_neu%&quot;                                  
- [83] &quot;anc_v11_plt&quot;                                   
- [84] &quot;anc_v11_treatment_other&quot;                       
- [85] &quot;anc_v11_treatment_other_detail&quot;                
- [86] &quot;anc_v11_urine&quot;                                 
- [87] &quot;anc_v11_urine_detail&quot;                          
- [88] &quot;anc_v11_wbc&quot;                                   
- [89] &quot;anc_v11_weight&quot;                                
- [90] &quot;anc_v2_crp&quot;                                    
- [91] &quot;anc_v2_date&quot;                                   
- [92] &quot;anc_v2_eo%&quot;                                    
- [93] &quot;anc_v2_gestational_age&quot;                        
- [94] &quot;anc_v2_hb&quot;                                     
- [95] &quot;anc_v2_hto%&quot;                                   
- [96] &quot;anc_v2_l%&quot;                                     
- [97] &quot;anc_v2_malaria_test_a&quot;                         
- [98] &quot;anc_v2_malaria_test_b&quot;                         
- [99] &quot;anc_v2_malaria_test_detail_a&quot;                  
-[100] &quot;anc_v2_malaria_test_detail_b&quot;                  
-[101] &quot;anc_v2_malaria_test_results_a&quot;                 
-[102] &quot;anc_v2_malaria_test_results_b&quot;                 
-[103] &quot;anc_v2_malaria_treatment_a&quot;                    
-[104] &quot;anc_v2_malaria_treatment_b&quot;                    
-[105] &quot;anc_v2_malaria_treatment_detail_a&quot;             
-[106] &quot;anc_v2_malaria_treatment_detail_b&quot;             
-[107] &quot;anc_v2_neu%&quot;                                   
-[108] &quot;anc_v2_plt&quot;                                    
-[109] &quot;anc_v2_treatment_other&quot;                        
-[110] &quot;anc_v2_treatment_other_detail&quot;                 
-[111] &quot;anc_v2_urine&quot;                                  
-[112] &quot;anc_v2_urine_detail&quot;                           
-[113] &quot;anc_v2_wbc&quot;                                    
-[114] &quot;anc_v2_weight&quot;                                 
-[115] &quot;anc_v3_crp&quot;                                    
-[116] &quot;anc_v3_date&quot;                                   
-[117] &quot;anc_v3_eo%&quot;                                    
-[118] &quot;anc_v3_gestational_age&quot;                        
-[119] &quot;anc_v3_hb&quot;                                     
-[120] &quot;anc_v3_hto%&quot;                                   
-[121] &quot;anc_v3_l%&quot;                                     
-[122] &quot;anc_v3_malaria_test_a&quot;                         
-[123] &quot;anc_v3_malaria_test_b&quot;                         
-[124] &quot;anc_v3_malaria_test_detail_a&quot;                  
-[125] &quot;anc_v3_malaria_test_detail_b&quot;                  
-[126] &quot;anc_v3_malaria_test_results_a&quot;                 
-[127] &quot;anc_v3_malaria_test_results_b&quot;                 
-[128] &quot;anc_v3_malaria_treatment_a&quot;                    
-[129] &quot;anc_v3_malaria_treatment_b&quot;                    
-[130] &quot;anc_v3_malaria_treatment_c&quot;                    
-[131] &quot;anc_v3_malaria_treatment_detail_a&quot;             
-[132] &quot;anc_v3_malaria_treatment_detail_b&quot;             
-[133] &quot;anc_v3_malaria_treatment_detail_c&quot;             
-[134] &quot;anc_v3_neu%&quot;                                   
-[135] &quot;anc_v3_plt&quot;                                    
-[136] &quot;anc_v3_treatment_other&quot;                        
-[137] &quot;anc_v3_treatment_other_detail&quot;                 
-[138] &quot;anc_v3_urine&quot;                                  
-[139] &quot;anc_v3_urine_detail&quot;                           
-[140] &quot;anc_v3_wbc&quot;                                    
-[141] &quot;anc_v3_weight&quot;                                 
-[142] &quot;anc_v4_crp&quot;                                    
-[143] &quot;anc_v4_date&quot;                                   
-[144] &quot;anc_v4_eo%&quot;                                    
-[145] &quot;anc_v4_gestational_age&quot;                        
-[146] &quot;anc_v4_hb&quot;                                     
-[147] &quot;anc_v4_hto%&quot;                                   
-[148] &quot;anc_v4_l%&quot;                                     
-[149] &quot;anc_v4_malaria_test_a&quot;                         
-[150] &quot;anc_v4_malaria_test_b&quot;                         
-[151] &quot;anc_v4_malaria_test_detail_a&quot;                  
-[152] &quot;anc_v4_malaria_test_detail_b&quot;                  
-[153] &quot;anc_v4_malaria_test_results_a&quot;                 
-[154] &quot;anc_v4_malaria_test_results_b&quot;                 
-[155] &quot;anc_v4_malaria_treatment_a&quot;                    
-[156] &quot;anc_v4_malaria_treatment_b&quot;                    
-[157] &quot;anc_v4_malaria_treatment_detail_a&quot;             
-[158] &quot;anc_v4_malaria_treatment_detail_b&quot;             
-[159] &quot;anc_v4_neu%&quot;                                   
-[160] &quot;anc_v4_plt&quot;                                    
-[161] &quot;anc_v4_treatment_other&quot;                        
-[162] &quot;anc_v4_treatment_other_detail&quot;                 
-[163] &quot;anc_v4_urine&quot;                                  
-[164] &quot;anc_v4_urine_detail&quot;                           
-[165] &quot;anc_v4_wbc&quot;                                    
-[166] &quot;anc_v4_weight&quot;                                 
-[167] &quot;anc_v5_crp&quot;                                    
-[168] &quot;anc_v5_date&quot;                                   
-[169] &quot;anc_v5_eo%&quot;                                    
-[170] &quot;anc_v5_gestational_age&quot;                        
-[171] &quot;anc_v5_hb&quot;                                     
-[172] &quot;anc_v5_hto%&quot;                                   
-[173] &quot;anc_v5_l%&quot;                                     
-[174] &quot;anc_v5_malaria_test_a&quot;                         
-[175] &quot;anc_v5_malaria_test_b&quot;                         
-[176] &quot;anc_v5_malaria_test_detail_a&quot;                  
-[177] &quot;anc_v5_malaria_test_detail_b&quot;                  
-[178] &quot;anc_v5_malaria_test_results_a&quot;                 
-[179] &quot;anc_v5_malaria_test_results_b&quot;                 
-[180] &quot;anc_v5_malaria_treatment_a&quot;                    
-[181] &quot;anc_v5_malaria_treatment_b&quot;                    
-[182] &quot;anc_v5_malaria_treatment_detail_a&quot;             
-[183] &quot;anc_v5_malaria_treatment_detail_b&quot;             
-[184] &quot;anc_v5_neu%&quot;                                   
-[185] &quot;anc_v5_plt&quot;                                    
-[186] &quot;anc_v5_treatment_other&quot;                        
-[187] &quot;anc_v5_treatment_other_detail&quot;                 
-[188] &quot;anc_v5_urine&quot;                                  
-[189] &quot;anc_v5_urine_detail&quot;                           
-[190] &quot;anc_v5_wbc&quot;                                    
-[191] &quot;anc_v5_weight&quot;                                 
-[192] &quot;anc_v6_crp&quot;                                    
-[193] &quot;anc_v6_date&quot;                                   
-[194] &quot;anc_v6_eo%&quot;                                    
-[195] &quot;anc_v6_gestational_age&quot;                        
-[196] &quot;anc_v6_hb&quot;                                     
-[197] &quot;anc_v6_hto%&quot;                                   
-[198] &quot;anc_v6_l%&quot;                                     
-[199] &quot;anc_v6_malaria_test_a&quot;                         
-[200] &quot;anc_v6_malaria_test_b&quot;                         
-[201] &quot;anc_v6_malaria_test_detail_a&quot;                  
-[202] &quot;anc_v6_malaria_test_detail_b&quot;                  
-[203] &quot;anc_v6_malaria_test_results_a&quot;                 
-[204] &quot;anc_v6_malaria_test_results_b&quot;                 
-[205] &quot;anc_v6_malaria_treatment_a&quot;                    
-[206] &quot;anc_v6_malaria_treatment_b&quot;                    
-[207] &quot;anc_v6_malaria_treatment_detail_a&quot;             
-[208] &quot;anc_v6_malaria_treatment_detail_b&quot;             
-[209] &quot;anc_v6_neu%&quot;                                   
-[210] &quot;anc_v6_plt&quot;                                    
-[211] &quot;anc_v6_treatment_other&quot;                        
-[212] &quot;anc_v6_treatment_other_detail&quot;                 
-[213] &quot;anc_v6_urine&quot;                                  
-[214] &quot;anc_v6_urine_detail&quot;                           
-[215] &quot;anc_v6_wbc&quot;                                    
-[216] &quot;anc_v6_weight&quot;                                 
-[217] &quot;anc_v7_crp&quot;                                    
-[218] &quot;anc_v7_date&quot;                                   
-[219] &quot;anc_v7_eo%&quot;                                    
-[220] &quot;anc_v7_gestational_age&quot;                        
-[221] &quot;anc_v7_hb&quot;                                     
-[222] &quot;anc_v7_hto%&quot;                                   
-[223] &quot;anc_v7_l%&quot;                                     
-[224] &quot;anc_v7_malaria_test_a&quot;                         
-[225] &quot;anc_v7_malaria_test_b&quot;                         
-[226] &quot;anc_v7_malaria_test_detail_a&quot;                  
-[227] &quot;anc_v7_malaria_test_detail_b&quot;                  
-[228] &quot;anc_v7_malaria_test_results_a&quot;                 
-[229] &quot;anc_v7_malaria_test_results_b&quot;                 
-[230] &quot;anc_v7_malaria_treatment_a&quot;                    
-[231] &quot;anc_v7_malaria_treatment_b&quot;                    
-[232] &quot;anc_v7_malaria_treatment_detail_a&quot;             
-[233] &quot;anc_v7_malaria_treatment_detail_b&quot;             
-[234] &quot;anc_v7_neu%&quot;                                   
-[235] &quot;anc_v7_plt&quot;                                    
-[236] &quot;anc_v7_treatment_other&quot;                        
-[237] &quot;anc_v7_treatment_other_detail&quot;                 
-[238] &quot;anc_v7_urine&quot;                                  
-[239] &quot;anc_v7_urine_detail&quot;                           
-[240] &quot;anc_v7_wbc&quot;                                    
-[241] &quot;anc_v7_weight&quot;                                 
-[242] &quot;anc_v8_crp&quot;                                    
-[243] &quot;anc_v8_date&quot;                                   
-[244] &quot;anc_v8_eo%&quot;                                    
-[245] &quot;anc_v8_gestational_age&quot;                        
-[246] &quot;anc_v8_hb&quot;                                     
-[247] &quot;anc_v8_hto%&quot;                                   
-[248] &quot;anc_v8_l%&quot;                                     
-[249] &quot;anc_v8_malaria_test_a&quot;                         
-[250] &quot;anc_v8_malaria_test_b&quot;                         
-[251] &quot;anc_v8_malaria_test_detail_a&quot;                  
-[252] &quot;anc_v8_malaria_test_detail_b&quot;                  
-[253] &quot;anc_v8_malaria_test_results_a&quot;                 
-[254] &quot;anc_v8_malaria_test_results_b&quot;                 
-[255] &quot;anc_v8_malaria_treatment_a&quot;                    
-[256] &quot;anc_v8_malaria_treatment_b&quot;                    
-[257] &quot;anc_v8_malaria_treatment_c&quot;                    
-[258] &quot;anc_v8_malaria_treatment_detail_a&quot;             
-[259] &quot;anc_v8_malaria_treatment_detail_b&quot;             
-[260] &quot;anc_v8_malaria_treatment_detail_c&quot;             
-[261] &quot;anc_v8_neu%&quot;                                   
-[262] &quot;anc_v8_plt&quot;                                    
-[263] &quot;anc_v8_treatment_other&quot;                        
-[264] &quot;anc_v8_treatment_other_detail&quot;                 
-[265] &quot;anc_v8_urine&quot;                                  
-[266] &quot;anc_v8_urine_detail&quot;                           
-[267] &quot;anc_v8_wbc&quot;                                    
-[268] &quot;anc_v8_weight&quot;                                 
-[269] &quot;anc_v9_crp&quot;                                    
-[270] &quot;anc_v9_date&quot;                                   
-[271] &quot;anc_v9_eo%&quot;                                    
-[272] &quot;anc_v9_gestational_age&quot;                        
-[273] &quot;anc_v9_hb&quot;                                     
-[274] &quot;anc_v9_hto%&quot;                                   
-[275] &quot;anc_v9_l%&quot;                                     
-[276] &quot;anc_v9_malaria_test_a&quot;                         
-[277] &quot;anc_v9_malaria_test_b&quot;                         
-[278] &quot;anc_v9_malaria_test_detail_a&quot;                  
-[279] &quot;anc_v9_malaria_test_detail_b&quot;                  
-[280] &quot;anc_v9_malaria_test_results_a&quot;                 
-[281] &quot;anc_v9_malaria_test_results_b&quot;                 
-[282] &quot;anc_v9_malaria_treatment_a&quot;                    
-[283] &quot;anc_v9_malaria_treatment_b&quot;                    
-[284] &quot;anc_v9_malaria_treatment_detail_a&quot;             
-[285] &quot;anc_v9_malaria_treatment_detail_b&quot;             
-[286] &quot;anc_v9_neu%&quot;                                   
-[287] &quot;anc_v9_plt&quot;                                    
-[288] &quot;anc_v9_treatment_other&quot;                        
-[289] &quot;anc_v9_treatment_other_detail&quot;                 
-[290] &quot;anc_v9_urine&quot;                                  
-[291] &quot;anc_v9_urine_detail&quot;                           
-[292] &quot;anc_v9_wbc&quot;                                    
-[293] &quot;anc_v9_weight&quot;                                 
-[294] &quot;antène_cpn&quot;                                    
-[295] &quot;apgar_1_baby_1&quot;                                
-[296] &quot;apgar_1_baby_2&quot;                                
-[297] &quot;apgar_10_baby_1&quot;                               
-[298] &quot;apgar_10_baby_2&quot;                               
-[299] &quot;apgar_5_baby_1&quot;                                
-[300] &quot;apgar_5_baby_2&quot;                                
-[301] &quot;attending_baby_1&quot;                              
-[302] &quot;attending_baby_2&quot;                              
-[303] &quot;baby_1_chart_number_(if_different_from_mother)&quot;
-[304] &quot;baby_1_crp_at_admission&quot;                       
-[305] &quot;baby_1_eo%_at_admission&quot;                       
-[306] &quot;baby_1_hb_at_admission&quot;                        
-[307] &quot;baby_1_hto%_at_admission&quot;                      
-[308] &quot;baby_1_l%_at_admission&quot;                        
-[309] &quot;baby_1_malaria_test&quot;                           
-[310] &quot;baby_1_malaria_test_detail_a&quot;                  
-[311] &quot;baby_1_malaria_test_detail_b&quot;                  
-[312] &quot;baby_1_malaria_test_results_a&quot;                 
-[313] &quot;baby_1_malaria_test_results_b&quot;                 
-[314] &quot;baby_1_neu%_at_admission&quot;                      
-[315] &quot;baby_1_outcome&quot;                                
-[316] &quot;baby_1_plt_at_admission&quot;                       
-[317] &quot;baby_1_sex&quot;                                    
-[318] &quot;baby_1_wbc_at_admission&quot;                       
-[319] &quot;baby_2_chart_number_(if_different_from_mother)&quot;
-[320] &quot;baby_2_crp_at_admission&quot;                       
-[321] &quot;baby_2_eo%_at_admission&quot;                       
-[322] &quot;baby_2_hb_at_admission&quot;                        
-[323] &quot;baby_2_hto%_at_admission&quot;                      
-[324] &quot;baby_2_l%_at_admission&quot;                        
-[325] &quot;baby_2_malaria_test&quot;                           
-[326] &quot;baby_2_malaria_test_detail_a&quot;                  
-[327] &quot;baby_2_malaria_test_detail_b&quot;                  
-[328] &quot;baby_2_malaria_test_results_a&quot;                 
-[329] &quot;baby_2_malaria_test_results_b&quot;                 
-[330] &quot;baby_2_neu%_at_admission&quot;                      
-[331] &quot;baby_2_outcome&quot;                                
-[332] &quot;baby_2_plt_at_admission&quot;                       
-[333] &quot;baby_2_sex&quot;                                    
-[334] &quot;baby_2_wbc_at_admission&quot;                       
-[335] &quot;baby_3_chart_number_(if_different_from_mother)&quot;
-[336] &quot;baby_3_crp_at_admission&quot;                       
-[337] &quot;baby_3_eo%_at_admission&quot;                       
-[338] &quot;baby_3_first_name&quot;                             
-[339] &quot;baby_3_hb_at_admission&quot;                        
-[340] &quot;baby_3_hto%_at_admission&quot;                      
-[341] &quot;baby_3_l%_at_admission&quot;                        
-[342] &quot;baby_3_last_name&quot;                              
-[343] &quot;baby_3_malaria_test&quot;                           
-[344] &quot;baby_3_malaria_test_detail_a&quot;                  
-[345] &quot;baby_3_malaria_test_detail_b&quot;                  
-[346] &quot;baby_3_malaria_test_results_a&quot;                 
-[347] &quot;baby_3_malaria_test_results_b&quot;                 
-[348] &quot;baby_3_neu%_at_admission&quot;                      
-[349] &quot;baby_3_outcome&quot;                                
-[350] &quot;baby_3_plt_at_admission&quot;                       
-[351] &quot;baby_3_wbc_at_admission&quot;                       
-[352] &quot;cpn&quot;                                           
-[353] &quot;date_of_admission_baby_1&quot;                      
-[354] &quot;date_of_admission_baby_2&quot;                      
-[355] &quot;date_of_admission_baby_3&quot;                      
-[356] &quot;date_of_release_baby_1&quot;                        
-[357] &quot;date_of_release_baby_2&quot;                        
-[358] &quot;date_of_release_baby_3&quot;                        
-[359] &quot;delivery_complications&quot;                        
-[360] &quot;delivery_date&quot;                                 
-[361] &quot;delivery_details_baby_1&quot;                       
-[362] &quot;delivery_details_baby_2&quot;                       
-[363] &quot;diagnosis_at_admission_baby_1&quot;                 
-[364] &quot;diagnosis_at_admission_baby_2&quot;                 
-[365] &quot;diagnosis_at_admission_baby_3&quot;                 
-[366] &quot;gestacional_age&quot;                               
-[367] &quot;head_circumference_baby_1&quot;                     
-[368] &quot;head_circumference_baby_2&quot;                     
-[369] &quot;iptp_how_many&quot;                                 
-[370] &quot;lenght_at_birth_baby_1&quot;                        
-[371] &quot;lenght_at_birth_baby_2&quot;                        
-[372] &quot;lst_menstrual_period&quot;                          
-[373] &quot;malaria_diagnosis&quot;                             
-[374] &quot;marital_status&quot;                                
-[375] &quot;médicament_iptp&quot;                               
-[376] &quot;mother_chart_number&quot;                           
-[377] &quot;mother_commune&quot;                                
-[378] &quot;mother_dob&quot;                                    
-[379] &quot;mother_nationality&quot;                            
-[380] &quot;mother_study_level&quot;                            
-[381] &quot;neonatology_admission_baby_1&quot;                  
-[382] &quot;neonatology_admission_baby_2&quot;                  
-[383] &quot;neonatology_admission_baby_3&quot;                  
-[384] &quot;nº_cpn&quot;                                        
-[385] &quot;number_malaria_diagnosis&quot;                      
-[386] &quot;other_diagnosis&quot;                               
-[387] &quot;previous_abortions&quot;                            
-[388] &quot;previous_deliveries&quot;                           
-[389] &quot;previous_other&quot;                                
-[390] &quot;previous_pregnancies&quot;                          
-[391] &quot;previous_still_births&quot;                         
-[392] &quot;received_iptp&quot;                                 
-[393] &quot;time_of_delivery_baby_1&quot;                       
-[394] &quot;time_of_delivery_baby_2&quot;                       
-[395] &quot;type_malaria_diagnosis&quot;                        
-[396] &quot;weight_at_admission_baby_1&quot;                    
-[397] &quot;weight_at_admission_baby_2&quot;                    
-[398] &quot;weight_at_admission_baby_3&quot;                    
-[399] &quot;weight_at_birth_baby_1&quot;                        
-[400] &quot;weight_at_birth_baby_2&quot;                        
-[401] &quot;weight_at_release_baby_1&quot;                      
-[402] &quot;weight_at_release_baby_2&quot;                      
-[403] &quot;weight_at_release_baby_3&quot;                      </code></pre>
+<pre><code>[1] &quot;...1&quot;            &quot;country&quot;         &quot;indicator_name&quot; 
+[4] &quot;ISO3&quot;            &quot;region_name&quot;     &quot;unit_of_measure&quot;
+[7] &quot;value&quot;           &quot;year&quot;           </code></pre>
 <p>Wow, that’s a lot of columns!</p>
 <p>Do note that a lot, if not all, of the ‘anc_vx_…’ columns, where x is a number, are detailed in the data dictionary in the variables that have ‘V1’ in the name. The highest value of x that I’ve seen is 11, meaning that for each of those variables, there may be up to 11 columns representing different visits. Let’s check to make sure.</p>
 <p>We should expect 11 instances of these 27 columns corresponding to each potential visit, which is a total of 297 columns. The code below checks if the expected ‘anc_v1_…’ through ‘anc_v11_…’ columns are in the data frame and prints out the ones that are missing.</p>
-<pre><code> [1] &quot;anc_v10_malaria_treatment_c&quot;       
- [2] &quot;anc_v10_malaria_treatment_detail_c&quot;
- [3] &quot;anc_v11_malaria_treatment_c&quot;       
- [4] &quot;anc_v11_malaria_treatment_detail_c&quot;
- [5] &quot;anc_v2_malaria_treatment_c&quot;        
- [6] &quot;anc_v2_malaria_treatment_detail_c&quot; 
- [7] &quot;anc_v4_malaria_treatment_c&quot;        
- [8] &quot;anc_v4_malaria_treatment_detail_c&quot; 
- [9] &quot;anc_v5_malaria_treatment_c&quot;        
-[10] &quot;anc_v5_malaria_treatment_detail_c&quot; 
-[11] &quot;anc_v6_malaria_treatment_c&quot;        
-[12] &quot;anc_v6_malaria_treatment_detail_c&quot; 
-[13] &quot;anc_v7_malaria_treatment_c&quot;        
-[14] &quot;anc_v7_malaria_treatment_detail_c&quot; 
-[15] &quot;anc_v9_malaria_treatment_c&quot;        
-[16] &quot;anc_v9_malaria_treatment_detail_c&quot; </code></pre>
+<pre><code>  [1] &quot;anc_v1_crp&quot;                        
+  [2] &quot;anc_v1_date&quot;                       
+  [3] &quot;anc_v1_eo%&quot;                        
+  [4] &quot;anc_v1_gestational_age&quot;            
+  [5] &quot;anc_v1_hb&quot;                         
+  [6] &quot;anc_v1_hto%&quot;                       
+  [7] &quot;anc_v1_l%&quot;                         
+  [8] &quot;anc_v1_malaria_test_a&quot;             
+  [9] &quot;anc_v1_malaria_test_b&quot;             
+ [10] &quot;anc_v1_malaria_test_detail_a&quot;      
+ [11] &quot;anc_v1_malaria_test_detail_b&quot;      
+ [12] &quot;anc_v1_malaria_test_results_a&quot;     
+ [13] &quot;anc_v1_malaria_test_results_b&quot;     
+ [14] &quot;anc_v1_malaria_treatment_a&quot;        
+ [15] &quot;anc_v1_malaria_treatment_b&quot;        
+ [16] &quot;anc_v1_malaria_treatment_c&quot;        
+ [17] &quot;anc_v1_malaria_treatment_detail_a&quot; 
+ [18] &quot;anc_v1_malaria_treatment_detail_b&quot; 
+ [19] &quot;anc_v1_malaria_treatment_detail_c&quot; 
+ [20] &quot;anc_v1_neu%&quot;                       
+ [21] &quot;anc_v1_plt&quot;                        
+ [22] &quot;anc_v1_treatment_other&quot;            
+ [23] &quot;anc_v1_treatment_other_detail&quot;     
+ [24] &quot;anc_v1_urine&quot;                      
+ [25] &quot;anc_v1_urine_detail&quot;               
+ [26] &quot;anc_v1_wbc&quot;                        
+ [27] &quot;anc_v1_weight&quot;                     
+ [28] &quot;anc_v10_crp&quot;                       
+ [29] &quot;anc_v10_date&quot;                      
+ [30] &quot;anc_v10_eo%&quot;                       
+ [31] &quot;anc_v10_gestational_age&quot;           
+ [32] &quot;anc_v10_hb&quot;                        
+ [33] &quot;anc_v10_hto%&quot;                      
+ [34] &quot;anc_v10_l%&quot;                        
+ [35] &quot;anc_v10_malaria_test_a&quot;            
+ [36] &quot;anc_v10_malaria_test_b&quot;            
+ [37] &quot;anc_v10_malaria_test_detail_a&quot;     
+ [38] &quot;anc_v10_malaria_test_detail_b&quot;     
+ [39] &quot;anc_v10_malaria_test_results_a&quot;    
+ [40] &quot;anc_v10_malaria_test_results_b&quot;    
+ [41] &quot;anc_v10_malaria_treatment_a&quot;       
+ [42] &quot;anc_v10_malaria_treatment_b&quot;       
+ [43] &quot;anc_v10_malaria_treatment_c&quot;       
+ [44] &quot;anc_v10_malaria_treatment_detail_a&quot;
+ [45] &quot;anc_v10_malaria_treatment_detail_b&quot;
+ [46] &quot;anc_v10_malaria_treatment_detail_c&quot;
+ [47] &quot;anc_v10_neu%&quot;                      
+ [48] &quot;anc_v10_plt&quot;                       
+ [49] &quot;anc_v10_treatment_other&quot;           
+ [50] &quot;anc_v10_treatment_other_detail&quot;    
+ [51] &quot;anc_v10_urine&quot;                     
+ [52] &quot;anc_v10_urine_detail&quot;              
+ [53] &quot;anc_v10_wbc&quot;                       
+ [54] &quot;anc_v10_weight&quot;                    
+ [55] &quot;anc_v11_crp&quot;                       
+ [56] &quot;anc_v11_date&quot;                      
+ [57] &quot;anc_v11_eo%&quot;                       
+ [58] &quot;anc_v11_gestational_age&quot;           
+ [59] &quot;anc_v11_hb&quot;                        
+ [60] &quot;anc_v11_hto%&quot;                      
+ [61] &quot;anc_v11_l%&quot;                        
+ [62] &quot;anc_v11_malaria_test_a&quot;            
+ [63] &quot;anc_v11_malaria_test_b&quot;            
+ [64] &quot;anc_v11_malaria_test_detail_a&quot;     
+ [65] &quot;anc_v11_malaria_test_detail_b&quot;     
+ [66] &quot;anc_v11_malaria_test_results_a&quot;    
+ [67] &quot;anc_v11_malaria_test_results_b&quot;    
+ [68] &quot;anc_v11_malaria_treatment_a&quot;       
+ [69] &quot;anc_v11_malaria_treatment_b&quot;       
+ [70] &quot;anc_v11_malaria_treatment_c&quot;       
+ [71] &quot;anc_v11_malaria_treatment_detail_a&quot;
+ [72] &quot;anc_v11_malaria_treatment_detail_b&quot;
+ [73] &quot;anc_v11_malaria_treatment_detail_c&quot;
+ [74] &quot;anc_v11_neu%&quot;                      
+ [75] &quot;anc_v11_plt&quot;                       
+ [76] &quot;anc_v11_treatment_other&quot;           
+ [77] &quot;anc_v11_treatment_other_detail&quot;    
+ [78] &quot;anc_v11_urine&quot;                     
+ [79] &quot;anc_v11_urine_detail&quot;              
+ [80] &quot;anc_v11_wbc&quot;                       
+ [81] &quot;anc_v11_weight&quot;                    
+ [82] &quot;anc_v2_crp&quot;                        
+ [83] &quot;anc_v2_date&quot;                       
+ [84] &quot;anc_v2_eo%&quot;                        
+ [85] &quot;anc_v2_gestational_age&quot;            
+ [86] &quot;anc_v2_hb&quot;                         
+ [87] &quot;anc_v2_hto%&quot;                       
+ [88] &quot;anc_v2_l%&quot;                         
+ [89] &quot;anc_v2_malaria_test_a&quot;             
+ [90] &quot;anc_v2_malaria_test_b&quot;             
+ [91] &quot;anc_v2_malaria_test_detail_a&quot;      
+ [92] &quot;anc_v2_malaria_test_detail_b&quot;      
+ [93] &quot;anc_v2_malaria_test_results_a&quot;     
+ [94] &quot;anc_v2_malaria_test_results_b&quot;     
+ [95] &quot;anc_v2_malaria_treatment_a&quot;        
+ [96] &quot;anc_v2_malaria_treatment_b&quot;        
+ [97] &quot;anc_v2_malaria_treatment_c&quot;        
+ [98] &quot;anc_v2_malaria_treatment_detail_a&quot; 
+ [99] &quot;anc_v2_malaria_treatment_detail_b&quot; 
+[100] &quot;anc_v2_malaria_treatment_detail_c&quot; 
+[101] &quot;anc_v2_neu%&quot;                       
+[102] &quot;anc_v2_plt&quot;                        
+[103] &quot;anc_v2_treatment_other&quot;            
+[104] &quot;anc_v2_treatment_other_detail&quot;     
+[105] &quot;anc_v2_urine&quot;                      
+[106] &quot;anc_v2_urine_detail&quot;               
+[107] &quot;anc_v2_wbc&quot;                        
+[108] &quot;anc_v2_weight&quot;                     
+[109] &quot;anc_v3_crp&quot;                        
+[110] &quot;anc_v3_date&quot;                       
+[111] &quot;anc_v3_eo%&quot;                        
+[112] &quot;anc_v3_gestational_age&quot;            
+[113] &quot;anc_v3_hb&quot;                         
+[114] &quot;anc_v3_hto%&quot;                       
+[115] &quot;anc_v3_l%&quot;                         
+[116] &quot;anc_v3_malaria_test_a&quot;             
+[117] &quot;anc_v3_malaria_test_b&quot;             
+[118] &quot;anc_v3_malaria_test_detail_a&quot;      
+[119] &quot;anc_v3_malaria_test_detail_b&quot;      
+[120] &quot;anc_v3_malaria_test_results_a&quot;     
+[121] &quot;anc_v3_malaria_test_results_b&quot;     
+[122] &quot;anc_v3_malaria_treatment_a&quot;        
+[123] &quot;anc_v3_malaria_treatment_b&quot;        
+[124] &quot;anc_v3_malaria_treatment_c&quot;        
+[125] &quot;anc_v3_malaria_treatment_detail_a&quot; 
+[126] &quot;anc_v3_malaria_treatment_detail_b&quot; 
+[127] &quot;anc_v3_malaria_treatment_detail_c&quot; 
+[128] &quot;anc_v3_neu%&quot;                       
+[129] &quot;anc_v3_plt&quot;                        
+[130] &quot;anc_v3_treatment_other&quot;            
+[131] &quot;anc_v3_treatment_other_detail&quot;     
+[132] &quot;anc_v3_urine&quot;                      
+[133] &quot;anc_v3_urine_detail&quot;               
+[134] &quot;anc_v3_wbc&quot;                        
+[135] &quot;anc_v3_weight&quot;                     
+[136] &quot;anc_v4_crp&quot;                        
+[137] &quot;anc_v4_date&quot;                       
+[138] &quot;anc_v4_eo%&quot;                        
+[139] &quot;anc_v4_gestational_age&quot;            
+[140] &quot;anc_v4_hb&quot;                         
+[141] &quot;anc_v4_hto%&quot;                       
+[142] &quot;anc_v4_l%&quot;                         
+[143] &quot;anc_v4_malaria_test_a&quot;             
+[144] &quot;anc_v4_malaria_test_b&quot;             
+[145] &quot;anc_v4_malaria_test_detail_a&quot;      
+[146] &quot;anc_v4_malaria_test_detail_b&quot;      
+[147] &quot;anc_v4_malaria_test_results_a&quot;     
+[148] &quot;anc_v4_malaria_test_results_b&quot;     
+[149] &quot;anc_v4_malaria_treatment_a&quot;        
+[150] &quot;anc_v4_malaria_treatment_b&quot;        
+[151] &quot;anc_v4_malaria_treatment_c&quot;        
+[152] &quot;anc_v4_malaria_treatment_detail_a&quot; 
+[153] &quot;anc_v4_malaria_treatment_detail_b&quot; 
+[154] &quot;anc_v4_malaria_treatment_detail_c&quot; 
+[155] &quot;anc_v4_neu%&quot;                       
+[156] &quot;anc_v4_plt&quot;                        
+[157] &quot;anc_v4_treatment_other&quot;            
+[158] &quot;anc_v4_treatment_other_detail&quot;     
+[159] &quot;anc_v4_urine&quot;                      
+[160] &quot;anc_v4_urine_detail&quot;               
+[161] &quot;anc_v4_wbc&quot;                        
+[162] &quot;anc_v4_weight&quot;                     
+[163] &quot;anc_v5_crp&quot;                        
+[164] &quot;anc_v5_date&quot;                       
+[165] &quot;anc_v5_eo%&quot;                        
+[166] &quot;anc_v5_gestational_age&quot;            
+[167] &quot;anc_v5_hb&quot;                         
+[168] &quot;anc_v5_hto%&quot;                       
+[169] &quot;anc_v5_l%&quot;                         
+[170] &quot;anc_v5_malaria_test_a&quot;             
+[171] &quot;anc_v5_malaria_test_b&quot;             
+[172] &quot;anc_v5_malaria_test_detail_a&quot;      
+[173] &quot;anc_v5_malaria_test_detail_b&quot;      
+[174] &quot;anc_v5_malaria_test_results_a&quot;     
+[175] &quot;anc_v5_malaria_test_results_b&quot;     
+[176] &quot;anc_v5_malaria_treatment_a&quot;        
+[177] &quot;anc_v5_malaria_treatment_b&quot;        
+[178] &quot;anc_v5_malaria_treatment_c&quot;        
+[179] &quot;anc_v5_malaria_treatment_detail_a&quot; 
+[180] &quot;anc_v5_malaria_treatment_detail_b&quot; 
+[181] &quot;anc_v5_malaria_treatment_detail_c&quot; 
+[182] &quot;anc_v5_neu%&quot;                       
+[183] &quot;anc_v5_plt&quot;                        
+[184] &quot;anc_v5_treatment_other&quot;            
+[185] &quot;anc_v5_treatment_other_detail&quot;     
+[186] &quot;anc_v5_urine&quot;                      
+[187] &quot;anc_v5_urine_detail&quot;               
+[188] &quot;anc_v5_wbc&quot;                        
+[189] &quot;anc_v5_weight&quot;                     
+[190] &quot;anc_v6_crp&quot;                        
+[191] &quot;anc_v6_date&quot;                       
+[192] &quot;anc_v6_eo%&quot;                        
+[193] &quot;anc_v6_gestational_age&quot;            
+[194] &quot;anc_v6_hb&quot;                         
+[195] &quot;anc_v6_hto%&quot;                       
+[196] &quot;anc_v6_l%&quot;                         
+[197] &quot;anc_v6_malaria_test_a&quot;             
+[198] &quot;anc_v6_malaria_test_b&quot;             
+[199] &quot;anc_v6_malaria_test_detail_a&quot;      
+[200] &quot;anc_v6_malaria_test_detail_b&quot;      
+[201] &quot;anc_v6_malaria_test_results_a&quot;     
+[202] &quot;anc_v6_malaria_test_results_b&quot;     
+[203] &quot;anc_v6_malaria_treatment_a&quot;        
+[204] &quot;anc_v6_malaria_treatment_b&quot;        
+[205] &quot;anc_v6_malaria_treatment_c&quot;        
+[206] &quot;anc_v6_malaria_treatment_detail_a&quot; 
+[207] &quot;anc_v6_malaria_treatment_detail_b&quot; 
+[208] &quot;anc_v6_malaria_treatment_detail_c&quot; 
+[209] &quot;anc_v6_neu%&quot;                       
+[210] &quot;anc_v6_plt&quot;                        
+[211] &quot;anc_v6_treatment_other&quot;            
+[212] &quot;anc_v6_treatment_other_detail&quot;     
+[213] &quot;anc_v6_urine&quot;                      
+[214] &quot;anc_v6_urine_detail&quot;               
+[215] &quot;anc_v6_wbc&quot;                        
+[216] &quot;anc_v6_weight&quot;                     
+[217] &quot;anc_v7_crp&quot;                        
+[218] &quot;anc_v7_date&quot;                       
+[219] &quot;anc_v7_eo%&quot;                        
+[220] &quot;anc_v7_gestational_age&quot;            
+[221] &quot;anc_v7_hb&quot;                         
+[222] &quot;anc_v7_hto%&quot;                       
+[223] &quot;anc_v7_l%&quot;                         
+[224] &quot;anc_v7_malaria_test_a&quot;             
+[225] &quot;anc_v7_malaria_test_b&quot;             
+[226] &quot;anc_v7_malaria_test_detail_a&quot;      
+[227] &quot;anc_v7_malaria_test_detail_b&quot;      
+[228] &quot;anc_v7_malaria_test_results_a&quot;     
+[229] &quot;anc_v7_malaria_test_results_b&quot;     
+[230] &quot;anc_v7_malaria_treatment_a&quot;        
+[231] &quot;anc_v7_malaria_treatment_b&quot;        
+[232] &quot;anc_v7_malaria_treatment_c&quot;        
+[233] &quot;anc_v7_malaria_treatment_detail_a&quot; 
+[234] &quot;anc_v7_malaria_treatment_detail_b&quot; 
+[235] &quot;anc_v7_malaria_treatment_detail_c&quot; 
+[236] &quot;anc_v7_neu%&quot;                       
+[237] &quot;anc_v7_plt&quot;                        
+[238] &quot;anc_v7_treatment_other&quot;            
+[239] &quot;anc_v7_treatment_other_detail&quot;     
+[240] &quot;anc_v7_urine&quot;                      
+[241] &quot;anc_v7_urine_detail&quot;               
+[242] &quot;anc_v7_wbc&quot;                        
+[243] &quot;anc_v7_weight&quot;                     
+[244] &quot;anc_v8_crp&quot;                        
+[245] &quot;anc_v8_date&quot;                       
+[246] &quot;anc_v8_eo%&quot;                        
+[247] &quot;anc_v8_gestational_age&quot;            
+[248] &quot;anc_v8_hb&quot;                         
+[249] &quot;anc_v8_hto%&quot;                       
+[250] &quot;anc_v8_l%&quot;                         
+[251] &quot;anc_v8_malaria_test_a&quot;             
+[252] &quot;anc_v8_malaria_test_b&quot;             
+[253] &quot;anc_v8_malaria_test_detail_a&quot;      
+[254] &quot;anc_v8_malaria_test_detail_b&quot;      
+[255] &quot;anc_v8_malaria_test_results_a&quot;     
+[256] &quot;anc_v8_malaria_test_results_b&quot;     
+[257] &quot;anc_v8_malaria_treatment_a&quot;        
+[258] &quot;anc_v8_malaria_treatment_b&quot;        
+[259] &quot;anc_v8_malaria_treatment_c&quot;        
+[260] &quot;anc_v8_malaria_treatment_detail_a&quot; 
+[261] &quot;anc_v8_malaria_treatment_detail_b&quot; 
+[262] &quot;anc_v8_malaria_treatment_detail_c&quot; 
+[263] &quot;anc_v8_neu%&quot;                       
+[264] &quot;anc_v8_plt&quot;                        
+[265] &quot;anc_v8_treatment_other&quot;            
+[266] &quot;anc_v8_treatment_other_detail&quot;     
+[267] &quot;anc_v8_urine&quot;                      
+[268] &quot;anc_v8_urine_detail&quot;               
+[269] &quot;anc_v8_wbc&quot;                        
+[270] &quot;anc_v8_weight&quot;                     
+[271] &quot;anc_v9_crp&quot;                        
+[272] &quot;anc_v9_date&quot;                       
+[273] &quot;anc_v9_eo%&quot;                        
+[274] &quot;anc_v9_gestational_age&quot;            
+[275] &quot;anc_v9_hb&quot;                         
+[276] &quot;anc_v9_hto%&quot;                       
+[277] &quot;anc_v9_l%&quot;                         
+[278] &quot;anc_v9_malaria_test_a&quot;             
+[279] &quot;anc_v9_malaria_test_b&quot;             
+[280] &quot;anc_v9_malaria_test_detail_a&quot;      
+[281] &quot;anc_v9_malaria_test_detail_b&quot;      
+[282] &quot;anc_v9_malaria_test_results_a&quot;     
+[283] &quot;anc_v9_malaria_test_results_b&quot;     
+[284] &quot;anc_v9_malaria_treatment_a&quot;        
+[285] &quot;anc_v9_malaria_treatment_b&quot;        
+[286] &quot;anc_v9_malaria_treatment_c&quot;        
+[287] &quot;anc_v9_malaria_treatment_detail_a&quot; 
+[288] &quot;anc_v9_malaria_treatment_detail_b&quot; 
+[289] &quot;anc_v9_malaria_treatment_detail_c&quot; 
+[290] &quot;anc_v9_neu%&quot;                       
+[291] &quot;anc_v9_plt&quot;                        
+[292] &quot;anc_v9_treatment_other&quot;            
+[293] &quot;anc_v9_treatment_other_detail&quot;     
+[294] &quot;anc_v9_urine&quot;                      
+[295] &quot;anc_v9_urine_detail&quot;               
+[296] &quot;anc_v9_wbc&quot;                        
+[297] &quot;anc_v9_weight&quot;                     </code></pre>
 <p>It appears that we are missing the above 16 “anc_vx” columns.</p>
 <p>Let’s continue to look through the remaining columns to make sure that they are in the data dictionary and make sense.</p>
-<pre><code>  [1] &quot;anc_first_trimester_eco&quot;                       
-  [2] &quot;anc_first_trimester_eco_gestational_age&quot;       
-  [3] &quot;anc_first_trimester_eco_results&quot;               
-  [4] &quot;anc_first_trimester_eco_results_details&quot;       
-  [5] &quot;anc_second_trimester_eco&quot;                      
-  [6] &quot;anc_second_trimester_eco_gestational_age&quot;      
-  [7] &quot;anc_second_trimester_eco_results&quot;              
-  [8] &quot;anc_second_trimester_eco_results_details&quot;      
-  [9] &quot;anc_third_trimester_eco&quot;                       
- [10] &quot;anc_third_trimester_eco_gestational_age&quot;       
- [11] &quot;anc_third_trimester_eco_results&quot;               
- [12] &quot;anc_third_trimester_eco_results_details&quot;       
- [13] &quot;antène_cpn&quot;                                    
- [14] &quot;apgar_1_baby_1&quot;                                
- [15] &quot;apgar_1_baby_2&quot;                                
- [16] &quot;apgar_10_baby_1&quot;                               
- [17] &quot;apgar_10_baby_2&quot;                               
- [18] &quot;apgar_5_baby_1&quot;                                
- [19] &quot;apgar_5_baby_2&quot;                                
- [20] &quot;attending_baby_1&quot;                              
- [21] &quot;attending_baby_2&quot;                              
- [22] &quot;baby_1_chart_number_(if_different_from_mother)&quot;
- [23] &quot;baby_1_crp_at_admission&quot;                       
- [24] &quot;baby_1_eo%_at_admission&quot;                       
- [25] &quot;baby_1_hb_at_admission&quot;                        
- [26] &quot;baby_1_hto%_at_admission&quot;                      
- [27] &quot;baby_1_l%_at_admission&quot;                        
- [28] &quot;baby_1_malaria_test&quot;                           
- [29] &quot;baby_1_malaria_test_detail_a&quot;                  
- [30] &quot;baby_1_malaria_test_detail_b&quot;                  
- [31] &quot;baby_1_malaria_test_results_a&quot;                 
- [32] &quot;baby_1_malaria_test_results_b&quot;                 
- [33] &quot;baby_1_neu%_at_admission&quot;                      
- [34] &quot;baby_1_outcome&quot;                                
- [35] &quot;baby_1_plt_at_admission&quot;                       
- [36] &quot;baby_1_sex&quot;                                    
- [37] &quot;baby_1_wbc_at_admission&quot;                       
- [38] &quot;baby_2_chart_number_(if_different_from_mother)&quot;
- [39] &quot;baby_2_crp_at_admission&quot;                       
- [40] &quot;baby_2_eo%_at_admission&quot;                       
- [41] &quot;baby_2_hb_at_admission&quot;                        
- [42] &quot;baby_2_hto%_at_admission&quot;                      
- [43] &quot;baby_2_l%_at_admission&quot;                        
- [44] &quot;baby_2_malaria_test&quot;                           
- [45] &quot;baby_2_malaria_test_detail_a&quot;                  
- [46] &quot;baby_2_malaria_test_detail_b&quot;                  
- [47] &quot;baby_2_malaria_test_results_a&quot;                 
- [48] &quot;baby_2_malaria_test_results_b&quot;                 
- [49] &quot;baby_2_neu%_at_admission&quot;                      
- [50] &quot;baby_2_outcome&quot;                                
- [51] &quot;baby_2_plt_at_admission&quot;                       
- [52] &quot;baby_2_sex&quot;                                    
- [53] &quot;baby_2_wbc_at_admission&quot;                       
- [54] &quot;baby_3_chart_number_(if_different_from_mother)&quot;
- [55] &quot;baby_3_crp_at_admission&quot;                       
- [56] &quot;baby_3_eo%_at_admission&quot;                       
- [57] &quot;baby_3_first_name&quot;                             
- [58] &quot;baby_3_hb_at_admission&quot;                        
- [59] &quot;baby_3_hto%_at_admission&quot;                      
- [60] &quot;baby_3_l%_at_admission&quot;                        
- [61] &quot;baby_3_last_name&quot;                              
- [62] &quot;baby_3_malaria_test&quot;                           
- [63] &quot;baby_3_malaria_test_detail_a&quot;                  
- [64] &quot;baby_3_malaria_test_detail_b&quot;                  
- [65] &quot;baby_3_malaria_test_results_a&quot;                 
- [66] &quot;baby_3_malaria_test_results_b&quot;                 
- [67] &quot;baby_3_neu%_at_admission&quot;                      
- [68] &quot;baby_3_outcome&quot;                                
- [69] &quot;baby_3_plt_at_admission&quot;                       
- [70] &quot;baby_3_wbc_at_admission&quot;                       
- [71] &quot;cpn&quot;                                           
- [72] &quot;date_of_admission_baby_1&quot;                      
- [73] &quot;date_of_admission_baby_2&quot;                      
- [74] &quot;date_of_admission_baby_3&quot;                      
- [75] &quot;date_of_release_baby_1&quot;                        
- [76] &quot;date_of_release_baby_2&quot;                        
- [77] &quot;date_of_release_baby_3&quot;                        
- [78] &quot;delivery_complications&quot;                        
- [79] &quot;delivery_date&quot;                                 
- [80] &quot;delivery_details_baby_1&quot;                       
- [81] &quot;delivery_details_baby_2&quot;                       
- [82] &quot;diagnosis_at_admission_baby_1&quot;                 
- [83] &quot;diagnosis_at_admission_baby_2&quot;                 
- [84] &quot;diagnosis_at_admission_baby_3&quot;                 
- [85] &quot;gestacional_age&quot;                               
- [86] &quot;head_circumference_baby_1&quot;                     
- [87] &quot;head_circumference_baby_2&quot;                     
- [88] &quot;iptp_how_many&quot;                                 
- [89] &quot;lenght_at_birth_baby_1&quot;                        
- [90] &quot;lenght_at_birth_baby_2&quot;                        
- [91] &quot;lst_menstrual_period&quot;                          
- [92] &quot;malaria_diagnosis&quot;                             
- [93] &quot;marital_status&quot;                                
- [94] &quot;médicament_iptp&quot;                               
- [95] &quot;mother_chart_number&quot;                           
- [96] &quot;mother_commune&quot;                                
- [97] &quot;mother_dob&quot;                                    
- [98] &quot;mother_nationality&quot;                            
- [99] &quot;mother_study_level&quot;                            
-[100] &quot;neonatology_admission_baby_1&quot;                  
-[101] &quot;neonatology_admission_baby_2&quot;                  
-[102] &quot;neonatology_admission_baby_3&quot;                  
-[103] &quot;nº_cpn&quot;                                        
-[104] &quot;number_malaria_diagnosis&quot;                      
-[105] &quot;other_diagnosis&quot;                               
-[106] &quot;previous_abortions&quot;                            
-[107] &quot;previous_deliveries&quot;                           
-[108] &quot;previous_other&quot;                                
-[109] &quot;previous_pregnancies&quot;                          
-[110] &quot;previous_still_births&quot;                         
-[111] &quot;received_iptp&quot;                                 
-[112] &quot;time_of_delivery_baby_1&quot;                       
-[113] &quot;time_of_delivery_baby_2&quot;                       
-[114] &quot;type_malaria_diagnosis&quot;                        
-[115] &quot;weight_at_admission_baby_1&quot;                    
-[116] &quot;weight_at_admission_baby_2&quot;                    
-[117] &quot;weight_at_admission_baby_3&quot;                    
-[118] &quot;weight_at_birth_baby_1&quot;                        
-[119] &quot;weight_at_birth_baby_2&quot;                        
-[120] &quot;weight_at_release_baby_1&quot;                      
-[121] &quot;weight_at_release_baby_2&quot;                      
-[122] &quot;weight_at_release_baby_3&quot;                      </code></pre>
+<pre><code>[1] &quot;...1&quot;            &quot;country&quot;         &quot;indicator_name&quot; 
+[4] &quot;ISO3&quot;            &quot;region_name&quot;     &quot;unit_of_measure&quot;
+[7] &quot;value&quot;           &quot;year&quot;           </code></pre>
 <p>These all look good to me! As far as I can tell, the only columns missing that are in the data dictionary are mother’s first name, mother’s last name, mother’s phone number 1, mother’s phone number 2, baby 1’s first name, baby 1’s last name, baby 2’s first name, and baby 2’s last name. These columns have been intentionally removed from the data beforehand to keep the data as anonymous as possible while still being useful.</p>
 </div>
 <div id="removing-an-obvious-error" class="section level4 unnumbered hasAnchor">
 <h4>Removing an obvious error<a href="kemri-datalab-summer-workbook.html#removing-an-obvious-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>Error in `filter()`:
-ℹ In argument: `mother_DOB != &quot;mother_DOB&quot;`.
+ℹ In argument: `mother_chart_number != &quot;mother_chart_number&quot;`.
 Caused by error:
-! object &#39;mother_DOB&#39; not found</code></pre>
+! object &#39;mother_chart_number&#39; not found</code></pre>
 <p>Notice that I’ve made a separate data frame for cleaning. This makes it easier to rerun code without having to completely reload the data from the source. It also makes it easy to compare the original data with the modified data.</p>
 <p><strong>NOTE: Never remove or modify the original data from the source, even if it is obviously incorrect! Always work on a copy of the data!</strong> If you modify the original data and your changes end up being incorrect, then you’ve tampered with the data and potentially ruined the entire data set. Another advantage of working on a copy of the data and cleaning it with code is that it documents everything we do, making what we’ve done clear and reproducible. Fortunately in this case, our source data isn’t something we can modify directly; however, there are cases in which you might be given the source data in an unprotected way that would allow you to overwrite it. An example of this would be using the <code>googlesheets4</code> library, which allows you to read and write directly to a Google sheet. This can dangerous if you aren’t careful!</p>
 </div>
@@ -1575,65 +1339,65 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 </blockquote>
 <p><strong>5.</strong> Make a section called <code>Preliminary Research</code> and under this section title create a code chunk.</p>
 <p><strong>6.</strong> Paste the following in a code chunk to hide messages and your code when you knit your document:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="kemri-datalab-summer-workbook.html#cb160-1" tabindex="-1"></a>{r, echo<span class="ot">=</span><span class="cn">FALSE</span>, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
-<span id="cb160-2"><a href="kemri-datalab-summer-workbook.html#cb160-2" tabindex="-1"></a><span class="co"># this chunk will hide the code when you run code chunks</span></span>
-<span id="cb160-3"><a href="kemri-datalab-summer-workbook.html#cb160-3" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb160-4"><a href="kemri-datalab-summer-workbook.html#cb160-4" tabindex="-1"></a>  <span class="at">comment =</span> <span class="st">&#39;&#39;</span>, </span>
-<span id="cb160-5"><a href="kemri-datalab-summer-workbook.html#cb160-5" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb160-6"><a href="kemri-datalab-summer-workbook.html#cb160-6" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb160-7"><a href="kemri-datalab-summer-workbook.html#cb160-7" tabindex="-1"></a>  <span class="at">cache=</span><span class="cn">FALSE</span>,</span>
-<span id="cb160-8"><a href="kemri-datalab-summer-workbook.html#cb160-8" tabindex="-1"></a>  <span class="at">warning=</span><span class="cn">FALSE</span></span>
-<span id="cb160-9"><a href="kemri-datalab-summer-workbook.html#cb160-9" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="kemri-datalab-summer-workbook.html#cb161-1" tabindex="-1"></a>{r, echo<span class="ot">=</span><span class="cn">FALSE</span>, message<span class="ot">=</span><span class="cn">FALSE</span>}</span>
+<span id="cb161-2"><a href="kemri-datalab-summer-workbook.html#cb161-2" tabindex="-1"></a><span class="co"># this chunk will hide the code when you run code chunks</span></span>
+<span id="cb161-3"><a href="kemri-datalab-summer-workbook.html#cb161-3" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb161-4"><a href="kemri-datalab-summer-workbook.html#cb161-4" tabindex="-1"></a>  <span class="at">comment =</span> <span class="st">&#39;&#39;</span>, </span>
+<span id="cb161-5"><a href="kemri-datalab-summer-workbook.html#cb161-5" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb161-6"><a href="kemri-datalab-summer-workbook.html#cb161-6" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb161-7"><a href="kemri-datalab-summer-workbook.html#cb161-7" tabindex="-1"></a>  <span class="at">cache=</span><span class="cn">FALSE</span>,</span>
+<span id="cb161-8"><a href="kemri-datalab-summer-workbook.html#cb161-8" tabindex="-1"></a>  <span class="at">warning=</span><span class="cn">FALSE</span></span>
+<span id="cb161-9"><a href="kemri-datalab-summer-workbook.html#cb161-9" tabindex="-1"></a>)</span></code></pre></div>
 <p><strong>7.</strong> Paste the following inside your code chunk to load your libraries and load your data:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="kemri-datalab-summer-workbook.html#cb161-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
-<span id="cb161-2"><a href="kemri-datalab-summer-workbook.html#cb161-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb161-3"><a href="kemri-datalab-summer-workbook.html#cb161-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb161-4"><a href="kemri-datalab-summer-workbook.html#cb161-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb161-5"><a href="kemri-datalab-summer-workbook.html#cb161-5" tabindex="-1"></a></span>
-<span id="cb161-6"><a href="kemri-datalab-summer-workbook.html#cb161-6" tabindex="-1"></a><span class="co"># download data</span></span>
-<span id="cb161-7"><a href="kemri-datalab-summer-workbook.html#cb161-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_clean_v1.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="kemri-datalab-summer-workbook.html#cb162-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb162-2"><a href="kemri-datalab-summer-workbook.html#cb162-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb162-3"><a href="kemri-datalab-summer-workbook.html#cb162-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb162-4"><a href="kemri-datalab-summer-workbook.html#cb162-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb162-5"><a href="kemri-datalab-summer-workbook.html#cb162-5" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="kemri-datalab-summer-workbook.html#cb162-6" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb162-7"><a href="kemri-datalab-summer-workbook.html#cb162-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_clean_v1.csv&#39;</span>)</span></code></pre></div>
 <p><strong>8.</strong> How many columns are in this dataset? (Hint: <code>ncol()</code>)</p>
 <p><strong>9</strong> Create an object that contains the number of columns in the dataset. See below for a hint:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="kemri-datalab-summer-workbook.html#cb162-1" tabindex="-1"></a><span class="co"># create an object that has the number of columns from the dataset</span></span>
-<span id="cb162-2"><a href="kemri-datalab-summer-workbook.html#cb162-2" tabindex="-1"></a>df_col_num <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="kemri-datalab-summer-workbook.html#cb163-1" tabindex="-1"></a><span class="co"># create an object that has the number of columns from the dataset</span></span>
+<span id="cb163-2"><a href="kemri-datalab-summer-workbook.html#cb163-2" tabindex="-1"></a>df_col_num <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df)</span></code></pre></div>
 <p><strong>10.</strong> Now the first sentence in your <code>Preliminary Research</code> should be: <code>This dataset contains 380 columns.</code> You know how to write words on your <code>RMarkdown</code>, but to insert a number that is stored as an object in your environment try the following:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="kemri-datalab-summer-workbook.html#cb163-1" tabindex="-1"></a>This dataset contains <span class="st">`</span><span class="at">r df_col_num</span><span class="st">`</span> columns.</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="kemri-datalab-summer-workbook.html#cb164-1" tabindex="-1"></a>This dataset contains <span class="st">`</span><span class="at">r df_col_num</span><span class="st">`</span> columns.</span></code></pre></div>
 <p><strong>11.</strong> Now add <code>and 2072 variables.</code> <strong>but use code to write the number…</strong></p>
 <p><strong>12.</strong> What is the unit of observation for this dataset? Does each row have a mom and her kids in it? I don’t know you tell me. Write a sentence about the unit of observation after the sentence you wrote above.</p>
 <p><strong>13.</strong> Find the mean age of women submitted to the unit. To do this convert <code>mother_dob</code> and your reference date (<code>delivery_date</code>) to a date. Create a column called <code>mother_age</code>. Then find the mean age of women submitted to the unit.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="kemri-datalab-summer-workbook.html#cb164-1" tabindex="-1"></a><span class="co"># convert mother_dob and delivery_date to a date</span></span>
-<span id="cb164-2"><a href="kemri-datalab-summer-workbook.html#cb164-2" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb164-3"><a href="kemri-datalab-summer-workbook.html#cb164-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_dob =</span> <span class="fu">as.Date</span>(mother_dob, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>),</span>
-<span id="cb164-4"><a href="kemri-datalab-summer-workbook.html#cb164-4" tabindex="-1"></a>         <span class="at">delivery_date =</span> <span class="fu">as.Date</span>(delivery_date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>))</span>
-<span id="cb164-5"><a href="kemri-datalab-summer-workbook.html#cb164-5" tabindex="-1"></a></span>
-<span id="cb164-6"><a href="kemri-datalab-summer-workbook.html#cb164-6" tabindex="-1"></a><span class="co"># create a column called mother_age</span></span>
-<span id="cb164-7"><a href="kemri-datalab-summer-workbook.html#cb164-7" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb164-8"><a href="kemri-datalab-summer-workbook.html#cb164-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_age =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(delivery_date, mother_dob, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)) <span class="sc">/</span> <span class="fl">52.25</span>)</span>
-<span id="cb164-9"><a href="kemri-datalab-summer-workbook.html#cb164-9" tabindex="-1"></a></span>
-<span id="cb164-10"><a href="kemri-datalab-summer-workbook.html#cb164-10" tabindex="-1"></a><span class="co"># create an object called mean_mother_age</span></span>
-<span id="cb164-11"><a href="kemri-datalab-summer-workbook.html#cb164-11" tabindex="-1"></a>mean_mother_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_research<span class="sc">$</span>mother_age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="kemri-datalab-summer-workbook.html#cb165-1" tabindex="-1"></a><span class="co"># convert mother_dob and delivery_date to a date</span></span>
+<span id="cb165-2"><a href="kemri-datalab-summer-workbook.html#cb165-2" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb165-3"><a href="kemri-datalab-summer-workbook.html#cb165-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_dob =</span> <span class="fu">as.Date</span>(mother_dob, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>),</span>
+<span id="cb165-4"><a href="kemri-datalab-summer-workbook.html#cb165-4" tabindex="-1"></a>         <span class="at">delivery_date =</span> <span class="fu">as.Date</span>(delivery_date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>))</span>
+<span id="cb165-5"><a href="kemri-datalab-summer-workbook.html#cb165-5" tabindex="-1"></a></span>
+<span id="cb165-6"><a href="kemri-datalab-summer-workbook.html#cb165-6" tabindex="-1"></a><span class="co"># create a column called mother_age</span></span>
+<span id="cb165-7"><a href="kemri-datalab-summer-workbook.html#cb165-7" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb165-8"><a href="kemri-datalab-summer-workbook.html#cb165-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mother_age =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(delivery_date, mother_dob, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)) <span class="sc">/</span> <span class="fl">52.25</span>)</span>
+<span id="cb165-9"><a href="kemri-datalab-summer-workbook.html#cb165-9" tabindex="-1"></a></span>
+<span id="cb165-10"><a href="kemri-datalab-summer-workbook.html#cb165-10" tabindex="-1"></a><span class="co"># create an object called mean_mother_age</span></span>
+<span id="cb165-11"><a href="kemri-datalab-summer-workbook.html#cb165-11" tabindex="-1"></a>mean_mother_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_research<span class="sc">$</span>mother_age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><strong>14.</strong> Add a sentence to your Preliminary Research that says what the mean age of women is.</p>
 <p><strong>15.</strong> How many kids were submitted to neonatology? This information is in 2 columns: <code>neonatology_admission_baby_1</code> and <code>neonatology_admission_baby_2</code>. <strong>A.</strong> lower all the words in the column (hint: <code>tolower()</code>). <strong>B.</strong> run <code>table(df_research$neonatology_admission_baby_1)</code>, if there are values that you think are errors remove them using <code>filter()</code> OR if there are values that you think you can edit use <code>mutate()</code> and <code>ifelse</code> / <code>case_when</code> to fix these instances. <strong>C.</strong> count how many kids were and were not submitted to neonatology in each column. <strong>D.</strong> Add these values to your paragraph. <em>Use the following code to answer this question:</em></p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="kemri-datalab-summer-workbook.html#cb165-1" tabindex="-1"></a><span class="co"># calculate how many kids were submitted to neonatology</span></span>
-<span id="cb165-2"><a href="kemri-datalab-summer-workbook.html#cb165-2" tabindex="-1"></a></span>
-<span id="cb165-3"><a href="kemri-datalab-summer-workbook.html#cb165-3" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb165-4"><a href="kemri-datalab-summer-workbook.html#cb165-4" tabindex="-1"></a>  <span class="co"># lower all the words in the column</span></span>
-<span id="cb165-5"><a href="kemri-datalab-summer-workbook.html#cb165-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">tolower</span>(neonatology_admission_baby_1)) <span class="sc">%&gt;%</span> </span>
-<span id="cb165-6"><a href="kemri-datalab-summer-workbook.html#cb165-6" tabindex="-1"></a>  <span class="co"># filter out entries that are wrong</span></span>
-<span id="cb165-7"><a href="kemri-datalab-summer-workbook.html#cb165-7" tabindex="-1"></a>  <span class="fu">filter</span>(neonatology_admission_baby_1 <span class="sc">!=</span> <span class="st">&#39;bb lusamba mukeba&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb165-8"><a href="kemri-datalab-summer-workbook.html#cb165-8" tabindex="-1"></a>  <span class="co"># edit the cases that seem fixable</span></span>
-<span id="cb165-9"><a href="kemri-datalab-summer-workbook.html#cb165-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb165-10"><a href="kemri-datalab-summer-workbook.html#cb165-10" tabindex="-1"></a>    neonatology_admission_baby_1 <span class="sc">==</span> <span class="st">&#39;oiui&#39;</span> <span class="sc">~</span> <span class="st">&#39;oui&#39;</span>,</span>
-<span id="cb165-11"><a href="kemri-datalab-summer-workbook.html#cb165-11" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> neonatology_admission_baby_1</span>
-<span id="cb165-12"><a href="kemri-datalab-summer-workbook.html#cb165-12" tabindex="-1"></a>  ))</span>
-<span id="cb165-13"><a href="kemri-datalab-summer-workbook.html#cb165-13" tabindex="-1"></a></span>
-<span id="cb165-14"><a href="kemri-datalab-summer-workbook.html#cb165-14" tabindex="-1"></a><span class="co"># calculate who was and was not submitted to neonatology (this table should only have oui and non)</span></span>
-<span id="cb165-15"><a href="kemri-datalab-summer-workbook.html#cb165-15" tabindex="-1"></a></span>
-<span id="cb165-16"><a href="kemri-datalab-summer-workbook.html#cb165-16" tabindex="-1"></a>df_research <span class="sc">%&gt;%</span> </span>
-<span id="cb165-17"><a href="kemri-datalab-summer-workbook.html#cb165-17" tabindex="-1"></a>  <span class="fu">group_by</span>(neonatology_admission_baby_1) <span class="sc">%&gt;%</span> </span>
-<span id="cb165-18"><a href="kemri-datalab-summer-workbook.html#cb165-18" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
-<span id="cb165-19"><a href="kemri-datalab-summer-workbook.html#cb165-19" tabindex="-1"></a></span>
-<span id="cb165-20"><a href="kemri-datalab-summer-workbook.html#cb165-20" tabindex="-1"></a><span class="co"># once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="kemri-datalab-summer-workbook.html#cb166-1" tabindex="-1"></a><span class="co"># calculate how many kids were submitted to neonatology</span></span>
+<span id="cb166-2"><a href="kemri-datalab-summer-workbook.html#cb166-2" tabindex="-1"></a></span>
+<span id="cb166-3"><a href="kemri-datalab-summer-workbook.html#cb166-3" tabindex="-1"></a>df_research <span class="ot">&lt;-</span> df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb166-4"><a href="kemri-datalab-summer-workbook.html#cb166-4" tabindex="-1"></a>  <span class="co"># lower all the words in the column</span></span>
+<span id="cb166-5"><a href="kemri-datalab-summer-workbook.html#cb166-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">tolower</span>(neonatology_admission_baby_1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-6"><a href="kemri-datalab-summer-workbook.html#cb166-6" tabindex="-1"></a>  <span class="co"># filter out entries that are wrong</span></span>
+<span id="cb166-7"><a href="kemri-datalab-summer-workbook.html#cb166-7" tabindex="-1"></a>  <span class="fu">filter</span>(neonatology_admission_baby_1 <span class="sc">!=</span> <span class="st">&#39;bb lusamba mukeba&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-8"><a href="kemri-datalab-summer-workbook.html#cb166-8" tabindex="-1"></a>  <span class="co"># edit the cases that seem fixable</span></span>
+<span id="cb166-9"><a href="kemri-datalab-summer-workbook.html#cb166-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">neonatology_admission_baby_1 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb166-10"><a href="kemri-datalab-summer-workbook.html#cb166-10" tabindex="-1"></a>    neonatology_admission_baby_1 <span class="sc">==</span> <span class="st">&#39;oiui&#39;</span> <span class="sc">~</span> <span class="st">&#39;oui&#39;</span>,</span>
+<span id="cb166-11"><a href="kemri-datalab-summer-workbook.html#cb166-11" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> neonatology_admission_baby_1</span>
+<span id="cb166-12"><a href="kemri-datalab-summer-workbook.html#cb166-12" tabindex="-1"></a>  ))</span>
+<span id="cb166-13"><a href="kemri-datalab-summer-workbook.html#cb166-13" tabindex="-1"></a></span>
+<span id="cb166-14"><a href="kemri-datalab-summer-workbook.html#cb166-14" tabindex="-1"></a><span class="co"># calculate who was and was not submitted to neonatology (this table should only have oui and non)</span></span>
+<span id="cb166-15"><a href="kemri-datalab-summer-workbook.html#cb166-15" tabindex="-1"></a></span>
+<span id="cb166-16"><a href="kemri-datalab-summer-workbook.html#cb166-16" tabindex="-1"></a>df_research <span class="sc">%&gt;%</span> </span>
+<span id="cb166-17"><a href="kemri-datalab-summer-workbook.html#cb166-17" tabindex="-1"></a>  <span class="fu">group_by</span>(neonatology_admission_baby_1) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-18"><a href="kemri-datalab-summer-workbook.html#cb166-18" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
+<span id="cb166-19"><a href="kemri-datalab-summer-workbook.html#cb166-19" tabindex="-1"></a></span>
+<span id="cb166-20"><a href="kemri-datalab-summer-workbook.html#cb166-20" tabindex="-1"></a><span class="co"># once you get here you can do this again for neonatology_admission_baby_2 and then calculate how many children in total were and were not submitted to neonatology</span></span></code></pre></div>
 <p><strong>NOTE: the code above will not get you the answer, you will have to edit it.</strong></p>
 <p>Good work! You made a lot of progress today. We will pick up next week to keep working on your report.</p>
 </div>
@@ -1641,8 +1405,8 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 <h2>Day 4: July 2nd<a href="kemri-datalab-summer-workbook.html#day-4-july-2nd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Last week you began working on descriptives of the DRC data. This week you will continue on the descriptives for the DRC data in order to make a report. First, let’s finish the descriptives.</p>
 <p><strong>1.</strong> Open up your RMarkdown file from last week. The client has shared even more data with us so we need to load in the most up to date data. Run the following line of code where you originally load in the data:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="kemri-datalab-summer-workbook.html#cb166-1" tabindex="-1"></a><span class="co"># download data</span></span>
-<span id="cb166-2"><a href="kemri-datalab-summer-workbook.html#cb166-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_v3.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="kemri-datalab-summer-workbook.html#cb167-1" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb167-2"><a href="kemri-datalab-summer-workbook.html#cb167-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://mbrudd.com/drc_data/DRC_data_v3.csv&#39;</span>)</span></code></pre></div>
 <p><strong>2.</strong> Re-run your code from last week. Does it work? If not, edit the sections of code that you need to in order to make your RMarkdown work and is correct.</p>
 <p><strong>3.</strong> Now that your RScript works your goal is to finish the descriptive tables for the DRC data. Finish questions 1 through 15 from last week.</p>
 <p>Finished the questions from last week? Great! Time to move onto the final descriptive pieces. Some of the following questions you may have done last week so move forward until you are at a question that you have not completed yet.</p>
@@ -1650,8 +1414,8 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 <p><strong>5.</strong> On average of the women who have had malaria during pregnancy how many times have they had malaria? <em>Hint: number_malaria_diagnosis is the variable to use and you can follow the instructions from the question above.</em></p>
 <p><strong>6.</strong> Of the babies born, how many males and females are there? <em>Hint: baby_1_sex, baby_2_sex</em></p>
 <p><strong>7.</strong> Find mean birth weight and height and the range of all babies. For this try creating an object called baby_1 that only has the columns that you need and another object called baby_2 with the columns that you need. How do the responses inside those columns look? Do they need to be edited? Once the columns look good, rename the columns of each dataset so that they match and then use the following code to merge the objects together and perform the calculations from there. <em>Hint: weight_at_birth_baby_1, weight_at_birth_baby_2</em></p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="kemri-datalab-summer-workbook.html#cb167-1" tabindex="-1"></a><span class="co"># merge the datasets that you make in order to find mean birth weight and height and range</span></span>
-<span id="cb167-2"><a href="kemri-datalab-summer-workbook.html#cb167-2" tabindex="-1"></a>baby_1_2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(baby_1, baby_2)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="kemri-datalab-summer-workbook.html#cb168-1" tabindex="-1"></a><span class="co"># merge the datasets that you make in order to find mean birth weight and height and range</span></span>
+<span id="cb168-2"><a href="kemri-datalab-summer-workbook.html#cb168-2" tabindex="-1"></a>baby_1_2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(baby_1, baby_2)</span></code></pre></div>
 <p><strong>8.</strong> Find mean apgar and range. To do this add the necessary columns to your <code>baby_1_2</code> datasets (<code>apgar_1_baby_1</code>, <code>apgar_5_baby_1</code>, <code>apgar_10_baby_1</code>, <code>apgar_1_baby_2</code>, <code>apgar_5_baby_2</code>, <code>apgar_10_baby_2</code>) then calculate. Do these answers make sense according to general APGAR scores? Google what a normal APGAR score is. Make a note of how many abnormal APGAR scores are are in each column. Then create a new dataset called <code>apgar_df</code> and filter out any abnormal APGAR scores and re-calculate the mean apgar and range.</p>
 <p><strong>9.</strong> How many people were born in the day and the night? Again, for this question add the necessary columns to the <code>data_1_2</code> dataset (<code>time_of_delivery_baby_1</code>, <code>time_of_delivery_baby_2</code>). Be sure to make this column into a date time type and then make a new column called <code>day_or_night</code>. From there determine how many babies were born in the day and in the night. Add this information to your report.</p>
 <p><strong>10.</strong> How many single and double deliveries were there? Talk as a team and come up with a way to determine this. Maybe think about how there are columns specifically for baby_1 and for baby_2…</p>
@@ -1660,6 +1424,37 @@ implementation of insecticide-treated nets and intermittent preventive treatment
 <p><strong>13.</strong> Knit your report. Do you have any errors? If so, fix’em. If not, how does your report read? Does it make sense? Edit the report so that if you gave it to your client today, they would understand what you did and why you did it.</p>
 <p><strong>14</strong>. How does your code look? Could someone who had never seen your RScript before be able to understand what you are doing and why? Go back and comment your code and make sure your code is reproducible!</p>
 <p><strong>15.</strong> Good work today! Next week you will do some exploration on your own, but these descriptives serve as a good base to move forward. Have 1 person from your team send their RMarkdown in the DataLab slack. Once your done talk with your team about what you would like to look into next week and maybe ask about each other’s lives outside of coding…</p>
+</div>
+<div id="day-5-july-8th" class="section level2 unnumbered hasAnchor">
+<h2>Day 5: July 8th<a href="kemri-datalab-summer-workbook.html#day-5-july-8th" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the next hour and fifteen minutes you will have finished a report for your client. So check off the boxes on the list below and then share your RMarkdown in slack as well as your report as a pdf.</p>
+<p><strong>1.</strong> Choose the best RMarkdown script and share it with everyone on your team and make sure it runs.</p>
+<p><strong>2.</strong> Knit your report. Do you like the way it looks? Does it answer the questions that your client originally asked for? (<strong>Hint: look at the email below</strong>). Edit your RMarkdown to make your descriptives section have the information that you want and need.</p>
+<blockquote>
+<p>Dear team,
+Today, we received some data from a PhD student from the Democratic Republic of the Congo. She has been collecting data over the past 2 years on a small subset of kids submitted to neonatology. Her supervisor has requested you to look at some of the following:</p>
+<ul>
+<li>outcome of delivery (baby is okay and if baby was admitted to nenotolagy)</li>
+<li>malaria during pregnancy</li>
+<li>weight, height and apgar</li>
+<li>completeness of variables</li>
+<li>numbers of variables</li>
+<li>the mean age of women</li>
+<li>number of kids submitted to icu/neonatology</li>
+<li>who went to clinic and who did not go to clinic</li>
+<li>how many had a single or double or triple delivery</li>
+<li>mean birth weight and height and range &amp; mean apgar and range</li>
+<li>difference time of when delivery was made (day vs. night)</li>
+</ul>
+<p>Overall, the client has requested a neonatology descriptive paper. Please send me an update once a week so that I can see how you are progressing, but I am excited to see the final product in 4 weeks time.</p>
+<p>Many thanks,</p>
+<p>Your super cool and suave boss</p>
+</blockquote>
+<p><strong>3.</strong> Make 2-3 visuals of any of the following topics and include it in your paper: Age, Status marital, Level study, Previous pregnacy, Previous deliveries, Others diagnosis, Self reported malaria diagnosis, Malaria treatment, or ANC how many.</p>
+<p><strong>4.</strong> Write a short summary of what you would like the client to know about your analysis or any other extra information.</p>
+<p><strong>5.</strong> Are all of your names on the report?</p>
+<p><strong>6.</strong> Is your code fully commented?</p>
+<p><strong>5.</strong> Once you are happy with the report you created, share one RMarkdown per group and one Report per group in slack and you are officially done with the DRC data! Come back into the classroom for a goodbye to the KEMRI &amp; DataLab sesssions.</p>
 
 </div>
 </div>
